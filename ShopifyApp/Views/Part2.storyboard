@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Settings View Controller Table View Controller-->
         <scene sceneID="rCU-ni-PZR">
             <objects>
-                <tableViewController storyboardIdentifier="Settings" id="3Xd-rj-TfM" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Settings" id="3Xd-rj-TfM" customClass="SettingsViewControllerTableViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="8FZ-JI-04z">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="1589" y="10"/>
         </scene>
-        <!--View Controller-->
+        <!--User Addresses View Controller-->
         <scene sceneID="DmY-yo-ehv">
             <objects>
-                <viewController id="TKV-LU-Gcy" sceneMemberID="viewController">
+                <viewController id="TKV-LU-Gcy" customClass="UserAddressesViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4v-fR-TH6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,10 +263,10 @@
             </objects>
             <point key="canvasLocation" x="2394.6564885496182" y="13.380281690140846"/>
         </scene>
-        <!--View Controller-->
+        <!--Payment Options View Controller-->
         <scene sceneID="4Gz-BT-7xK">
             <objects>
-                <viewController id="KtE-8w-21n" sceneMemberID="viewController">
+                <viewController id="KtE-8w-21n" customClass="PaymentOptionsViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="76n-x6-2oG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -373,10 +373,10 @@
             </objects>
             <point key="canvasLocation" x="3162.5954198473282" y="12.67605633802817"/>
         </scene>
-        <!--View Controller-->
+        <!--Place Order View Controller-->
         <scene sceneID="WQp-Vn-xnX">
             <objects>
-                <viewController id="KEp-wO-5Wg" sceneMemberID="viewController">
+                <viewController id="KEp-wO-5Wg" customClass="PlaceOrderViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="35O-pI-R9t">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -498,10 +498,10 @@
             </objects>
             <point key="canvasLocation" x="3933.5877862595416" y="11.971830985915494"/>
         </scene>
-        <!--View Controller-->
+        <!--Shopping Cart View Controller-->
         <scene sceneID="xtq-Kf-wRA">
             <objects>
-                <viewController id="AQo-es-fqn" sceneMemberID="viewController">
+                <viewController id="AQo-es-fqn" customClass="ShoppingCartViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jYS-op-eKS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -633,10 +633,10 @@
             </objects>
             <point key="canvasLocation" x="6093" y="10"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Address Info View Controller-->
         <scene sceneID="Lpn-af-IYb">
             <objects>
-                <viewController id="Uk3-HF-uqd" sceneMemberID="viewController">
+                <viewController id="Uk3-HF-uqd" customClass="AddAddressInfoViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DuP-J2-sd9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
