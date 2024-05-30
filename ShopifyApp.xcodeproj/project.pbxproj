@@ -16,6 +16,10 @@
 		D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A72C032CC800C61F99 /* Part2.storyboard */; };
 		D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A92C032CD300C61F99 /* Part3.storyboard */; };
 		D30AB6AE2C035FF800C61F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6AD2C035FF800C61F99 /* Main.storyboard */; };
+		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
+		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
+		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
+		D3A4FF262C087783002D3381 /* CustomAddreesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF252C087783002D3381 /* CustomAddreesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		D30AB6A72C032CC800C61F99 /* Part2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Part2.storyboard; sourceTree = "<group>"; };
 		D30AB6A92C032CD300C61F99 /* Part3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Part3.storyboard; sourceTree = "<group>"; };
 		D30AB6AD2C035FF800C61F99 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomShoppingCartCellTableViewCell.xib; sourceTree = "<group>"; };
+		D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAddreesCell.xib; sourceTree = "<group>"; };
+		D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomShoppingCartCellTableViewCell.swift; sourceTree = "<group>"; };
+		D3A4FF252C087783002D3381 /* CustomAddreesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddreesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +77,10 @@
 				D30AB6AD2C035FF800C61F99 /* Main.storyboard */,
 				D30AB69A2C032CA500C61F99 /* Assets.xcassets */,
 				D30AB69C2C032CA500C61F99 /* LaunchScreen.storyboard */,
+				D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */,
+				D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */,
+				D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */,
+				D3A4FF252C087783002D3381 /* CustomAddreesCell.swift */,
 				D30AB69F2C032CA500C61F99 /* Info.plist */,
 			);
 			path = ShopifyApp;
@@ -143,6 +155,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30AB6AE2C035FF800C61F99 /* Main.storyboard in Resources */,
+				D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */,
+				D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */,
 				D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
 				D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */,
@@ -158,9 +172,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */,
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
+				D3A4FF262C087783002D3381 /* CustomAddreesCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
