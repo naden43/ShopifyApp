@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		009AB0372C03A17A0030366C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009AB0362C03A17A0030366C /* HomeViewController.swift */; };
+		009AB03C2C03AA730030366C /* BrandsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009AB03B2C03AA730030366C /* BrandsCollectionViewCell.swift */; };
+		009AB03F2C03AF5F0030366C /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */; };
+		009AB0422C03BDDB0030366C /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009AB0412C03BDDB0030366C /* ProductsCollectionViewCell.swift */; };
+		00C325852C084A5900422141 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C325832C084A5900422141 /* OrdersTableViewCell.swift */; };
+		00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C325842C084A5900422141 /* OrdersTableViewCell.xib */; };
 		D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6912C032CA300C61F99 /* AppDelegate.swift */; };
 		D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6932C032CA300C61F99 /* SceneDelegate.swift */; };
 		D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6952C032CA300C61F99 /* ViewController.swift */; };
@@ -20,6 +26,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		009AB0362C03A17A0030366C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		009AB03B2C03AA730030366C /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
+		009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		009AB0412C03BDDB0030366C /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewCell.swift; sourceTree = "<group>"; };
+		00C325832C084A5900422141 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
+		00C325842C084A5900422141 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		D30AB68E2C032CA300C61F99 /* ShopifyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30AB6912C032CA300C61F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D30AB6932C032CA300C61F99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +56,59 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		009AB0342C03A15E0030366C /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				00C325822C084A1400422141 /* OrdersScreen */,
+				009AB03D2C03AEC70030366C /* CategoriesScreen */,
+				009AB0352C03A1670030366C /* HomeScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		009AB0352C03A1670030366C /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				009AB0382C03AA020030366C /* View */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		009AB0382C03AA020030366C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				009AB0362C03A17A0030366C /* HomeViewController.swift */,
+				009AB03B2C03AA730030366C /* BrandsCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		009AB03D2C03AEC70030366C /* CategoriesScreen */ = {
+			isa = PBXGroup;
+			children = (
+				009AB0402C03BDB20030366C /* View */,
+			);
+			path = CategoriesScreen;
+			sourceTree = "<group>";
+		};
+		009AB0402C03BDB20030366C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */,
+				009AB0412C03BDDB0030366C /* ProductsCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00C325822C084A1400422141 /* OrdersScreen */ = {
+			isa = PBXGroup;
+			children = (
+				00C325832C084A5900422141 /* OrdersTableViewCell.swift */,
+				00C325842C084A5900422141 /* OrdersTableViewCell.xib */,
+			);
+			path = OrdersScreen;
+			sourceTree = "<group>";
+		};
 		D30AB6852C032CA300C61F99 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +128,7 @@
 		D30AB6902C032CA300C61F99 /* ShopifyApp */ = {
 			isa = PBXGroup;
 			children = (
+				009AB0342C03A15E0030366C /* Modules */,
 				D30AB6912C032CA300C61F99 /* AppDelegate.swift */,
 				D30AB6932C032CA300C61F99 /* SceneDelegate.swift */,
 				D30AB6952C032CA300C61F99 /* ViewController.swift */,
@@ -145,6 +211,7 @@
 			files = (
 				D30AB6AB2C032CD900C61F99 /* Main.storyboard in Resources */,
 				D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */,
+				00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
 				D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */,
 				D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */,
@@ -161,8 +228,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
+				00C325852C084A5900422141 /* OrdersTableViewCell.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
+				009AB0422C03BDDB0030366C /* ProductsCollectionViewCell.swift in Sources */,
+				009AB03C2C03AA730030366C /* BrandsCollectionViewCell.swift in Sources */,
+				009AB03F2C03AF5F0030366C /* CategoriesViewController.swift in Sources */,
+				009AB0372C03A17A0030366C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
