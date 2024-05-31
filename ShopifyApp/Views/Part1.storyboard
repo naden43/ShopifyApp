@@ -142,8 +142,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M2i-38-kol">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M2i-38-kol">
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="barTintColor" name="BackgroundColor"/>
                                 <textAttributes key="titleTextAttributes">
@@ -258,17 +259,13 @@
                         <constraints>
                             <constraint firstItem="5Hw-Eh-nsX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="2Rb-RI-DEV"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="sdV-ug-JE4" secondAttribute="trailing" constant="19" id="5Hm-6r-Hbo"/>
-                            <constraint firstItem="5Hw-Eh-nsX" firstAttribute="top" secondItem="M2i-38-kol" secondAttribute="bottom" id="7Nv-ej-nIM"/>
-                            <constraint firstItem="M2i-38-kol" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="DzG-Jf-dvs"/>
-                            <constraint firstItem="M2i-38-kol" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="E59-Qs-4zp"/>
-                            <constraint firstItem="M2i-38-kol" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="Jdr-Zn-Kwh"/>
+                            <constraint firstItem="5Hw-Eh-nsX" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="-666" id="EcG-nB-fPV"/>
                             <constraint firstItem="PRs-rQ-kcX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="POQ-46-8q0"/>
                             <constraint firstItem="PRs-rQ-kcX" firstAttribute="centerX" secondItem="sdV-ug-JE4" secondAttribute="centerX" id="dfB-MB-z9b"/>
                             <constraint firstItem="sdV-ug-JE4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="19" id="fVI-jx-Rh4"/>
                             <constraint firstItem="PRs-rQ-kcX" firstAttribute="top" secondItem="sdV-ug-JE4" secondAttribute="bottom" constant="16" id="q9N-6m-jm9"/>
                             <constraint firstItem="5Hw-Eh-nsX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="qED-uB-4Lq"/>
                             <constraint firstItem="PRs-rQ-kcX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="rXx-AK-ade"/>
-                            <constraint firstItem="5Hw-Eh-nsX" firstAttribute="top" secondItem="M2i-38-kol" secondAttribute="bottom" id="tXz-xm-lBV"/>
                             <constraint firstAttribute="bottom" secondItem="PRs-rQ-kcX" secondAttribute="bottom" id="uQv-Yq-AHl"/>
                             <constraint firstItem="sdV-ug-JE4" firstAttribute="top" secondItem="5Hw-Eh-nsX" secondAttribute="bottom" constant="16.333333333333343" id="vCM-gi-dz6"/>
                         </constraints>
@@ -505,25 +502,25 @@
         <!--Profile-->
         <scene sceneID="pru-uB-11x">
             <objects>
-                <viewController id="Aev-nz-63v" sceneMemberID="viewController">
+                <viewController id="Aev-nz-63v" customClass="ProfileViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5mO-X7-thV">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="is3-gn-rq1">
-                                <rect key="frame" x="15.999999999999993" y="119" width="106.33333333333331" height="30"/>
+                                <rect key="frame" x="15.999999999999993" y="59" width="106.33333333333331" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Naden" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JtU-g2-T4t">
-                                <rect key="frame" x="130.33333333333334" y="119" width="71.333333333333343" height="30"/>
+                                <rect key="frame" x="130.33333333333334" y="59" width="71.333333333333343" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9gA-CB-KBW">
-                                <rect key="frame" x="16" y="165" width="361" height="604"/>
+                                <rect key="frame" x="16" y="105" width="361" height="664"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="80U-Pa-Hg4">
                                     <size key="itemSize" width="361" height="55"/>
@@ -593,36 +590,17 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FNN-My-tgk">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                                <color key="barTintColor" name="BackgroundColor"/>
-                                <items>
-                                    <navigationItem title="profile" id="c7N-tP-2qR">
-                                        <rightBarButtonItems>
-                                            <barButtonItem title="Item" image="gearshape" catalog="system" id="x93-o7-FY1">
-                                                <color key="tintColor" systemColor="darkTextColor"/>
-                                            </barButtonItem>
-                                            <barButtonItem title="Item" image="cart" catalog="system" id="zmC-SI-mlJ">
-                                                <color key="tintColor" systemColor="darkTextColor"/>
-                                            </barButtonItem>
-                                        </rightBarButtonItems>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8ZH-jU-90B"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JtU-g2-T4t" firstAttribute="leading" secondItem="is3-gn-rq1" secondAttribute="trailing" constant="8" id="CWJ-WY-gcM"/>
-                            <constraint firstItem="FNN-My-tgk" firstAttribute="top" secondItem="8ZH-jU-90B" secondAttribute="top" id="KuC-yp-BYu"/>
                             <constraint firstItem="is3-gn-rq1" firstAttribute="leading" secondItem="8ZH-jU-90B" secondAttribute="leading" constant="16" id="O9d-EW-FIu"/>
-                            <constraint firstItem="FNN-My-tgk" firstAttribute="leading" secondItem="8ZH-jU-90B" secondAttribute="leading" id="U3x-rY-acO"/>
-                            <constraint firstItem="is3-gn-rq1" firstAttribute="top" secondItem="FNN-My-tgk" secondAttribute="bottom" constant="16" id="X65-Ug-pmS"/>
                             <constraint firstItem="8ZH-jU-90B" firstAttribute="bottom" secondItem="9gA-CB-KBW" secondAttribute="bottom" id="kgH-h1-ytm"/>
+                            <constraint firstItem="is3-gn-rq1" firstAttribute="top" secondItem="8ZH-jU-90B" secondAttribute="top" id="lbD-Wm-xpX"/>
                             <constraint firstItem="9gA-CB-KBW" firstAttribute="leading" secondItem="8ZH-jU-90B" secondAttribute="leading" constant="16" id="ouJ-y4-irz"/>
                             <constraint firstItem="9gA-CB-KBW" firstAttribute="top" secondItem="is3-gn-rq1" secondAttribute="bottom" constant="16" id="q64-Td-RJV"/>
                             <constraint firstItem="8ZH-jU-90B" firstAttribute="trailing" secondItem="9gA-CB-KBW" secondAttribute="trailing" constant="16" id="rA8-Qc-P8e"/>
-                            <constraint firstItem="FNN-My-tgk" firstAttribute="trailing" secondItem="8ZH-jU-90B" secondAttribute="trailing" id="tfp-YO-zDe"/>
                             <constraint firstItem="JtU-g2-T4t" firstAttribute="top" secondItem="is3-gn-rq1" secondAttribute="top" id="wvF-Eo-9WK"/>
                         </constraints>
                     </view>
@@ -725,7 +703,6 @@
         <image name="book" catalog="system" width="128" height="99"/>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="cart" catalog="system" width="128" height="102"/>
-        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="house.fill" catalog="system" width="128" height="104"/>
@@ -735,9 +712,6 @@
         <namedColor name="BackgroundColor">
             <color red="0.98199999332427979" green="0.98199999332427979" blue="0.98199999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
