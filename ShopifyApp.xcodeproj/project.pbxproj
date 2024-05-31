@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		38A401422C03C8BF0099B51F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A401412C03C8BF0099B51F /* search.png */; };
-		38A401442C03C8DA0099B51F /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A401432C03C8DA0099B51F /* search.png */; };
 		D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6912C032CA300C61F99 /* AppDelegate.swift */; };
 		D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6932C032CA300C61F99 /* SceneDelegate.swift */; };
 		D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6952C032CA300C61F99 /* ViewController.swift */; };
@@ -22,8 +20,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		38A401412C03C8BF0099B51F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = ../../../Downloads/search.png; sourceTree = "<group>"; };
-		38A401432C03C8DA0099B51F /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = search.png; path = ../../../Downloads/search.png; sourceTree = "<group>"; };
 		D30AB68E2C032CA300C61F99 /* ShopifyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30AB6912C032CA300C61F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D30AB6932C032CA300C61F99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,10 +68,8 @@
 				D30AB6952C032CA300C61F99 /* ViewController.swift */,
 				D30AB6AC2C032D0700C61F99 /* Views */,
 				D30AB6972C032CA300C61F99 /* Main.storyboard */,
-				38A401412C03C8BF0099B51F /* search.png */,
 				D30AB69A2C032CA500C61F99 /* Assets.xcassets */,
 				D30AB69C2C032CA500C61F99 /* LaunchScreen.storyboard */,
-				38A401432C03C8DA0099B51F /* search.png */,
 				D30AB69F2C032CA500C61F99 /* Info.plist */,
 			);
 			path = ShopifyApp;
@@ -150,10 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30AB6AB2C032CD900C61F99 /* Main.storyboard in Resources */,
-				38A401442C03C8DA0099B51F /* search.png in Resources */,
 				D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
-				38A401422C03C8BF0099B51F /* search.png in Resources */,
 				D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */,
 				D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */,
 				D30AB6992C032CA300C61F99 /* Base in Resources */,
