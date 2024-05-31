@@ -9,13 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
-    @IBOutlet weak var homeCollection: UICollectionView!
+    //@IBOutlet weak var homeCollection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
 
-        homeCollection.delegate = self
-        homeCollection.dataSource = self
+       /* homeCollection.delegate = self
+        homeCollection.dataSource = self*/
     
         // Do any additional setup after loading the view.
     }
@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         return section
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
