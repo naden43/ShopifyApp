@@ -18,16 +18,36 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         
-        var view = self.navigationController?.visibleViewController
-        view?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape") , style: .plain, target: self, action: #selector(performNav))
-        view?.navigationItem.rightBarButtonItems?[0].tintColor = UIColor(.black)
-        view?.title = "profile"
+        let view = self.navigationController?.visibleViewController
+        
+        
+        view?.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "gearshape") , style: .plain, target: self, action: #selector(performNavToSettings)) , UIBarButtonItem(image: UIImage(systemName: "cart") , style: .plain, target: self, action: #selector(performNavToCart))]
+        
+        for item in view?.navigationItem.rightBarButtonItems ?? [] {
+             
+            item.tintColor = UIColor(.black)
+        }
+       view?.title = "profile"
     }
     
-    @objc func performNav(){
+    @objc func performNavToCart(){
         
         print("perform")
     }
+    
+    @objc func performNavToSettings(){
+        
+        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let settingsScreen = part2Storyboard.instantiateViewController(withIdentifier: "Settings") as! SettingsViewControllerTableViewController
+        
+       // present(settingsScreen, animated: true)
+        
+        navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.pushViewController(settingsScreen, animated: true)
+        
+    }
+    
     
     
     /*

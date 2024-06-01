@@ -9,21 +9,26 @@ import UIKit
 
 class AddAddressInfoViewController: UIViewController {
 
+    @IBOutlet weak var phoneNumberTxtField: UITextField!
+    @IBOutlet weak var address1TxtField: UITextField!
+    @IBOutlet weak var cityPicker: UIPickerView!
+    @IBOutlet weak var firstNameTxtField: UITextField!
+    @IBOutlet weak var countryPicker: UIPickerView!
+    @IBOutlet weak var lastNameTxtField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    
         // Do any additional setup after loading the view.
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func backToAddressesList(_ sender: Any) {
+        
+        dismiss(animated: true)
     }
-    */
-
+   
+    @IBAction func performAddAddress(_ sender: Any) {
+    }
+    
 }

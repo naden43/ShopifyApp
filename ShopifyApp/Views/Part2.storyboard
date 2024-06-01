@@ -2,7 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Settings View Controller Table View Controller-->
@@ -197,8 +200,8 @@
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="3Xd-rj-TfM" id="32y-Ha-u8R"/>
-                            <outlet property="delegate" destination="3Xd-rj-TfM" id="cQq-KT-J5T"/>
+                            <outlet property="dataSource" destination="3Xd-rj-TfM" id="yS9-J8-9zU"/>
+                            <outlet property="delegate" destination="3Xd-rj-TfM" id="7UK-mS-3Wm"/>
                         </connections>
                     </tableView>
                 </tableViewController>
@@ -209,7 +212,7 @@
         <!--User Addresses View Controller-->
         <scene sceneID="DmY-yo-ehv">
             <objects>
-                <viewController id="TKV-LU-Gcy" customClass="UserAddressesViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="user_addresses" modalPresentationStyle="fullScreen" id="TKV-LU-Gcy" customClass="UserAddressesViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4v-fR-TH6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -218,6 +221,9 @@
                                 <rect key="frame" x="16" y="74" width="48" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <connections>
+                                    <action selector="backToSettings:" destination="TKV-LU-Gcy" eventType="touchUpInside" id="2F5-AS-S4U"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ODd-vy-X2S">
                                 <rect key="frame" x="8" y="128" width="377" height="619"/>
@@ -229,6 +235,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="add new address">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="navToAddAddress:" destination="TKV-LU-Gcy" eventType="touchUpInside" id="NEg-GA-q46"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Your Addresses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNg-6n-cV6">
                                 <rect key="frame" x="80" y="74" width="297" height="38"/>
@@ -255,6 +264,9 @@
                             <constraint firstItem="SoS-ut-zwl" firstAttribute="bottom" secondItem="TfW-3A-VPa" secondAttribute="bottom" constant="16" id="zzn-5q-dNz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userAddressesList" destination="ODd-vy-X2S" id="EIY-Oq-eOf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjr-0e-azo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -633,7 +645,7 @@
         <!--Add Address Info View Controller-->
         <scene sceneID="Lpn-af-IYb">
             <objects>
-                <viewController id="Uk3-HF-uqd" customClass="AddAddressInfoViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="add_address" modalPresentationStyle="fullScreen" id="Uk3-HF-uqd" customClass="AddAddressInfoViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DuP-J2-sd9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -704,6 +716,9 @@
                                 <rect key="frame" x="16" y="74" width="48" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <connections>
+                                    <action selector="backToAddressesList:" destination="Uk3-HF-uqd" eventType="touchUpInside" id="x0w-GW-dVH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju6-nJ-kux">
                                 <rect key="frame" x="16" y="763" width="361" height="39"/>
@@ -711,6 +726,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Add Address">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="performAddAddress:" destination="Uk3-HF-uqd" eventType="touchUpInside" id="5id-CV-Vf7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Osj-J3-dBp"/>
@@ -757,6 +775,14 @@
                             <constraint firstItem="Osj-J3-dBp" firstAttribute="trailing" secondItem="rkV-US-gs5" secondAttribute="trailing" constant="16" id="zXp-UJ-YjW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="address1TxtField" destination="NJW-mb-L9T" id="nPX-kT-4Ft"/>
+                        <outlet property="cityPicker" destination="nHk-Av-IWn" id="vg7-9r-UME"/>
+                        <outlet property="countryPicker" destination="rkV-US-gs5" id="Wxu-0l-2QV"/>
+                        <outlet property="firstNameTxtField" destination="ZZf-SM-Qqa" id="WmJ-lY-w3T"/>
+                        <outlet property="lastNameTxtField" destination="pNq-AS-5NP" id="NGe-tF-6NK"/>
+                        <outlet property="phoneNumberTxtField" destination="2Ea-9P-QuJ" id="MTu-De-1q2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTI-Nz-WWU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -838,5 +864,4 @@
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
-    <scenes/>
 </document>
