@@ -16,6 +16,46 @@ class HomeScViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        handleNavigationBar()
+    }
+    
+    
+    func handleNavigationBar() {
+        guard let view = self.navigationController?.visibleViewController else {
+            return
+        }
+        
+        let searchButton = UIBarButtonItem(image: UIImage(named: "searcc.svg"), style: .plain, target: self, action: #selector(addTapped))
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartBtn))
+        let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartBtn))
+        
+        searchButton.tintColor = UIColor(ciColor: .black)
+        cartButton.tintColor = UIColor(ciColor: .black)
+        heartButton.tintColor = UIColor(ciColor: .black)
+        
+        view.navigationItem.leftBarButtonItem = searchButton
+        view.navigationItem.rightBarButtonItems = [heartButton, cartButton] // Assign array of buttons
+    }
+    
+    
+    @objc func addTapped(){
+        
+        print("perform")
+    }
+    
+    @objc func cartBtn(){
+        
+        print("perform")
+    }
+    
+    @objc func heartBtn(){
+        
+        print("perform")
+    }
+    
+    
+    
 
     /*
     // MARK: - Navigation
