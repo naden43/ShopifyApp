@@ -10,7 +10,11 @@
 		0078A34A2C0C8045000978B1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078A3482C0C8045000978B1 /* ProductCollectionViewCell.swift */; };
 		0078A34B2C0C8045000978B1 /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0078A3492C0C8045000978B1 /* ProductCollectionViewCell.xib */; };
 		00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C325842C084A5900422141 /* OrdersTableViewCell.xib */; };
+		00E5C6E72C0C907200587284 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5C6E62C0C907200587284 /* ApiServices.swift */; };
+		00E5C6EA2C0C90E600587284 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00E5C6E92C0C90E600587284 /* Alamofire */; };
+		00E5C6ED2C0C915800587284 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5C6EC2C0C915800587284 /* Brands.swift */; };
 		00E9780F2C0C894B00771143 /* HomeScViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9780E2C0C894B00771143 /* HomeScViewController.swift */; };
+		00E978112C0C8F0400771143 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E978102C0C8F0400771143 /* ProductsViewController.swift */; };
 		D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6912C032CA300C61F99 /* AppDelegate.swift */; };
 		D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6932C032CA300C61F99 /* SceneDelegate.swift */; };
 		D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6952C032CA300C61F99 /* ViewController.swift */; };
@@ -36,10 +40,12 @@
 		009AB0362C03A17A0030366C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		009AB03B2C03AA730030366C /* BrandsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandsCollectionViewCell.swift; sourceTree = "<group>"; };
 		009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		009AB0412C03BDDB0030366C /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		00C325832C084A5900422141 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		00C325842C084A5900422141 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
+		00E5C6E62C0C907200587284 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
+		00E5C6EC2C0C915800587284 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		00E9780E2C0C894B00771143 /* HomeScViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScViewController.swift; sourceTree = "<group>"; };
+		00E978102C0C8F0400771143 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
 		D30AB68E2C032CA300C61F99 /* ShopifyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30AB6912C032CA300C61F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D30AB6932C032CA300C61F99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00E5C6EA2C0C90E600587284 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +94,7 @@
 		009AB0342C03A15E0030366C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				00E978122C0C8F1C00771143 /* ProductsScreen */,
 				0078A3452C0C7FE4000978B1 /* View */,
 				00C325822C084A1400422141 /* OrdersScreen */,
 				009AB03D2C03AEC70030366C /* CategoriesScreen */,
@@ -125,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */,
-				009AB0412C03BDDB0030366C /* ProductsCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -137,6 +144,47 @@
 				00C325842C084A5900422141 /* OrdersTableViewCell.xib */,
 			);
 			path = OrdersScreen;
+			sourceTree = "<group>";
+		};
+		00E5C6EB2C0C914200587284 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				00E5C6EC2C0C915800587284 /* Brands.swift */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		00E978122C0C8F1C00771143 /* ProductsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				00E978132C0C8F2A00771143 /* View */,
+			);
+			path = ProductsScreen;
+			sourceTree = "<group>";
+		};
+		00E978132C0C8F2A00771143 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				00E978102C0C8F0400771143 /* ProductsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		00E978142C0C8FBF00771143 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				00E5C6EB2C0C914200587284 /* DataModel */,
+				00E978152C0C8FC700771143 /* Networking */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		00E978152C0C8FC700771143 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				00E5C6E62C0C907200587284 /* ApiServices.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		D30AB6852C032CA300C61F99 = {
@@ -158,6 +206,7 @@
 		D30AB6902C032CA300C61F99 /* ShopifyApp */ = {
 			isa = PBXGroup;
 			children = (
+				00E978142C0C8FBF00771143 /* Model */,
 				009AB0342C03A15E0030366C /* Modules */,
 				D30AB6912C032CA300C61F99 /* AppDelegate.swift */,
 				D30AB6932C032CA300C61F99 /* SceneDelegate.swift */,
@@ -208,6 +257,9 @@
 			dependencies = (
 			);
 			name = ShopifyApp;
+			packageProductDependencies = (
+				00E5C6E92C0C90E600587284 /* Alamofire */,
+			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
 			productType = "com.apple.product-type.application";
@@ -236,6 +288,9 @@
 				Base,
 			);
 			mainGroup = D30AB6852C032CA300C61F99;
+			packageReferences = (
+				00E5C6E82C0C90E600587284 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -276,10 +331,13 @@
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
 				D3AFACEC2C08F1C600182659 /* ShoppingCartViewController.swift in Sources */,
 				D3AFACE42C08F0A900182659 /* SettingsViewControllerTableViewController.swift in Sources */,
+				00E978112C0C8F0400771143 /* ProductsViewController.swift in Sources */,
 				D3AFACEE2C08F20F00182659 /* AddAddressInfoViewController.swift in Sources */,
 				D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */,
+				00E5C6ED2C0C915800587284 /* Brands.swift in Sources */,
 				D3AFACE62C08F11200182659 /* UserAddressesViewController.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
+				00E5C6E72C0C907200587284 /* ApiServices.swift in Sources */,
 				00E9780F2C0C894B00771143 /* HomeScViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +553,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		00E5C6E82C0C90E600587284 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		00E5C6E92C0C90E600587284 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00E5C6E82C0C90E600587284 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D30AB6862C032CA300C61F99 /* Project object */;
 }
