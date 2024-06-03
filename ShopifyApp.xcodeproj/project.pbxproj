@@ -20,9 +20,9 @@
 		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
 		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
 		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
-		D3AFACE42C08F0A900182659 /* SettingsViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AFACE32C08F0A900182659 /* SettingsViewControllerTableViewController.swift */; };
+		D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7002C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift */; };
+		D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7082C0DD646006006B7 /* AddAddressInfoViewController.swift */; };
 		D3AFACEC2C08F1C600182659 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AFACEB2C08F1C600182659 /* ShoppingCartViewController.swift */; };
-		D3AFACEE2C08F20F00182659 /* AddAddressInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AFACED2C08F20F00182659 /* AddAddressInfoViewController.swift */; };
 		D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */; };
 /* End PBXBuildFile section */
@@ -49,11 +49,11 @@
 		D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAddreesCell.xib; sourceTree = "<group>"; };
 		D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomShoppingCartCellTableViewCell.swift; sourceTree = "<group>"; };
 		D3A4FF252C087783002D3381 /* CustomAddreesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAddreesCell.swift; sourceTree = "<group>"; };
-		D3AFACE32C08F0A900182659 /* SettingsViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		D3AAA7002C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		D3AAA7082C0DD646006006B7 /* AddAddressInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressInfoViewController.swift; sourceTree = "<group>"; };
 		D3AFACE72C08F13500182659 /* PaymentOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionsViewController.swift; sourceTree = "<group>"; };
 		D3AFACE92C08F18A00182659 /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
 		D3AFACEB2C08F1C600182659 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
-		D3AFACED2C08F20F00182659 /* AddAddressInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressInfoViewController.swift; sourceTree = "<group>"; };
 		D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,8 +72,9 @@
 		009AB0342C03A15E0030366C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D3AAA7022C0DD5D7006006B7 /* AddAddressScreen */,
+				D3AAA6FE2C0DD568006006B7 /* SettingScreen */,
 				D3D26CFE2C0BD1D000253D01 /* AddressScreen */,
-				D3D26CFD2C0BD1BC00253D01 /* SettingsScreen */,
 				00C325822C084A1400422141 /* OrdersScreen */,
 				009AB03D2C03AEC70030366C /* CategoriesScreen */,
 				009AB0352C03A1670030366C /* HomeScreen */,
@@ -149,7 +150,6 @@
 				D3AFACE92C08F18A00182659 /* PlaceOrderViewController.swift */,
 				D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */,
 				D3AFACE72C08F13500182659 /* PaymentOptionsViewController.swift */,
-				D3AFACED2C08F20F00182659 /* AddAddressInfoViewController.swift */,
 				D30AB6952C032CA300C61F99 /* ViewController.swift */,
 				D3AFACEB2C08F1C600182659 /* ShoppingCartViewController.swift */,
 				D30AB6AC2C032D0700C61F99 /* Views */,
@@ -161,7 +161,6 @@
 				D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */,
 				D3A4FF252C087783002D3381 /* CustomAddreesCell.swift */,
 				D30AB69F2C032CA500C61F99 /* Info.plist */,
-				D3AFACE32C08F0A900182659 /* SettingsViewControllerTableViewController.swift */,
 			);
 			path = ShopifyApp;
 			sourceTree = "<group>";
@@ -176,20 +175,65 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		D3D26CFD2C0BD1BC00253D01 /* SettingsScreen */ = {
+		D3AAA6FD2C0DD54D006006B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D3D26D042C0BD22900253D01 /* Model */,
-				D3D26D032C0BD22100253D01 /* ViewModel */,
-				D3D26D022C0BD21800253D01 /* View */,
 			);
-			path = SettingsScreen;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D3AAA6FE2C0DD568006006B7 /* SettingScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D3AAA6FF2C0DD593006006B7 /* View */,
+			);
+			path = SettingScreen;
+			sourceTree = "<group>";
+		};
+		D3AAA6FF2C0DD593006006B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3AAA7002C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D3AAA7022C0DD5D7006006B7 /* AddAddressScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D3AAA7052C0DD5FC006006B7 /* Model */,
+				D3AAA7042C0DD5EF006006B7 /* ViewModel */,
+				D3AAA7032C0DD5E8006006B7 /* View */,
+			);
+			path = AddAddressScreen;
+			sourceTree = "<group>";
+		};
+		D3AAA7032C0DD5E8006006B7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3AAA7082C0DD646006006B7 /* AddAddressInfoViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D3AAA7042C0DD5EF006006B7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D3AAA7052C0DD5FC006006B7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D3D26CFE2C0BD1D000253D01 /* AddressScreen */ = {
 			isa = PBXGroup;
 			children = (
-				D3D26D012C0BD20F00253D01 /* Model */,
+				D3AAA6FD2C0DD54D006006B7 /* Model */,
 				D3D26D002C0BD20400253D01 /* ViewModel */,
 				D3D26CFF2C0BD1FC00253D01 /* View */,
 			);
@@ -209,34 +253,6 @@
 			children = (
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D3D26D012C0BD20F00253D01 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D3D26D022C0BD21800253D01 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D3D26D032C0BD22100253D01 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D3D26D042C0BD22900253D01 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,11 +333,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */,
+				D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */,
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
 				D3AFACEC2C08F1C600182659 /* ShoppingCartViewController.swift in Sources */,
-				D3AFACE42C08F0A900182659 /* SettingsViewControllerTableViewController.swift in Sources */,
-				D3AFACEE2C08F20F00182659 /* AddAddressInfoViewController.swift in Sources */,
+				D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */,
 				D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */,
 				D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
