@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDK-lu-ezA">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -352,10 +353,10 @@
             </objects>
             <point key="canvasLocation" x="141" y="13"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="oJK-jc-e7A">
             <objects>
-                <viewController id="KDK-lu-ezA" sceneMemberID="viewController">
+                <viewController id="KDK-lu-ezA" customClass="SignUpViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5mM-1v-uhi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -446,6 +447,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up">
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="signUpBtn:" destination="KDK-lu-ezA" eventType="touchUpInside" id="HM0-lp-W3D"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="bg_color"/>
@@ -494,6 +498,14 @@
                             <constraint firstItem="89n-fL-qcu" firstAttribute="trailing" secondItem="3uc-Xb-MEY" secondAttribute="trailing" id="jGc-WA-afm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="conformPasswordTextField" destination="bBB-dH-i0p" id="eGA-bw-qVF"/>
+                        <outlet property="emailTextField" destination="Y2A-uc-oVQ" id="pBp-7w-prS"/>
+                        <outlet property="firstNameTextField" destination="n8J-wK-niE" id="R7U-au-4d0"/>
+                        <outlet property="mobileTextField" destination="I7g-hO-jLx" id="poF-d7-M8e"/>
+                        <outlet property="passwordTextField" destination="00N-Ce-0Jd" id="ZcV-ly-NP9"/>
+                        <outlet property="secondNameTextField" destination="zRu-le-vf8" id="Gwf-CQ-eM1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FY2-gu-FBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -501,7 +513,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="32" height="32"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="logo" width="400" height="400"/>
         <image name="product 1" width="564" height="698"/>
         <image name="search" width="16" height="16"/>
@@ -516,16 +528,16 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

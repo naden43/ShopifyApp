@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
 
@@ -15,10 +17,13 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var mobileTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var conformPasswordTextField: UITextField!
+    let signUpViewModel = SignUpViewModel()
+   
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+       
     }
 
     @IBAction func signUpBtn(_ sender: Any) {
@@ -46,12 +51,25 @@ class SignUpViewController: UIViewController {
           
         ]
         
+        
+        signUpViewModel.createUser(email: email, password: password) { success, message in
+                DispatchQueue.main.async {
+                    if success {
+                        // Signup successful
+                        self.showSuccess("Signup successful!")
+                    } else {
+                        // Signup failed
+                        self.showError(message ?? "Signup failed")
+                    }
+                }
+            }
+        
         NetworkHandler.shared.postCustomerData(customerData) { success, message in
             DispatchQueue.main.async {
                 if success {
-                    self.showSuccess("Signup successful!")
+                    self.showSuccess("created successfully!")
                 } else {
-                    self.showError(message ?? "Signup failed")
+                    self.showError(message ?? "failed to creat customer")
                 }
             }
         }
