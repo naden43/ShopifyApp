@@ -31,6 +31,8 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
         countryPicker.dataSource = self
         cityPicker.dataSource = self
         
+        selectedCity = viewModel?.getCityByIndex(index: 0)
+        selectedCountry = viewModel?.getcCountryByIndex(index: 0)
         viewModel?.missedData = { [weak self] in
             
             let alert = UIAlertController(title: "AddAddress", message: "some of data missed please fil required data", preferredStyle: .actionSheet)

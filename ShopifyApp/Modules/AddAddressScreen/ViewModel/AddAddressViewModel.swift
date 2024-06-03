@@ -49,6 +49,7 @@ class AddAddressViewModel {
             /*validationManager?.addAddress(address: address, completionHandler: { result in
                 print(result)
             })*/
+            performAdd(address: address)
         }
         else{
             missedData()
@@ -58,7 +59,13 @@ class AddAddressViewModel {
     
     
     
-    func performAdd() {
+    func performAdd(address:Address) {
+        
+        validationManager?.postAddress(address, completion: { result, error in
+            
+            print(result)
+            print(error)
+        })
         
     }
     

@@ -16,6 +16,12 @@ struct Address: Codable {
 }
 
 
+struct customAddress : Codable{
+    
+    var customer_address  : Address
+    
+}
+
 class userAddress : Codable {
     
     var addresses : [Address]
@@ -24,5 +30,3 @@ class userAddress : Codable {
         self.addresses = addresses
     }
 }
-
-
