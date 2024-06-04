@@ -8,9 +8,8 @@
 import Foundation
 
 // MARK: - Welcome
-struct Welcome: Codable {
+struct Brands: Codable {
     let smartCollections: [SmartCollection]
-
     enum CodingKeys: String, CodingKey {
         case smartCollections = "smart_collections"
     }
@@ -20,9 +19,9 @@ struct Welcome: Codable {
 struct SmartCollection: Codable {
     let id: Int
     let handle, title: String
-    let updatedAt: Date
+    //let updatedAt: Date
     let bodyHTML: String
-    let publishedAt: Date
+    //let publishedAt: Date
     let sortOrder: SortOrder
     let templateSuffix: JSONNull?
     let disjunctive: Bool
@@ -33,9 +32,9 @@ struct SmartCollection: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id, handle, title
-        case updatedAt = "updated_at"
+       //p case updatedAt = "updated_at"
         case bodyHTML = "body_html"
-        case publishedAt = "published_at"
+        //case publishedAt = "published_at"
         case sortOrder = "sort_order"
         case templateSuffix = "template_suffix"
         case disjunctive, rules
@@ -43,20 +42,22 @@ struct SmartCollection: Codable {
         case adminGraphqlAPIID = "admin_graphql_api_id"
         case image
     }
+    
+    struct Image: Codable {
+        //let createdAt: Date
+        let alt: JSONNull?
+        let width, height: Int
+        let src: String
+
+        enum CodingKeys: String, CodingKey {
+           // case createdAt = "created_at"
+            case alt, width, height, src
+        }
+    }
 }
 
 // MARK: - Image
-struct Image: Codable {
-    let createdAt: Date
-    let alt: JSONNull?
-    let width, height: Int
-    let src: String
 
-    enum CodingKeys: String, CodingKey {
-        case createdAt = "created_at"
-        case alt, width, height, src
-    }
-}
 
 enum PublishedScope: String, Codable {
     case web = "web"

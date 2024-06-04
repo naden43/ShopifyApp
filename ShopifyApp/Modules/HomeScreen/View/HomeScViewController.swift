@@ -7,12 +7,26 @@
 
 import UIKit
 
-class HomeScViewController: UIViewController {
+class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var brandsCollection: UICollectionView!
+    var brandName : String?
+    var viewModel : HomeViewModelProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("update")
+        let url = Constants.baseUrl + Constants.EndPoint.brands
+        viewModel = HomeViewModel()
+        brandsCollection.delegate = self
+        brandsCollection.dataSource = self
+        viewModel?.bindToHomeViewController = { [weak self] in
+            print("inside the bind closure")
+            DispatchQueue.main.async {
+                self?.brandsCollection.reloadData()
+            }
+        }
+        viewModel?.fetchBands(url: url)
+        // Do any additional setup after loading the view.
         // Do any additional setup after loading the view.
     }
     
@@ -55,7 +69,49 @@ class HomeScViewController: UIViewController {
     }
     
     
+    func getUniqueBrands() -> [SmartCollection] {
+        guard let brands = viewModel?.getBrands() else {
+            return []
+        }
+        print("All Brands Count: \(brands.count)")
+        let uniqueBrands = brands.filter{!$0.handle.contains("-1")}
+        print("Filtered Brands Count: \(uniqueBrands.count)")
+        return uniqueBrands
+    }
     
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let uniqueBrands = getUniqueBrands()
+        return uniqueBrands.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let brandCell = brandsCollection.dequeueReusableCell(withReuseIdentifier: "brandsCell", for: indexPath) as! BrandCollectionViewCell
+        let brands = getUniqueBrands()
+        brandCell.layer.cornerRadius = 20
+        brandCell.brandName.text = brands[indexPath.row].title
+        brandCell.viewContainer.layer.cornerRadius = 15
+        brandCell.brandImg.layer.cornerRadius = 50
+        var brandIMG = brands[indexPath.row].image.src
+        let imageUrl = URL(string: brandIMG)
+        self.brandName = brands[indexPath.row].title
+        return brandCell
+    }
+
+
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let brands = getUniqueBrands()
+        let selectedBrandId = brands[indexPath.row].id
+        let selectedBrandName = brands[indexPath.row].title
+        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+    }
+
 
     /*
     // MARK: - Navigation
