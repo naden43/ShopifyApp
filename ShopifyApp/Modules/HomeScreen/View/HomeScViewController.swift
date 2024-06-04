@@ -115,6 +115,13 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         let backItem = UIBarButtonItem()
             backItem.title = selectedBrandName
             self.navigationItem.backBarButtonItem = backItem
+        
+        
+        if let productVC = storyboard.instantiateViewController(withIdentifier: "productBrandScreen") as? ProductsViewController {
+            productVC.brandId = selectedBrandId
+            productVC.brandName = selectedBrandName
+            navigationController?.pushViewController(productVC, animated: true)
+        }
     }
 
 

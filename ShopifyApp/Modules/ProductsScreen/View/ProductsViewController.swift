@@ -8,10 +8,12 @@
 import UIKit
 
 class ProductsViewController: UIViewController {
-
+    @IBOutlet weak var productCollection: UICollectionView!
+    var brandId : Int?
+    var brandName : String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("The Brand id = \(self.brandId ?? 301445349542)")
         // Do any additional setup after loading the view.
     }
     
