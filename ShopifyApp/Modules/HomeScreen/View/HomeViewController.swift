@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        print("hello test")
        /* homeCollection.delegate = self
         homeCollection.dataSource = self*/
     
