@@ -12,6 +12,8 @@
 		00B55B092C0F6C380007FFD6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B55B082C0F6C380007FFD6 /* Constants.swift */; };
 		00B55B0C2C0F6C700007FFD6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B55B0B2C0F6C700007FFD6 /* HomeViewModel.swift */; };
 		00B55B0E2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B55B0D2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift */; };
+		00B55B112C0F743E0007FFD6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 00B55B102C0F743E0007FFD6 /* Kingfisher */; };
+		00B55B132C0F75AA0007FFD6 /* Part1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00B55B122C0F75AA0007FFD6 /* Part1.storyboard */; };
 		00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C325842C084A5900422141 /* OrdersTableViewCell.xib */; };
 		00E5C6E72C0C907200587284 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E5C6E62C0C907200587284 /* ApiServices.swift */; };
 		00E5C6EA2C0C90E600587284 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00E5C6E92C0C90E600587284 /* Alamofire */; };
@@ -23,7 +25,6 @@
 		D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6952C032CA300C61F99 /* ViewController.swift */; };
 		D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D30AB69A2C032CA500C61F99 /* Assets.xcassets */; };
 		D30AB69E2C032CA500C61F99 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D30AB69D2C032CA500C61F99 /* Base */; };
-		D30AB6A62C032CBE00C61F99 /* Part1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A52C032CBE00C61F99 /* Part1.storyboard */; };
 		D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A72C032CC800C61F99 /* Part2.storyboard */; };
 		D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A92C032CD300C61F99 /* Part3.storyboard */; };
 		D30AB6AE2C035FF800C61F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6AD2C035FF800C61F99 /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		00B55B082C0F6C380007FFD6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00B55B0B2C0F6C700007FFD6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		00B55B0D2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
+		00B55B122C0F75AA0007FFD6 /* Part1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Part1.storyboard; path = "../../../../Desktop/ShopifyApp 10.11.13 PM/ShopifyApp/Views/Part1.storyboard"; sourceTree = "<group>"; };
 		00C325832C084A5900422141 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		00C325842C084A5900422141 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		00E5C6E62C0C907200587284 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
@@ -58,7 +60,6 @@
 		D30AB69A2C032CA500C61F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D30AB69D2C032CA500C61F99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D30AB69F2C032CA500C61F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D30AB6A52C032CBE00C61F99 /* Part1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Part1.storyboard; sourceTree = "<group>"; };
 		D30AB6A72C032CC800C61F99 /* Part2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Part2.storyboard; sourceTree = "<group>"; };
 		D30AB6A92C032CD300C61F99 /* Part3.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Part3.storyboard; sourceTree = "<group>"; };
 		D30AB6AD2C035FF800C61F99 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00B55B112C0F743E0007FFD6 /* Kingfisher in Frameworks */,
 				00E5C6EA2C0C90E600587284 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +259,7 @@
 		D30AB6AC2C032D0700C61F99 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D30AB6A52C032CBE00C61F99 /* Part1.storyboard */,
+				00B55B122C0F75AA0007FFD6 /* Part1.storyboard */,
 				D30AB6A72C032CC800C61F99 /* Part2.storyboard */,
 				D30AB6A92C032CD300C61F99 /* Part3.storyboard */,
 			);
@@ -282,6 +284,7 @@
 			name = ShopifyApp;
 			packageProductDependencies = (
 				00E5C6E92C0C90E600587284 /* Alamofire */,
+				00B55B102C0F743E0007FFD6 /* Kingfisher */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -313,6 +316,7 @@
 			mainGroup = D30AB6852C032CA300C61F99;
 			packageReferences = (
 				00E5C6E82C0C90E600587284 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				00B55B0F2C0F743E0007FFD6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
@@ -337,7 +341,7 @@
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
 				D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */,
 				D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */,
-				D30AB6A62C032CBE00C61F99 /* Part1.storyboard in Resources */,
+				00B55B132C0F75AA0007FFD6 /* Part1.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,6 +585,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		00B55B0F2C0F743E0007FFD6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		00E5C6E82C0C90E600587284 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -592,6 +604,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		00B55B102C0F743E0007FFD6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00B55B0F2C0F743E0007FFD6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		00E5C6E92C0C90E600587284 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 00E5C6E82C0C90E600587284 /* XCRemoteSwiftPackageReference "Alamofire" */;

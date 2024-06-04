@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Kingfisher
 class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var brandsCollection: UICollectionView!
@@ -99,6 +99,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         brandCell.brandImg.layer.cornerRadius = 50
         var brandIMG = brands[indexPath.row].image.src
         let imageUrl = URL(string: brandIMG)
+        brandCell.brandImg.kf.setImage(with: imageUrl)
         self.brandName = brands[indexPath.row].title
         return brandCell
     }
@@ -110,6 +111,10 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         let selectedBrandId = brands[indexPath.row].id
         let selectedBrandName = brands[indexPath.row].title
         let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+        
+        let backItem = UIBarButtonItem()
+            backItem.title = selectedBrandName
+            self.navigationItem.backBarButtonItem = backItem
     }
 
 
