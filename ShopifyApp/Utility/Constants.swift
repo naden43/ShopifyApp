@@ -12,6 +12,6 @@ struct Constants {
     
     struct EndPoint {
         static let brands = "/admin/api/2024-04/smart_collections.json"
-        static let products = ""
+        static let categories = "/admin/api/2024-04/custom_collections.json"
     }
 }

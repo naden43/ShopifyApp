@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00904F452C0F9F8A004F30A7 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00904F442C0F9F8A004F30A7 /* Categories.swift */; };
+		00904F472C0FA1C3004F30A7 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00904F462C0FA1C3004F30A7 /* CategoriesViewController.swift */; };
 		00B55B092C0F6C380007FFD6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B55B082C0F6C380007FFD6 /* Constants.swift */; };
 		00B55B0C2C0F6C700007FFD6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B55B0B2C0F6C700007FFD6 /* HomeViewModel.swift */; };
 		00B55B0E2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B55B0D2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift */; };
@@ -40,8 +42,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		009AB0362C03A17A0030366C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		00904F442C0F9F8A004F30A7 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		00904F462C0FA1C3004F30A7 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		00B55B082C0F6C380007FFD6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		00B55B0B2C0F6C700007FFD6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		00B55B0D2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -94,11 +96,12 @@
 		009AB0342C03A15E0030366C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				009AB0352C03A1670030366C /* HomeScreen */,
+				00B55B0A2C0F6C5F0007FFD6 /* ViewModel */,
 				00B55B182C0F79C60007FFD6 /* New Group */,
 				00E978122C0C8F1C00771143 /* ProductsScreen */,
 				00C325822C084A1400422141 /* OrdersScreen */,
 				009AB03D2C03AEC70030366C /* CategoriesScreen */,
-				009AB0352C03A1670030366C /* HomeScreen */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -106,7 +109,6 @@
 		009AB0352C03A1670030366C /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
-				00B55B0A2C0F6C5F0007FFD6 /* ViewModel */,
 				009AB0382C03AA020030366C /* View */,
 			);
 			path = HomeScreen;
@@ -115,7 +117,6 @@
 		009AB0382C03AA020030366C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				009AB0362C03A17A0030366C /* HomeViewController.swift */,
 				00E9780E2C0C894B00771143 /* HomeScViewController.swift */,
 				00B55B0D2C0F6DA70007FFD6 /* BrandCollectionViewCell.swift */,
 			);
@@ -133,7 +134,7 @@
 		009AB0402C03BDB20030366C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				009AB03E2C03AF5F0030366C /* CategoriesViewController.swift */,
+				00904F462C0FA1C3004F30A7 /* CategoriesViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,6 +178,7 @@
 			children = (
 				00E5C6EC2C0C915800587284 /* Brands.swift */,
 				00B55B142C0F76AC0007FFD6 /* Products.swift */,
+				00904F442C0F9F8A004F30A7 /* Categories.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -364,10 +366,12 @@
 				00B55B092C0F6C380007FFD6 /* Constants.swift in Sources */,
 				D3AFACE42C08F0A900182659 /* SettingsViewControllerTableViewController.swift in Sources */,
 				00B55B152C0F76AC0007FFD6 /* Products.swift in Sources */,
+				00904F452C0F9F8A004F30A7 /* Categories.swift in Sources */,
 				00E978112C0C8F0400771143 /* ProductsViewController.swift in Sources */,
 				D3AFACEE2C08F20F00182659 /* AddAddressInfoViewController.swift in Sources */,
 				D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */,
 				00E5C6ED2C0C915800587284 /* Brands.swift in Sources */,
+				00904F472C0FA1C3004F30A7 /* CategoriesViewController.swift in Sources */,
 				D3AFACE62C08F11200182659 /* UserAddressesViewController.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
 				00E5C6E72C0C907200587284 /* ApiServices.swift in Sources */,
