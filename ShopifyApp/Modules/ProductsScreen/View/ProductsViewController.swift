@@ -24,6 +24,19 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         let nib = UINib(nibName: "ProductCollectionViewCell", bundle: nil)
         productCollection.register(nib, forCellWithReuseIdentifier: "productCell")
         
+        
+        //Compositional layout
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self.productsSectionLayout()
+            default:
+                return nil
+            }
+        }
+        productCollection.collectionViewLayout = layout
+        
+        
         viewModel?.bindToProductViewController = {[weak self] in
                 print("inside the bind closure of products")
                 DispatchQueue.main.async {
@@ -57,6 +70,30 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCell.productImage.kf.setImage(with: imageUrl)
         return productCell
     }
+    
+    func productsSectionLayout() -> NSCollectionLayoutSection {
+        // Define the size of each item (movie cell)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), // Each item takes up half of the width
+                                              heightDimension: .absolute(250)) // Keep the height as 250 points
+
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25) // Add spacing between items
+        
+        // Create a group that contains two items horizontally
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), // The group takes up the full width of the section
+                                               heightDimension: .absolute(250)) // Each group takes up the full height of the section
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        
+        // Center the group within the section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        section.contentInsetsReference = .layoutMargins
+        section.interGroupSpacing = 10 // Add spacing between rows
+        
+        return section
+    }
+       
     /*
     // MARK: - Navigation
 
