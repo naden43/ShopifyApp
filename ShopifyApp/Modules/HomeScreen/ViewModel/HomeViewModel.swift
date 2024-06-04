@@ -9,9 +9,11 @@ import Foundation
 
 protocol HomeViewModelProtocol {
     var bindToHomeViewController: (() -> Void)? { get set }
+    var bindToProductViewController: (() -> Void)? { get set }
     func fetchBands (url : String)
+    func fetchProducts (url : String)
     func getBrands() -> [SmartCollection]
-    //   func getBrandId (id: Int) -> Int
+    func getProductsOfBrands() -> [Product]
     
 }
     
@@ -19,6 +21,7 @@ protocol HomeViewModelProtocol {
         var bindToProductViewController: (() -> Void)?
         private var brands : [SmartCollection]?
         var bindToHomeViewController: (() -> Void)?
+        private var productsOfBrands : [Product]?
         //  private var products :
         
         
@@ -37,11 +40,32 @@ protocol HomeViewModelProtocol {
             }
         }
         
+        func fetchProducts (url : String) {
+            ApiServices.shared.fetchData(urlString: url){ (result: Result<Products, Error>) in
+                switch result {
+                case .success(let data):
+                    self.productsOfBrands = data.products
+                    self.bindToProductViewController?()
+                    print("the count of products is \(data.products.count)")
+                case .failure(let error):
+                    print("failed to fetch products with error \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        
         func getBrands() -> [SmartCollection] {
             guard let brands = brands else {
                 return []
             }
             return brands
+        }
+        
+        func getProductsOfBrands() -> [Product] {
+            guard let products = productsOfBrands else {
+                return []
+            }
+            return products
         }
         
     }
