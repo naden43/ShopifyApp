@@ -39,7 +39,7 @@ class AddAddressViewModel {
         return cities[index]
     }
     
-    func performAddAddress(address:Address){
+    func performAddAddress(address:ReturnAddress){
         
         let validEntry = validateAddress(address: address)
         
@@ -59,18 +59,37 @@ class AddAddressViewModel {
     
     
     
-    func performAdd(address:Address) {
+    func performAdd(address:ReturnAddress) {
         
-        validationManager?.postAddress(address, completion: { result, error in
+        /*validationManager?.postAddress2(address, completion: { result, error in
             
             print(result)
             print(error)
+        })*/
+        
+        /*validationManager?.postData(AddressObject(address: address), to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self, completion: { success, error, response in
+            print(success)
+            print(error)
+            print(response)
+            
+        })*/
+        
+        
+        var addresss = CustomerAddress(address: CustomerAddress.Address(address1: address.address1 ?? "", city: address.city ?? "", province: "", country: address.country ?? "", zip: "12342"))
+        
+        
+        validationManager?.postData(addresss, to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self , completion: { success, error, response in
+            
+            print(success)
+            print(error)
+            print(response)
+            
         })
         
     }
     
     
-    func validateAddress(address:Address) -> Bool {
+    func validateAddress(address:ReturnAddress) -> Bool {
          
         if (address.address1 == "") || (address.first_name == "") || (address.last_name == "") || (address.phone == "") {
             

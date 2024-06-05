@@ -1,32 +1,48 @@
 import Foundation
 
-struct Address: Codable {
+struct ReturnAddress: Codable {
+    var id : Int?
+    var customer_id : Int?
     var first_name: String?
     var last_name: String?
     var address1: String?
     var city: String?
     var country: String?
     var phone: String?
+    var `default`:Bool?
     
-    init(){
-        
+}
+
+
+struct CustomerAddress: Codable {
+    let address: Address
+    
+    struct Address: Codable {
+        let address1: String
+        let city: String
+        let province: String
+        let country: String
+        let zip: String
     }
-    
-
 }
 
-
-struct customAddress : Codable{
+struct CustomAddress : Codable{
     
-    var customer_address  : Address
+    var customer_address  : ReturnAddress
     
 }
 
-class userAddress : Codable {
+struct AddressObject : Codable {
     
-    var addresses : [Address]
+    var address : ReturnAddress
     
-    init(addresses: [Address]) {
+}
+
+class UserAddresses : Codable {
+    
+    var addresses : [ReturnAddress]
+    
+    init(addresses: [ReturnAddress]) {
         self.addresses = addresses
     }
 }

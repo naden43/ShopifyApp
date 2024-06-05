@@ -71,9 +71,9 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
         
     }
     
-    func collectDataFromUI()-> Address{
+    func collectDataFromUI()-> ReturnAddress{
         
-        var address = Address()
+        var address = ReturnAddress()
         
         address.city = selectedCity
         address.country = selectedCountry
