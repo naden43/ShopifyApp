@@ -39,7 +39,7 @@ class AddAddressViewModel {
         return cities[index]
     }
     
-    func performAddAddress(address:ReturnAddress){
+    func performAddAddress(address:Address){
         
         let validEntry = validateAddress(address: address)
         
@@ -59,7 +59,7 @@ class AddAddressViewModel {
     
     
     
-    func performAdd(address:ReturnAddress) {
+    func performAdd(address:Address) {
         
         /*validationManager?.postAddress2(address, completion: { result, error in
             
@@ -75,10 +75,10 @@ class AddAddressViewModel {
         })*/
         
         
-        var addresss = CustomerAddress(address: CustomerAddress.Address(address1: address.address1 ?? "", city: address.city ?? "", province: "", country: address.country ?? "", zip: "12342"))
+        let address1 = Address(firstName: "ahmed", lastName: "mohamed", company: nil, address1: "170 Street", address2: nil, city: nil, province: nil, country: "Egypt", zip: nil, phone: "01123493229", name: "ahmed mohamed", provinceCode: nil, countryCode: "EG", countryName: "Egypt")
+                let addressRequest = CustomerAddress(address: address1)
         
-        
-        validationManager?.postData(addresss, to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self , completion: { success, error, response in
+        validationManager?.postData(addressRequest, to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self , completion: { success, error, response in
             
             print(success)
             print(error)
@@ -89,9 +89,9 @@ class AddAddressViewModel {
     }
     
     
-    func validateAddress(address:ReturnAddress) -> Bool {
+    func validateAddress(address:Address) -> Bool {
          
-        if (address.address1 == "") || (address.first_name == "") || (address.last_name == "") || (address.phone == "") {
+        if (address.address1 == "") || (address.firstName == "") || (address.lastName == "") || (address.phone == "") {
             
             return false
         }

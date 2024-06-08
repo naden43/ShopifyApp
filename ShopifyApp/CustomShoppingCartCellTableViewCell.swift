@@ -25,9 +25,5 @@ class CustomShoppingCartCellTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func increaseItem(_ sender: Any) {
-    }
-    
-    @IBAction func decreaseItem(_ sender: Any) {
-    }
+   
 }

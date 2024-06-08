@@ -13,9 +13,10 @@ class NetworkHandler {
     
     static var instance = NetworkHandler()
     
-     private let baseUrl = "https://mad44-sv-team4.myshopify.com/"
-     private let apiKey = "76854ee270534b0f6fe7e7283f53b057"
-     private let password = "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"
+    private let baseUrl = "https://mad44-sv-team4.myshopify.com/"
+    private let apiKey = "76854ee270534b0f6fe7e7283f53b057"
+    private let password = "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"
+    
     
     private var authHeader: String {
           let loginString = String(format: "%@:%@", apiKey, password)
@@ -153,6 +154,8 @@ class NetworkHandler {
                  completion(false, "Invalid URL",nil)
                  return
              }
+        
+            print(url)
              let headers: HTTPHeaders = [
                  "Authorization": authHeader,
                  "Content-Type": "application/json"

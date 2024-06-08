@@ -49,7 +49,7 @@ class UserAddressesViewModel{
             
         })*/
         
-        network?.getData(endPoint: "admin/api/2024-04/customers/7866530955430/addresses.json", complitionHandler: { (result:UserAddresses? , error) in
+        network?.getData(endPoint: "admin/api/2024-04/customers/7864239587494/addresses.json", complitionHandler: { (result:UserAddresses? , error) in
             
             guard let result = result else {
                 return

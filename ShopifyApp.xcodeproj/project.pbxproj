@@ -17,7 +17,7 @@
 		D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A72C032CC800C61F99 /* Part2.storyboard */; };
 		D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A92C032CD300C61F99 /* Part3.storyboard */; };
 		D30AB6AE2C035FF800C61F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6AD2C035FF800C61F99 /* Main.storyboard */; };
-		D324AB0A2C0F4FBF005E5017 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D324AB092C0F4FBF005E5017 /* Alamofire */; };
+		D394E9182C13D03C009D5FEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D394E9172C13D03C009D5FEE /* Kingfisher */; };
 		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
 		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
 		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
@@ -28,7 +28,11 @@
 		D3AAA7102C0DDE8D006006B7 /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA70F2C0DDE8D006006B7 /* NetworkHandler.swift */; };
 		D3AAA7122C0DDF5A006006B7 /* UserAddressesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7112C0DDF5A006006B7 /* UserAddressesViewModel.swift */; };
 		D3AAA7142C0DDFB2006006B7 /* CustomAddreesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7132C0DDFB2006006B7 /* CustomAddreesCell.swift */; };
-		D3AFACEC2C08F1C600182659 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AFACEB2C08F1C600182659 /* ShoppingCartViewController.swift */; };
+		D3ABCBAD2C13AE9500DB7CB6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABCBAC2C13AE9500DB7CB6 /* File.swift */; };
+		D3B0B22C2C1353ED00623670 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22B2C1353ED00623670 /* ShoppingCartViewController.swift */; };
+		D3B0B22E2C13544300623670 /* ShopingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22D2C13544300623670 /* ShopingCartViewModel.swift */; };
+		D3B0B2302C13545A00623670 /* ShopingCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22F2C13545A00623670 /* ShopingCartModel.swift */; };
+		D3B0B2352C13589800623670 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3B0B2342C13589800623670 /* Alamofire */; };
 		D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */; };
 		D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */; };
@@ -62,9 +66,12 @@
 		D3AAA70F2C0DDE8D006006B7 /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		D3AAA7112C0DDF5A006006B7 /* UserAddressesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressesViewModel.swift; sourceTree = "<group>"; };
 		D3AAA7132C0DDFB2006006B7 /* CustomAddreesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddreesCell.swift; sourceTree = "<group>"; };
+		D3ABCBAC2C13AE9500DB7CB6 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		D3AFACE72C08F13500182659 /* PaymentOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionsViewController.swift; sourceTree = "<group>"; };
 		D3AFACE92C08F18A00182659 /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
-		D3AFACEB2C08F1C600182659 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		D3B0B22B2C1353ED00623670 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		D3B0B22D2C13544300623670 /* ShopingCartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingCartViewModel.swift; sourceTree = "<group>"; };
+		D3B0B22F2C13545A00623670 /* ShopingCartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingCartModel.swift; sourceTree = "<group>"; };
 		D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressesViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D324AB0A2C0F4FBF005E5017 /* Alamofire in Frameworks */,
+				D394E9182C13D03C009D5FEE /* Kingfisher in Frameworks */,
+				D3B0B2352C13589800623670 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +93,7 @@
 		009AB0342C03A15E0030366C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D3B0B2272C1353A700623670 /* ShopingCartScreen  */,
 				D3AAA7022C0DD5D7006006B7 /* AddAddressScreen */,
 				D3AAA6FE2C0DD568006006B7 /* SettingScreen */,
 				D3D26CFE2C0BD1D000253D01 /* AddressScreen */,
@@ -165,7 +174,6 @@
 				D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */,
 				D3AFACE72C08F13500182659 /* PaymentOptionsViewController.swift */,
 				D30AB6952C032CA300C61F99 /* ViewController.swift */,
-				D3AFACEB2C08F1C600182659 /* ShoppingCartViewController.swift */,
 				D30AB6AC2C032D0700C61F99 /* Views */,
 				D30AB6AD2C035FF800C61F99 /* Main.storyboard */,
 				D30AB69A2C032CA500C61F99 /* Assets.xcassets */,
@@ -255,6 +263,41 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		D3B0B2272C1353A700623670 /* ShopingCartScreen  */ = {
+			isa = PBXGroup;
+			children = (
+				D3B0B22A2C1353CD00623670 /* Model */,
+				D3B0B2292C1353C400623670 /* VIewModel */,
+				D3B0B2282C1353BC00623670 /* View */,
+			);
+			path = "ShopingCartScreen ";
+			sourceTree = "<group>";
+		};
+		D3B0B2282C1353BC00623670 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3B0B22B2C1353ED00623670 /* ShoppingCartViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D3B0B2292C1353C400623670 /* VIewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3B0B22D2C13544300623670 /* ShopingCartViewModel.swift */,
+			);
+			path = VIewModel;
+			sourceTree = "<group>";
+		};
+		D3B0B22A2C1353CD00623670 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3B0B22F2C13545A00623670 /* ShopingCartModel.swift */,
+				D3ABCBAC2C13AE9500DB7CB6 /* File.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D3BDBBBA2C0FE63B0064F9D2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,7 +349,8 @@
 			);
 			name = ShopifyApp;
 			packageProductDependencies = (
-				D324AB092C0F4FBF005E5017 /* Alamofire */,
+				D3B0B2342C13589800623670 /* Alamofire */,
+				D394E9172C13D03C009D5FEE /* Kingfisher */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -337,7 +381,8 @@
 			);
 			mainGroup = D30AB6852C032CA300C61F99;
 			packageReferences = (
-				D324AB082C0F4FBF005E5017 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D3B0B2332C13589800623670 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D394E9162C13D03C009D5FEE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
@@ -372,17 +417,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B0B22C2C1353ED00623670 /* ShoppingCartViewController.swift in Sources */,
 				D3AAA70D2C0DDE05006006B7 /* AddressModel.swift in Sources */,
 				D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */,
+				D3B0B22E2C13544300623670 /* ShopingCartViewModel.swift in Sources */,
 				D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */,
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
+				D3ABCBAD2C13AE9500DB7CB6 /* File.swift in Sources */,
 				D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */,
-				D3AFACEC2C08F1C600182659 /* ShoppingCartViewController.swift in Sources */,
 				D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */,
 				D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */,
 				D3AAA70B2C0DDDD6006006B7 /* AddAddressViewModel.swift in Sources */,
 				D3AAA7142C0DDFB2006006B7 /* CustomAddreesCell.swift in Sources */,
+				D3B0B2302C13545A00623670 /* ShopingCartModel.swift in Sources */,
 				D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */,
 				D3AAA7122C0DDF5A006006B7 /* UserAddressesViewModel.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
@@ -603,7 +651,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D324AB082C0F4FBF005E5017 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		D394E9162C13D03C009D5FEE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+		D3B0B2332C13589800623670 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -614,9 +670,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D324AB092C0F4FBF005E5017 /* Alamofire */ = {
+		D394E9172C13D03C009D5FEE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D324AB082C0F4FBF005E5017 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = D394E9162C13D03C009D5FEE /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		D3B0B2342C13589800623670 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3B0B2332C13589800623670 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -32,7 +32,14 @@ class ProfileViewController: UIViewController {
     
     @objc func performNavToCart(){
         
-        print("perform")
+        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let shopingScreen = part2Storyboard.instantiateViewController(withIdentifier: "shoping-cart") as! ShoppingCartViewController
+        
+       // present(settingsScreen, animated: true)
+        
+        navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.pushViewController(shopingScreen, animated: true)
     }
     
     @objc func performNavToSettings(){

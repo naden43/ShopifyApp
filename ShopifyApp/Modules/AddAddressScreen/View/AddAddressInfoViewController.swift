@@ -71,15 +71,15 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
         
     }
     
-    func collectDataFromUI()-> ReturnAddress{
+    func collectDataFromUI()-> Address{
         
-        var address = ReturnAddress()
+        var address = Address()
         
         address.city = selectedCity
         address.country = selectedCountry
         address.address1 = address1TxtField.text
-        address.first_name = firstNameTxtField.text
-        address.last_name = lastNameTxtField.text
+        address.firstName = firstNameTxtField.text
+        address.lastName = lastNameTxtField.text
         address.phone = phoneNumberTxtField.text
         
         return address
