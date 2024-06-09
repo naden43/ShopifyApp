@@ -2,7 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Settings View Controller Table View Controller-->
@@ -197,8 +201,8 @@
                             </tableViewSection>
                         </sections>
                         <connections>
-                            <outlet property="dataSource" destination="3Xd-rj-TfM" id="32y-Ha-u8R"/>
-                            <outlet property="delegate" destination="3Xd-rj-TfM" id="cQq-KT-J5T"/>
+                            <outlet property="dataSource" destination="3Xd-rj-TfM" id="yS9-J8-9zU"/>
+                            <outlet property="delegate" destination="3Xd-rj-TfM" id="7UK-mS-3Wm"/>
                         </connections>
                     </tableView>
                 </tableViewController>
@@ -209,15 +213,18 @@
         <!--User Addresses View Controller-->
         <scene sceneID="DmY-yo-ehv">
             <objects>
-                <viewController id="TKV-LU-Gcy" customClass="UserAddressesViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="user_addresses" modalPresentationStyle="fullScreen" id="TKV-LU-Gcy" customClass="UserAddressesViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q4v-fR-TH6">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9e-MG-qxd">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
+                                <rect key="frame" x="15.999999999999996" y="74" width="52.666666666666657" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
+                                <connections>
+                                    <action selector="backToSettings:" destination="TKV-LU-Gcy" eventType="touchUpInside" id="2F5-AS-S4U"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ODd-vy-X2S">
                                 <rect key="frame" x="8" y="128" width="377" height="619"/>
@@ -229,9 +236,12 @@
                                 <buttonConfiguration key="configuration" style="filled" title="add new address">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="navToAddAddress:" destination="TKV-LU-Gcy" eventType="touchUpInside" id="NEg-GA-q46"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Your Addresses" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNg-6n-cV6">
-                                <rect key="frame" x="80" y="74" width="297" height="38"/>
+                                <rect key="frame" x="84.666666666666657" y="74" width="292.33333333333337" height="38"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -255,6 +265,9 @@
                             <constraint firstItem="SoS-ut-zwl" firstAttribute="bottom" secondItem="TfW-3A-VPa" secondAttribute="bottom" constant="16" id="zzn-5q-dNz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userAddressesList" destination="ODd-vy-X2S" id="EIY-Oq-eOf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wjr-0e-azo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -269,12 +282,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJK-M6-RpS">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
+                                <rect key="frame" x="15.999999999999996" y="74" width="52.666666666666657" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Q7-si-Lg2">
-                                <rect key="frame" x="80" y="74" width="297" height="38"/>
+                                <rect key="frame" x="84.666666666666657" y="74" width="292.33333333333337" height="38"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -379,15 +392,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place your order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWh-40-ran">
-                                <rect key="frame" x="79.999999999999986" y="74" width="153.66666666666663" height="38"/>
+                                <rect key="frame" x="84.666666666666671" y="74" width="153.66666666666663" height="38"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obf-xf-22m">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
+                                <rect key="frame" x="15.999999999999996" y="74" width="52.666666666666657" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sub Total : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-Sv-y3Z">
                                 <rect key="frame" x="31.999999999999993" y="144" width="96.333333333333314" height="24"/>
@@ -498,18 +511,13 @@
         <!--Shopping Cart View Controller-->
         <scene sceneID="xtq-Kf-wRA">
             <objects>
-                <viewController id="AQo-es-fqn" customClass="ShoppingCartViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="shoping-cart" id="AQo-es-fqn" customClass="ShoppingCartViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jYS-op-eKS">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RZV-Hu-tGC">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fhc-c6-hQf">
-                                <rect key="frame" x="16" y="128" width="361" height="598"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fhc-c6-hQf">
+                                <rect key="frame" x="16" y="83" width="361" height="643"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi9-Bg-H98">
@@ -530,16 +538,17 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Proceed to checkout">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="navToCheckOut:" destination="AQo-es-fqn" eventType="touchUpInside" id="uEI-sc-U6j"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Q75-qC-PEP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="RZV-Hu-tGC" firstAttribute="leading" secondItem="Q75-qC-PEP" secondAttribute="leading" constant="16" id="3sh-sG-dVh"/>
                             <constraint firstItem="son-cb-01e" firstAttribute="top" secondItem="Zi9-Bg-H98" secondAttribute="bottom" constant="8" id="5fD-1P-FtE"/>
-                            <constraint firstItem="RZV-Hu-tGC" firstAttribute="top" secondItem="Q75-qC-PEP" secondAttribute="top" constant="15" id="HO7-6X-CzD"/>
                             <constraint firstItem="Q75-qC-PEP" firstAttribute="trailing" secondItem="son-cb-01e" secondAttribute="trailing" constant="16" id="Ov5-ZL-Az6"/>
-                            <constraint firstItem="fhc-c6-hQf" firstAttribute="top" secondItem="RZV-Hu-tGC" secondAttribute="bottom" constant="16" id="RFQ-oE-T06"/>
+                            <constraint firstItem="fhc-c6-hQf" firstAttribute="top" secondItem="Q75-qC-PEP" secondAttribute="top" constant="24" id="RRa-yK-hIa"/>
                             <constraint firstItem="Zi9-Bg-H98" firstAttribute="leading" secondItem="Q75-qC-PEP" secondAttribute="leading" constant="16" id="Snt-Pk-OYX"/>
                             <constraint firstItem="son-cb-01e" firstAttribute="top" secondItem="odC-FE-oGm" secondAttribute="bottom" constant="8" id="VIG-26-yIB"/>
                             <constraint firstItem="son-cb-01e" firstAttribute="leading" secondItem="Q75-qC-PEP" secondAttribute="leading" constant="16" id="Wm9-gR-lpJ"/>
@@ -551,6 +560,11 @@
                             <constraint firstItem="Q75-qC-PEP" firstAttribute="trailing" secondItem="odC-FE-oGm" secondAttribute="trailing" constant="34" id="zST-XZ-aCz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="proceedToCheckOutButton" destination="son-cb-01e" id="XqA-iE-7PQ"/>
+                        <outlet property="shopingCartList" destination="fhc-c6-hQf" id="wCF-Ji-tFh"/>
+                        <outlet property="totalTxt" destination="odC-FE-oGm" id="ir8-IR-vGH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YjA-bP-Syu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -565,15 +579,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eja-4C-fav">
-                                <rect key="frame" x="80" y="74" width="87" height="38"/>
+                                <rect key="frame" x="84.666666666666686" y="74" width="87" height="38"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJ6-KT-nqb">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
+                                <rect key="frame" x="15.999999999999996" y="74" width="52.666666666666657" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f6a-qR-adQ"/>
@@ -602,15 +616,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sab-sL-xgr">
-                                <rect key="frame" x="80" y="74" width="105" height="38"/>
+                                <rect key="frame" x="84.666666666666686" y="74" width="105" height="38"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AU2-Tf-tFU">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
+                                <rect key="frame" x="15.999999999999996" y="74" width="52.666666666666657" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sH3-TG-3fi"/>
@@ -633,7 +647,7 @@
         <!--Add Address Info View Controller-->
         <scene sceneID="Lpn-af-IYb">
             <objects>
-                <viewController id="Uk3-HF-uqd" customClass="AddAddressInfoViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="add_address" modalPresentationStyle="fullScreen" id="Uk3-HF-uqd" customClass="AddAddressInfoViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DuP-J2-sd9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -701,9 +715,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="znE-b7-Bvp">
-                                <rect key="frame" x="16" y="74" width="48" height="38"/>
+                                <rect key="frame" x="15.999999999999996" y="74" width="52.666666666666657" height="38"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
+                                <connections>
+                                    <action selector="backToAddressesList:" destination="Uk3-HF-uqd" eventType="touchUpInside" id="x0w-GW-dVH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju6-nJ-kux">
                                 <rect key="frame" x="16" y="763" width="361" height="39"/>
@@ -711,6 +728,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Add Address">
                                     <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="performAddAddress:" destination="Uk3-HF-uqd" eventType="touchUpInside" id="5id-CV-Vf7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Osj-J3-dBp"/>
@@ -757,6 +777,14 @@
                             <constraint firstItem="Osj-J3-dBp" firstAttribute="trailing" secondItem="rkV-US-gs5" secondAttribute="trailing" constant="16" id="zXp-UJ-YjW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="address1TxtField" destination="NJW-mb-L9T" id="nPX-kT-4Ft"/>
+                        <outlet property="cityPicker" destination="nHk-Av-IWn" id="vg7-9r-UME"/>
+                        <outlet property="countryPicker" destination="rkV-US-gs5" id="Wxu-0l-2QV"/>
+                        <outlet property="firstNameTxtField" destination="ZZf-SM-Qqa" id="WmJ-lY-w3T"/>
+                        <outlet property="lastNameTxtField" destination="pNq-AS-5NP" id="NGe-tF-6NK"/>
+                        <outlet property="phoneNumberTxtField" destination="2Ea-9P-QuJ" id="MTu-De-1q2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cTI-Nz-WWU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -838,5 +866,4 @@
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
-    <scenes/>
 </document>

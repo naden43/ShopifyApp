@@ -24,6 +24,9 @@
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gps-2" translatesAutoresizingMaskIntoConstraints="NO" id="QKx-Nz-MKX">
                         <rect key="frame" x="15.999999999999996" y="15.999999999999996" width="33.666666666666657" height="33.666666666666657"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="QKx-Nz-MKX" secondAttribute="height" multiplier="1:1" id="ZLF-vC-am5"/>
+                        </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nA1-Xp-S0u">
                         <rect key="frame" x="72" y="33" width="240" height="1"/>
@@ -46,12 +49,15 @@
                     <constraint firstItem="QKx-Nz-MKX" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.5" id="Oe8-7y-wfL"/>
                     <constraint firstItem="QKx-Nz-MKX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Sst-Uz-weD"/>
                     <constraint firstItem="F8Y-ta-J2K" firstAttribute="top" secondItem="nA1-Xp-S0u" secondAttribute="bottom" constant="4" id="Tyh-En-GJk"/>
-                    <constraint firstItem="QKx-Nz-MKX" firstAttribute="width" secondItem="QKx-Nz-MKX" secondAttribute="height" multiplier="1:1" id="ZLF-vC-am5"/>
                     <constraint firstItem="ntb-fU-sSs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dxH-Ec-dlc"/>
                     <constraint firstItem="QKx-Nz-MKX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="xfT-tm-PAv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cityTxt" destination="ntb-fU-sSs" id="Yvh-Nt-aom"/>
+                <outlet property="countryTxt" destination="F8Y-ta-J2K" id="k9B-qS-4Um"/>
+            </connections>
             <point key="canvasLocation" x="32.061068702290072" y="-3.1690140845070425"/>
         </tableViewCell>
     </objects>

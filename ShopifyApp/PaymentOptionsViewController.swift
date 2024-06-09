@@ -12,6 +12,8 @@ class PaymentOptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let a = AddAddressInfoViewController()
+        
         // Do any additional setup after loading the view.
     }
     
