@@ -26,7 +26,7 @@ struct SmartCollection: Codable {
     let templateSuffix: JSONNull?
     let disjunctive: Bool
     let rules: [Rule]
-    let publishedScope: PublishedScope
+  //  let publishedScope: PublishedScope
     let adminGraphqlAPIID: String
     let image: Image
 
@@ -38,7 +38,7 @@ struct SmartCollection: Codable {
         case sortOrder = "sort_order"
         case templateSuffix = "template_suffix"
         case disjunctive, rules
-        case publishedScope = "published_scope"
+        //case publishedScope = "published_scope"
         case adminGraphqlAPIID = "admin_graphql_api_id"
         case image
     }
@@ -59,9 +59,9 @@ struct SmartCollection: Codable {
 // MARK: - Image
 
 
-enum PublishedScope: String, Codable {
-    case web = "web"
-}
+//enum PublishedScope: String, Codable {
+//    case web = "web"
+//}
 
 // MARK: - Rule
 struct Rule: Codable {

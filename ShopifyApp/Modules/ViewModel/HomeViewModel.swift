@@ -98,8 +98,9 @@ class HomeViewModel : HomeViewModelProtocol{
     
         var categoryID : Int?
         for category in categories! {
-            if(category.title == categoryName.lowercased()) {
+            if(category.handle.lowercased() == categoryName.lowercased()) {
                 categoryID = category.id
+                print("the category id for this category \(categoryName) = \(categoryID)")
             }
         }
         return categoryID ?? 0

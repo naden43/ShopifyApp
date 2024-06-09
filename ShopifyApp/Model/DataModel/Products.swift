@@ -5,8 +5,10 @@
 //  Created by Aya Mostafa on 04/06/2024.
 //
 
+
 import Foundation
 
+// MARK: - Welcome
 struct Products: Codable {
     let products: [Product]
 }
@@ -14,12 +16,16 @@ struct Products: Codable {
 // MARK: - Product
 struct Product: Codable {
     let id: Int
-    let title, bodyHTML, vendor, productType: String
+    let title, bodyHTML, vendor: String
+    let productType: ProductType
     //let createdAt: Date
     let handle: String
     //let updatedAt, publishedAt: Date
     let templateSuffix: JSONNull?
-    let publishedScope, tags, status, adminGraphqlAPIID: String
+    let publishedScope: PublishedScope
+    let tags: String
+    let status: Status
+    let adminGraphqlAPIID: String
     let variants: [Variant]
     let options: [Option]
     let images: [Image]
@@ -56,7 +62,7 @@ struct Image: Codable {
     enum CodingKeys: String, CodingKey {
         case id, alt, position
         case productID = "product_id"
-       // case createdAt = "created_at"
+        //case createdAt = "created_at"
         //case updatedAt = "updated_at"
         case adminGraphqlAPIID = "admin_graphql_api_id"
         case width, height, src
@@ -67,15 +73,34 @@ struct Image: Codable {
 // MARK: - Option
 struct Option: Codable {
     let id, productID: Int
-    let name: String
+    let name: Name
     let position: Int
-    let values: [String]
+   // let values: [String]
 
     enum CodingKeys: String, CodingKey {
         case id
         case productID = "product_id"
-        case name, position, values
+        case name, position
     }
+}
+
+enum Name: String, Codable {
+    case color = "Color"
+    case size = "Size"
+}
+
+enum ProductType: String, Codable {
+    case accessories = "ACCESSORIES"
+    case shoes = "SHOES"
+    case tShirts = "T-SHIRTS"
+}
+
+enum PublishedScope: String, Codable {
+    case global = "global"
+}
+
+enum Status: String, Codable {
+    case active = "active"
 }
 
 // MARK: - Variant
@@ -83,15 +108,18 @@ struct Variant: Codable {
     let id, productID: Int
     let title, price, sku: String
     let position: Int
-    let inventoryPolicy: String
-    let compareAtPrice: JSONNull?
-    let fulfillmentService, inventoryManagement, option1, option2: String
+    let inventoryPolicy: InventoryPolicy
+    let compareAtPrice: String?
+    let fulfillmentService: FulfillmentService
+    let inventoryManagement: InventoryManagement
+    let option1: String
+    let option2: Option2
     let option3: JSONNull?
-  //  let createdAt, updatedAt: Date
+    //let createdAt, updatedAt: Date
     let taxable: Bool
     let barcode: JSONNull?
     let grams, weight: Int
-    let weightUnit: String
+    let weightUnit: WeightUnit
     let inventoryItemID, inventoryQuantity, oldInventoryQuantity: Int
     let requiresShipping: Bool
     let adminGraphqlAPIID: String
@@ -119,8 +147,35 @@ struct Variant: Codable {
     }
 }
 
-// MARK: - Encode/decode helpers
+enum FulfillmentService: String, Codable {
+    case manual = "manual"
+}
 
+enum InventoryManagement: String, Codable {
+    case shopify = "shopify"
+}
+
+enum InventoryPolicy: String, Codable {
+    case deny = "deny"
+}
+
+enum Option2: String, Codable {
+    case beige = "beige"
+    case black = "black"
+    case blue = "blue"
+    case burgandy = "burgandy"
+    case gray = "gray"
+    case lightBrown = "light_brown"
+    case red = "red"
+    case white = "white"
+    case yellow = "yellow"
+}
+
+enum WeightUnit: String, Codable {
+    case kg = "kg"
+}
+
+// MARK: - Encode/decode helpers
 class JSONCodingKey: CodingKey {
     let key: String
 
