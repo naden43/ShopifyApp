@@ -21,6 +21,32 @@ class NetworkHandler {
         return "Basic \(loginData.base64EncodedString())"
     }
     
+    func getData<T:Codable>(endPoint : String , complitionHandler : @escaping (T? , String?)->Void ){
+            
+            guard  let url = URL(string: "\(baseUrl)\(endPoint)") else {
+                complitionHandler(nil , "")
+                return
+            }
+            
+            let headers: HTTPHeaders = [
+                "Authorization": authHeader,
+                "Content-Type": "application/json"
+            ]
+       
+            AF.request(url, method: .get, headers: headers)
+                .validate()
+                .responseDecodable(of: T.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        complitionHandler(value , "Success")
+                    case .failure(let error):
+                        print(error)
+                        complitionHandler(nil , "Faild")
+                    }
+           }
+            
+        }
+    
     
     func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
         guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
@@ -64,6 +90,8 @@ class NetworkHandler {
                 }
             }
     }
+    
+    
     
     
 }

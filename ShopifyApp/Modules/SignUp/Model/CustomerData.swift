@@ -26,7 +26,7 @@ class CustomerData : Codable {
     
 }
 
-class PostedCustomer : Codable{
+class PostedCustomerRequest : Codable{
     
     var customer : CustomerData
     

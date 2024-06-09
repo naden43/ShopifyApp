@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CustomerResponse: Codable {
+struct PostedCustomerResponse: Codable {
     var customer: Customer?
 }
 
