@@ -561,6 +561,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="proceedToCheckOutButton" destination="son-cb-01e" id="XqA-iE-7PQ"/>
                         <outlet property="shopingCartList" destination="fhc-c6-hQf" id="wCF-Ji-tFh"/>
                         <outlet property="totalTxt" destination="odC-FE-oGm" id="ir8-IR-vGH"/>
                     </connections>

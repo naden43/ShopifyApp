@@ -149,6 +149,37 @@ class NetworkHandler {
             }
     }
 
+    
+    
+    
+    func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
+        guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
+            completion(false, "Invalid URL" , nil)
+            
+            return
+        }
+        let headers: HTTPHeaders = [
+            "Authorization": authHeader,
+            "Content-Type": "application/json"
+        ]
+        AF.request(url, method: .put, parameters: data, encoder: JSONParameterEncoder.default, headers: headers)
+            .validate()
+            .responseDecodable(of: U.self) { response in
+                switch response.result {
+                case .success  (let value):
+                    completion(true, "succeeded", value )
+                case .failure(let error):
+                    completion(false, "Request error: \(error.localizedDescription)", nil)
+                }
+            }
+        
+        
+    }
+    
+    
+    
+    
+    
     func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
              guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
                  completion(false, "Invalid URL",nil)

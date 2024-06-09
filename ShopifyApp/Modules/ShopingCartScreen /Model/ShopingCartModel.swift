@@ -15,22 +15,24 @@ struct TaxLine: Codable {
 
 struct DraftOrderLineItem: Codable {
     let id: Int?
+    let variant_id: Int?
     let title: String?
-    let quantity: Int?
+    var quantity: Int?
     let taxable: Bool?
     let fulfillmentService: String?
     let taxLines: [TaxLine]?
     let price: String?
     let vendor:String?
+    var properties:[[String : String]]
 
     private enum CodingKeys: String, CodingKey {
-        case id ,vendor
+        case id ,vendor , variant_id
         case title
         case quantity
         case taxable
         case fulfillmentService = "fulfillment_service"
         case taxLines = "tax_lines"
-        case price
+        case price , properties
     }
 }
 
@@ -80,7 +82,7 @@ struct DraftOrder: Codable {
     let completedAt: String?
     let name: String?
     let status: String?
-    let lineItems: [DraftOrderLineItem]?
+    var lineItems: [DraftOrderLineItem]?
     let shippingAddress: String?
     let billingAddress: String?
     let invoiceUrl: String?

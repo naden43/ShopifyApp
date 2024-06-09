@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="324" height="93"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product 3" translatesAutoresizingMaskIntoConstraints="NO" id="PqW-Tm-gKk">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="product" translatesAutoresizingMaskIntoConstraints="NO" id="PqW-Tm-gKk">
                         <rect key="frame" x="8" y="8" width="81" height="81"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="PqW-Tm-gKk" secondAttribute="height" multiplier="1:1" id="FXa-YY-rPP"/>
@@ -80,6 +80,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="itemCount" destination="my0-XO-cQv" id="liA-a4-HLd"/>
+                <outlet property="minusImage" destination="spU-wG-8q6" id="bKH-vP-KwP"/>
+                <outlet property="plusImage" destination="4sy-dS-hPa" id="A9C-bh-cVc"/>
                 <outlet property="productDescription" destination="0Yx-Cg-XSH" id="AbW-cR-DIS"/>
                 <outlet property="productImage" destination="PqW-Tm-gKk" id="IiQ-aT-IVb"/>
                 <outlet property="productName" destination="ttQ-dO-UhK" id="fwr-hh-jzA"/>
@@ -91,6 +93,6 @@
     <resources>
         <image name="minus.circle" catalog="system" width="128" height="123"/>
         <image name="plus.circle" catalog="system" width="128" height="123"/>
-        <image name="product 3" width="564" height="641"/>
+        <image name="product" width="564" height="641"/>
     </resources>
 </document>
