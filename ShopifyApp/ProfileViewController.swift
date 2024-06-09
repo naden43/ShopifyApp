@@ -20,7 +20,7 @@ class ProfileViewController: UIViewController {
         
         var view = self.navigationController?.visibleViewController
         view?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gearshape") , style: .plain, target: self, action: #selector(performNav))
-        view?.navigationItem.rightBarButtonItems?[0].tintColor = UIColor(.black)
+        view?.navigationItem.rightBarButtonItems?[0].tintColor = UIColor(ciColor: .black)
         view?.title = "profile"
     }
     
