@@ -71,7 +71,7 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
         cell.plusAction = {
             
             
-            if ((data?.quantity ?? 0 ) + 1) > self.viewModel?.allowedProductAmount(varientId: data?.variant_id ?? 0) ?? 0 {
+            if ((data?.quantity ?? 0 ) + 1) > self.viewModel?.allowedProductAmount(varientId: Int(data?.variantId ?? 0)) ?? 0 {
                 
                 var alert = UIAlertController(title: "exceed amount", message: "You cannot increase the amount :( ", preferredStyle: .alert)
                 
@@ -96,9 +96,9 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
                 
                 alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
                     
-                    let varientId = self.viewModel?.getProductByIndex(index: indexPath.row).variant_id
+                    let varientId = self.viewModel?.getProductByIndex(index: indexPath.row).variantId
                     
-                    self.viewModel?.deleteTheProductAmount(varientId: varientId ?? 0)
+                    self.viewModel?.deleteTheProductAmount(varientId: Int(varientId ?? 0))
                     self.viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
                     
                 }))
@@ -143,9 +143,9 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
         
         if editingStyle == .delete {
             
-            let varientId = viewModel?.getProductByIndex(index: indexPath.row).variant_id
+            let varientId = viewModel?.getProductByIndex(index: indexPath.row).variantId
             
-            viewModel?.deleteTheProductAmount(varientId: varientId ?? 0)
+            viewModel?.deleteTheProductAmount(varientId: Int(varientId ?? 0))
             viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
             
         }

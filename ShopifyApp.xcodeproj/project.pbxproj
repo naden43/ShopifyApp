@@ -12,12 +12,7 @@
 		00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C325842C084A5900422141 /* OrdersTableViewCell.xib */; };
 		3805635C2C15F3F300985A90 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3805635B2C15F3F300985A90 /* UserDefaultManager.swift */; };
 		38A805F82C0DE7EA00DCF52D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */; };
-		38A805FB2C0DED3600DCF52D /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 38A805FA2C0DED3600DCF52D /* FirebaseAnalytics */; };
-		38A805FD2C0DED3600DCF52D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 38A805FC2C0DED3600DCF52D /* FirebaseAnalyticsSwift */; };
-		38A805FF2C0DF2F600DCF52D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 38A805FE2C0DF2F600DCF52D /* FirebaseAuth */; };
-		38F312A62C15A4CC00A0112B /* NetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312A52C15A4CC00A0112B /* NetworkHandler.swift */; };
 		38F312A92C15A51900A0112B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 38F312A82C15A51900A0112B /* Alamofire */; };
-		38F312AB2C15A51900A0112B /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 38F312AA2C15A51900A0112B /* AlamofireDynamic */; };
 		38F312AD2C15A58800A0112B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312AC2C15A58800A0112B /* SignupViewModel.swift */; };
 		38F312B02C15A60300A0112B /* CustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312AF2C15A60300A0112B /* CustomerData.swift */; };
 		38F312B22C15A63300A0112B /* PostedCustomerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312B12C15A63300A0112B /* PostedCustomerResponse.swift */; };
@@ -35,7 +30,9 @@
 		D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A72C032CC800C61F99 /* Part2.storyboard */; };
 		D30AB6AA2C032CD300C61F99 /* Part3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6A92C032CD300C61F99 /* Part3.storyboard */; };
 		D30AB6AE2C035FF800C61F99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30AB6AD2C035FF800C61F99 /* Main.storyboard */; };
-		D394E9182C13D03C009D5FEE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D394E9172C13D03C009D5FEE /* Kingfisher */; };
+		D33121B52C17599E005C6E27 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D33121B42C17599E005C6E27 /* Kingfisher */; };
+		D33121B82C175C90005C6E27 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D33121B72C175C90005C6E27 /* FirebaseAnalyticsSwift */; };
+		D33121BA2C175C90005C6E27 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D33121B92C175C90005C6E27 /* FirebaseAuth */; };
 		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
 		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
 		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
@@ -50,7 +47,6 @@
 		D3B0B22C2C1353ED00623670 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22B2C1353ED00623670 /* ShoppingCartViewController.swift */; };
 		D3B0B22E2C13544300623670 /* ShopingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22D2C13544300623670 /* ShopingCartViewModel.swift */; };
 		D3B0B2302C13545A00623670 /* ShopingCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22F2C13545A00623670 /* ShopingCartModel.swift */; };
-		D3B0B2352C13589800623670 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3B0B2342C13589800623670 /* Alamofire */; };
 		D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */; };
 		D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */; };
@@ -67,7 +63,6 @@
 		00C325842C084A5900422141 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		3805635B2C15F3F300985A90 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		38F312A52C15A4CC00A0112B /* NetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandler.swift; sourceTree = "<group>"; };
 		38F312AC2C15A58800A0112B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		38F312AF2C15A60300A0112B /* CustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerData.swift; sourceTree = "<group>"; };
 		38F312B12C15A63300A0112B /* PostedCustomerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedCustomerResponse.swift; sourceTree = "<group>"; };
@@ -113,13 +108,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38A805FD2C0DED3600DCF52D /* FirebaseAnalyticsSwift in Frameworks */,
+				D33121B52C17599E005C6E27 /* Kingfisher in Frameworks */,
+				D33121BA2C175C90005C6E27 /* FirebaseAuth in Frameworks */,
 				38F312A92C15A51900A0112B /* Alamofire in Frameworks */,
-				38F312AB2C15A51900A0112B /* AlamofireDynamic in Frameworks */,
-				38A805FF2C0DF2F600DCF52D /* FirebaseAuth in Frameworks */,
-				38A805FB2C0DED3600DCF52D /* FirebaseAnalytics in Frameworks */,
-				D394E9182C13D03C009D5FEE /* Kingfisher in Frameworks */,
-				D3B0B2352C13589800623670 /* Alamofire in Frameworks */,
+				D33121B82C175C90005C6E27 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,7 +141,6 @@
 				00C325822C084A1400422141 /* OrdersScreen */,
 				009AB03D2C03AEC70030366C /* CategoriesScreen */,
 				009AB0352C03A1670030366C /* HomeScreen */,
-				38F312A52C15A4CC00A0112B /* NetworkHandler.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -478,13 +469,10 @@
 			);
 			name = ShopifyApp;
 			packageProductDependencies = (
-				38A805FA2C0DED3600DCF52D /* FirebaseAnalytics */,
-				38A805FC2C0DED3600DCF52D /* FirebaseAnalyticsSwift */,
-				38A805FE2C0DF2F600DCF52D /* FirebaseAuth */,
 				38F312A82C15A51900A0112B /* Alamofire */,
-				38F312AA2C15A51900A0112B /* AlamofireDynamic */,
-				D3B0B2342C13589800623670 /* Alamofire */,
-				D394E9172C13D03C009D5FEE /* Kingfisher */,
+				D33121B42C17599E005C6E27 /* Kingfisher */,
+				D33121B72C175C90005C6E27 /* FirebaseAnalyticsSwift */,
+				D33121B92C175C90005C6E27 /* FirebaseAuth */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -515,10 +503,9 @@
 			);
 			mainGroup = D30AB6852C032CA300C61F99;
 			packageReferences = (
-				38A805F92C0DED3600DCF52D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				38F312A72C15A51900A0112B /* XCRemoteSwiftPackageReference "Alamofire" */,
-				D3B0B2332C13589800623670 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				D394E9162C13D03C009D5FEE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D33121B02C17598C005C6E27 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D33121B32C17599E005C6E27 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				D33121B62C175C90005C6E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
@@ -563,22 +550,17 @@
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
 				0078A34A2C0C8045000978B1 /* ProductCollectionViewCell.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
-				D3AFACEC2C08F1C600182659 /* ShoppingCartViewController.swift in Sources */,
 				38F312B22C15A63300A0112B /* PostedCustomerResponse.swift in Sources */,
-				D3AFACE42C08F0A900182659 /* SettingsViewControllerTableViewController.swift in Sources */,
-				D3AFACEE2C08F20F00182659 /* AddAddressInfoViewController.swift in Sources */,
 				38F312BF2C15B1E300A0112B /* LoginViewModel.swift in Sources */,
 				38F312C32C15BF5C00A0112B /* AllCustomerResponse.swift in Sources */,
 				38F312AD2C15A58800A0112B /* SignupViewModel.swift in Sources */,
 				D3B7ACC22C0A08BD00F76A7D /* ProfileViewController.swift in Sources */,
-				D3AFACE62C08F11200182659 /* UserAddressesViewController.swift in Sources */,
 				38F312B62C15A68900A0112B /* SignupViewController.swift in Sources */,
 				3805635C2C15F3F300985A90 /* UserDefaultManager.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
 				38F312BD2C15B06A00A0112B /* LoginViewController.swift in Sources */,
 				38F312B42C15A65F00A0112B /* DraftOrders.swift in Sources */,
 				38F312B02C15A60300A0112B /* CustomerData.swift in Sources */,
-				38F312A62C15A4CC00A0112B /* NetworkHandler.swift in Sources */,
 				D3ABCBAD2C13AE9500DB7CB6 /* VarientModel.swift in Sources */,
 				D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */,
 				D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */,
@@ -806,25 +788,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		38A805F92C0DED3600DCF52D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.27.0;
-			};
-		};
-		38F312A72C15A51900A0112B /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-
-		D394E9162C13D03C009D5FEE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.11.0;
-			};
-		};
-		D3B0B2332C13589800623670 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		D33121B02C17598C005C6E27 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -832,43 +796,43 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		D33121B32C17599E005C6E27 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+		D33121B62C175C90005C6E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.27.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		38A805FA2C0DED3600DCF52D /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38A805F92C0DED3600DCF52D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		38A805FC2C0DED3600DCF52D /* FirebaseAnalyticsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38A805F92C0DED3600DCF52D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalyticsSwift;
-		};
-		38A805FE2C0DF2F600DCF52D /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38A805F92C0DED3600DCF52D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
 		38F312A82C15A51900A0112B /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38F312A72C15A51900A0112B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		38F312AA2C15A51900A0112B /* AlamofireDynamic */ = {
+		D33121B42C17599E005C6E27 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38F312A72C15A51900A0112B /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
-		};
-		D394E9172C13D03C009D5FEE /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D394E9162C13D03C009D5FEE /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = D33121B32C17599E005C6E27 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		D3B0B2342C13589800623670 /* Alamofire */ = {
+		D33121B72C175C90005C6E27 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3B0B2332C13589800623670 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
+			package = D33121B62C175C90005C6E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		D33121B92C175C90005C6E27 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D33121B62C175C90005C6E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

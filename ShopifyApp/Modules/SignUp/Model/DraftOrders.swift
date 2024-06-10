@@ -127,7 +127,7 @@ struct LineItem: Codable {
     var taxLines: [TaxLine]?
     var appliedDiscount: String?
     var name: String?
-    var properties: [String]?
+    var properties: [[String:String]]?
     var custom: Bool?
     var price: String?
     var adminGraphqlApiId: String?
@@ -150,7 +150,7 @@ struct LineItem: Codable {
          variantTitle: String? = nil, sku: String? = nil, vendor: String? = nil, quantity: Int? = nil,
          requiresShipping: Bool? = nil, taxable: Bool? = nil, giftCard: Bool? = nil, fulfillmentService: String? = nil,
          grams: Int? = nil, taxLines: [TaxLine]? = nil, appliedDiscount: String? = nil, name: String? = nil,
-         properties: [String]? = nil, custom: Bool? = nil, price: String? = nil, adminGraphqlApiId: String? = nil) {
+         properties: [[String:String]]? = nil, custom: Bool? = nil, price: String? = nil, adminGraphqlApiId: String? = nil) {
         
         self.id = id
         self.variantId = variantId

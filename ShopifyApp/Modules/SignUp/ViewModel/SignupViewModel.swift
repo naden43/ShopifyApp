@@ -29,7 +29,7 @@ class SignUpViewModel {
                     print("User is authenticated and email is verified")
                     let customerData = CustomerData(first_name: firstName, last_name: secondName, email: email, phone: mobile, tags: password)
                     let customer = PostedCustomerRequest(customer: customerData)
-                    NetworkHandler.shared.postData(customer, to: "admin/api/2024-04/customers.json", responseType: PostedCustomerResponse.self) { success, message, responseData in
+                    NetworkHandler.instance.postData(customer, to: "admin/api/2024-04/customers.json", responseType: PostedCustomerResponse.self) { success, message, responseData in
                         if success, let customerResponse = responseData {
                             self.currentCustomer = customerResponse
                             self.createDraftOrder()
@@ -71,20 +71,20 @@ func createDraftOrder() {
         let firstLineItems = LineItem(title: "bag", quantity: 1, price: "100")
         let firstDraftOrder = DraftOrder(lineItems: [firstLineItems], customer: currentCustomer?.customer)
         
-        NetworkHandler.shared.postData(DraftOrders(draftOrder: firstDraftOrder), to: "admin/api/2024-04/draft_orders.json", responseType: DraftOrders.self) { success, message, responseData in
+        NetworkHandler.instance.postData(DraftOrders(draftOrder: firstDraftOrder), to: "admin/api/2024-04/draft_orders.json", responseType: DraftOrders.self) { success, message, responseData in
             if success, let firstDraftOrderResponse = responseData {
                 print("Draft order created successfully!")
                 
                 let secondDraftOrder = DraftOrder(lineItems: [firstLineItems], customer: self.currentCustomer?.customer)
                 
-                NetworkHandler.shared.postData(DraftOrders(draftOrder: secondDraftOrder), to: "admin/api/2024-04/draft_orders.json", responseType: DraftOrders.self) { success, message, responseData in
+                NetworkHandler.instance.postData(DraftOrders(draftOrder: secondDraftOrder), to: "admin/api/2024-04/draft_orders.json", responseType: DraftOrders.self) { success, message, responseData in
                     if success, let secondDraftOrderResponse = responseData {
                         print("Second draft order created successfully!")
                         
                         let draftOrdersIds = "\(firstDraftOrderResponse.draftOrder.id ?? 0),\(secondDraftOrderResponse.draftOrder.id ?? 0)"
                         self.currentCustomer?.customer?.note = draftOrdersIds
                         
-                        NetworkHandler.shared.putData(self.currentCustomer, to: "admin/api/2024-04/customers/\(self.currentCustomer?.customer?.id ?? 0).json", responseType: PostedCustomerResponse.self) { success, message, responseData in
+                        NetworkHandler.instance.putData(self.currentCustomer, to: "admin/api/2024-04/customers/\(self.currentCustomer?.customer?.id ?? 0).json", responseType: PostedCustomerResponse.self) { success, message, responseData in
                             if success, let customerResponse = responseData {
                                 print("Customer updated successfully!")
                             } else {

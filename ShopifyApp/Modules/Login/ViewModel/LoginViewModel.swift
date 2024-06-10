@@ -31,7 +31,7 @@ class LoginViewModel {
     }
     
     private func getAllCustomers(completionHandler: @escaping ([Customer]?, String?) -> Void) {
-        NetworkHandler.shared.getData(endPoint: "admin/api/2024-04/customers.json") { (response: AllCustomersResponse?, message) in
+        NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/customers.json") { (response: AllCustomersResponse?, message) in
             if let customers = response?.customers {
                 completionHandler(customers, "Success")
             } else {

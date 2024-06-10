@@ -69,7 +69,7 @@ struct Customer: Codable {
     }
 }
 
-struct Address: Codable {
+/*struct Address: Codable {
     var id: Int?
     var customerId: Int?
     var firstName: String?
@@ -99,7 +99,7 @@ struct Address: Codable {
         case countryName = "country_name"
         case isDefault = "default"
     }
-}
+}*/
 
 struct MarketingConsent: Codable {
     var state: String?

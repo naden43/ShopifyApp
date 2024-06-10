@@ -39,7 +39,7 @@ class ShopingCartViewModel {
             for items in self.listOfProducts?.lineItems ?? [] {
                 
                 
-                self.network?.getData(endPoint: "admin/api/2024-04/variants/\(items.variant_id ?? 0).json")
+                self.network?.getData(endPoint: "admin/api/2024-04/variants/\(items.variantId ?? 0).json")
                 { (result:VarientData?, error) in
                     
                     self.produtsAmount[result?.variant?.id ?? 0] = result?.variant?.inventory_quantity
@@ -66,7 +66,7 @@ class ShopingCartViewModel {
             return "Total price not available"
         }
     }
-    func getProductByIndex(index:Int) -> DraftOrderLineItem {
+    func getProductByIndex(index:Int) -> LineItem {
         
         return (listOfProducts?.lineItems?[index+1])!
     }
@@ -110,7 +110,7 @@ class ShopingCartViewModel {
     
     func getImageByIndex(index:Int)->String{
         print(produtsAmount)
-        return (listOfProducts?.lineItems?[index+1].properties[0]["value"])!
+        return (listOfProducts?.lineItems?[index+1].properties?[0]["value"])!
     }
     
     func getProductsCount()-> Int {
@@ -121,21 +121,21 @@ class ShopingCartViewModel {
     
     func getProductAmount(index:Int) -> Int?{
      
-        let varientId = listOfProducts?.lineItems?[index+1].variant_id
+        let varientId = listOfProducts?.lineItems?[index+1].variantId
         
-        return produtsAmount[varientId ?? 0 ]
+        return produtsAmount[Int(varientId ?? 0) ]
     }
     
     
     func productAmountAvaliable(index:Int) -> Bool {
         
-        let varientId = listOfProducts?.lineItems?[index+1].variant_id
+        let varientId = listOfProducts?.lineItems?[index+1].variantId
         
-        guard let amount = produtsAmount[varientId ?? 0 ] else {
+        guard let amount = produtsAmount[Int(varientId ?? 0) ] else {
             return true
         }
         
-        if allowedProductAmount(varientId: varientId ?? 0 ) <  listOfProducts?.lineItems?[index+1].quantity ?? 0 {
+        if allowedProductAmount(varientId: Int(varientId ?? 0) ) <  listOfProducts?.lineItems?[index+1].quantity ?? 0 {
             return false
         }
         else {
@@ -187,10 +187,10 @@ class ShopingCartViewModel {
         print("here")
         for items in listOfProducts?.lineItems ?? [] {
             
-            if let amount = produtsAmount[items.variant_id ?? 0] {
+            if let amount = produtsAmount[Int(items.variantId ?? 0)] {
                 print(amount)
                 print(items.quantity)
-                if allowedProductAmount(varientId: items.variant_id ?? 0) < items.quantity! {
+                if allowedProductAmount(varientId: Int(items.variantId ?? 0)) < items.quantity! {
                     return false
                 }
             }

@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct TaxLine: Codable {
+/*struct TaxLine: Codable {
     let rate: Float?
     let title: String?
     let price: String?
-}
+}*/
 
 struct DraftOrderLineItem: Codable {
     let id: Int?
@@ -36,7 +36,7 @@ struct DraftOrderLineItem: Codable {
     }
 }
 
-struct Customer: Codable {
+/*struct Customer: Codable {
     let id: Int?
     let email: String?
     let createdAt: String?
@@ -68,9 +68,9 @@ struct Customer: Codable {
         case currency
         case phone
     }
-}
+}*/
 
-struct DraftOrder: Codable {
+/*struct DraftOrder: Codable {
     let id: Int?
     let note: String?
     let email: String?
@@ -126,7 +126,7 @@ struct DraftOrder: Codable {
         case adminGraphqlApiId = "admin_graphql_api_id"
         case customer
     }
-}
+}*/
 
 struct Draft: Codable {
     var draft_order: DraftOrder?
