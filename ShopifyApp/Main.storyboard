@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="46.564885496183201" y="-34.507042253521128"/>
         </scene>
-        <!--Part3-->
+        <!--Part1-->
         <scene sceneID="3f0-dC-RXF">
             <objects>
-                <viewControllerPlaceholder storyboardName="Part3" id="oLD-M4-Xuh" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Part1" id="oLD-M4-Xuh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="FaN-BV-EG9"/>
                     <navigationItem key="navigationItem" id="KBn-qy-QwK"/>
                 </viewControllerPlaceholder>

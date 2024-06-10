@@ -24,10 +24,10 @@ class ProfileViewController: UIViewController {
         view?.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "gearshape") , style: .plain, target: self, action: #selector(performNavToSettings)) , UIBarButtonItem(image: UIImage(systemName: "cart") , style: .plain, target: self, action: #selector(performNavToCart))]
         
         for item in view?.navigationItem.rightBarButtonItems ?? [] {
-             
             item.tintColor = UIColor(.black)
         }
        view?.title = "profile"
+        
     }
     
     @objc func performNavToCart(){
