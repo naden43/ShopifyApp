@@ -12,7 +12,6 @@
 		009D4A742C1868120039E7B0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009D4A732C1868120039E7B0 /* ProductsViewController.swift */; };
 		00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C325842C084A5900422141 /* OrdersTableViewCell.xib */; };
 		00DF670F2C186A4B00734F38 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF670E2C186A4B00734F38 /* CategoriesViewController.swift */; };
-		00DF67112C186A7A00734F38 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67102C186A7A00734F38 /* ApiServices.swift */; };
 		00DF67142C186AA000734F38 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67132C186AA000734F38 /* Brands.swift */; };
 		00DF67162C186AAA00734F38 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67152C186AAA00734F38 /* Products.swift */; };
 		00DF67182C186AB800734F38 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67172C186AB800734F38 /* Categories.swift */; };
@@ -70,7 +69,6 @@
 		00C325832C084A5900422141 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		00C325842C084A5900422141 /* OrdersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrdersTableViewCell.xib; sourceTree = "<group>"; };
 		00DF670E2C186A4B00734F38 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
-		00DF67102C186A7A00734F38 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
 		00DF67132C186AA000734F38 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		00DF67152C186AAA00734F38 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		00DF67172C186AB800734F38 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -445,7 +443,6 @@
 			isa = PBXGroup;
 			children = (
 				D3AAA70F2C0DDE8D006006B7 /* NetworkHandler.swift */,
-				00DF67102C186A7A00734F38 /* ApiServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -643,7 +640,6 @@
 				D3AAA70B2C0DDDD6006006B7 /* AddAddressViewModel.swift in Sources */,
 				D3AAA7142C0DDFB2006006B7 /* CustomAddreesCell.swift in Sources */,
 				D3B0B2302C13545A00623670 /* ShopingCartModel.swift in Sources */,
-				00DF67112C186A7A00734F38 /* ApiServices.swift in Sources */,
 				D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */,
 				D3AAA7122C0DDF5A006006B7 /* UserAddressesViewModel.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,

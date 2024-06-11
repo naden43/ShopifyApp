@@ -15,7 +15,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         print("update")
-        let url = Constants.baseUrl + Constants.EndPoint.brands
+        let url = Constants.EndPoint.brands
         viewModel = HomeViewModel()
         brandsCollection.delegate = self
         brandsCollection.dataSource = self

@@ -17,7 +17,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         print("The Brand id = \(self.brandId ?? 301445349542)")
-        let url = Constants.baseUrl + "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
+        let url =  "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
         viewModel = HomeViewModel()
         productCollection.dataSource = self
         productCollection.delegate = self
