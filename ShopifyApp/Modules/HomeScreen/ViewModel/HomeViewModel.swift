@@ -13,7 +13,6 @@ protocol HomeViewModelProtocol {
     var bindToCategoriesViewController: (() -> Void)? { get set }
     func fetchBands (url : String)
     func fetchProducts (url : String)
-    
     func fetchCategories (url : String)
     func getBrands() -> [SmartCollection]
     func getCaegroies() -> [CustomCollection]

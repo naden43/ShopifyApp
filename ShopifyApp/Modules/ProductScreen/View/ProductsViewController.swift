@@ -21,7 +21,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         viewModel = HomeViewModel()
         productCollection.dataSource = self
         productCollection.delegate = self
-        let nib = UINib(nibName: "ProductCollectionViewCell", bundle: nil)
+        let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
         productCollection.register(nib, forCellWithReuseIdentifier: "productCell")
         
         
@@ -57,13 +57,13 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let productCell = productCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCollectionViewCell
+        let productCell = productCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProducCollectionViewCell
         productCell.productImage.layer.cornerRadius = 20
         
         var products = viewModel?.getProductsOfBrands()
         productCell.productTitle.text = products?[indexPath.row].vendor
         productCell.productPrice.text = products?[indexPath.row].variants[0].price
-        productCell.productSubtitle.text = products?[indexPath.row].handle
+        productCell.productSubTitle.text = products?[indexPath.row].handle
         print("the products is =========================================: \(products?[indexPath.row].title ?? "unkown product")")
         var productIMG = products?[indexPath.row].image.src
         let imageUrl = URL(string: productIMG ?? "")
