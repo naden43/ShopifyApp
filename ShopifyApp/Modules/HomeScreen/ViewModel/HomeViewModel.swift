@@ -43,16 +43,6 @@ class HomeViewModel : HomeViewModelProtocol{
         }
         
         func fetchProducts (url : String) {
-//            ApiServices.shared.fetchData(urlString: url){ (result: Result<Products, Error>) in
-//                switch result {
-//                case .success(let data):
-//                    self.productsOfBrands = data.products
-//                    self.bindToProductViewController?()
-//                    print("the count of products is \(data.products.count)")
-//                case .failure(let error):
-//                    print("failed to fetch products with error \(error.localizedDescription)")
-//                }
-//            }
             NetworkHandler.instance.getData(endPoint: url, complitionHandler: { (result:Products? , error) in
                 guard let result = result else {
                     return
