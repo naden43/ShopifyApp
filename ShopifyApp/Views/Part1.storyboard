@@ -43,9 +43,8 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="BackgroundColor"/>
                             </segmentedControl>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2FW-i9-PEd">
-                                <rect key="frame" x="0.0" y="93" width="393" height="690"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2FW-i9-PEd">
+                                <rect key="frame" x="16" y="93" width="377" height="690"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="j8x-SV-V0j">
                                     <size key="itemSize" width="178" height="290"/>
@@ -68,6 +67,12 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BS4-Vn-h6u"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="BS4-Vn-h6u" firstAttribute="bottom" secondItem="2FW-i9-PEd" secondAttribute="bottom" constant="35" id="1rn-Pf-fHy"/>
+                            <constraint firstItem="2FW-i9-PEd" firstAttribute="leading" secondItem="BS4-Vn-h6u" secondAttribute="leading" constant="16" id="UVc-5I-Bek"/>
+                            <constraint firstItem="2FW-i9-PEd" firstAttribute="top" secondItem="BS4-Vn-h6u" secondAttribute="top" constant="34" id="Zfo-A3-vvS"/>
+                            <constraint firstItem="2FW-i9-PEd" firstAttribute="trailing" secondItem="BS4-Vn-h6u" secondAttribute="trailing" id="s17-ez-zQ9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="IGQ-uJ-hhc"/>
                     <connections>
