@@ -9,6 +9,7 @@ import UIKit
 
 class CustomAddreesCell: UITableViewCell {
 
+    @IBOutlet weak var contentViewOfCell: UIView!
     @IBOutlet weak var cityTxt: UILabel!
     @IBOutlet weak var countryTxt: UILabel!
     override func awakeFromNib() {

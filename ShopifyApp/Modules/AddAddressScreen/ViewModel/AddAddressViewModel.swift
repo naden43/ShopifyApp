@@ -11,20 +11,26 @@ class AddAddressViewModel {
     
     
     var countries = ["Egypt"]
-    var cities = ["Cairo" , "Giza" , "Ismalia" , "Alexandria"]
+    var cities : [String] = []//["Cairo" , "Giza" , "Ismalia" , "Alexandria"]
     
     var missedData : (()->Void) = {}
     
     var inValidPhone : (() -> Void) = {}
     
-    var validationManager : NetworkHandler?
+    var network : NetworkHandler?
+    
+    var countriesFromJson:Countries?
+    
+    var signalCompleteOperation : (()->Void) = {}
+    
+    
     
     init(validationManager : NetworkHandler){
-        self.validationManager = validationManager
+        self.network = validationManager
     }
     
     func getCountriesNumber() -> Int{
-        return countries.count
+        return countriesFromJson?.countries.count ?? 0
     }
     
     func getCitiesNumber() -> Int{
@@ -32,11 +38,73 @@ class AddAddressViewModel {
     }
     
     func getcCountryByIndex(index:Int) -> String{
-        return countries[index]
+        return countriesFromJson?.countries[index].name ?? ""
     }
     
     func getCityByIndex(index:Int) -> String {
-        return cities[index]
+        
+        if index >= cities.count {
+            return ""
+        }
+        else{
+            return cities[index]
+        }
+    }
+    
+    func changeTheSelectedCountry(index:Int){
+        cities = countriesFromJson?.countries[index].cities ?? []
+    }
+    
+    func parseCountries(url:URL) {
+        
+        do{
+            let data =  try Data(contentsOf: url)
+            let countries = try JSONDecoder().decode(Countries.self, from: data)
+            countriesFromJson = countries
+            cities = countriesFromJson?.countries[0].cities ?? []
+            
+        }
+        catch let error {
+            print(error)
+        }
+    }
+    
+    
+    func editAddress(address:Address){
+        
+        network?.putData(CustomerAddress(address: address)
+                         , to: "admin/api/2024-04/customers/7864239587494/addresses/\(address.id ?? 0 ).json", responseType:  CustomAddress.self , completion: { [weak self] success, error, result in
+            
+            if success == true {
+                self?.signalCompleteOperation()
+            }
+            else {
+                print(error)
+            }
+        })
+    }
+    
+    func getIndexToCountryByName(countryName:String)->Int {
+        
+        let countries = countriesFromJson?.countries ?? []
+        for (index, country) in countries.enumerated() {
+            if country.name == countryName {
+                    print("here")
+                    return index
+                }
+        }
+        return 0
+    }
+    
+    func getIndexToCityByName(cityName:String)->Int {
+        
+        for (index, country) in cities.enumerated() {
+                if country == cityName {
+                    return index
+                }
+        }
+        return 0
+        
     }
     
     func performAddAddress(address:Address){
@@ -75,14 +143,11 @@ class AddAddressViewModel {
         })*/
         
         
-        let address1 = Address(firstName: "ahmed", lastName: "mohamed", company: nil, address1: "170 Street", address2: nil, city: nil, province: nil, country: "Egypt", zip: nil, phone: "01123493229", name: "ahmed mohamed", provinceCode: nil, countryCode: "EG", countryName: "Egypt")
-                let addressRequest = CustomerAddress(address: address1)
         
-        validationManager?.postData(addressRequest, to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self , completion: { success, error, response in
+        
+        network?.postData(CustomerAddress(address: address), to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self , completion: { [weak self] success, error, response in
             
-            print(success)
-            print(error)
-            print(response)
+            self?.signalCompleteOperation()
             
         })
         

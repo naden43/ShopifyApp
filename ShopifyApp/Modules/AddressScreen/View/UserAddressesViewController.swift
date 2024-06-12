@@ -64,6 +64,7 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
     
     override func viewWillAppear(_ animated: Bool) {
         viewModel?.loadData()
+        userAddressesList.reloadData()
 
     }
 
@@ -96,10 +97,33 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
         
         let address = viewModel?.getAddressByIndex(index: indexPath.row)
         
+        cell.contentViewOfCell.layer.borderWidth = 0.0
+
+        if address?.default == true {
+            print(address?.city)
+            cell.contentViewOfCell.layer.borderWidth = 3.0
+            cell.contentViewOfCell.layer.borderColor = UIColor.gray.cgColor
+        }
+        
         cell.cityTxt.text = (address?.city) ?? ""
         cell.countryTxt.text = (address?.country) ?? ""
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let addAddressScreen = storyboard.instantiateViewController(withIdentifier: "add_address") as! AddAddressInfoViewController
+        
+        viewModel?.selectedAddress = viewModel?.getAddressByIndex(index: indexPath.row)
+        addAddressScreen.allAddressesScreenViewModel = viewModel
+        
+        present(addAddressScreen, animated: true)
+        
+    }
+    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         

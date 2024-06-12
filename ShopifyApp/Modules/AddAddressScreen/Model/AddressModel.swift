@@ -100,9 +100,9 @@ struct AddressObject : Codable {
 
 class UserAddresses : Codable {
     
-    var addresses : [ReturnAddress]
+    var addresses : [Address]
     
-    init(addresses: [ReturnAddress]) {
+    init(addresses: [Address]) {
         self.addresses = addresses
     }
 }

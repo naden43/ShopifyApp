@@ -46,6 +46,9 @@
 		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
 		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
 		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
+		D3A79C952C1A49DA00311A50 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
+		D3A79C992C1A559E00311A50 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C982C1A559E00311A50 /* CountryModel.swift */; };
+		D3A79C9C2C1A58C800311A50 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = D3A79C9B2C1A58C800311A50 /* countries.json */; };
 		D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7002C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift */; };
 		D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7082C0DD646006006B7 /* AddAddressInfoViewController.swift */; };
 		D3AAA70B2C0DDDD6006006B7 /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA70A2C0DDDD6006006B7 /* AddAddressViewModel.swift */; };
@@ -101,6 +104,8 @@
 		D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomShoppingCartCellTableViewCell.xib; sourceTree = "<group>"; };
 		D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomAddreesCell.xib; sourceTree = "<group>"; };
 		D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomShoppingCartCellTableViewCell.swift; sourceTree = "<group>"; };
+		D3A79C982C1A559E00311A50 /* CountryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		D3A79C9B2C1A58C800311A50 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = countries.json; path = ../../../../Downloads/countries.json; sourceTree = "<group>"; };
 		D3AAA7002C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTableViewController.swift; sourceTree = "<group>"; };
 		D3AAA7082C0DD646006006B7 /* AddAddressInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressInfoViewController.swift; sourceTree = "<group>"; };
 		D3AAA70A2C0DDDD6006006B7 /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
@@ -218,6 +223,7 @@
 		00DF67192C186AFA00734F38 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				D3A79C9B2C1A58C800311A50 /* countries.json */,
 				00DF671A2C186B2900734F38 /* Constants.swift */,
 			);
 			path = Utility;
@@ -380,13 +386,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D3AAA6FD2C0DD54D006006B7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		D3AAA6FE2C0DD568006006B7 /* SettingScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +433,7 @@
 			isa = PBXGroup;
 			children = (
 				D3AAA70C2C0DDE05006006B7 /* AddressModel.swift */,
+				D3A79C982C1A559E00311A50 /* CountryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -492,7 +492,6 @@
 		D3D26CFE2C0BD1D000253D01 /* AddressScreen */ = {
 			isa = PBXGroup;
 			children = (
-				D3AAA6FD2C0DD54D006006B7 /* Model */,
 				D3D26D002C0BD20400253D01 /* ViewModel */,
 				D3D26CFF2C0BD1FC00253D01 /* View */,
 			);
@@ -590,6 +589,7 @@
 				D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */,
 				00C325862C084A5900422141 /* OrdersTableViewCell.xib in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
+				D3A79C9C2C1A58C800311A50 /* countries.json in Resources */,
 				00DF67232C186DEF00734F38 /* ProducCollectionViewCell.xib in Resources */,
 				D30AB6A82C032CC800C61F99 /* Part2.storyboard in Resources */,
 				38A805F82C0DE7EA00DCF52D /* GoogleService-Info.plist in Resources */,
@@ -614,6 +614,7 @@
 				D3B0B22E2C13544300623670 /* ShopingCartViewModel.swift in Sources */,
 				D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */,
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
+				D3A79C992C1A559E00311A50 /* CountryModel.swift in Sources */,
 				0078A34A2C0C8045000978B1 /* ProductCollectionViewCell.swift in Sources */,
 				00DF67182C186AB800734F38 /* Categories.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
@@ -641,6 +642,7 @@
 				D3B0B2302C13545A00623670 /* ShopingCartModel.swift in Sources */,
 				D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */,
 				D3AAA7122C0DDF5A006006B7 /* UserAddressesViewModel.swift in Sources */,
+				D3A79C952C1A49DA00311A50 /* ProfileViewController.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
 				D3AAA7102C0DDE8D006006B7 /* NetworkHandler.swift in Sources */,
 			);

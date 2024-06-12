@@ -261,7 +261,7 @@ class NetworkHandler {
     }
     
     
-    func getAddresses(complitionHandler : @escaping ([ReturnAddress]) -> Void){
+    /*func getAddresses(complitionHandler : @escaping ([ReturnAddress]) -> Void){
         
         print("kkkkkkkk")
         guard  let url = URL(string: "https://76854ee270534b0f6fe7e7283f53b057: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@mad44-sv-team4.myshopify.com//admin/api/2024-04/customers/7866530955430/addresses.json") else {
@@ -294,6 +294,6 @@ class NetworkHandler {
         
         task.resume()
         
-    }
+    }*/
     
 }
