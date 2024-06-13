@@ -13,76 +13,42 @@ struct Products: Codable {
     let products: [Product]
 }
 
-// MARK: - Product
 struct Product: Codable {
-    let id: Int
-    let title, bodyHTML, vendor: String
-    let productType: ProductType
-    //let createdAt: Date
-    let handle: String
-    //let updatedAt, publishedAt: Date
-    let templateSuffix: JSONNull?
-    let publishedScope: PublishedScope
-    let tags: String
-    let status: Status
-    let adminGraphqlAPIID: String
-    let variants: [Variant]
-    let options: [Option]
-    let images: [Image]
-    let image: Image
+    var id: Int?
+    var title: String?
+    var productType: ProductType?
+    var bodyHtml: String?
+    var vendor: String?
 
+    var createdAt: String?
+    var handle: String?
+    var updatedAt: String?
+    var publishedAt: String?
+    var templateSuffix: String?
+    var publishedScope: String?
+    var tags: String?
+    var status: String?
+    var adminGraphqlApiId: String?
+    var variants: [Variant]?
+    var options: [Option]?
+    var images: [Image]?
+    var image: Image?
+    
     enum CodingKeys: String, CodingKey {
-        case id, title
-        case bodyHTML = "body_html"
-        case vendor
+        case id, title, vendor, tags, status, images, image
+        case bodyHtml = "body_html"
         case productType = "product_type"
-        //case createdAt = "created_at"
-        case handle
-        //case updatedAt = "updated_at"
-        //case publishedAt = "published_at"
+        case createdAt = "created_at"
+        case handle, updatedAt = "updated_at"
+        case publishedAt = "published_at"
         case templateSuffix = "template_suffix"
         case publishedScope = "published_scope"
-        case tags, status
-        case adminGraphqlAPIID = "admin_graphql_api_id"
-        case variants, options, images, image
+        case adminGraphqlApiId = "admin_graphql_api_id"
+        case variants, options
     }
 }
 
-// MARK: - Image
-struct Image: Codable {
-    let id: Int
-    let alt: JSONNull?
-    let position, productID: Int
-    //let createdAt, updatedAt: Date
-    let adminGraphqlAPIID: String
-    let width, height: Int
-    let src: String
-    let variantIDS: [JSONAny]
 
-    enum CodingKeys: String, CodingKey {
-        case id, alt, position
-        case productID = "product_id"
-        //case createdAt = "created_at"
-        //case updatedAt = "updated_at"
-        case adminGraphqlAPIID = "admin_graphql_api_id"
-        case width, height, src
-        case variantIDS = "variant_ids"
-    }
-}
-
-// MARK: - Option
-struct Option: Codable {
-    let id, productID: Int
-    let name: Name
-    let position: Int
-   // let values: [String]
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case productID = "product_id"
-        case name, position
-    }
-}
 
 enum Name: String, Codable {
     case color = "Color"
@@ -102,50 +68,6 @@ enum PublishedScope: String, Codable {
 enum Status: String, Codable {
     case active = "active"
 }
-
-//// MARK: - Variant
-//struct Variant: Codable {
-//    let id, productID: Int
-//    let title, price, sku: String
-//    let position: Int
-//    let inventoryPolicy: InventoryPolicy
-//    let compareAtPrice: String?
-//    let fulfillmentService: FulfillmentService
-//    let inventoryManagement: InventoryManagement
-//    let option1: String
-//    let option2: Option2
-//    let option3: JSONNull?
-//    //let createdAt, updatedAt: Date
-//    let taxable: Bool
-//    let barcode: JSONNull?
-//    let grams, weight: Int
-//    let weightUnit: WeightUnit
-//    let inventoryItemID, inventoryQuantity, oldInventoryQuantity: Int
-//    let requiresShipping: Bool
-//    let adminGraphqlAPIID: String
-//    let imageID: JSONNull?
-//
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case productID = "product_id"
-//        case title, price, sku, position
-//        case inventoryPolicy = "inventory_policy"
-//        case compareAtPrice = "compare_at_price"
-//        case fulfillmentService = "fulfillment_service"
-//        case inventoryManagement = "inventory_management"
-//        case option1, option2, option3
-//        //case createdAt = "created_at"
-//        //case updatedAt = "updated_at"
-//        case taxable, barcode, grams, weight
-//        case weightUnit = "weight_unit"
-//        case inventoryItemID = "inventory_item_id"
-//        case inventoryQuantity = "inventory_quantity"
-//        case oldInventoryQuantity = "old_inventory_quantity"
-//        case requiresShipping = "requires_shipping"
-//        case adminGraphqlAPIID = "admin_graphql_api_id"
-//        case imageID = "image_id"
-//    }
-//}
 
 enum FulfillmentService: String, Codable {
     case manual = "manual"

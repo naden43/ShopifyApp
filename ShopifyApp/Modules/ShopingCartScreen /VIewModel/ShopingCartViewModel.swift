@@ -42,7 +42,7 @@ class ShopingCartViewModel {
                 self.network?.getData(endPoint: "admin/api/2024-04/variants/\(items.variantId ?? 0).json")
                 { (result:VarientData?, error) in
                     
-                    self.produtsAmount[result?.variant?.id ?? 0] = result?.variant?.inventory_quantity
+                    self.produtsAmount[result?.variant?.id ?? 0] = result?.variant?.inventoryQuantity
                     
                     print(self.produtsAmount)
                     
