@@ -6,12 +6,33 @@
 //
 
 import UIKit
+import DropDown
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
 
+    @IBOutlet weak var filterPrice: UIButton!
     var viewModel : HomeViewModelProtocol?
     var categoryId : Int?
+    var priceRange : Int = 0
+    var isFiltered : Bool?
+    @IBOutlet weak var filterView: UIView!
     var filteredProducts: [Product] = []
+    var filteredPriceProducts: [Product] = []
+    let menuPrice: DropDown = {
+        let menu = DropDown()
+        menu.cornerRadius = 5
+        //menu.animationEntranceOptions
+        menu.scalesLargeContentImage = (UIImage(named: "priceicon.svg") != nil)
+        menu.dataSource = [
+            "All Prices",
+            "Under EGP 100",
+            "EGP 100 - EGP 200",
+            "EGP 200 - EGP 300",
+        ]
+        
+        return menu
+    }()
+    
     @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
     @IBOutlet weak var saleBtn: UIButton!
     @IBOutlet weak var kidBtn: UIButton!
@@ -23,6 +44,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel()
+        menuPrice.anchorView = filterView
+        menuPrice.selectedTextColor = .orange
+        self.filterProductsOfCategories()
+        categoriesCollection.reloadData()
         let url = Constants.EndPoint.categories
         womenBtn.tintColor = .orange
         categoriesCollection.dataSource = self
@@ -42,6 +67,14 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         categoriesCollection.collectionViewLayout = layout
         
+        //access the price menu
+        
+        menuPrice.selectionAction = { [weak self] index, title in
+            print("the index = \(index) and title = \(title)")
+            self?.priceRange = index
+            self?.filterProductsByPrice()
+        }
+        
         viewModel?.bindToCategoriesViewController = { [weak self] in
             print("inside the bind closure")
             DispatchQueue.main.async {
@@ -58,7 +91,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         categoriesCollection.reloadData()
-        
     }
     
     
@@ -66,14 +98,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredProducts.count
+        return filteredPriceProducts.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let productCell = categoriesCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProducCollectionViewCell
         productCell.productImage.layer.cornerRadius = 20
-         let product = filteredProducts[indexPath.row]
-        
+        // let product = filteredProducts[indexPath.row]
+       // let product = filterProductsByPrice()[indexPath.row]
+        //filterProductsByPrice()
+        let product = filteredPriceProducts[indexPath.row]
         productCell.productTitle.text = product.vendor
         productCell.productPrice.text = product.variants[0].price
         productCell.productSubTitle.text = product.handle
@@ -123,7 +157,17 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBAction func subCategoryAction(_ sender: Any) {
         filterProductsOfCategories()
+        filterProductsByPrice()
+        categoriesCollection.reloadData()
     }
+    
+    @IBAction func filterBtn(_ sender: Any) {
+        categoriesCollection.reloadData()
+        self.isFiltered = true
+        menuPrice.show()
+        categoriesCollection.reloadData()
+    }
+    
     
     private func loadCategoryProducts(categoryName: String) {
         guard let categoryId = viewModel?.getCategoryID(categoryName: categoryName) else {
@@ -131,6 +175,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             return
         }
         self.categoryId = categoryId
+        self.filterProductsOfCategories()
         print("the category id = \(categoryId)")
         //https://76854ee270534b0f6fe7e7283f53b057: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@mad44-sv-team4.myshopify.com//admin/api/2024-04/collections/301908230310/products.json
         let productUrl = "/admin/api/2024-04/products.json?collection_id=\(categoryId)"
@@ -138,20 +183,20 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             print("inside the bind closure of products")
             DispatchQueue.main.async {
                 self?.filterProductsOfCategories()
+                self?.filterProductsByPrice()
                 self?.categoriesCollection.reloadData()
                 print("The number of products in this brand is: \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
             }
         }
+        categoriesCollection.reloadData()
         viewModel?.fetchProducts(url: productUrl)
     }
     
     
     private func filterProductsOfCategories() {
-        
         guard let products = viewModel?.getProductsOfBrands() else {
             return
         }
-        
         switch subCategoriesSeg.selectedSegmentIndex {
         case 0:
             filteredProducts = products.filter{$0.productType == .shoes}
@@ -161,6 +206,38 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             filteredProducts = products.filter{$0.productType == .accessories}
         default:
             filteredProducts = products
+        }
+        categoriesCollection.reloadData()
+    }
+    
+    private func filterProductsByPrice ()   {
+        switch priceRange {
+        case 0:
+            filteredPriceProducts = filteredProducts
+        case 1:
+            filteredPriceProducts = filteredProducts.filter {
+                        if let priceString = $0.variants[0].price, let price = Double(priceString) {
+                            return price < 100
+                        }
+                        return false
+                    }
+        case 2:
+            filteredPriceProducts = filteredProducts.filter {
+                  if let priceString = $0.variants[0].price, let price = Double(priceString) {
+                      return price >= 100 && price < 200
+                  }
+                  return false
+              }
+        case 3:
+            filteredPriceProducts = filteredProducts.filter {
+                  if let priceString = $0.variants[0].price, let price = Double(priceString) {
+                      return price >= 200 && price < 300
+                  }
+                  return false
+              }
+        default:
+            filteredPriceProducts = filteredProducts
+            
         }
         categoriesCollection.reloadData()
     }
