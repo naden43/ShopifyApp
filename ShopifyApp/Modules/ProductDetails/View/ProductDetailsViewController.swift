@@ -7,6 +7,7 @@
 
 
 import UIKit
+import Cosmos
 
 class ProductDetailsViewController: UIViewController {
 
@@ -15,13 +16,13 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productBrand: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var productRate: UIView!
+    var cosmosView: CosmosView!
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     @IBOutlet weak var colorsCollectionView: UICollectionView!
     
     @IBOutlet weak var reviewsCollectionView: UICollectionView!
     @IBOutlet weak var productDescription: UITextView!
     @IBOutlet weak var productspageControl: UIPageControl!
-    @IBOutlet weak var showMoreButton: UIButton!
     
     private var showMoreReviews = false
     private var reviews: [Review] = []
@@ -54,13 +55,34 @@ class ProductDetailsViewController: UIViewController {
         
         updateUI()
         setupDummyReviews()
+        setupCosmosView()
     }
     
+    func setupCosmosView() {
+        cosmosView = CosmosView()
+        cosmosView.settings.fillMode = .half
+        cosmosView.settings.starSize = 16
+        cosmosView.settings.starMargin = 2
+        cosmosView.settings.filledColor = .orange
+        cosmosView.settings.emptyBorderColor = .orange
+        cosmosView.settings.filledBorderColor = .orange
+        cosmosView.rating = 3
+        cosmosView.isUserInteractionEnabled = false
+        
+        productRate.addSubview(cosmosView)
+        cosmosView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            cosmosView.leadingAnchor.constraint(equalTo: productRate.leadingAnchor),
+            cosmosView.trailingAnchor.constraint(equalTo: productRate.trailingAnchor),
+            cosmosView.topAnchor.constraint(equalTo: productRate.topAnchor),
+            cosmosView.bottomAnchor.constraint(equalTo: productRate.bottomAnchor)
+        ])
+    }
+
+    
     private func updateUI() {
-        print("vv\(viewModel?.selectedProduct)")
         guard let product = viewModel?.selectedProduct else { return }
         productTitle.text = product.title
-        print("product.title\(product.title)")
         productBrand.text = "Brand: \(product.vendor ?? "Unknown")"
         productPrice.text = product.variants?.first?.price
         productDescription.text = product.bodyHtml
@@ -71,24 +93,30 @@ class ProductDetailsViewController: UIViewController {
         reviewsCollectionView.reloadData()
     }
 
-    @IBAction func showMoreButtonTapped(_ sender: UIButton) {
-        showMoreReviews.toggle()
-        reviewsCollectionView.reloadData()
-    }
+
 
     private func createSizeCollectionViewLayout() -> UICollectionViewLayout {
+        // Item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
+        // Group size
         let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
+        // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
         
+        // Spacing between items
+        section.interGroupSpacing = 10 // Adjust the spacing between items as needed
+        
+  
+        section.orthogonalScrollingBehavior = .continuous
+ 
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
+
 
     private func setupDummyReviews() {
         let dummyImage = UIImage(named: "reviewer")
@@ -101,6 +129,10 @@ class ProductDetailsViewController: UIViewController {
             Review(personImage: dummyImage!, comment: "Could be better.", rate: 2.5)
         ]
         reviewsCollectionView.reloadData()
+    }
+    
+    
+    @IBAction func btnAddToCart(_ sender: Any) {
     }
 }
 
@@ -168,6 +200,8 @@ class ProductDetailsViewController: UIViewController {
                  productspageControl.currentPage = currentPage
              }
          }
+     
+     
      
  }
  

@@ -13,31 +13,51 @@ class ColorsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        
         colorLabel.layer.cornerRadius = colorLabel.frame.width / 2
         colorLabel.clipsToBounds = true
+
+        colorLabel.layer.borderWidth = 0.7
+        colorLabel.layer.borderColor = UIColor.black.cgColor
+        colorLabel.textAlignment = .center
+       
     }
     
     func setColorForValue(_ value: String?) {
         guard let value = value else {
-            colorLabel.backgroundColor = .gray // Default color if value is nil
+            colorLabel.backgroundColor = .gray
             return
         }
         
-        // Define a mapping of values to colors
         let colorMapping: [String: UIColor] = [
             "red": .red,
             "blue": .blue,
             "green": .green,
-            // Add more mappings as needed
+            "yellow": .yellow,
+            "orange": .orange,
+            "purple": .purple,
+            "brown": .brown,
+            "cyan": .cyan,
+            "magenta": .magenta,
+            "white": .white,
+            "black": .black,
+            "gray": .gray,
+            "lightGray": .lightGray,
+            "darkGray": .darkGray,
+            "clear": .clear
         ]
         
-        // Check if the value exists in the mapping, otherwise set a fallback color
         if let color = colorMapping[value.lowercased()] {
             colorLabel.backgroundColor = color
         } else {
-            colorLabel.backgroundColor = .gray // Fallback color
+            colorLabel.backgroundColor = .gray
         }
     }
 }
+
 
 
