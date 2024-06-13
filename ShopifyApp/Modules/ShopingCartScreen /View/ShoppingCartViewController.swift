@@ -17,7 +17,7 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
     @IBOutlet weak var shopingCartList: UITableView!
     
     var viewModel : ShopingCartViewModel?
-    var currency = "LE"
+    var currency : String?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +26,13 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
         
         viewModel = ShopingCartViewModel(network: NetworkHandler.instance)
         
+        currency = viewModel?.getCurrencyType()
+        
         viewModel?.bindData = { [weak self] in
             
-            self?.totalTxt.text = "\(self?.viewModel?.getTotalPrice() ?? "") \(self?.currency ?? "")"
+            let apiPrice = Double(self?.viewModel?.getTotalPrice() ?? "0.0") ?? 0.0
+            let price = self?.viewModel?.calcThePrice(price: apiPrice) ?? "0.0"
+            self?.totalTxt.text = "\(price) \(self?.currency ?? "")"
             
             if self?.viewModel?.avaliableToCheckOut() == true {
                 
@@ -40,6 +44,7 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
             }
             self?.shopingCartList.reloadData()
         }
+        
         
         let nibCell = UINib(nibName: "CustomShoppingCartCellTableViewCell", bundle: nil)
 
@@ -67,7 +72,11 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
         cell.productName.text = data?.title
         cell.productDescription.text = data?.vendor
         cell.itemCount.text = String(data?.quantity ?? 0)
-        cell.productPrice.text = "\(data?.price ?? "")\(currency)"
+        
+        let apiPrice = Double(data?.price ?? "0.0") ?? 0.0
+        let price = viewModel?.calcThePrice(price: apiPrice) ?? "0.0"
+        cell.productPrice.text = "\(price) \(currency ?? "")"
+        
         cell.plusAction = {
             
             

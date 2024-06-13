@@ -11,6 +11,8 @@ class ShopingCartViewModel {
     
     var network : NetworkHandler?
     
+    var userDefualtManager = UserDefaultsManager.shared
+    
     var listOfProducts : DraftOrder?
     
     var productImages : [String] = []
@@ -119,6 +121,39 @@ class ShopingCartViewModel {
         
     }
     
+    func getCurrencyType()->String {
+        
+        if let currencyType = userDefualtManager.getTheCurrencyType() {
+            return currencyType
+        }
+        else{
+            return "EGP"
+        }
+    }
+    
+    
+    func calcThePrice(price:Double) -> String
+    {
+        if let currencyType = userDefualtManager.getTheCurrencyType() {
+            
+            if let currencyValue = userDefualtManager.getTheCurrencyValue() {
+                
+                if currencyType == "EGP" {
+                    
+                    return String(price)
+                }
+                else {
+                   return String(format: "%.3f", price * currencyValue)                }
+            }
+            else {
+                return String(price)
+            }
+        }
+        else{
+            return String(price)
+        }
+    }
+
     func getProductAmount(index:Int) -> Int?{
      
         let varientId = listOfProducts?.lineItems?[index+1].variantId
