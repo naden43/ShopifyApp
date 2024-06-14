@@ -12,8 +12,8 @@ struct VarientData : Codable {
 }
 
 struct Variant: Codable {
-    var id: Int?
-    var productId: Int?
+    var id: Int64?
+    var productId: Int64?
     var title: String?
     var price: String?
     var sku: String?

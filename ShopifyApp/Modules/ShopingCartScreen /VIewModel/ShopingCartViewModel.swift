@@ -4,7 +4,7 @@
 //
 //  Created by Naden on 07/06/2024.
 //
-
+// 979195232422
 import Foundation
 
 class ShopingCartViewModel {
@@ -28,7 +28,7 @@ class ShopingCartViewModel {
     
     func loadData(){
         
-        network?.getData(endPoint: "admin/api/2024-04/draft_orders/978702565542.json", complitionHandler: { (result:Draft? , error) in
+        network?.getData(endPoint: "admin/api/2024-04/draft_orders/978702565542.json", completionHandler: { (result:Draft? , error) in
             print("enter")
             guard let result = result else {
                 return
@@ -38,11 +38,10 @@ class ShopingCartViewModel {
             
             for items in self.listOfProducts?.lineItems ?? [] {
                 
-                
                 self.network?.getData(endPoint: "admin/api/2024-04/variants/\(items.variantId ?? 0).json")
                 { (result:VarientData?, error) in
                     
-                    self.produtsAmount[result?.variant?.id ?? 0] = result?.variant?.inventoryQuantity
+                    self.produtsAmount[Int(result?.variant?.id ?? 0)] = result?.variant?.inventoryQuantity
                     
                     print(self.produtsAmount)
                     
@@ -158,7 +157,6 @@ class ShopingCartViewModel {
                 print(error)
             }
         }
-        
         
         
     }

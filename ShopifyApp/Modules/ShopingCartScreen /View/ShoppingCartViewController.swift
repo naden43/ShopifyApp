@@ -50,8 +50,6 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
 
     }
     
-
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return viewModel?.getProductsCount() ?? 0

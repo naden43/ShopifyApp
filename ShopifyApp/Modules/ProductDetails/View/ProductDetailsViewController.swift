@@ -10,7 +10,7 @@ import UIKit
 import Cosmos
 
 class ProductDetailsViewController: UIViewController {
-
+    
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productBrand: UILabel!
@@ -27,9 +27,11 @@ class ProductDetailsViewController: UIViewController {
     private var showMoreReviews = false
     private var reviews: [Review] = []
     var viewModel: ProductDetailsViewModel?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Userid \(UserDefaultsManager.shared.getCustomer())")
         
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
@@ -78,7 +80,7 @@ class ProductDetailsViewController: UIViewController {
             cosmosView.bottomAnchor.constraint(equalTo: productRate.bottomAnchor)
         ])
     }
-
+    
     
     private func updateUI() {
         guard let product = viewModel?.selectedProduct else { return }
@@ -92,9 +94,9 @@ class ProductDetailsViewController: UIViewController {
         colorsCollectionView.reloadData()
         reviewsCollectionView.reloadData()
     }
-
-
-
+    
+    
+    
     private func createSizeCollectionViewLayout() -> UICollectionViewLayout {
         // Item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
@@ -110,14 +112,14 @@ class ProductDetailsViewController: UIViewController {
         // Spacing between items
         section.interGroupSpacing = 10 // Adjust the spacing between items as needed
         
-  
+        
         section.orthogonalScrollingBehavior = .continuous
- 
+        
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
-
-
+    
+    
     private func setupDummyReviews() {
         let dummyImage = UIImage(named: "reviewer")
         reviews = [
@@ -131,11 +133,24 @@ class ProductDetailsViewController: UIViewController {
         reviewsCollectionView.reloadData()
     }
     
-    
     @IBAction func btnAddToCart(_ sender: Any) {
+        viewModel?.addSelectedProductToDraftOrder { success, message in
+            DispatchQueue.main.async {
+                if success {
+                    let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
     }
-}
 
+}
+    
 
 
  extension ProductDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

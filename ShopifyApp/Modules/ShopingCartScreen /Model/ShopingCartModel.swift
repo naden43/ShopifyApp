@@ -14,15 +14,15 @@ import Foundation
 }*/
 
 struct DraftOrderLineItem: Codable {
-    let id: Int?
-    let variant_id: Int?
-    let title: String?
+    var id: Int?
+    var variant_id: Int?
+    var title: String?
     var quantity: Int?
-    let taxable: Bool?
-    let fulfillmentService: String?
-    let taxLines: [TaxLine]?
-    let price: String?
-    let vendor:String?
+    var taxable: Bool?
+    var fulfillmentService: String?
+    var taxLines: [TaxLine]?
+    var price: String?
+    var vendor:String?
     var properties:[[String : String]]
 
     private enum CodingKeys: String, CodingKey {

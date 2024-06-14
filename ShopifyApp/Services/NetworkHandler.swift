@@ -152,7 +152,7 @@ class NetworkHandler {
     
     
     
-    func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
+ /*   func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
         guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
             completion(false, "Invalid URL" , nil)
             
@@ -174,6 +174,33 @@ class NetworkHandler {
             }
         
         
+    }*/
+    
+    func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String?, U?) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            guard let url = URL(string: "\(self.baseUrl)\(endpoint)") else {
+                DispatchQueue.main.async {
+                    completion(false, "Invalid URL", nil)
+                }
+                return
+            }
+            let headers: HTTPHeaders = [
+                "Authorization": self.authHeader,
+                "Content-Type": "application/json"
+            ]
+            AF.request(url, method: .put, parameters: data, encoder: JSONParameterEncoder.default, headers: headers)
+                .validate()
+                .responseDecodable(of: U.self) { response in
+                    DispatchQueue.main.async {
+                        switch response.result {
+                        case .success(let value):
+                            completion(true, "Succeeded", value)
+                        case .failure(let error):
+                            completion(false, "Request error: \(error.localizedDescription)", nil)
+                        }
+                    }
+                }
+        }
     }
     
     
@@ -203,9 +230,71 @@ class NetworkHandler {
                      }
             }
     }
+    
+    func getData<T: Codable>(endPoint: String, completionHandler: @escaping (T?, String?) -> Void) {
+         DispatchQueue.global(qos: .background).async {
+             guard let url = URL(string: "\(self.baseUrl)\(endPoint)") else {
+                 DispatchQueue.main.async {
+                     completionHandler(nil, "Invalid URL")
+                 }
+                 return
+             }
+             let headers: HTTPHeaders = [
+                "Authorization": self.authHeader,
+                 "Content-Type": "application/json"
+             ]
+
+             AF.request(url, method: .get, headers: headers)
+                 .validate()
+                 .responseDecodable(of: T.self) { response in
+                     DispatchQueue.main.async {
+                         switch response.result {
+                         case .success(let value):
+                             completionHandler(value, "Success")
+                         case .failure(let error):
+                             print(error)
+                             completionHandler(nil, "Failed")
+                         }
+                     }
+                 }
+         }
+        
+     }
 
     
-    func getData<T:Codable>(endPoint : String , complitionHandler : @escaping (T? , String?)->Void ){
+  /*  func getData<T: Decodable>(endPoint: String, complitionHandler: @escaping (T?, String?) -> Void) {
+        guard let url = URL(string: "\(baseUrl)\(endPoint)") else {
+            complitionHandler(nil, "Invalid URL")
+            return
+        }
+
+        let headers: HTTPHeaders = [
+            "Authorization": authHeader,
+            "Content-Type": "application/json"
+        ]
+          print("endPoint\(endPoint)")
+        AF.request(url, method: .get, headers: headers)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    print("Raw response data: \(String(data: data, encoding: .utf8) ?? "No data")")
+                    do {
+                        let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                        complitionHandler(decodedResponse, "Success")
+                    } catch let decodingError {
+                        print("Decoding error: \(decodingError.localizedDescription)")
+                        complitionHandler(nil, "Failed to decode response: \(decodingError.localizedDescription)")
+                    }
+                case .failure(let error):
+                    print("Request error: \(error.localizedDescription)")
+                    complitionHandler(nil, "Failed: \(error.localizedDescription)")
+                }
+            }
+    }*/
+
+    
+  /*  func getData<T:Codable>(endPoint : String , complitionHandler : @escaping (T? , String?)->Void ){
         
         guard  let url = URL(string: "\(baseUrl)\(endPoint)") else {
             complitionHandler(nil , "")
@@ -229,10 +318,7 @@ class NetworkHandler {
                 }
        }
         
-        
-        
-    }
-    
+    }*/
     
     func setDefaultAddress(endPoint:String , complition : @escaping (Bool)-> Void){
         
