@@ -81,7 +81,6 @@ class ProductDetailsViewController: UIViewController {
         ])
     }
     
-    
     private func updateUI() {
         guard let product = viewModel?.selectedProduct else { return }
         productTitle.text = product.title
@@ -96,22 +95,15 @@ class ProductDetailsViewController: UIViewController {
     }
     
     
-    
     private func createSizeCollectionViewLayout() -> UICollectionViewLayout {
-        // Item size
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        // Group size
         let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                let section = NSCollectionLayoutSection(group: group)
         
-        // Section
-        let section = NSCollectionLayoutSection(group: group)
-        
-        // Spacing between items
-        section.interGroupSpacing = 10 // Adjust the spacing between items as needed
-        
+        section.interGroupSpacing = 10
         
         section.orthogonalScrollingBehavior = .continuous
         
@@ -133,7 +125,30 @@ class ProductDetailsViewController: UIViewController {
         reviewsCollectionView.reloadData()
     }
     
+//    @IBAction func btnAddToCart(_ sender: Any) {
+//        viewModel?.addSelectedProductToDraftOrder { success, message in
+//            DispatchQueue.main.async {
+//                if success {
+//                    let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+//                    self.present(alert, animated: true)
+//                } else {
+//                    let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+//                    self.present(alert, animated: true)
+//                }
+//            }
+//        }
+//    }
+    
     @IBAction func btnAddToCart(_ sender: Any) {
+        viewModel?.destination = true
+        guard let selectedSize = getSelectedSize(),
+              let selectedColor = getSelectedColor() else {
+            showAlert(message: "Please select both size and color before adding to cart.")
+            return
+        }
+        
         viewModel?.addSelectedProductToDraftOrder { success, message in
             DispatchQueue.main.async {
                 if success {
@@ -147,6 +162,44 @@ class ProductDetailsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func btnAddToFav(_ sender: Any) {
+        viewModel?.addSelectedProductToDraftOrder { success, message in
+                    DispatchQueue.main.async {
+                        if success {
+                            let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default))
+                            self.present(alert, animated: true)
+                        } else {
+                            let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default))
+                            self.present(alert, animated: true)
+                        }
+                    }
+                }
+    }
+    
+    private func getSelectedSize() -> String? {
+        guard let selectedIndex = sizeCollectionView.indexPathsForSelectedItems?.first?.item,
+              let sizeValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Size" })?.values?[selectedIndex] else {
+            return nil
+        }
+        return sizeValue
+    }
+
+    private func getSelectedColor() -> String? {
+        guard let selectedIndex = colorsCollectionView.indexPathsForSelectedItems?.first?.item,
+              let colorValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?[selectedIndex] else {
+            return nil
+        }
+        return colorValue
+    }
+
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
 }
@@ -215,8 +268,54 @@ class ProductDetailsViewController: UIViewController {
                  productspageControl.currentPage = currentPage
              }
          }
-     
-     
-     
  }
  
+
+
+/*
+ @IBAction func btnAddToCart(_ sender: Any) {
+     guard let selectedSize = getSelectedSize(),
+           let selectedColor = getSelectedColor() else {
+         showAlert(message: "Please select both size and color before adding to cart.")
+         return
+     }
+     
+     // Here you can proceed to add the product to the cart
+     viewModel?.addSelectedProductToDraftOrder { success, message in
+         DispatchQueue.main.async {
+             if success {
+                 let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
+                 alert.addAction(UIAlertAction(title: "OK", style: .default))
+                 self.present(alert, animated: true)
+             } else {
+                 let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
+                 alert.addAction(UIAlertAction(title: "OK", style: .default))
+                 self.present(alert, animated: true)
+             }
+         }
+     }
+ }
+
+ private func getSelectedSize() -> String? {
+     guard let selectedIndex = sizeCollectionView.indexPathsForSelectedItems?.first?.item,
+           let sizeValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Size" })?.values?[selectedIndex] else {
+         return nil
+     }
+     return sizeValue
+ }
+
+ private func getSelectedColor() -> String? {
+     guard let selectedIndex = colorsCollectionView.indexPathsForSelectedItems?.first?.item,
+           let colorValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?[selectedIndex] else {
+         return nil
+     }
+     return colorValue
+ }
+
+ private func showAlert(message: String) {
+     let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+     present(alert, animated: true, completion: nil)
+ }
+
+ */

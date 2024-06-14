@@ -10,28 +10,39 @@ import Foundation
 
 class ProductDetailsViewModel {
     var selectedProduct: Product?
+    var destination: Bool?
 
     init(selectedProduct: Product?) {
         self.selectedProduct = selectedProduct
     }
-    func getShoppingCartDraftOrder(completion: @escaping (Draft?, String?) -> Void) {
+    func getDraftOrder(completion: @escaping (Draft?, String?) -> Void) {
          DispatchQueue.global(qos: .background).async {
              let userDefaultsManager = UserDefaultsManager.shared
              let customerInfo = userDefaultsManager.getCustomer()
-             
-             guard let draftOrderId = customerInfo.shoppingCartDraftOrderId else {
-                 DispatchQueue.main.async {
-                     completion(nil, "No shopping cart draft order ID found.")
+             if self.destination == true{
+                 guard let draftOrderId = customerInfo.shoppingCartDraftOrderId else {
+                     DispatchQueue.main.async {
+                         completion(nil, "No shopping cart draft order ID found.")
+                     }
+                     return
                  }
-                 return
+                 self.fetchDraftOrder(withId: draftOrderId, completion: completion)
+             }else{
+                 guard let draftOrderId = customerInfo.favProductsDraftOrderId else {
+                     DispatchQueue.main.async {
+                         completion(nil, "No shopping cart draft order ID found.")
+                     }
+                     return
+                 }
+                 print("yesss")
+                 self.fetchDraftOrder(withId: draftOrderId, completion: completion)
              }
              
-             self.fetchDraftOrder(withId: draftOrderId, completion: completion)
          }
      }
 
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
-         let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
+         let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
          print("Endpoint is \(endPoint)")
 
          DispatchQueue.global(qos: .background).async {
@@ -47,8 +58,8 @@ class ProductDetailsViewModel {
              }
          }
      }
-    func addSelectedProductToDraftOrder(completion: @escaping (Bool, String?) -> Void) {
-        getShoppingCartDraftOrder { response, error in
+    func addSelectedProductToDraftOrder( completion: @escaping (Bool, String?) -> Void) {
+        getDraftOrder { response, error in
             guard let response = response, let selectedProduct = self.selectedProduct else {
                 DispatchQueue.main.async {
                     completion(false, error ?? "Failed to fetch draft order or selected product is nil.")
@@ -80,10 +91,8 @@ class ProductDetailsViewModel {
         }
     }
   
-     
-
     private func updateDraftOrder(draftOrderId: Int64, lineItems: [LineItem], completion: @escaping (Bool, String?) -> Void) {
-        let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
+        let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
         let updatedDraftOrder = Draft(draft_order: DraftOrder(lineItems:lineItems))
         print("updatedDraftOrder\(updatedDraftOrder)")
 
@@ -102,7 +111,6 @@ class ProductDetailsViewModel {
             }
         }
     }
-
 
 }
 
