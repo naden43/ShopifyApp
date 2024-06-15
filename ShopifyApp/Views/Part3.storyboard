@@ -446,23 +446,23 @@
             </objects>
             <point key="canvasLocation" x="930.53435114503816" y="22.535211267605636"/>
         </scene>
-        <!--Search Table View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="vIh-0i-H57">
             <objects>
-                <viewController id="9Bq-VA-jB0" customClass="SearchTableViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="searchProductsScreen" id="9Bq-VA-jB0" customClass="SearchViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="opq-YS-kIM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search Product" translatesAutoresizingMaskIntoConstraints="NO" id="wqt-xs-Dq4">
-                                <rect key="frame" x="0.0" y="79" width="393" height="56"/>
+                                <rect key="frame" x="0.0" y="69" width="393" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="9Bq-VA-jB0" id="s7n-gs-o4R"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-3V-mpx">
-                                <rect key="frame" x="0.0" y="146" width="393" height="706"/>
+                                <rect key="frame" x="0.0" y="136" width="393" height="716"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedCell" id="bx6-zf-89H" customClass="SearchTableViewCell" customModule="ShopifyApp" customModuleProvider="target">
@@ -479,7 +479,7 @@
                         <viewLayoutGuide key="safeArea" id="GpB-eD-gfF"/>
                         <color key="backgroundColor" name="bg_color"/>
                         <constraints>
-                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="top" secondItem="GpB-eD-gfF" secondAttribute="top" constant="20" id="Fh2-ay-1p7"/>
+                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="top" secondItem="GpB-eD-gfF" secondAttribute="top" constant="10" id="Fh2-ay-1p7"/>
                             <constraint firstItem="xOz-3V-mpx" firstAttribute="trailing" secondItem="GpB-eD-gfF" secondAttribute="trailing" id="PgS-W9-olH"/>
                             <constraint firstItem="wqt-xs-Dq4" firstAttribute="trailing" secondItem="GpB-eD-gfF" secondAttribute="trailing" id="bBP-iW-MDJ"/>
                             <constraint firstItem="wqt-xs-Dq4" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" id="uFM-Vc-6Ip"/>

@@ -23,7 +23,7 @@
 		3802FB6C2C1C9771004EB3CD /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802FB6B2C1C9771004EB3CD /* test.swift */; };
 		3802FB6E2C1C97DA004EB3CD /* FavouriteProductsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802FB6D2C1C97DA004EB3CD /* FavouriteProductsTableViewCell.swift */; };
 		3805635C2C15F3F300985A90 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3805635B2C15F3F300985A90 /* UserDefaultManager.swift */; };
-		38280B542C1D358800260C20 /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B532C1D358800260C20 /* SearchTableViewController.swift */; };
+		38280B542C1D358800260C20 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B532C1D358800260C20 /* SearchViewController.swift */; };
 		38280B562C1D35B200260C20 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B552C1D35B200260C20 /* SearchViewModel.swift */; };
 		384682182C1B04C4001533E7 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 384682172C1B04C4001533E7 /* Cosmos */; };
 		3846821A2C1B056A001533E7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384682192C1B056A001533E7 /* Review.swift */; };
@@ -99,7 +99,7 @@
 		3802FB6B2C1C9771004EB3CD /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		3802FB6D2C1C97DA004EB3CD /* FavouriteProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductsTableViewCell.swift; sourceTree = "<group>"; };
 		3805635B2C15F3F300985A90 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
-		38280B532C1D358800260C20 /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		38280B532C1D358800260C20 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		38280B552C1D35B200260C20 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		384682192C1B056A001533E7 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 		38280B512C1D341A00260C20 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				38280B532C1D358800260C20 /* SearchTableViewController.swift */,
+				38280B532C1D358800260C20 /* SearchViewController.swift */,
 				38C53D892C1D7DFB00F2773A /* SearchTableViewCell.swift */,
 				38C53D8A2C1D7DFB00F2773A /* SearchTableViewCell.xib */,
 			);
@@ -761,7 +761,7 @@
 				3805635C2C15F3F300985A90 /* UserDefaultManager.swift in Sources */,
 				38DF083E2C1A834C000582A9 /* ReviewsCollectionViewCell.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
-				38280B542C1D358800260C20 /* SearchTableViewController.swift in Sources */,
+				38280B542C1D358800260C20 /* SearchViewController.swift in Sources */,
 				38F312BD2C15B06A00A0112B /* LoginViewController.swift in Sources */,
 				38F312B42C15A65F00A0112B /* DraftOrders.swift in Sources */,
 				38F312B02C15A60300A0112B /* CustomerData.swift in Sources */,

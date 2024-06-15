@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchTableViewController: UIViewController {
+class SearchViewController: UIViewController {
     
     @IBOutlet weak var productsSearchBar: UISearchBar!
     @IBOutlet weak var productsTableView: UITableView!
@@ -34,7 +34,7 @@ class SearchTableViewController: UIViewController {
     }
 }
 
-extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate {
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -60,7 +60,7 @@ extension SearchTableViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
-extension SearchTableViewController: UISearchBarDelegate {
+extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel?.filterProducts(with: searchText)
         productsTableView.reloadData()

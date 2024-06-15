@@ -20,13 +20,9 @@ class SearchTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.layer.cornerRadius = 30
-
-        
-        // Adjust layout margins
         contentView.layoutMargins.left = 16
         contentView.layoutMargins.right = 16
         
-        // Adjust separator inset
         separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
     
