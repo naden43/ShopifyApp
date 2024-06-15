@@ -13,6 +13,8 @@ class ShopingCartViewModel {
     
     var userDefualtManager = UserDefaultsManager.shared
     
+    var currencyService : CurrencyService = CurrencyService.instance
+    
     var listOfProducts : DraftOrder?
     
     var productImages : [String] = []
@@ -123,35 +125,13 @@ class ShopingCartViewModel {
     
     func getCurrencyType()->String {
         
-        if let currencyType = userDefualtManager.getTheCurrencyType() {
-            return currencyType
-        }
-        else{
-            return "EGP"
-        }
+        return currencyService.getCurrencyType()
     }
     
     
     func calcThePrice(price:Double) -> String
     {
-        if let currencyType = userDefualtManager.getTheCurrencyType() {
-            
-            if let currencyValue = userDefualtManager.getTheCurrencyValue() {
-                
-                if currencyType == "EGP" {
-                    
-                    return String(price)
-                }
-                else {
-                   return String(format: "%.3f", price * currencyValue)                }
-            }
-            else {
-                return String(price)
-            }
-        }
-        else{
-            return String(price)
-        }
+        return currencyService.calcThePrice(price: price)
     }
 
     func getProductAmount(index:Int) -> Int?{

@@ -45,6 +45,8 @@ class SettingsViewControllerTableViewController: UITableViewController {
         
         let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
         
+        userAddressScreen.fromSettingsFlag = true 
+        
         present(userAddressScreen, animated: true)
         
     }

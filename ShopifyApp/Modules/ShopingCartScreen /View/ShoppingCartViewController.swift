@@ -166,6 +166,13 @@ class ShoppingCartViewController: UIViewController , UITableViewDelegate ,
         
         if viewModel?.avaliableToCheckOut() == true {
             
+            let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+            
+            let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
+            
+            
+            present(userAddressScreen, animated: true)
+            
         }
         else {
             let alert = UIAlertController(title: "Error", message: "The product maybe Sold out of stock or you are exceed the allowed amount , Just Swipe it to remove or decrement your amount :)", preferredStyle: .actionSheet)

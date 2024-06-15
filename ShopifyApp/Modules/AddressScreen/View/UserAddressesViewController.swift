@@ -10,12 +10,20 @@ import UIKit
 class UserAddressesViewController: UIViewController  , UITableViewDelegate , UITableViewDataSource{
     
     
-
+    @IBOutlet weak var proceedToChecoutButton: UIButton!
+    
     @IBOutlet weak var userAddressesList: UITableView!
+    
+    var fromSettingsFlag = false
     
     var viewModel : UserAddressesViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if fromSettingsFlag == true {
+            
+            proceedToChecoutButton.isHidden = true
+        }
         
         viewModel = UserAddressesViewModel(network: NetworkHandler.instance)
         
@@ -157,5 +165,15 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
         
     }
     
+    
+    @IBAction func proceedToChecoutAction(_ sender: Any) {
+        
+        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let paymentOptionsScreen = part2Storyboard.instantiateViewController(withIdentifier: "payment_screen") as! PaymentOptionsViewController
+        
+        
+        present(paymentOptionsScreen, animated: true)
+    }
     
 }
