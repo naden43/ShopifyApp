@@ -63,6 +63,10 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @objc func heartBtn(){
+        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
+            navigationController?.pushViewController(favProductsVC, animated: true)
+        }
         
         print("perform")
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="39e-d8-Gaf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Bq-VA-jB0">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -446,20 +446,56 @@
             </objects>
             <point key="canvasLocation" x="930.53435114503816" y="22.535211267605636"/>
         </scene>
-        <!--View Controller-->
+        <!--Search Table View Controller-->
         <scene sceneID="vIh-0i-H57">
             <objects>
-                <viewController id="9Bq-VA-jB0" sceneMemberID="viewController">
+                <viewController id="9Bq-VA-jB0" customClass="SearchTableViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="opq-YS-kIM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search Product" translatesAutoresizingMaskIntoConstraints="NO" id="wqt-xs-Dq4">
+                                <rect key="frame" x="0.0" y="79" width="393" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9Bq-VA-jB0" id="s7n-gs-o4R"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-3V-mpx">
+                                <rect key="frame" x="0.0" y="146" width="393" height="706"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedCell" id="bx6-zf-89H" customClass="SearchTableViewCell" customModule="ShopifyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="47.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bx6-zf-89H" id="Df9-36-dV2">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="47.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="GpB-eD-gfF"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="bg_color"/>
+                        <constraints>
+                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="top" secondItem="GpB-eD-gfF" secondAttribute="top" constant="20" id="Fh2-ay-1p7"/>
+                            <constraint firstItem="xOz-3V-mpx" firstAttribute="trailing" secondItem="GpB-eD-gfF" secondAttribute="trailing" id="PgS-W9-olH"/>
+                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="trailing" secondItem="GpB-eD-gfF" secondAttribute="trailing" id="bBP-iW-MDJ"/>
+                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" id="uFM-Vc-6Ip"/>
+                            <constraint firstItem="xOz-3V-mpx" firstAttribute="top" secondItem="wqt-xs-Dq4" secondAttribute="bottom" constant="11" id="yKS-Fg-bTp"/>
+                            <constraint firstAttribute="bottom" secondItem="xOz-3V-mpx" secondAttribute="bottom" id="ypY-ix-fFD"/>
+                            <constraint firstItem="xOz-3V-mpx" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" id="zJP-ef-ayY"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="productsSearchBar" destination="wqt-xs-Dq4" id="zE0-G1-xfF"/>
+                        <outlet property="productsTableView" destination="xOz-3V-mpx" id="vLu-TB-xiy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rkt-ds-VZE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="23"/>
+            <point key="canvasLocation" x="1745.8015267175572" y="22.535211267605636"/>
         </scene>
         <!--Product Details View Controller-->
         <scene sceneID="NA5-rD-bv9">
@@ -497,6 +533,18 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="377" height="274"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 </imageView>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17Y-pG-Bg0">
+                                                                    <rect key="frame" x="301" y="8" width="68" height="50"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" name="img_bg"/>
+                                                                    <state key="normal" title="Button"/>
+                                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="">
+                                                                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </buttonConfiguration>
+                                                                    <connections>
+                                                                        <action selector="btnAddToFav:" destination="aqD-tv-ZXI" eventType="touchUpInside" id="kHr-LR-htn"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                         </collectionViewCellContentView>
                                                         <size key="customSize" width="377" height="274"/>
@@ -698,18 +746,6 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17Y-pG-Bg0">
-                                                <rect key="frame" x="241" y="87" width="68" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" name="img_bg"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="">
-                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="btnAddToFav:" destination="aqD-tv-ZXI" eventType="touchUpInside" id="kHr-LR-htn"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
@@ -748,12 +784,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z1t-vf-LKg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2030" y="867"/>
+            <point key="canvasLocation" x="1775" y="831"/>
         </scene>
         <!--Fav Products View Controller-->
         <scene sceneID="vuO-59-PXH">
             <objects>
-                <viewController id="39e-d8-Gaf" customClass="FavProductsViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="favProductsScreen" id="39e-d8-Gaf" customClass="FavProductsViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hac-a3-6FE">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -846,16 +882,16 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
