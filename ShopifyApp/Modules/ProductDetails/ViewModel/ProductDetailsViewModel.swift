@@ -43,7 +43,7 @@ class ProductDetailsViewModel {
 
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
          let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
-         print("Endpoint is \(endPoint)")
+         //print("Endpoint is \(endPoint)")
 
          DispatchQueue.global(qos: .background).async {
              NetworkHandler.instance.getData(endPoint: endPoint) { (response: Draft?, error) in
@@ -71,6 +71,7 @@ class ProductDetailsViewModel {
             
             if let variantId = selectedProduct.variants?.first?.id,
                let imgSrc = selectedProduct.images?.first?.src {
+                print("imgsrccccccccccccccccccc\(imgSrc)")
                 
                 let properties: [[String: String]] = [["name": "image_url", "value": imgSrc]]
                 let newLineItem = LineItem(variantId: variantId, quantity: 1, properties: properties)
@@ -94,7 +95,7 @@ class ProductDetailsViewModel {
     private func updateDraftOrder(draftOrderId: Int64, lineItems: [LineItem], completion: @escaping (Bool, String?) -> Void) {
         let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
         let updatedDraftOrder = Draft(draft_order: DraftOrder(lineItems:lineItems))
-        print("updatedDraftOrder\(updatedDraftOrder)")
+       // print("updatedDraftOrder\(updatedDraftOrder)")
 
         DispatchQueue.global(qos: .userInitiated).async {
             NetworkHandler.instance.putData(updatedDraftOrder, to: endPoint, responseType: Draft.self) { success, message, response in
