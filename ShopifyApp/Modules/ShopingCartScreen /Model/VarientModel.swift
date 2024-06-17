@@ -11,35 +11,64 @@ struct VarientData : Codable {
     var variant: Variant?
 }
 
-
 struct Variant: Codable {
-    var id: Int?
-    var product_id: Int?
+    var id: Int64?
+    var productId: Int64?
     var title: String?
     var price: String?
     var sku: String?
     var position: Int?
-    var inventory_policy: String?
-    var compare_at_price: String?
-    var fulfillment_service: String?
-    var inventory_management: String?
+    var inventoryPolicy: String?
+    var compareAtPrice: String?
+    var fulfillmentService: String?
+    var inventoryManagement: String?
     var option1: String?
     var option2: String?
     var option3: String?
-    var created_at: String?
-    var updated_at: String?
+    var createdAt: String?
+    var updatedAt: String?
     var taxable: Bool?
     var barcode: String?
     var grams: Int?
     var weight: Double?
-    var weight_unit: String?
-    var inventory_item_id: Int?
-    var inventory_quantity: Int?
-    var old_inventory_quantity: Int?
-    var presentment_prices: [PresentmentPrice]?
-    var requires_shipping: Bool?
-    var admin_graphql_api_id: String?
-    var image_id: Int?
+    var weightUnit: String?
+    var inventoryItemId: Int?
+    var inventoryQuantity: Int?
+    var oldInventoryQuantity: Int?
+    var requiresShipping: Bool?
+    var adminGraphqlApiId: String?
+    var imageId: String?
+}
+
+struct Option: Codable {
+    var id: Int?
+    var productId: Int?
+    var name: String?
+    var position: Int?
+    var values: [String]?
+}
+
+struct Image: Codable {
+    var id: Int?
+    var alt: String?
+    var position: Int?
+    var productId: Int?
+    var createdAt: String?
+    var updatedAt: String?
+    var adminGraphqlApiId: String?
+    var width: Int?
+    var height: Int?
+    var src: String?
+    var variantIds: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case id, alt, position, width, height, src
+        case productId = "product_id"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case adminGraphqlApiId = "admin_graphql_api_id"
+        case variantIds = "variant_ids"
+    }
 }
 
 

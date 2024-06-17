@@ -32,7 +32,7 @@ class HomeViewModel : HomeViewModelProtocol{
         
         
         func fetchBands (url : String) {
-            NetworkHandler.instance.getData(endPoint: url, complitionHandler: { (result:Brands? , error) in
+            NetworkHandler.instance.getData(endPoint: url, completionHandler: { (result:Brands? , error) in
                 
                 guard let result = result else {
                     return
@@ -43,7 +43,7 @@ class HomeViewModel : HomeViewModelProtocol{
         }
         
         func fetchProducts (url : String) {
-            NetworkHandler.instance.getData(endPoint: url, complitionHandler: { (result:Products? , error) in
+            NetworkHandler.instance.getData(endPoint: url, completionHandler: { (result:Products? , error) in
                 guard let result = result else {
                     return
                 }
@@ -53,7 +53,7 @@ class HomeViewModel : HomeViewModelProtocol{
         }
         
         func fetchCategories (url : String) {
-            NetworkHandler.instance.getData(endPoint: url, complitionHandler: { (result:Categories? , error) in
+            NetworkHandler.instance.getData(endPoint: url, completionHandler: { (result:Categories? , error) in
                 guard let result = result else {
                     return
                 }

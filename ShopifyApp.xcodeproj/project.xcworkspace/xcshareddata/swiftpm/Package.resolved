@@ -1,4 +1,5 @@
 {
+  "originHash" : "a6ceac8984a970fc035a3d92a4d0a4d88fbfdc1019405ec7864aa5bf2d90add6",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -25,6 +26,15 @@
       "state" : {
         "revision" : "076b241a625e25eac22f8849be256dfb960fcdfe",
         "version" : "10.19.1"
+      }
+    },
+    {
+      "identity" : "cosmos",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/Cosmos.git",
+      "state" : {
+        "revision" : "40ba10aaf175bf50abefd0e518bd3b40862af3b1",
+        "version" : "25.0.1"
       }
     },
     {
@@ -136,5 +146,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

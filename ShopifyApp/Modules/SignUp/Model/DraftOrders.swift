@@ -9,7 +9,7 @@
 import Foundation
 
 struct DraftOrders: Codable {
-    let draftOrder: DraftOrder
+    var draftOrder: DraftOrder
 
     enum CodingKeys: String, CodingKey {
         case draftOrder = "draft_order"
@@ -127,7 +127,7 @@ struct LineItem: Codable {
     var taxLines: [TaxLine]?
     var appliedDiscount: String?
     var name: String?
-    var properties: [[String:String]]?
+    var properties: [[String:String]]?  //p
     var custom: Bool?
     var price: String?
     var adminGraphqlApiId: String?

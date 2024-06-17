@@ -46,7 +46,6 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
             }
         }
         viewModel?.fetchBands(url: url)
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +58,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
             return
         }
         
-        let searchButton = UIBarButtonItem(image: UIImage(named: "searcc.svg"), style: .plain, target: self, action: #selector(addTapped))
+        let searchButton = UIBarButtonItem(image: UIImage(named: "searcc.svg"), style: .plain, target: self, action: #selector(searchButton))
         let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartBtn))
         let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartBtn))
         
@@ -68,7 +67,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         heartButton.tintColor = UIColor(ciColor: .black)
         
         view.navigationItem.leftBarButtonItem = searchButton
-        view.navigationItem.rightBarButtonItems = [heartButton, cartButton] // Assign array of buttons
+        view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
     }
     
     func startTimer () {
@@ -102,9 +101,27 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @objc func heartBtn(){
+        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
+            navigationController?.pushViewController(favProductsVC, animated: true)
+        }
         
         print("perform")
     }
+    
+    @objc func searchButton() {
+        print("Search button tapped")
+        print("Navigation controller: \(navigationController)")
+        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        if let searchProductsVC = storyboard.instantiateViewController(withIdentifier: "searchProductsScreen") as? SearchViewController {
+            print("Before navigation push")
+            navigationController?.pushViewController(searchProductsVC, animated: true)
+        } else {
+            print("Failed to instantiate SearchViewController from storyboard")
+        }
+        print("After navigation logic")
+    }
+
     
     
     func getUniqueBrands() -> [SmartCollection] {

@@ -14,6 +14,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var brandId : Int?
     var brandName : String?
     var viewModel : HomeViewModelProtocol?
+    var productDetailsViewModel: ProductDetailsViewModel?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("The Brand id = \(self.brandId ?? 301445349542)")
@@ -61,26 +64,27 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCell.productImage.layer.cornerRadius = 20
         var products = viewModel?.getProductsOfBrands()
         productCell.productTitle.text = products?[indexPath.row].vendor
-        productCell.productPrice.text = products?[indexPath.row].variants[0].price
+        productCell.productPrice.text = products?[indexPath.row].variants?[0].price
         productCell.productSubTitle.text = products?[indexPath.row].handle
         print("the products is =========================================: \(products?[indexPath.row].title ?? "unkown product")")
-        var productIMG = products?[indexPath.row].image.src
+        var productIMG = products?[indexPath.row].image?.src
         let imageUrl = URL(string: productIMG ?? "")
         productCell.productImage.kf.setImage(with: imageUrl)
         return productCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var products = viewModel?.getProductsOfBrands()
-        var selectedProduct = products?[indexPath.row]
-        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
-        
-        if let productDeatils = storyboard.instantiateViewController(withIdentifier: "loginScreen") as? LoginViewController {
-            navigationController?.pushViewController(productDeatils, animated: true)
-        }
-        
-    }
-    
+         if let products = viewModel?.getProductsOfBrands() {
+             let selectedProduct = products[indexPath.row]
+             let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
+             
+             let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+             if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                 productDetailsVC.viewModel = productDetailsViewModel
+                 navigationController?.pushViewController(productDetailsVC, animated: true)
+             }
+         }
+     }
     func productsSectionLayout() -> NSCollectionLayoutSection {
         // Define the size of each item (movie cell)
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), // Each item takes up half of the width

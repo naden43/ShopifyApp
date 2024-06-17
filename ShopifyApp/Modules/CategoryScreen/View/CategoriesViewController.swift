@@ -109,10 +109,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         //filterProductsByPrice()
         let product = filteredPriceProducts[indexPath.row]
         productCell.productTitle.text = product.vendor
-        productCell.productPrice.text = product.variants[0].price
+        productCell.productPrice.text = product.variants?[0].price
         productCell.productSubTitle.text = product.handle
-        let productIMG = product.image.src
-        let imageUrl = URL(string: productIMG )
+        let productIMG = product.image?.src
+        let imageUrl = URL(string: productIMG ?? "" )
         productCell.productImage.kf.setImage(with: imageUrl)
         return productCell
         
