@@ -11,6 +11,10 @@ class ShopingCartViewModel {
     
     var network : NetworkHandler?
     
+    var userDefualtManager = UserDefaultsManager.shared
+    
+    var currencyService : CurrencyService = CurrencyService.instance
+    
     var listOfProducts : DraftOrder?
     
     var productImages : [String] = []
@@ -119,6 +123,17 @@ class ShopingCartViewModel {
         
     }
     
+    func getCurrencyType()->String {
+        
+        return currencyService.getCurrencyType()
+    }
+    
+    
+    func calcThePrice(price:Double) -> String
+    {
+        return currencyService.calcThePrice(price: price)
+    }
+
     func getProductAmount(index:Int) -> Int?{
      
         let varientId = listOfProducts?.lineItems?[index+1].variantId

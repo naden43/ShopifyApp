@@ -12,9 +12,13 @@ import Foundation
 class UserDefaultsManager {
     static let shared = UserDefaultsManager()
     
+    private let userDefualt = UserDefaults.standard
+    
     private let customerIdKey = "customerId"
     private let favProductsDraftOrderIdKey = "favProductsDraftOrderId"
     private let shoppingCartDraftOrderIdKey = "shoppingCartDraftOrderId"
+    private let currency = "currency"
+    private let currencyValue = "currencyValue"
     
     private init() {}
 
@@ -32,6 +36,22 @@ class UserDefaultsManager {
             }
         }
     }
+    
+    func saveCurrency(currencyType:String , value: Double){
+        userDefualt.set(currencyType, forKey: currency)
+        userDefualt.set(value, forKey: currencyValue)
+    }
+    
+    func getTheCurrencyValue()->Double?{
+        
+        return userDefualt.value(forKey: currencyValue) as? Double
+    }
+    
+    func getTheCurrencyType()->String?{
+        
+        return userDefualt.value(forKey: currency) as? String
+    }
+    
 
     func getCustomer() -> (id: Int?, favProductsDraftOrderId: String?, shoppingCartDraftOrderId: String?) {
         let id = UserDefaults.standard.integer(forKey: customerIdKey)
