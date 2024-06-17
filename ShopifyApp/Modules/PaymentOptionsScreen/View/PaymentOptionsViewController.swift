@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PassKit
 
 class PaymentOptionsViewController: UIViewController {
 
@@ -21,6 +22,8 @@ class PaymentOptionsViewController: UIViewController {
         if cashFlag == false  && appleFlag == false {
             confirmButton.isEnabled = false
         }
+        
+
         
         
     }
@@ -71,20 +74,20 @@ class PaymentOptionsViewController: UIViewController {
         
         let placeOrderScreen = part2Storyboard.instantiateViewController(withIdentifier: "place_order") as! PlaceOrderViewController
         
-        
+        if cashFlag == true{
+            placeOrderScreen.paymentMethod = "cash"
+            
+        }
+        else
+        {
+            placeOrderScreen.paymentMethod = "applePay"
+        }
         present(placeOrderScreen, animated: true)
     }
     
     @IBAction func checkout(_ sender: Any) {
         
-        if cashFlag {
-            
-           navigateToContinueCheckout()
-            
-        }
-        else {
-            
-        }
+         navigateToContinueCheckout()
         
     }
     
@@ -110,3 +113,14 @@ class PaymentOptionsViewController: UIViewController {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+

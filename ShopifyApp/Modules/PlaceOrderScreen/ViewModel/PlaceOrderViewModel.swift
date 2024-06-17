@@ -99,5 +99,13 @@ class PlaceOrderViewModel{
         return "\(formatAfterDiscount) \(currency)"
     }
     
+    func getTotalMoney() -> Double {
+        return totalPrice ?? 0.0
+    }
+    
+    func getCurrency()-> String {
+        
+        return currencyService.getCurrencyType() 
+    }
     
 }
