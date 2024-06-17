@@ -10,7 +10,10 @@ import UIKit
 class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UIPickerViewDataSource {
  
     
-
+    
+    @IBOutlet weak var performActionOnAddressButton: UIButton!
+    
+    var allAddressesScreenViewModel:EditAddressScreenRequirment?
     @IBOutlet weak var phoneNumberTxtField: UITextField!
     @IBOutlet weak var address1TxtField: UITextField!
     @IBOutlet weak var cityPicker: UIPickerView!
@@ -21,10 +24,26 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
     var viewModel:AddAddressViewModel?
     var selectedCity:String?
     var selectedCountry:String?
+    var editMode:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
+        guard let url = Bundle.main.url(forResource: "countries", withExtension: "json") else {
+            print("error")
+            return
+        }
+        
+        
+        
 
         viewModel = AddAddressViewModel(validationManager: NetworkHandler.instance)
+        
+        
+        
+        
         
         countryPicker.delegate = self
         cityPicker.delegate = self
@@ -55,6 +74,34 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
             self?.present(alert, animated: true)
             
         }
+        
+        viewModel?.signalCompleteOperation = {
+            self.dismiss(animated: true)
+        }
+        
+        viewModel?.parseCountries(url: url)
+        
+        
+        if allAddressesScreenViewModel != nil {
+            editMode = true
+            let address = allAddressesScreenViewModel?.getAddress()
+            performActionOnAddressButton.setTitle("Edit Address", for: .normal)
+            let countryPlaceInpicker = viewModel?.getIndexToCountryByName(countryName: address?.country ??  "") ?? 0
+            countryPicker.selectRow(countryPlaceInpicker, inComponent: 0, animated: true)
+            print(address?.country)
+            viewModel?.changeTheSelectedCountry(index: countryPlaceInpicker)
+            cityPicker.reloadAllComponents()
+            let cityPlaceInPicker = viewModel?.getIndexToCityByName(cityName: address?.city ?? "") ?? 0
+            print(cityPlaceInPicker)
+            print(address?.city)
+            cityPicker.selectRow(cityPlaceInPicker, inComponent: 0, animated: true)
+            
+            firstNameTxtField.text = address?.firstName ?? ""
+            lastNameTxtField.text = address?.lastName ?? ""
+            address1TxtField.text = address?.address1 ?? ""
+            phoneNumberTxtField.text = address?.phone ?? ""
+            
+        }
     
     }
     
@@ -66,9 +113,26 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
    
     @IBAction func performAddAddress(_ sender: Any) {
         
+        if editMode == false {
+            viewModel?.performAddAddress(address: collectDataFromUI())
+        }
+        else {
+            viewModel?.editAddress(address: collectDataFromUIToExistAddress())
+        }
         
-        viewModel?.performAddAddress(address: collectDataFromUI())
+    }
+    
+    func collectDataFromUIToExistAddress() -> Address {
+        var address = allAddressesScreenViewModel?.getAddress()
         
+        address?.city = selectedCity
+        address?.country = selectedCountry
+        address?.address1 = address1TxtField.text
+        address?.firstName = firstNameTxtField.text
+        address?.lastName = lastNameTxtField.text
+        address?.phone = phoneNumberTxtField.text
+     
+        return address!
     }
     
     func collectDataFromUI()-> Address{
@@ -105,7 +169,10 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
         
         if pickerView == countryPicker {
             
+            //viewModel?.changeTheSelectedCountry(index: row)
+            //pickerView.reloadAllComponents()
             return viewModel?.getcCountryByIndex(index: row)
+            
         }
         else {
             return viewModel?.getCityByIndex(index: row)
@@ -117,6 +184,8 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
         if pickerView == countryPicker {
             
             selectedCountry = viewModel?.getcCountryByIndex(index: row)
+            viewModel?.changeTheSelectedCountry(index: row)
+            cityPicker.reloadAllComponents()
         }
         else {
             selectedCity = viewModel?.getCityByIndex(index: row)

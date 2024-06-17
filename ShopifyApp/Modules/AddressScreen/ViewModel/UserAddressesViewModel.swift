@@ -7,12 +7,25 @@
 
 import Foundation
 
-class UserAddressesViewModel{
+
+
+protocol EditAddressScreenRequirment{
+    
+    func getAddress()->Address?
+    
+}
+
+class UserAddressesViewModel : EditAddressScreenRequirment{
+    
+   
+    
     
 
-    var addressesList : [ReturnAddress]?
+   private var addressesList : [Address]?
     
-    var network : NetworkHandler?
+    var selectedAddress : Address?
+    
+   private var network : NetworkHandler?
     
     var bindAddresses : (()-> Void) = {}
     
@@ -33,7 +46,7 @@ class UserAddressesViewModel{
         return addressesList?.count ?? 0
     }
     
-    func getAddressByIndex(index:Int) ->  ReturnAddress{
+    func getAddressByIndex(index:Int) ->  Address{
         
         return (addressesList?[index])!
     }
@@ -73,7 +86,7 @@ class UserAddressesViewModel{
         }
         else{
             
-            network?.setDefaultAddress(endPoint: "admin/api/2024-04/customers/\(address?.customer_id ?? 0 )/addresses/\(address?.id ?? 0 )/default.json", complition: { result in
+            network?.setDefaultAddress(endPoint: "admin/api/2024-04/customers/\(address?.customerId ?? 0 )/addresses/\(address?.id ?? 0 )/default.json", complition: { result in
                 print(result)
                 if result == true {
                     
@@ -90,10 +103,16 @@ class UserAddressesViewModel{
         
     }
     
+    
+    func getAddress() -> Address? {
+        return selectedAddress
+    }
+    
+    
     func deleteAddress(index:Int){
         
-        let address = addressesList?[index] ?? ReturnAddress()
-        network?.deleteAddress(endPoint: "admin/api/2024-04/customers/\(address.customer_id ?? 0 )/addresses/\(address.id ?? 0 ).json",  completion: { result in
+        let address = addressesList?[index] ?? Address()
+        network?.deleteAddress(endPoint: "admin/api/2024-04/customers/\(address.customerId ?? 0 )/addresses/\(address.id ?? 0 ).json",  completion: { result in
             
             DispatchQueue.main.async {
                 if result == true {

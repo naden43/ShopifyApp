@@ -9,9 +9,13 @@ import UIKit
 import Kingfisher
 class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    @IBOutlet weak var adsControl: UIPageControl!
     @IBOutlet weak var brandsCollection: UICollectionView!
     var brandName : String?
     var viewModel : HomeViewModelProtocol?
+    var arrAdsPhotos = [UIImage(named: "menss")!,UIImage(named: "mensdisc")!,UIImage(named: "women")!]
+    var timer : Timer?
+    var currentCellIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         print("update")
@@ -19,6 +23,22 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         viewModel = HomeViewModel()
         brandsCollection.delegate = self
         brandsCollection.dataSource = self
+        adsControl.numberOfPages = arrAdsPhotos.count
+        
+        //Compositional layout
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self.adsSectionLayout()
+            case 1:
+                return self.brandsSectionLayout()
+            default:
+                return nil
+            }
+        }
+        brandsCollection.collectionViewLayout = layout
+        
+        startTimer()
         viewModel?.bindToHomeViewController = { [weak self] in
             print("inside the bind closure")
             DispatchQueue.main.async {
@@ -50,6 +70,25 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
     }
     
+    func startTimer () {
+        timer = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: #selector(moveToNextIndex), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc func moveToNextIndex () {
+        if currentCellIndex < arrAdsPhotos.count - 1{
+            currentCellIndex += 1
+        }else {
+            currentCellIndex = 0
+        }
+    
+        brandsCollection.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        adsControl.currentPage = currentCellIndex
+    }
     
     @objc func addTapped(){
         
@@ -97,27 +136,41 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 2
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let uniqueBrands = getUniqueBrands()
-        return uniqueBrands.count
+        if section == 0 {
+            return arrAdsPhotos.count
+        }else{
+            return uniqueBrands.count
+        }
     }
     
+
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let brandCell = brandsCollection.dequeueReusableCell(withReuseIdentifier: "brandsCell", for: indexPath) as! BrandCollectionViewCell
-        let brands = getUniqueBrands()
-        brandCell.layer.cornerRadius = 20
-        brandCell.brandName.text = brands[indexPath.row].title
-        brandCell.viewContainer.layer.cornerRadius = 15
-        brandCell.brandImg.layer.cornerRadius = 50
-        var brandIMG = brands[indexPath.row].image.src
-        let imageUrl = URL(string: brandIMG)
-        brandCell.brandImg.kf.setImage(with: imageUrl)
-        self.brandName = brands[indexPath.row].title
-        return brandCell
+         let brandCell = brandsCollection.dequeueReusableCell(withReuseIdentifier: "brandsCell", for: indexPath) as! BrandCollectionViewCell
+         let adsCell = collectionView.dequeueReusableCell(withReuseIdentifier: "adsCell", for: indexPath) as! AdsCollectionViewCell
+         let brands = getUniqueBrands()
+        if(indexPath.section == 0){
+            adsCell.adsImage.image = arrAdsPhotos[indexPath.row]
+            
+            return adsCell
+        }else {
+            brandCell.layer.cornerRadius = 20
+            brandCell.brandName.text = brands[indexPath.row].title
+            brandCell.viewContainer.layer.cornerRadius = 15
+            brandCell.brandImg.layer.cornerRadius = 50
+            var brandIMG = brands[indexPath.row].image.src
+            let imageUrl = URL(string: brandIMG)
+            brandCell.brandImg.kf.setImage(with: imageUrl)
+            self.brandName = brands[indexPath.row].title
+            
+            return brandCell
+        }
     }
 
 
@@ -127,12 +180,12 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         let selectedBrandId = brands[indexPath.row].id
         let selectedBrandName = brands[indexPath.row].title
         let storyboard = UIStoryboard(name: "Part1", bundle: nil)
-        
+
         let backItem = UIBarButtonItem()
             backItem.title = selectedBrandName
             self.navigationItem.backBarButtonItem = backItem
-        
-        
+
+
         if let productVC = storyboard.instantiateViewController(withIdentifier: "productBrandScreen") as? ProductsViewController {
             productVC.brandId = selectedBrandId
             productVC.brandName = selectedBrandName
@@ -140,6 +193,72 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
 
+    
+    func adsSectionLayout() -> NSCollectionLayoutSection{
+
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.95)
+        , heightDimension: .absolute(222))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
+        , subitems: [item])
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
+            , bottom: 0, trailing: 15)
+
+        let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
+            , bottom: 10, trailing: 0)
+            section.orthogonalScrollingBehavior = .continuous
+        // Animation
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+             items.forEach { item in
+             let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+             let minScale: CGFloat = 0.8
+             let maxScale: CGFloat = 1.0
+             let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+             item.transform = CGAffineTransform(scaleX: scale, y: scale)
+             }
+        }
+        return section
+    }
+
+    func brandsSectionLayout() -> NSCollectionLayoutSection {
+        // Define the size of each item (movie cell)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), // Each item takes up half of the width
+                                              heightDimension: .absolute(260)) // Keep the height as 250 points
+
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25) // Add spacing between items
+
+        // Create a group that contains two items horizontally
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), // The group takes up the full width of the section
+                                               heightDimension: .absolute(250)) // Each group takes up the full height of the section
+
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+
+        // Center the group within the section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        section.contentInsetsReference = .layoutMargins
+        section.interGroupSpacing = 10 // Add spacing between rows
+
+        return section
+    }
+
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        stopTimer()
+    }
+    
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        startTimer()
+//    }
+    
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        if !decelerate {
+//         startTimer()
+//        }
+//    }
 
     /*
     // MARK: - Navigation

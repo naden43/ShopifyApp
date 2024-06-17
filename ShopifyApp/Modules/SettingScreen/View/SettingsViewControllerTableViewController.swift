@@ -34,6 +34,9 @@ class SettingsViewControllerTableViewController: UITableViewController {
         if indexPath.row == 0 {
             navigateToAddressesScreen()
         }
+        else if indexPath.row == 1{
+            navigateToCurrencyScreen()
+        }
     }
     
     func navigateToAddressesScreen(){
@@ -42,9 +45,21 @@ class SettingsViewControllerTableViewController: UITableViewController {
         
         let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
         
+        userAddressScreen.fromSettingsFlag = true 
+        
         present(userAddressScreen, animated: true)
         
     }
    
+    func navigateToCurrencyScreen(){
+        
+        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let currencyScreen = part2Storyboard.instantiateViewController(withIdentifier: "currency_screen") as! ChooseCurrencyViewController
+        
+        present(currencyScreen, animated: true)
+        
+        
+    }
 
 }
