@@ -32,7 +32,7 @@ class ShopingCartViewModel {
     
     func loadData(){
         
-        network?.getData(endPoint: "admin/api/2024-04/draft_orders/978702532774.json", completionHandler: { (result:Draft? , error) in
+        network?.getData(endPoint: "admin/api/2024-04/draft_orders/978702532774.json", complitionHandler: { (result:Draft? , error) in
             print("enter")
             guard let result = result else {
                 return

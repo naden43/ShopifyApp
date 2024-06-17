@@ -216,21 +216,21 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             filteredPriceProducts = filteredProducts
         case 1:
             filteredPriceProducts = filteredProducts.filter {
-                        if let priceString = $0.variants[0].price, let price = Double(priceString) {
+                if let priceString = $0.variants?[0].price, let price = Double(priceString) {
                             return price < 100
                         }
                         return false
                     }
         case 2:
             filteredPriceProducts = filteredProducts.filter {
-                  if let priceString = $0.variants[0].price, let price = Double(priceString) {
+                if let priceString = $0.variants?[0].price, let price = Double(priceString) {
                       return price >= 100 && price < 200
                   }
                   return false
               }
         case 3:
             filteredPriceProducts = filteredProducts.filter {
-                  if let priceString = $0.variants[0].price, let price = Double(priceString) {
+                if let priceString = $0.variants?[0].price, let price = Double(priceString) {
                       return price >= 200 && price < 300
                   }
                   return false
