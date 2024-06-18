@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+/*class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var productCollection: UICollectionView!
     var brandId : Int?
@@ -16,8 +16,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var viewModel : HomeViewModelProtocol?
     var productDetailsViewModel: ProductDetailsViewModel?
 
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,9 +64,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCell.productImage.layer.cornerRadius = 20
         var products = viewModel?.getProductsOfBrands()
         productCell.productTitle.text = products?[indexPath.row].vendor
-        let price = Double(products?[indexPath.row].variants?[0].price ?? "") ?? 0.0
-        productCell.productPrice.text = viewModel?.convertPriceByCurrency(price: price)
-        productCell.currencyTxt.text = viewModel?.getCurrencyType()
+        productCell.productPrice.text = products?[indexPath.row].variants?[0].price
         productCell.productSubTitle.text = products?[indexPath.row].handle
         print("the products is =========================================: \(products?[indexPath.row].title ?? "unkown product")")
         var productIMG = products?[indexPath.row].image?.src
@@ -111,14 +107,120 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         return section
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+}*/
+
+import UIKit
+import Kingfisher
+
+
+
+class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
+    @IBOutlet weak var productCollection: UICollectionView!
+    var brandId: Int?
+    var brandName: String?
+    var viewModel: HomeViewModelProtocol?
+    var productDetailsViewModel: ProductDetailsViewModel?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("The Brand id = \(self.brandId ?? 301445349542)")
+        let url = "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
+        viewModel = HomeViewModel()
+        productCollection.dataSource = self
+        productCollection.delegate = self
+        let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
+        productCollection.register(nib, forCellWithReuseIdentifier: "productCell")
+        
+        // Compositional layout
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+            switch sectionIndex {
+            case 0:
+                return self.productsSectionLayout()
+            default:
+                return nil
+            }
+        }
+        productCollection.collectionViewLayout = layout
+        
+        viewModel?.bindToProductViewController = { [weak self] in
+            print("inside the bind closure of products")
+            DispatchQueue.main.async {
+                self?.productCollection.reloadData()
+                print("the number of products in this brand is : \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
+            }
+        }
+        viewModel?.fetchProducts(url: url)
     }
-    */
 
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return viewModel?.getProductsOfBrands().count ?? 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let productCell = productCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProducCollectionViewCell
+        productCell.productImage.layer.cornerRadius = 20
+
+        guard let products = viewModel?.getProductsOfBrands() else {
+            return productCell
+        }
+
+        let product = products[indexPath.row]
+        productCell.productTitle.text = product.vendor
+        productCell.productPrice.text = "EGP \(product.variants?.first?.price ?? "0")"
+        productCell.productSubTitle.text = product.handle
+
+        if let imageUrl = product.image?.src {
+            productCell.productImage.kf.setImage(with: URL(string: imageUrl))
+        }
+
+        let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
+        let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(named: "emptyHeart")
+        productCell.favButton.setImage(favImage, for: .normal)
+
+        return productCell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let products = viewModel?.getProductsOfBrands() {
+            let selectedProduct = products[indexPath.row]
+            let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
+             
+            let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+            if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                productDetailsVC.viewModel = productDetailsViewModel
+                navigationController?.pushViewController(productDetailsVC, animated: true)
+            }
+        }
+    }
+
+    func productsSectionLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
+                                              heightDimension: .absolute(250))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .absolute(250))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        section.contentInsetsReference = .layoutMargins
+        section.interGroupSpacing = 10
+        
+        return section
+    }
+}
+
+extension Collection {
+    subscript(safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
 }

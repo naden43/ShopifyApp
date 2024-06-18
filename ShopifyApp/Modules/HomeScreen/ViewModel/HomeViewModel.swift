@@ -26,6 +26,7 @@ protocol HomeViewModelProtocol {
     func getPriceRules()
     func getPriceRulesCount() -> Int
     func fetchCurrencyDataAndStore(currencyType:String)
+    func isProductInFavorites(productId: Int) -> Bool
     
 }
     
@@ -39,6 +40,14 @@ class HomeViewModel : HomeViewModelProtocol{
         var bindToCategoriesViewController: (() -> Void)?
         private var productsOfBrands : [Product]?
         private var categories : [CustomCollection]?
+        var favouriteProductsViewModel = FavouriteProductsViewModel()
+    
+      init() {
+        favouriteProductsViewModel.loadData { [weak self] in
+            self?.bindToProductViewController?()
+        }
+      }
+
     
         private var coupons : [String] = []
         //  private var products :
@@ -133,12 +142,11 @@ class HomeViewModel : HomeViewModelProtocol{
     }
         
     func getProductsOfBrands() -> [Product] {
-            guard let products = productsOfBrands else {
-                return []
-            }
-            return products
+        guard let products = productsOfBrands else {
+            return []
+        }
+     return products
     }
-    
     
     func convertPriceByCurrency(price : Double) -> String {
         
@@ -170,6 +178,10 @@ class HomeViewModel : HomeViewModelProtocol{
             }
         }
         return categoryID ?? 0
+    }
+    
+    func isProductInFavorites(productId: Int) -> Bool {
+        return favouriteProductsViewModel.isProductInFavorites(productId: productId)
     }
     
         

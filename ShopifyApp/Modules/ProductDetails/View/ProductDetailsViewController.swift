@@ -24,6 +24,8 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productDescription: UITextView!
     @IBOutlet weak var productspageControl: UIPageControl!
     
+    @IBOutlet weak var btnAddToFav: UIButton!
+    
     private var showMoreReviews = false
     private var reviews: [Review] = []
     var viewModel: ProductDetailsViewModel?
@@ -93,8 +95,16 @@ class ProductDetailsViewController: UIViewController {
         sizeCollectionView.reloadData()
         colorsCollectionView.reloadData()
         reviewsCollectionView.reloadData()
-    }
+        viewModel?.setFavViewModel(favouriteProductsViewModel: FavouriteProductsViewModel())
+        // Check if product is in favorites
+        if viewModel?.isProductInFavorites() == true {
+          
+            btnAddToFav.setImage(UIImage(named: "filledHeart"), for: .normal)
+        } else {
     
+            btnAddToFav.setImage(UIImage(named: "emptyHeart"), for: .normal)
+        }
+    }
     
     private func createSizeCollectionViewLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
@@ -102,16 +112,14 @@ class ProductDetailsViewController: UIViewController {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                let section = NSCollectionLayoutSection(group: group)
+        let section = NSCollectionLayoutSection(group: group)
         
         section.interGroupSpacing = 10
-        
         section.orthogonalScrollingBehavior = .continuous
         
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }
-    
     
     private func setupDummyReviews() {
         let dummyImage = UIImage(named: "reviewer")
@@ -125,22 +133,6 @@ class ProductDetailsViewController: UIViewController {
         ]
         reviewsCollectionView.reloadData()
     }
-    
-//    @IBAction func btnAddToCart(_ sender: Any) {
-//        viewModel?.addSelectedProductToDraftOrder { success, message in
-//            DispatchQueue.main.async {
-//                if success {
-//                    let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-//                    self.present(alert, animated: true)
-//                } else {
-//                    let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-//                    self.present(alert, animated: true)
-//                }
-//            }
-//        }
-//    }
     
     @IBAction func btnAddToCart(_ sender: Any) {
         viewModel?.destination = true
@@ -167,18 +159,23 @@ class ProductDetailsViewController: UIViewController {
     
     @IBAction func btnAddToFav(_ sender: Any) {
         viewModel?.addSelectedProductToDraftOrder { success, message in
-                    DispatchQueue.main.async {
-                        if success {
-                            let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true)
-                        } else {
-                            let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true)
+            DispatchQueue.main.async {
+                if success {
+                    if let filledHeartImage = UIImage(named: "filledHeart") {
+                        if let button = sender as? UIButton {
+                            button.setImage(filledHeartImage, for: .normal)
                         }
                     }
+                    let alert = UIAlertController(title: "Success", message: "Product added to Favourite successfully.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                } else {
+                    let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
                 }
+            }
+        }
     }
     
     private func getSelectedSize() -> String? {
@@ -202,8 +199,8 @@ class ProductDetailsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
-
 }
+
     
 
 
@@ -270,53 +267,4 @@ class ProductDetailsViewController: UIViewController {
              }
          }
  }
- 
 
-
-/*
- @IBAction func btnAddToCart(_ sender: Any) {
-     guard let selectedSize = getSelectedSize(),
-           let selectedColor = getSelectedColor() else {
-         showAlert(message: "Please select both size and color before adding to cart.")
-         return
-     }
-     
-     // Here you can proceed to add the product to the cart
-     viewModel?.addSelectedProductToDraftOrder { success, message in
-         DispatchQueue.main.async {
-             if success {
-                 let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
-                 alert.addAction(UIAlertAction(title: "OK", style: .default))
-                 self.present(alert, animated: true)
-             } else {
-                 let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
-                 alert.addAction(UIAlertAction(title: "OK", style: .default))
-                 self.present(alert, animated: true)
-             }
-         }
-     }
- }
-
- private func getSelectedSize() -> String? {
-     guard let selectedIndex = sizeCollectionView.indexPathsForSelectedItems?.first?.item,
-           let sizeValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Size" })?.values?[selectedIndex] else {
-         return nil
-     }
-     return sizeValue
- }
-
- private func getSelectedColor() -> String? {
-     guard let selectedIndex = colorsCollectionView.indexPathsForSelectedItems?.first?.item,
-           let colorValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?[selectedIndex] else {
-         return nil
-     }
-     return colorValue
- }
-
- private func showAlert(message: String) {
-     let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-     present(alert, animated: true, completion: nil)
- }
-
- */

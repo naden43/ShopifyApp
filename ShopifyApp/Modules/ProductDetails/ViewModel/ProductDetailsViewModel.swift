@@ -11,10 +11,19 @@ import Foundation
 class ProductDetailsViewModel {
     var selectedProduct: Product?
     var destination: Bool?
-
-    init(selectedProduct: Product?) {
+    private var favouriteProductsViewModel: FavouriteProductsViewModel?
+    
+    init(selectedProduct: Product){
+        print("in first init")
         self.selectedProduct = selectedProduct
+        self.favouriteProductsViewModel = nil
+
     }
+    func setFavViewModel(favouriteProductsViewModel: FavouriteProductsViewModel){
+        self.favouriteProductsViewModel = favouriteProductsViewModel
+    }
+
+    
     func getDraftOrder(completion: @escaping (Draft?, String?) -> Void) {
          DispatchQueue.global(qos: .background).async {
              let userDefaultsManager = UserDefaultsManager.shared
@@ -41,18 +50,6 @@ class ProductDetailsViewModel {
          }
      }
 
-    
-    func convertPriceByCurrency(price : Double) -> String {
-        
-        
-        return CurrencyService.instance.calcThePrice(price: price)
-    }
-    
-    func getCurrencyType() -> String {
-        
-        return CurrencyService.instance.getCurrencyType()
-    }
-    
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
          let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
          //print("Endpoint is \(endPoint)")
@@ -123,6 +120,20 @@ class ProductDetailsViewModel {
                 }
             }
         }
+    }
+    
+    func isProductInFavorites() -> Bool {
+        return ((favouriteProductsViewModel?.isProductInFavorites(productId: selectedProduct?.id ?? 0)) != nil)
+    }
+    func convertPriceByCurrency(price : Double) -> String {
+        
+        
+        return CurrencyService.instance.calcThePrice(price: price)
+    }
+    
+    func getCurrencyType() -> String {
+        
+        return CurrencyService.instance.getCurrencyType()
     }
 
 }

@@ -6,10 +6,9 @@
 //
 
 import Foundation
-
 class FavouriteProductsViewModel {
     var favProducts: DraftOrder?
-    
+
     func loadData(completion: @escaping () -> Void) {
         NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/draft_orders/978702532774.json") { (result: Draft?, error) in
             guard let result = result else {
@@ -20,7 +19,7 @@ class FavouriteProductsViewModel {
             completion()
         }
     }
-    
+
     func deleteFavProductFromFavDraftOrder(index: Int, completion: @escaping (Bool) -> Void) {
         favProducts?.lineItems?.remove(at: index + 1)
         
@@ -33,13 +32,23 @@ class FavouriteProductsViewModel {
             }
         }
     }
-    
+
     func getImageByIndex(index: Int) -> String? {
         return favProducts?.lineItems?[index + 1].properties?.first?["value"]
     }
-    
+
     func getProductsCount() -> Int {
         return (favProducts?.lineItems?.count ?? 1) - 1
+    }
+
+    func isProductInFavorites(productId: Int) -> Bool {
+        print("favProducts?.lineItems?.count \(favProducts?.lineItems?.count)")
+     
+        guard let favProducts = favProducts?.lineItems else {
+            return false
+        }
+        print("in isProductInFavorites \(favProducts.contains { $0.productId ?? 0 == productId })")
+        return favProducts.contains { $0.productId ?? 0 == productId }
     }
 }
 
