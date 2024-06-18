@@ -17,6 +17,8 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var productDetailsViewModel: ProductDetailsViewModel?
 
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("The Brand id = \(self.brandId ?? 301445349542)")
@@ -64,7 +66,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCell.productImage.layer.cornerRadius = 20
         var products = viewModel?.getProductsOfBrands()
         productCell.productTitle.text = products?[indexPath.row].vendor
-        productCell.productPrice.text = products?[indexPath.row].variants?[0].price
+        let price = Double(products?[indexPath.row].variants?[0].price ?? "") ?? 0.0
+        productCell.productPrice.text = viewModel?.convertPriceByCurrency(price: price)
+        productCell.currencyTxt.text = viewModel?.getCurrencyType()
         productCell.productSubTitle.text = products?[indexPath.row].handle
         print("the products is =========================================: \(products?[indexPath.row].title ?? "unkown product")")
         var productIMG = products?[indexPath.row].image?.src

@@ -8,9 +8,11 @@
 import Foundation
 
 protocol HomeViewModelProtocol {
+    func checkIfUserAvaliable() -> Bool
     var bindToHomeViewController: (() -> Void)? { get set }
     var bindToProductViewController: (() -> Void)? { get set }
     var bindToCategoriesViewController: (() -> Void)? { get set }
+    var bindPriceRules : (() -> Void)? { get set }
     func fetchBands (url : String)
     func fetchProducts (url : String)
     func fetchCategories (url : String)
@@ -18,19 +20,66 @@ protocol HomeViewModelProtocol {
     func getCaegroies() -> [CustomCollection]
     func getProductsOfBrands() -> [Product]
     func getCategoryID (categoryName: String) -> Int
+    func convertPriceByCurrency(price : Double) -> String 
+    func getCurrencyType() -> String 
+    func getPriceRuleByIndex(index:Int) ->String
+    func getPriceRules()
+    func getPriceRulesCount() -> Int
+    func fetchCurrencyDataAndStore(currencyType:String)
+    
 }
     
 class HomeViewModel : HomeViewModelProtocol{
-
+   
+    
+        var bindPriceRules: (() -> Void)?
         var bindToProductViewController: (() -> Void)?
         private var brands : [SmartCollection]?
         var bindToHomeViewController: (() -> Void)?
         var bindToCategoriesViewController: (() -> Void)?
         private var productsOfBrands : [Product]?
         private var categories : [CustomCollection]?
+    
+        private var coupons : [String] = []
         //  private var products :
         
+    
+        func getPriceRulesCount() -> Int {
+            return coupons.count
+        }
+    
+        func getPriceRules() {
+            
+            NetworkHandler.instance.getData(endPoint: "/admin/api/2024-04/price_rules.json") { [weak self ] (result:PriceRules? , error) in
+                
+                if let result = result {
+                    
+                    for item in result.price_rules {
+                        self?.coupons.append(String(item.id))
+                    }
+                    
+                }
+                else {
+                    print(error ?? "")
+                }
+            }
         
+        }
+        
+        func getPriceRuleByIndex(index:Int) ->String {
+            return coupons[index]
+        }
+    
+        func checkIfUserAvaliable() -> Bool {
+        
+            if UserDefaultsManager.shared.getCustomer().id != nil {
+                return true
+            }
+            else {
+                return false
+            }
+        
+        }
         func fetchBands (url : String) {
             NetworkHandler.instance.getData(endPoint: url, complitionHandler: { (result:Brands? , error) in
                 
@@ -62,6 +111,19 @@ class HomeViewModel : HomeViewModelProtocol{
             })
         }
         
+    func fetchCurrencyDataAndStore(currencyType:String){
+        CurrencyService.instance.getData { (result:Currency?, error) in
+            
+            if let result = result {
+                
+                UserDefaultsManager.shared.saveCurrency(currencyType: currencyType, value: result.data.USD.value)
+            }
+            else {
+                print("error")
+            }
+            
+        }
+    }
         
     func getBrands() -> [SmartCollection] {
             guard let brands = brands else {
@@ -76,6 +138,20 @@ class HomeViewModel : HomeViewModelProtocol{
             }
             return products
     }
+    
+    
+    func convertPriceByCurrency(price : Double) -> String {
+        
+        
+        return CurrencyService.instance.calcThePrice(price: price)
+    }
+    
+    func getCurrencyType() -> String {
+        
+        return CurrencyService.instance.getCurrencyType()
+    }
+    
+    
     
     func getCaegroies() -> [CustomCollection] {
         guard let categories = categories else {

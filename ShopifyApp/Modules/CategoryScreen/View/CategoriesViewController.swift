@@ -7,9 +7,11 @@
 
 import UIKit
 import DropDown
+import Reachability
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
-
+    
+    let reachability = try! Reachability()
     @IBOutlet weak var filterPrice: UIButton!
     var viewModel : HomeViewModelProtocol?
     var categoryId : Int?
@@ -32,6 +34,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         return menu
     }()
+    
+    
+    
     
     @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
     @IBOutlet weak var saleBtn: UIButton!
@@ -91,7 +96,89 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         categoriesCollection.reloadData()
+        handleNavigationBar()
     }
+    
+    
+    
+    func handleNavigationBar() {
+        guard let view = self.navigationController?.visibleViewController else {
+            return
+        }
+        
+        let searchButton = UIBarButtonItem(image: UIImage(named: "searcc.svg"), style: .plain, target: self, action: #selector(searchButton))
+        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartBtn))
+        let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartBtn))
+        
+        searchButton.tintColor = UIColor(ciColor: .black)
+        cartButton.tintColor = UIColor(ciColor: .black)
+        heartButton.tintColor = UIColor(ciColor: .black)
+        
+        view.navigationItem.leftBarButtonItem = searchButton
+        view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
+    }
+    
+    
+    @objc func addTapped(){
+        
+        print("perform")
+    }
+    
+    @objc func cartBtn(){
+        
+        if viewModel?.checkIfUserAvaliable() == true {
+            
+            switch reachability.connection {
+                
+                case .unavailable:
+                    let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                
+                    present(alert, animated: true)
+                
+                case .wifi , .cellular:
+                    let shopingScreen = UIStoryboard(name: "Part2", bundle: nil).instantiateViewController(withIdentifier: "shoping-cart") as! ShoppingCartViewController
+                    navigationController?.pushViewController(shopingScreen, animated: true)
+                
+            }
+            
+        }
+        else {
+            
+            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            
+            present(alert, animated: true)
+        }
+        
+        
+    }
+    
+    @objc func heartBtn(){
+        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
+            navigationController?.pushViewController(favProductsVC, animated: true)
+        }
+        
+        print("perform")
+    }
+    
+    @objc func searchButton() {
+        print("Search button tapped")
+        print("Navigation controller: \(navigationController)")
+        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        if let searchProductsVC = storyboard.instantiateViewController(withIdentifier: "searchProductsScreen") as? SearchViewController {
+            print("Before navigation push")
+            navigationController?.pushViewController(searchProductsVC, animated: true)
+        } else {
+            print("Failed to instantiate SearchViewController from storyboard")
+        }
+        print("After navigation logic")
+    }
+
+    
+    
+    
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -109,7 +196,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         //filterProductsByPrice()
         let product = filteredPriceProducts[indexPath.row]
         productCell.productTitle.text = product.vendor
-        productCell.productPrice.text = product.variants?[0].price
+        let price = Double(product.variants?[0].price ?? "") ?? 0.0
+        productCell.productPrice.text = CurrencyService.instance.calcThePrice(price: price)
+        productCell.currencyTxt.text = CurrencyService.instance.getCurrencyType()
         productCell.productSubTitle.text = product.handle
         let productIMG = product.image?.src
         let imageUrl = URL(string: productIMG ?? "" )

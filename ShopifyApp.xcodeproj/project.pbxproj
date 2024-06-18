@@ -90,6 +90,8 @@
 		D3B0B2302C13545A00623670 /* ShopingCartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B0B22F2C13545A00623670 /* ShopingCartModel.swift */; };
 		D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */; };
 		D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */; };
+		D3EF5C502C210B0A000A8902 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF5C4F2C210B0A000A8902 /* ProfileViewModel.swift */; };
+		D3EF5C532C2111C0000A8902 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = D3EF5C522C2111C0000A8902 /* Reachability */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +210,7 @@
 		D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressesViewController.swift; sourceTree = "<group>"; };
+		D3EF5C4F2C210B0A000A8902 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				384682182C1B04C4001533E7 /* Cosmos in Frameworks */,
+				D3EF5C532C2111C0000A8902 /* Reachability in Frameworks */,
 				38DF08422C1A8BC2000582A9 /* FirebaseAnalytics in Frameworks */,
 				38DF08462C1A8BE6000582A9 /* Alamofire in Frameworks */,
 				38DF08442C1A8BC2000582A9 /* FirebaseAuth in Frameworks */,
@@ -238,6 +242,7 @@
 		009AB0342C03A15E0030366C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				D3EF5C4D2C210900000A8902 /* ProfileScreen */,
 				38280B502C1D341200260C20 /* Search */,
 				3802FB662C1C9269004EB3CD /* FavouriteProducts */,
 				38DF08302C1A8208000582A9 /* ProductDetails */,
@@ -798,6 +803,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D3EF5C4D2C210900000A8902 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				D3EF5C4E2C210AF8000A8902 /* ViewModel */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		D3EF5C4E2C210AF8000A8902 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3EF5C4F2C210B0A000A8902 /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -821,6 +842,7 @@
 				38DF08432C1A8BC2000582A9 /* FirebaseAuth */,
 				38DF08452C1A8BE6000582A9 /* Alamofire */,
 				384682172C1B04C4001533E7 /* Cosmos */,
+				D3EF5C522C2111C0000A8902 /* Reachability */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -855,6 +877,7 @@
 				D33121B32C17599E005C6E27 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D33121B62C175C90005C6E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				384682162C1B04C4001533E7 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				D3EF5C512C2111C0000A8902 /* XCRemoteSwiftPackageReference "Reachability" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
@@ -942,6 +965,7 @@
 				38F312B22C15A63300A0112B /* PostedCustomerResponse.swift in Sources */,
 				3802FB6E2C1C97DA004EB3CD /* FavouriteProductsTableViewCell.swift in Sources */,
 				38F312BF2C15B1E300A0112B /* LoginViewModel.swift in Sources */,
+				D3EF5C502C210B0A000A8902 /* ProfileViewModel.swift in Sources */,
 				38F312C32C15BF5C00A0112B /* AllCustomerResponse.swift in Sources */,
 				D33121E32C178E74005C6E27 /* BrandCollectionViewCell.swift in Sources */,
 				38F312AD2C15A58800A0112B /* SignupViewModel.swift in Sources */,
@@ -1249,6 +1273,14 @@
 				minimumVersion = 10.27.0;
 			};
 		};
+		D3EF5C512C2111C0000A8902 /* XCRemoteSwiftPackageReference "Reachability" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1276,6 +1308,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D33121B02C17598C005C6E27 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		D3EF5C522C2111C0000A8902 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3EF5C512C2111C0000A8902 /* XCRemoteSwiftPackageReference "Reachability" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

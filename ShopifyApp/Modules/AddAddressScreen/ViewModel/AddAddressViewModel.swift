@@ -69,11 +69,16 @@ class AddAddressViewModel {
         }
     }
     
+    private func getCustomerId() -> Int {
+        
+        return UserDefaultsManager.shared.getCustomer().id ?? 0
+    }
     
     func editAddress(address:Address){
         
+        let customerId = getCustomerId()
         network?.putData(CustomerAddress(address: address)
-                         , to: "admin/api/2024-04/customers/7864239587494/addresses/\(address.id ?? 0 ).json", responseType:  CustomAddress.self , completion: { [weak self] success, error, result in
+                         , to: "admin/api/2024-04/customers/\(customerId)/addresses/\(address.id ?? 0 ).json", responseType:  CustomAddress.self , completion: { [weak self] success, error, result in
             
             if success == true {
                 self?.signalCompleteOperation()
@@ -144,8 +149,8 @@ class AddAddressViewModel {
         
         
         
-        
-        network?.postData(CustomerAddress(address: address), to: "admin/api/2024-04/customers/7864239587494/addresses.json", responseType: CustomAddress.self , completion: { [weak self] success, error, response in
+        let customerId = getCustomerId()
+        network?.postData(CustomerAddress(address: address), to: "admin/api/2024-04/customers/\(customerId)/addresses.json", responseType: CustomAddress.self , completion: { [weak self] success, error, response in
             
             self?.signalCompleteOperation()
             

@@ -21,3 +21,8 @@ struct PriceRuleData : Codable{
     let price_rule : PriceRule
 }
 
+struct PriceRules : Codable {
+    
+    let price_rules : [PriceRule]
+}
+

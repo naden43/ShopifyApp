@@ -41,6 +41,18 @@ class ProductDetailsViewModel {
          }
      }
 
+    
+    func convertPriceByCurrency(price : Double) -> String {
+        
+        
+        return CurrencyService.instance.calcThePrice(price: price)
+    }
+    
+    func getCurrencyType() -> String {
+        
+        return CurrencyService.instance.getCurrencyType()
+    }
+    
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
          let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
          //print("Endpoint is \(endPoint)")

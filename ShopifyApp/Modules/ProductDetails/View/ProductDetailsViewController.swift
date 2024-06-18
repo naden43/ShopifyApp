@@ -85,7 +85,8 @@ class ProductDetailsViewController: UIViewController {
         guard let product = viewModel?.selectedProduct else { return }
         productTitle.text = product.title
         productBrand.text = "Brand: \(product.vendor ?? "Unknown")"
-        productPrice.text = product.variants?.first?.price
+        let price = Double(product.variants?.first?.price ?? "") ?? 0.0
+        productPrice.text = "\(viewModel?.convertPriceByCurrency(price: price) ?? "") \(viewModel?.getCurrencyType() ?? "")"
         productDescription.text = product.bodyHtml
         productspageControl.numberOfPages = product.images?.count ?? 0
         productCollectionView.reloadData()

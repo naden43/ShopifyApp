@@ -7,8 +7,11 @@
 
 import UIKit
 import Kingfisher
+import Reachability
+
 class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
+    let reachability = try! Reachability()
     @IBOutlet weak var adsControl: UIPageControl!
     @IBOutlet weak var brandsCollection: UICollectionView!
     var brandName : String?
@@ -18,7 +21,11 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     var currentCellIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //UserDefaultsManager.shared.saveCustomer(id: 7877044240550, note: "979195199654,979195232422")
+        
         print("update")
+        
         let url = Constants.EndPoint.brands
         viewModel = HomeViewModel()
         brandsCollection.delegate = self
@@ -45,7 +52,14 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
                 self?.brandsCollection.reloadData()
             }
         }
+        
+        viewModel?.bindPriceRules = { [weak self] in
+            self?.brandsCollection.reloadData()
+        }
+        
         viewModel?.fetchBands(url: url)
+        viewModel?.getPriceRules()
+        viewModel?.fetchCurrencyDataAndStore(currencyType: viewModel?.getCurrencyType() ?? "EGP")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +111,32 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     @objc func cartBtn(){
         
-        print("perform")
+        if viewModel?.checkIfUserAvaliable() == true {
+            
+            switch reachability.connection {
+                
+                case .unavailable:
+                    let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                
+                    present(alert, animated: true)
+                
+                case .wifi , .cellular:
+                    let shopingScreen = UIStoryboard(name: "Part2", bundle: nil).instantiateViewController(withIdentifier: "shoping-cart") as! ShoppingCartViewController
+                    navigationController?.pushViewController(shopingScreen, animated: true)
+                
+            }
+            
+        }
+        else {
+            
+            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            
+            present(alert, animated: true)
+        }
+        
+        
     }
     
     @objc func heartBtn(){
@@ -144,6 +183,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         let uniqueBrands = getUniqueBrands()
         if section == 0 {
             return arrAdsPhotos.count
+            
         }else{
             return uniqueBrands.count
         }
@@ -176,20 +216,44 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
 
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let brands = getUniqueBrands()
-        let selectedBrandId = brands[indexPath.row].id
-        let selectedBrandName = brands[indexPath.row].title
-        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+        
+        if indexPath.section == 0 {
+            
+            let textToCopy = viewModel?.getPriceRuleByIndex(index: indexPath.row)
 
-        let backItem = UIBarButtonItem()
+                  let alertController = UIAlertController(title: nil, message: "get your coupon", preferredStyle: .actionSheet)
+
+                  let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
+                      UIPasteboard.general.string = textToCopy
+                  }
+
+                  let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+                  alertController.addAction(copyAction)
+                  alertController.addAction(cancelAction)
+
+                 
+
+                  present(alertController, animated: true, completion: nil)
+            
+            
+        }
+        else {
+            let brands = getUniqueBrands()
+            let selectedBrandId = brands[indexPath.row].id
+            let selectedBrandName = brands[indexPath.row].title
+            let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+            
+            let backItem = UIBarButtonItem()
             backItem.title = selectedBrandName
             self.navigationItem.backBarButtonItem = backItem
-
-
-        if let productVC = storyboard.instantiateViewController(withIdentifier: "productBrandScreen") as? ProductsViewController {
-            productVC.brandId = selectedBrandId
-            productVC.brandName = selectedBrandName
-            navigationController?.pushViewController(productVC, animated: true)
+            
+            
+            if let productVC = storyboard.instantiateViewController(withIdentifier: "productBrandScreen") as? ProductsViewController {
+                productVC.brandId = selectedBrandId
+                productVC.brandName = selectedBrandName
+                navigationController?.pushViewController(productVC, animated: true)
+            }
         }
     }
 

@@ -51,18 +51,17 @@ class UserAddressesViewModel : EditAddressScreenRequirment{
         return (addressesList?[index])!
     }
     
+    private func getCustomerId() -> Int {
+        
+        return UserDefaultsManager.shared.getCustomer().id ?? 0
+    }
+    
+    
     func loadData() {
         
-        /*network?.getAddresses(complitionHandler: { result in
-            
-            DispatchQueue.main.async {
-                self.addressesList = result
-                self.bindAddresses()
-            }
-            
-        })*/
         
-        network?.getData(endPoint: "admin/api/2024-04/customers/7864239587494/addresses.json", complitionHandler: { (result:UserAddresses? , error) in
+        let customerId = getCustomerId()
+        network?.getData(endPoint: "admin/api/2024-04/customers/\(customerId)/addresses.json", complitionHandler: { (result:UserAddresses? , error) in
             
             guard let result = result else {
                 return
