@@ -36,7 +36,7 @@ class ProductDetailsViewController: UIViewController {
         
        // print("Userid \(UserDefaultsManager.shared.getCustomer())")
         print(favViewModel?.favProducts?.lineItems)
-        viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel!)
+        viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
 
         
         productCollectionView.dataSource = self
