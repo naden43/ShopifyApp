@@ -160,7 +160,6 @@ class ProductDetailsViewModel {
             return
         }
         
-        // Remove product from line items
         if let index = favProducts.lineItems?.firstIndex(where: { $0.productId ?? 0 == productId }) {
             favProducts.lineItems?.remove(at: index)
             
