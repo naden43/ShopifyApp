@@ -108,4 +108,24 @@ class PlaceOrderViewModel{
         return currencyService.getCurrencyType() 
     }
     
+    
+    func getAllProductsFromDraftOrder () -> [LineItem] {
+        return data?.lineItems ?? []
+    }
+    
+    
+    func placeOrder (lineItems: [LineItem], customerId: Int, financialStatus: String) {
+    
+        let customer  = Customer(id: customerId)
+        let order = Order( financialStatus: financialStatus, customer: customer, lineItems: lineItems)
+        let orderRequest = Orders(order: order)
+        
+        network.postData(orderRequest, to: Constants.EndPoint.Placeorders, responseType: Order.self){ success, message, response in
+            if success {
+                print("Order placed successfully: \(String(describing: response))")
+            } else {
+                print("Failed to place order: \(String(describing: message))")
+            }
+        }
+    }
 }

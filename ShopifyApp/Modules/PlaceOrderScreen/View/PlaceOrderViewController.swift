@@ -68,10 +68,7 @@ class PlaceOrderViewController: UIViewController {
     @IBAction func placeOrderAction(_ sender: Any) {
         
         if paymentMethod == "cash" {
-            
-            // place order in api 
-            
-            
+            viewModel?.placeOrder(lineItems: viewModel?.getAllProductsFromDraftOrder() ?? [], customerId: 7876947378342, financialStatus: "pending")
         }
         else {
             if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: [.amex, .masterCard, .visa]) {
@@ -110,7 +107,7 @@ extension PlaceOrderViewController : PKPaymentAuthorizationViewControllerDelegat
     
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true, completion: nil)
-        // place order in api
+        viewModel?.placeOrder(lineItems: viewModel?.getAllProductsFromDraftOrder() ?? [], customerId: 7868987834534, financialStatus: "paid")
 
     }
     
