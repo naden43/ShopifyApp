@@ -2,10 +2,14 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
+
+
 class SignUpViewModel {
-    var currentCustomer : PostedCustomerResponse?
+    var currentCustomer: PostedCustomerResponse?
     
     func validateFields(firstName: String?, secondName: String?, email: String?, mobile: String?, password: String?, conformPassword: String?) -> (Bool, String?) {
+       let mobileRegex = #"^\d{11}$"#
+        
         guard let firstName = firstName, !firstName.isEmpty,
               let secondName = secondName, !secondName.isEmpty,
               let email = email, !email.isEmpty,
@@ -19,55 +23,51 @@ class SignUpViewModel {
             return (false, "Passwords do not match.")
         }
         
+     
+        let mobilePredicate = NSPredicate(format: "SELF MATCHES %@", mobileRegex)
+        if !mobilePredicate.evaluate(with: mobile) {
+            return (false, "Invalid mobile number format.")
+        }
+        
         return (true, nil)
     }
-    
-    func handleEmailVerificationCompletion(firstName: String, secondName: String, email: String, mobile: String, password: String, completion: @escaping (Bool, String?) -> Void) {
-        Auth.auth().addStateDidChangeListener { auth, user in
-            if let user = user {
-                if user.isEmailVerified {
-                    print("User is authenticated and email is verified")
-                    let customerData = CustomerData(first_name: firstName, last_name: secondName, email: email, phone: mobile, tags: password)
-                    let customer = PostedCustomerRequest(customer: customerData)
-                    NetworkHandler.instance.postData(customer, to: "admin/api/2024-04/customers.json", responseType: PostedCustomerResponse.self) { success, message, responseData in
-                        if success, let customerResponse = responseData {
-                            self.currentCustomer = customerResponse
-                            self.createDraftOrder()
-                            completion(true, "Customer created successfully!")
-                        } else {
-                            completion(false, message ?? "Failed to create customer")
-                        }
-                    }
-                } else {
-                    print("User is authenticated but email is not verified")
-                }
-            } else {
-                 print("User is not authenticated")
-            }
-        }
 
-    }
     
-func createUser(firstName: String, secondName: String, email: String, mobile: String, password: String, completion: @escaping (Bool, String?) -> Void) {
+    func createUser(firstName: String, secondName: String, email: String, mobile: String, password: String, completion: @escaping (Bool, String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 completion(false, error.localizedDescription)
             } else if let user = authResult?.user {
+                // Send email verification
                 user.sendEmailVerification { error in
                     if let error = error {
                         completion(false, error.localizedDescription)
                     } else {
-                        completion(true, "Please check your email for verification.")
                         self.handleEmailVerificationCompletion(firstName: firstName, secondName: secondName, email: email, mobile: mobile, password: password, completion: completion)
                     }
                 }
             }
         }
     }
-
-
     
-func createDraftOrder() {
+    func handleEmailVerificationCompletion(firstName: String, secondName: String, email: String, mobile: String, password: String, completion: @escaping (Bool, String?) -> Void) {
+       
+        let customerData = CustomerData(first_name: firstName, last_name: secondName, email: email, phone: mobile, tags: password)
+        let customer = PostedCustomerRequest(customer: customerData)
+        NetworkHandler.instance.postData(customer, to: "admin/api/2024-04/customers.json", responseType: PostedCustomerResponse.self) { success, message, responseData in
+            if success, let customerResponse = responseData {
+                self.currentCustomer = customerResponse
+                self.createDraftOrder()
+                completion(true, "Customer created successfully!")
+            } else {
+                completion(false, message ?? "Failed to create customer")
+            }
+        }
+    }
+    
+    
+    
+    func createDraftOrder() {
         let firstLineItems = LineItem(title: "bag", quantity: 1, price: "100")
         let firstDraftOrder = DraftOrder(lineItems: [firstLineItems], customer: currentCustomer?.customer)
         
@@ -102,4 +102,6 @@ func createDraftOrder() {
             }
         }
     }
+    
+    
 }

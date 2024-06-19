@@ -60,7 +60,7 @@ class ProductDetailsViewModel {
      }
 
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
-         let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
+         let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
          DispatchQueue.global(qos: .background).async {
              NetworkHandler.instance.getData(endPoint: endPoint) { (response: Draft?, error) in
                  DispatchQueue.main.async {

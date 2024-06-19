@@ -454,6 +454,7 @@
 		38DF08312C1A8231000582A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D33121C42C1782D0005C6E27 /* View */,
 				38DF08352C1A82BA000582A9 /* ProductDetailsViewController.swift */,
 				38DF08372C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift */,
 				38DF08392C1A8317000582A9 /* SizesCollectionViewCell.swift */,
@@ -578,7 +579,6 @@
 		D33121C32C1782C5005C6E27 /* ProductScreen */ = {
 			isa = PBXGroup;
 			children = (
-				D33121C42C1782D0005C6E27 /* View */,
 			);
 			path = ProductScreen;
 			sourceTree = "<group>";
