@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let monitor = NWPathMonitor()
     let queue = DispatchQueue(label: "network monitoring")
     
+    @IBOutlet weak var moreOrders: UIButton!
     @IBOutlet weak var userModeView: UIView!
     @IBOutlet weak var noInternetMode: UIView!
     @IBOutlet weak var guestModeView: UIView!
@@ -22,6 +23,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var ordersList: UITableView!
     
     var viewModel: ProfileViewModel?
+    
     let reachability = try! Reachability()
 
     
@@ -32,8 +34,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         wishList.delegate = self
         ordersList.dataSource = self
         wishList.dataSource = self
-        
+       // ordersList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
         viewModel = ProfileViewModel()
+        
+        
+//
         
         monitor.pathUpdateHandler = { [weak self] path in
             DispatchQueue.main.async {
@@ -80,11 +85,32 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableView == ordersList ? 0 : 0 // Adjust as per your actual logic
+        //return viewModel?.getOrders().count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure and return cells
-        return UITableViewCell()
+//        let orderCell = ordersList.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
+//        if let orders = viewModel?.getOrders() {
+//                    let order = orders[indexPath.row]
+//                    print("The number of orders = \(orders.count)")
+//
+//
+//                    orderCell.orderNumber.text = order.confirmationNumber
+//
+//
+//                    orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
+//
+//                    if let date = order.createdAt {
+//                        let dateFormatter = DateFormatter()
+//                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//                        orderCell.orderDate.text = dateFormatter.string(from: date)
+//                    } else {
+//                        orderCell.orderDate.text = "N/A"
+//                    }
+//                }
+//        return orderCell
+          return UITableViewCell()
     }
     
     // MARK: - Actions
@@ -94,7 +120,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func moreOrders(_ sender: Any) {
-        // Handle action
+//        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+//        if let ordersVC = storyboard.instantiateViewController(withIdentifier: "ordersScreen") as? OrdersViewController {
+//            navigationController?.pushViewController(ordersVC, animated: true)
+//        }
+        
+        print("pressss orderrrrr moreeeee")
     }
     
     // MARK: - Navigation

@@ -167,9 +167,9 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         guard let brands = viewModel?.getBrands() else {
             return []
         }
-        print("All Brands Count: \(brands.count)")
+    //    print("All Brands Count: \(brands.count)")
         let uniqueBrands = brands.filter{!$0.handle.contains("-1")}
-        print("Filtered Brands Count: \(uniqueBrands.count)")
+     //   print("Filtered Brands Count: \(uniqueBrands.count)")
         return uniqueBrands
     }
     
@@ -231,9 +231,6 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
 
                   alertController.addAction(copyAction)
                   alertController.addAction(cancelAction)
-
-                 
-
                   present(alertController, animated: true, completion: nil)
             
             
