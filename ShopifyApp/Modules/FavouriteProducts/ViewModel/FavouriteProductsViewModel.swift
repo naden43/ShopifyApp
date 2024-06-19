@@ -6,16 +6,13 @@
 //
 
 import Foundation
+
 class FavouriteProductsViewModel {
     var favProducts: DraftOrder?
     
-
-
     func loadData(completion: @escaping () -> Void) {
         NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/draft_orders/978702532774.json") { (result: Draft?, error) in
-            print("inside")
             guard let result = result else {
-                // Handle error if needed
                 return
             }
             print( "self.getProductsCount()\(self.getProductsCount())")
@@ -58,9 +55,20 @@ class FavouriteProductsViewModel {
         return favProducts.contains { $0.productId ?? 0 == productId }
     }
     
-    func getFavProductsList() -> DraftOrder?{
+    func getFavProductsList() -> DraftOrder? {
         print("favproductlist\(self.favProducts)")
         return self.favProducts
+    }
+
+    func getProductById(productId: Int, completion: @escaping (ProductResponse?) -> Void) {
+        let endpoint = "admin/api/2024-04/products/\(productId).json"
+        NetworkHandler.instance.getData(endPoint: endpoint) { (result: ProductResponse?, error) in
+            guard let result = result else {
+                completion(nil)
+                return
+            }
+            completion(result)
+        }
     }
 }
 
