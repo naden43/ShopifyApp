@@ -195,6 +195,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
             let storyboard = UIStoryboard(name: "Part3", bundle: nil)
             if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
                 productDetailsVC.viewModel = productDetailsViewModel
+                productDetailsVC.favViewModel = viewModel?.getFavViewModel()
                 navigationController?.pushViewController(productDetailsVC, animated: true)
             }
         }

@@ -49,6 +49,7 @@ class FavProductsViewController: UIViewController {
 extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("table view size \(viewModel?.getProductsCount())")
         return viewModel?.getProductsCount() ?? 0
     }
     

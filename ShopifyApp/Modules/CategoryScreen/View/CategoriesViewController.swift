@@ -81,13 +81,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         viewModel?.bindToCategoriesViewController = { [weak self] in
-            print("inside the bind closure")
+            //print("inside the bind closure")
             DispatchQueue.main.async {
                 self?.subCategoriesSeg.selectedSegmentIndex = 0
                 self?.loadCategoryProducts(categoryName: "women")
                 //self?.filterProductsOfCategories()
-                print("the count of categories is \(self?.viewModel?.getCaegroies().count ?? 0)")
-                print("the name of categories is \(self!.saleBtn.titleLabel?.text ?? "")")
+               // print("the count of categories is \(self?.viewModel?.getCaegroies().count ?? 0)")
+               // print("the name of categories is \(self!.saleBtn.titleLabel?.text ?? "")")
             }
         }
         viewModel?.fetchCategories(url: url)
@@ -265,16 +265,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         self.categoryId = categoryId
         self.filterProductsOfCategories()
-        print("the category id = \(categoryId)")
+        //print("the category id = \(categoryId)")
         //https://76854ee270534b0f6fe7e7283f53b057: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@mad44-sv-team4.myshopify.com//admin/api/2024-04/collections/301908230310/products.json
         let productUrl = "/admin/api/2024-04/products.json?collection_id=\(categoryId)"
         viewModel?.bindToProductViewController = { [weak self] in
-            print("inside the bind closure of products")
+           // print("inside the bind closure of products")
             DispatchQueue.main.async {
                 self?.filterProductsOfCategories()
                 self?.filterProductsByPrice()
                 self?.categoriesCollection.reloadData()
-                print("The number of products in this brand is: \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
+              //  print("The number of products in this brand is: \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
             }
         }
         categoriesCollection.reloadData()

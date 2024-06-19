@@ -176,10 +176,7 @@ class NetworkHandler {
         
     }
     
-    
-    
-    
-    
+
     func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
              guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
                  completion(false, "Invalid URL",nil)

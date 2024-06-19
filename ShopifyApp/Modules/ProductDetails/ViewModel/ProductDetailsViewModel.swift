@@ -11,17 +11,26 @@ import Foundation
 class ProductDetailsViewModel {
     var selectedProduct: Product?
     var destination: Bool?
-    private var favouriteProductsViewModel: FavouriteProductsViewModel?
+    private var favouriteProductsViewModel : FavouriteProductsViewModel?
+    var bindToProductViewController: (() -> Void)?
+
+    
+
     
     init(selectedProduct: Product){
         print("in first init")
         self.selectedProduct = selectedProduct
-        self.favouriteProductsViewModel = nil
+          
+        
+
+        //self.favouriteProductsViewModel = FavouriteProductsViewModel()
 
     }
-    func setFavViewModel(favouriteProductsViewModel: FavouriteProductsViewModel){
+    func setFavViewModel(favouriteProductsViewModel: FavouriteProductsViewModel) {
         self.favouriteProductsViewModel = favouriteProductsViewModel
+        print("favouriteProductsViewModel is set with \(favouriteProductsViewModel.getProductsCount()) products.")
     }
+
 
     
     func getDraftOrder(completion: @escaping (Draft?, String?) -> Void) {
@@ -52,8 +61,6 @@ class ProductDetailsViewModel {
 
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
          let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
-         //print("Endpoint is \(endPoint)")
-
          DispatchQueue.global(qos: .background).async {
              NetworkHandler.instance.getData(endPoint: endPoint) { (response: Draft?, error) in
                  DispatchQueue.main.async {
@@ -123,8 +130,18 @@ class ProductDetailsViewModel {
     }
     
     func isProductInFavorites() -> Bool {
-        return ((favouriteProductsViewModel?.isProductInFavorites(productId: selectedProduct?.id ?? 0)) != nil)
+        print("herrerer")
+   
+        guard let productId = selectedProduct?.id else {
+            return false
+        }
+     
+        
+        print("dddddd \(favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false)")
+        return favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false
+
     }
+
     func convertPriceByCurrency(price : Double) -> String {
         
         
@@ -136,6 +153,39 @@ class ProductDetailsViewModel {
         return CurrencyService.instance.getCurrencyType()
     }
 
+
+    func deleteProductFromDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
+        guard var favProducts = favouriteProductsViewModel?.getFavProductsList() else {
+            completion(false)
+            return
+        }
+        
+        // Remove product from line items
+        if let index = favProducts.lineItems?.firstIndex(where: { $0.productId ?? 0 == productId }) {
+            favProducts.lineItems?.remove(at: index)
+            
+            let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
+            NetworkHandler.instance.putData(Draft(draft_order: favProducts), to: endPoint, responseType: Draft.self) { success, error, response in
+                if success {
+                    
+                    self.favouriteProductsViewModel?.favProducts = response?.draft_order
+                    print("trueeeeeeeeeeeeeeeeeeee")
+                    completion(true)
+                } else {print("falseeeeeeeeeeeeeeeeeeee")
+                    completion(false)
+                }
+            }
+        } else {
+            completion(false)
+        }
+    }
+
+
+
 }
 
 
+
+
+
+ 

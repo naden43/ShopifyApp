@@ -27,6 +27,7 @@ protocol HomeViewModelProtocol {
     func getPriceRulesCount() -> Int
     func fetchCurrencyDataAndStore(currencyType:String)
     func isProductInFavorites(productId: Int) -> Bool
+    func getFavViewModel() -> FavouriteProductsViewModel
     
 }
     
@@ -47,6 +48,9 @@ class HomeViewModel : HomeViewModelProtocol{
             self?.bindToProductViewController?()
         }
       }
+    func getFavViewModel() -> FavouriteProductsViewModel{
+        return favouriteProductsViewModel
+    }
 
     
         private var coupons : [String] = []
@@ -174,7 +178,7 @@ class HomeViewModel : HomeViewModelProtocol{
         for category in categories! {
             if(category.handle.lowercased() == categoryName.lowercased()) {
                 categoryID = category.id
-                print("the category id for this category \(categoryName) = \(categoryID)")
+              //  print("the category id for this category \(categoryName) = \(categoryID)")
             }
         }
         return categoryID ?? 0
