@@ -22,7 +22,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //UserDefaultsManager.shared.saveCustomer(id: 7877044240550, note: "979195199654,979195232422")
+        UserDefaultsManager.shared.saveCustomer(id: 7877044240550, note: "979195199654,979195232422")
         
         print("update")
         
