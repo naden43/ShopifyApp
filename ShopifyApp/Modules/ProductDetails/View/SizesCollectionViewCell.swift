@@ -100,7 +100,9 @@ class SizesCollectionViewCell: UICollectionViewCell {
             productSize.layer.borderColor = UIColor.gray.cgColor
             productSize.font = UIFont.systemFont(ofSize: 16.0)
         }
+        print("")
     }
+   
 }
 
 
