@@ -161,6 +161,7 @@ class ProductDetailsViewController: UIViewController {
                 }
             }
         }
+        viewModel?.destination = false
     }
     
     @IBAction func btnAddToFav(_ sender: Any) {
@@ -168,7 +169,7 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         
-        // Check if product is already in favorites
+        
         let isInFavorites = viewModel.isProductInFavorites()
         
         if isInFavorites {

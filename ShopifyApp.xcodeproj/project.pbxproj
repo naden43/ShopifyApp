@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0078A34A2C0C8045000978B1 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0078A3482C0C8045000978B1 /* ProductCollectionViewCell.swift */; };
 		0098089A2C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009808992C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift */; };
 		009D4A722C1867940039E7B0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009D4A712C1867940039E7B0 /* HomeViewModel.swift */; };
 		009D4A742C1868120039E7B0 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009D4A732C1868120039E7B0 /* ProductsViewController.swift */; };
@@ -96,30 +95,30 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D3422F7A2C207D17004D2558 /* PBXContainerItemProxy */ = {
+		3801FC9E2C24CD78008DF130 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D3422F742C207D17004D2558 /* DropDown.xcodeproj */;
+			containerPortal = 3801FC982C24CD78008DF130 /* DropDown.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0A76440F1B676C2300BF1A2D;
 			remoteInfo = Demo;
 		};
-		D3422F7C2C207D17004D2558 /* PBXContainerItemProxy */ = {
+		3801FCA02C24CD78008DF130 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D3422F742C207D17004D2558 /* DropDown.xcodeproj */;
+			containerPortal = 3801FC982C24CD78008DF130 /* DropDown.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0A7644241B676C2300BF1A2D;
 			remoteInfo = DropDownTests;
 		};
-		D3422F7E2C207D17004D2558 /* PBXContainerItemProxy */ = {
+		3801FCA22C24CD78008DF130 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D3422F742C207D17004D2558 /* DropDown.xcodeproj */;
+			containerPortal = 3801FC982C24CD78008DF130 /* DropDown.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0AB5D8711D0EEECD002D3A17;
 			remoteInfo = DropDown;
 		};
-		D3422F802C207D6C004D2558 /* PBXContainerItemProxy */ = {
+		3801FCA42C24CDAB008DF130 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = D3422F742C207D17004D2558 /* DropDown.xcodeproj */;
+			containerPortal = 3801FC982C24CD78008DF130 /* DropDown.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 0AB5D8701D0EEECD002D3A17;
 			remoteInfo = DropDown;
@@ -127,8 +126,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0078A3482C0C8045000978B1 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
-		0078A3492C0C8045000978B1 /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		009808992C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
 		009D4A712C1867940039E7B0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		009D4A732C1868120039E7B0 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +141,7 @@
 		00DF671C2C186B4B00734F38 /* Part1.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Part1.storyboard; sourceTree = "<group>"; };
 		00DF67202C186DEF00734F38 /* ProducCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducCollectionViewCell.swift; sourceTree = "<group>"; };
 		00DF67212C186DEF00734F38 /* ProducCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProducCollectionViewCell.xib; sourceTree = "<group>"; };
+		3801FC982C24CD78008DF130 /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = "../DropDown-master/DropDown.xcodeproj"; sourceTree = "<group>"; };
 		3802FB692C1C9488004EB3CD /* FavProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavProductsViewController.swift; sourceTree = "<group>"; };
 		3802FB6B2C1C9771004EB3CD /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		3802FB6D2C1C97DA004EB3CD /* FavouriteProductsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductsTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 		D33121E42C178EA6005C6E27 /* HomeScViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScViewController.swift; sourceTree = "<group>"; };
 		D3422F702C207CEA004D2558 /* Part2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Part2.storyboard; sourceTree = "<group>"; };
 		D3422F722C207CF8004D2558 /* Part3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Part3.storyboard; sourceTree = "<group>"; };
-		D3422F742C207D17004D2558 /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = ../../Downloads/DropDown/DropDown.xcodeproj; sourceTree = "<group>"; };
 		D3695E412C1D9B25008C7A22 /* PaymentOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentOptionsViewController.swift; sourceTree = "<group>"; };
 		D3695E462C1D9EB0008C7A22 /* PlaceOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewController.swift; sourceTree = "<group>"; };
 		D3695E482C1DA3A1008C7A22 /* PlaceOrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderViewModel.swift; sourceTree = "<group>"; };
@@ -232,15 +229,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0078A3452C0C7FE4000978B1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				0078A3482C0C8045000978B1 /* ProductCollectionViewCell.swift */,
-				0078A3492C0C8045000978B1 /* ProductCollectionViewCell.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		009AB0342C03A15E0030366C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +243,6 @@
 				D33121C32C1782C5005C6E27 /* ProductScreen */,
 				38F312B72C15AF9B00A0112B /* Login */,
 				38A805F42C0DD83900DCF52D /* SignUp */,
-				0078A3452C0C7FE4000978B1 /* View */,
 				D3B0B2272C1353A700623670 /* ShopingCartScreen  */,
 				D3AAA7022C0DD5D7006006B7 /* AddAddressScreen */,
 				D3AAA6FE2C0DD568006006B7 /* SettingScreen */,
@@ -363,6 +350,16 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		3801FC992C24CD78008DF130 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3801FC9F2C24CD78008DF130 /* Demo.app */,
+				3801FCA12C24CD78008DF130 /* DropDownTests.xctest */,
+				3801FCA32C24CD78008DF130 /* DropDown.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3802FB662C1C9269004EB3CD /* FavouriteProducts */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,7 +451,6 @@
 		38DF08312C1A8231000582A9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D33121C42C1782D0005C6E27 /* View */,
 				38DF08352C1A82BA000582A9 /* ProductDetailsViewController.swift */,
 				38DF08372C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift */,
 				38DF08392C1A8317000582A9 /* SizesCollectionViewCell.swift */,
@@ -519,7 +515,7 @@
 		D30AB6852C032CA300C61F99 = {
 			isa = PBXGroup;
 			children = (
-				D3422F742C207D17004D2558 /* DropDown.xcodeproj */,
+				3801FC982C24CD78008DF130 /* DropDown.xcodeproj */,
 				D30AB6902C032CA300C61F99 /* ShopifyApp */,
 				D30AB68F2C032CA300C61F99 /* Products */,
 			);
@@ -579,6 +575,7 @@
 		D33121C32C1782C5005C6E27 /* ProductScreen */ = {
 			isa = PBXGroup;
 			children = (
+				D33121C42C1782D0005C6E27 /* View */,
 			);
 			path = ProductScreen;
 			sourceTree = "<group>";
@@ -591,16 +588,6 @@
 				00DF67212C186DEF00734F38 /* ProducCollectionViewCell.xib */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		D3422F752C207D17004D2558 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D3422F7B2C207D17004D2558 /* Demo.app */,
-				D3422F7D2C207D17004D2558 /* DropDownTests.xctest */,
-				D3422F7F2C207D17004D2558 /* DropDown.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		D3695E3E2C1D9B01008C7A22 /* PaymentOptionsScreen */ = {
@@ -836,7 +823,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D3422F812C207D6C004D2558 /* PBXTargetDependency */,
+				3801FCA52C24CDAB008DF130 /* PBXTargetDependency */,
 			);
 			name = ShopifyApp;
 			packageProductDependencies = (
@@ -886,8 +873,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = D3422F752C207D17004D2558 /* Products */;
-					ProjectRef = D3422F742C207D17004D2558 /* DropDown.xcodeproj */;
+					ProductGroup = 3801FC992C24CD78008DF130 /* Products */;
+					ProjectRef = 3801FC982C24CD78008DF130 /* DropDown.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -898,25 +885,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		D3422F7B2C207D17004D2558 /* Demo.app */ = {
+		3801FC9F2C24CD78008DF130 /* Demo.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = Demo.app;
-			remoteRef = D3422F7A2C207D17004D2558 /* PBXContainerItemProxy */;
+			remoteRef = 3801FC9E2C24CD78008DF130 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D3422F7D2C207D17004D2558 /* DropDownTests.xctest */ = {
+		3801FCA12C24CD78008DF130 /* DropDownTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = DropDownTests.xctest;
-			remoteRef = D3422F7C2C207D17004D2558 /* PBXContainerItemProxy */;
+			remoteRef = 3801FCA02C24CD78008DF130 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		D3422F7F2C207D17004D2558 /* DropDown.framework */ = {
+		3801FCA32C24CD78008DF130 /* DropDown.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = DropDown.framework;
-			remoteRef = D3422F7E2C207D17004D2558 /* PBXContainerItemProxy */;
+			remoteRef = 3801FCA22C24CD78008DF130 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -962,7 +949,6 @@
 				D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */,
 				D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */,
 				D3A79C992C1A559E00311A50 /* CountryModel.swift in Sources */,
-				0078A34A2C0C8045000978B1 /* ProductCollectionViewCell.swift in Sources */,
 				00DF67182C186AB800734F38 /* Categories.swift in Sources */,
 				D3A79CA02C1A869700311A50 /* Currency.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
@@ -1023,10 +1009,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D3422F812C207D6C004D2558 /* PBXTargetDependency */ = {
+		3801FCA52C24CDAB008DF130 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DropDown;
-			targetProxy = D3422F802C207D6C004D2558 /* PBXContainerItemProxy */;
+			targetProxy = 3801FCA42C24CDAB008DF130 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

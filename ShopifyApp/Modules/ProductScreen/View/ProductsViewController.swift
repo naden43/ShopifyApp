@@ -4,11 +4,15 @@
 //
 //  Created by Aya Mostafa on 02/06/2024.
 //
+//
+//  ProductsViewController.swift
+//  ShopifyApp
+//
+//  Created by Aya Mostafa on 02/06/2024.
+//
 
 import UIKit
 import Kingfisher
-
-
 
 class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -17,19 +21,20 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var brandName: String?
     var viewModel: HomeViewModelProtocol?
     var productDetailsViewModel: ProductDetailsViewModel?
-    var url :String = ""
+    var url: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("The Brand id = \(self.brandId ?? 301445349542)")
-         url = "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
+        url = "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
         viewModel = HomeViewModel()
         productCollection.dataSource = self
         productCollection.delegate = self
+        
+        // Register the custom cell
         let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
         productCollection.register(nib, forCellWithReuseIdentifier: "productCell")
         
-        // Compositional layout
+        // Set up the compositional layout
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             switch sectionIndex {
             case 0:
@@ -40,20 +45,25 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         productCollection.collectionViewLayout = layout
         
+        // Bind to the view model
         viewModel?.bindToProductViewController = { [weak self] in
             print("inside the bind closure of products")
             DispatchQueue.main.async {
                 self?.productCollection.reloadData()
-                print("the number of products in this brand is : \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
+                print("the number of products in this brand is: \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
             }
         }
+        
+        // Fetch products
         viewModel?.fetchProducts(url: url)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("inviewdidappear")
-        viewModel?.fetchProducts(url: url)
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel?.loadFavProducts()
     }
+
+
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -72,7 +82,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
         let product = products[indexPath.row]
         productCell.productTitle.text = product.vendor
-        productCell.productPrice.text = "EGP \(product.variants?.first?.price ?? "0")"
+        productCell.productPrice.text = " \(product.variants?.first?.price ?? "0")"
         productCell.productSubTitle.text = product.handle
 
         if let imageUrl = product.image?.src {
@@ -112,7 +122,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
-        section.contentInsetsReference = .layoutMargins
         section.interGroupSpacing = 10
         
         return section
