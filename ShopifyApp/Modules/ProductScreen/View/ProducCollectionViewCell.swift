@@ -33,7 +33,7 @@ class ProducCollectionViewCell: UICollectionViewCell {
 
         let isInFavorites = viewModel.isProductInFavorites()
         if isInFavorites {
-            viewModel.deleteProductFromDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { [weak self] success in
+            viewModel.deleteProductFromFavDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { [weak self] success in
                 DispatchQueue.main.async {
                     if success {
                         self?.updateFavoriteButtonState(isFavorite: false)
