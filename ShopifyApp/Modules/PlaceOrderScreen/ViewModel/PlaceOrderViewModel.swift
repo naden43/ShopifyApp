@@ -11,6 +11,8 @@ class PlaceOrderViewModel{
     
     private let network = NetworkHandler.instance
     
+    let userDefualtManager = UserDefaultsManager.shared
+    
     private let currencyService = CurrencyService.instance
     
     var bindData : (()->Void) = {}
@@ -108,4 +110,34 @@ class PlaceOrderViewModel{
         return currencyService.getCurrencyType() 
     }
     
+    
+    func getAllProductsFromDraftOrder () -> [LineItem] {
+        
+        guard let items = data?.lineItems else {
+            return []
+        }
+        return items
+    }
+    
+    
+    func placeOrder (lineItems: [LineItem], customerId: Int, financialStatus: String) {
+    
+        let customer  = Customer(id: customerId)
+        let order = Order( financialStatus: FinancialStatus.pending, customer: customer, lineItems: lineItems)
+        let orderRequest = OrderRequest(order: order)
+        
+        network.postData(orderRequest, to: Constants.EndPoint.Placeorders, responseType: Order.self){ success, message, response in
+            if success {
+                print("Order placed successfully: \(String(describing: response))")
+            } else {
+                print("Failed to place order: \(String(describing: message))")
+            }
+        }
+    }
+    
+    
+    func getCustomerID() -> Int? {
+        print("the custoemr id in user default = \(userDefualtManager.getCustomer().id ?? 0000)")
+        return userDefualtManager.getCustomer().id
+    }
 }
