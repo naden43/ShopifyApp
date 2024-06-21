@@ -95,6 +95,7 @@
 		D3B9E8252C250126006B78CA /* ChooseModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B9E8242C250126006B78CA /* ChooseModeViewController.swift */; };
 		D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */; };
 		D3D26D0B2C0BD39A00253D01 /* UserAddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */; };
+		D3D27F112C25C15B0056D419 /* MockNetworkHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D27F102C25C15B0056D419 /* MockNetworkHandler.swift */; };
 		D3EF5C502C210B0A000A8902 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3EF5C4F2C210B0A000A8902 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -226,6 +227,7 @@
 		D3B9E8242C250126006B78CA /* ChooseModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseModeViewController.swift; sourceTree = "<group>"; };
 		D3BDBBBB2C0FE6520064F9D2 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		D3D26D0A2C0BD39A00253D01 /* UserAddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAddressesViewController.swift; sourceTree = "<group>"; };
+		D3D27F102C25C15B0056D419 /* MockNetworkHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkHandler.swift; sourceTree = "<group>"; };
 		D3EF5C4F2C210B0A000A8902 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -738,6 +740,7 @@
 			isa = PBXGroup;
 			children = (
 				D3AA905A2C22DC3700333D52 /* ShopifyAppTests.swift */,
+				D3D27F102C25C15B0056D419 /* MockNetworkHandler.swift */,
 			);
 			path = ShopifyAppTests;
 			sourceTree = "<group>";
@@ -1122,6 +1125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3AA905B2C22DC3700333D52 /* ShopifyAppTests.swift in Sources */,
+				D3D27F112C25C15B0056D419 /* MockNetworkHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
