@@ -266,6 +266,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyAddressesImage" destination="sw1-bu-VlB" id="hdU-Pe-lLo"/>
                         <outlet property="proceedToChecoutButton" destination="meT-zq-eT6" id="EI2-pb-aFG"/>
                         <outlet property="userAddressesList" destination="ODd-vy-X2S" id="EIY-Oq-eOf"/>
                     </connections>
@@ -436,14 +437,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Copun" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uxi-ao-km8">
-                                <rect key="frame" x="32" y="184" width="256.66666666666669" height="39"/>
+                                <rect key="frame" x="32" y="184" width="261.33333333333331" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fKC-OX-rxd">
-                                <rect key="frame" x="304.66666666666669" y="184" width="72.333333333333314" height="39"/>
+                                <rect key="frame" x="309.33333333333331" y="184" width="67.666666666666686" height="39"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Check"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Apply"/>
                                 <connections>
                                     <action selector="checkCoupon:" destination="KEp-wO-5Wg" eventType="touchUpInside" id="zc5-qW-tTc"/>
                                 </connections>
@@ -536,6 +537,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fhc-c6-hQf">
                                 <rect key="frame" x="16" y="83" width="361" height="643"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <imageView key="tableFooterView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="uFf-a2-OYT">
+                                    <rect key="frame" x="0.0" y="0.0" width="361" height="644"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zi9-Bg-H98">
                                 <rect key="frame" x="16" y="742" width="34" height="21"/>
@@ -578,6 +583,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emptyShoppingCart" destination="uFf-a2-OYT" id="YaP-ah-qmB"/>
                         <outlet property="proceedToCheckOutButton" destination="son-cb-01e" id="XqA-iE-7PQ"/>
                         <outlet property="shopingCartList" destination="fhc-c6-hQf" id="wCF-Ji-tFh"/>
                         <outlet property="totalTxt" destination="odC-FE-oGm" id="ir8-IR-vGH"/>
@@ -585,7 +591,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YjA-bP-Syu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4705" y="13"/>
+            <point key="canvasLocation" x="4704.580152671756" y="12.67605633802817"/>
         </scene>
         <!--Choose Currency View Controller-->
         <scene sceneID="C0B-HJ-b41">

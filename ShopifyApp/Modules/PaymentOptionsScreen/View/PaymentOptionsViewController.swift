@@ -7,6 +7,7 @@
 
 import UIKit
 import PassKit
+import Reachability
 
 class PaymentOptionsViewController: UIViewController {
 
@@ -70,19 +71,33 @@ class PaymentOptionsViewController: UIViewController {
     
     func navigateToContinueCheckout(){
         
-        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
         
-        let placeOrderScreen = part2Storyboard.instantiateViewController(withIdentifier: "place_order") as! PlaceOrderViewController
+        let reachability = try! Reachability()
         
-        if cashFlag == true{
-            placeOrderScreen.paymentMethod = "cash"
+        switch reachability.connection {
             
+        case .wifi , .cellular :
+            let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+            
+            let placeOrderScreen = part2Storyboard.instantiateViewController(withIdentifier: "place_order") as! PlaceOrderViewController
+            
+            if cashFlag == true{
+                placeOrderScreen.paymentMethod = "cash"
+                
+            }
+            else
+            {
+                placeOrderScreen.paymentMethod = "applePay"
+            }
+            present(placeOrderScreen, animated: true)
+            
+        case .unavailable:
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
         }
-        else
-        {
-            placeOrderScreen.paymentMethod = "applePay"
-        }
-        present(placeOrderScreen, animated: true)
+        
+        
     }
     
     @IBAction func checkout(_ sender: Any) {

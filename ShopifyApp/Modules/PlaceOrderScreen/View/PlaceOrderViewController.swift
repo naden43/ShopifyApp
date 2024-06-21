@@ -7,6 +7,7 @@
 
 import UIKit
 import PassKit
+import Reachability
 
 class PlaceOrderViewController: UIViewController {
 
@@ -38,6 +39,15 @@ class PlaceOrderViewController: UIViewController {
             
         }
 
+        viewModel?.bindDiscaountCouponError = {[weak self] in
+            
+            let alert = UIAlertController(title: nil, message: "wrong or expired coupon try anothr one ", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            self?.present(alert, animated: true)
+            
+            self?.coupon.text = nil
+            
+        }
         viewModel?.loadData()
     }
     
@@ -46,21 +56,33 @@ class PlaceOrderViewController: UIViewController {
     }
     
     @IBAction func checkCoupon(_ sender: Any) {
+     
+        let reachability = try! Reachability()
         
-        let couponTxt = coupon.text
-        
-        if couponTxt == "" {
+        switch reachability.connection {
             
-            let alert = UIAlertController(title: "Coupon", message: "enter the coupon first", preferredStyle: .actionSheet)
+        case .wifi , .cellular :
+            let couponTxt = coupon.text
             
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-            
+            if couponTxt == "" {
+                
+                let alert = UIAlertController(title: "Coupon", message: "enter the coupon first", preferredStyle: .actionSheet)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                
+                present(alert, animated: true)
+            }
+            else {
+                
+                viewModel?.createDiscountIfAvaliable(coupon: couponTxt ?? "")
+            }
+        case .unavailable:
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }
-        else {
-            
-            viewModel?.createDiscountIfAvaliable(coupon: couponTxt ?? "")
-        }
+        
+        
         
     }
 

@@ -33,6 +33,8 @@ class UserAddressesViewModel : EditAddressScreenRequirment{
     
     var setDefaultResult : ((String) -> Void) = {result in }
     
+    var bindError : (()->Void) = {}
+    
     //var FaildDefault : (() -> Void) = {}
 
     
@@ -64,6 +66,7 @@ class UserAddressesViewModel : EditAddressScreenRequirment{
         network?.getData(endPoint: "admin/api/2024-04/customers/\(customerId)/addresses.json", complitionHandler: { (result:UserAddresses? , error) in
             
             guard let result = result else {
+                self.bindError()
                 return
             }
             

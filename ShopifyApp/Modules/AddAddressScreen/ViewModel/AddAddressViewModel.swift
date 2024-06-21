@@ -23,7 +23,7 @@ class AddAddressViewModel {
     
     var signalCompleteOperation : (()->Void) = {}
     
-    
+    var bindPhoneError : (()->Void) = {}
     
     init(validationManager : NetworkHandler){
         self.network = validationManager
@@ -122,7 +122,13 @@ class AddAddressViewModel {
             /*validationManager?.addAddress(address: address, completionHandler: { result in
                 print(result)
             })*/
-            performAdd(address: address)
+            
+            if checkPhoneCompatability(address: address) == true {
+                performAdd(address: address)
+            }
+            else {
+                bindPhoneError()
+            }
         }
         else{
             missedData()
@@ -166,8 +172,16 @@ class AddAddressViewModel {
             return false
         }
         else {
-            return true
+            
+           return true
+           
         }
+    }
+    
+    func checkPhoneCompatability(address:Address) -> Bool {
+        let phoneRegex = "^0\\d{10}$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return predicate.evaluate(with: address.phone)
     }
     
 }
