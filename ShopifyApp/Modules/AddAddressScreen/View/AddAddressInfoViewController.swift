@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UIPickerViewDataSource {
  
@@ -41,6 +42,12 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
 
         viewModel = AddAddressViewModel(validationManager: NetworkHandler.instance)
         
+        viewModel?.bindPhoneError = {
+            let alert = UIAlertController(title: "Phone number ", message: "you enter a invalid phone number ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            self.present(alert, animated: true)
+            
+        }
         
         
         
@@ -88,12 +95,10 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
             performActionOnAddressButton.setTitle("Edit Address", for: .normal)
             let countryPlaceInpicker = viewModel?.getIndexToCountryByName(countryName: address?.country ??  "") ?? 0
             countryPicker.selectRow(countryPlaceInpicker, inComponent: 0, animated: true)
-            print(address?.country)
             viewModel?.changeTheSelectedCountry(index: countryPlaceInpicker)
             cityPicker.reloadAllComponents()
             let cityPlaceInPicker = viewModel?.getIndexToCityByName(cityName: address?.city ?? "") ?? 0
             print(cityPlaceInPicker)
-            print(address?.city)
             cityPicker.selectRow(cityPlaceInPicker, inComponent: 0, animated: true)
             
             firstNameTxtField.text = address?.firstName ?? ""
@@ -113,12 +118,23 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
    
     @IBAction func performAddAddress(_ sender: Any) {
         
-        if editMode == false {
-            viewModel?.performAddAddress(address: collectDataFromUI())
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            if editMode == false {
+                viewModel?.performAddAddress(address: collectDataFromUI())
+            }
+            else {
+                viewModel?.editAddress(address: collectDataFromUIToExistAddress())
+            }
+        case .unavailable:
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
         }
-        else {
-            viewModel?.editAddress(address: collectDataFromUIToExistAddress())
-        }
+        
         
     }
     
@@ -131,6 +147,8 @@ class AddAddressInfoViewController: UIViewController , UIPickerViewDelegate , UI
         address?.firstName = firstNameTxtField.text
         address?.lastName = lastNameTxtField.text
         address?.phone = phoneNumberTxtField.text
+        
+        
      
         return address!
     }

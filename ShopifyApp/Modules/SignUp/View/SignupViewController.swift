@@ -20,6 +20,8 @@ class SignUpViewController: UIViewController {
 
     let signUpViewModel = SignUpViewModel()
 
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         passwordTextField.isSecureTextEntry = true
@@ -61,6 +63,11 @@ class SignUpViewController: UIViewController {
         let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        dismiss(animated: true)
+
     }
 }
 

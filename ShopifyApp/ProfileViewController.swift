@@ -11,8 +11,8 @@ import Reachability
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let monitor = NWPathMonitor()
-    let queue = DispatchQueue(label: "network monitoring")
+    //let monitor = NWPathMonitor()
+    //let queue = DispatchQueue(label: "network monitoring")
     
     @IBOutlet weak var moreOrders: UIButton!
     @IBOutlet weak var userModeView: UIView!
@@ -36,7 +36,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         wishList.dataSource = self
        // ordersList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
         viewModel = ProfileViewModel()
+        noInternetMode.isHidden = true
+        userModeView.isHidden = false
+        guestModeView.isHidden = true
+
         
+        /*monitor.pathUpdateHandler = { [weak self] path in
         
 //
         
@@ -64,7 +69,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
         }
         
-        monitor.start(queue: queue)
+        monitor.start(queue: queue)*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -116,10 +121,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     // MARK: - Actions
     
     @IBAction func moreWishProducts(_ sender: Any) {
+        print("perform")
         // Handle action
     }
     
     @IBAction func moreOrders(_ sender: Any) {
+        print("perform")
+        // Handle action
+
 //        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
 //        if let ordersVC = storyboard.instantiateViewController(withIdentifier: "ordersScreen") as? OrdersViewController {
 //            navigationController?.pushViewController(ordersVC, animated: true)
@@ -133,7 +142,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func performNavToCart() {
         
         if viewModel?.checkIfUserAvaliable() == true {
-            
+            let reachability = try! Reachability()
+
             switch reachability.connection {
                 
                 case .unavailable:
@@ -164,7 +174,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func performNavToSettings() {
        
         if viewModel?.checkIfUserAvaliable() == true {
-            
+            let reachability = try! Reachability()
+
             switch reachability.connection {
                 
                 case .unavailable:
@@ -199,6 +210,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     deinit {
-        monitor.cancel()
+        //monitor.cancel()
     }
 }

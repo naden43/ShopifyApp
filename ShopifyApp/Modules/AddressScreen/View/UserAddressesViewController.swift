@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Reachability
 
 class UserAddressesViewController: UIViewController  , UITableViewDelegate , UITableViewDataSource{
     
+    @IBOutlet weak var emptyAddressesImage: UIImageView!
     
     @IBOutlet weak var proceedToChecoutButton: UIButton!
     
@@ -35,8 +37,17 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
         
         userAddressesList.register(nibFile, forCellReuseIdentifier: "cell")
         
-        viewModel?.bindAddresses = {
-            self.userAddressesList.reloadData()
+        viewModel?.bindAddresses = { [weak self] in
+            
+            if self?.viewModel?.getAddresesCount() == 0 {
+                
+                self?.emptyAddressesImage.image = UIImage(named: "emptyAddresses")
+            }
+            else{
+                self?.emptyAddressesImage.image = nil
+                self?.userAddressesList.reloadData()
+            }
+                
         }
         
         viewModel?.faildDeletion = {
@@ -50,6 +61,14 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
                     alert.dismiss(animated: true, completion: nil)
                 }
             }
+            
+        }
+        
+        viewModel?.bindError = { [weak self] in
+            
+            let alert = UIAlertController(title: nil ,  message: "Something went wrong return to page after seconds please ", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(alert, animated: true)
             
         }
 
@@ -83,11 +102,24 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
     
     @IBAction func navToAddAddress(_ sender: Any) {
         
-        let storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        let reachability = try! Reachability()
         
-        let addAddressScreen = storyboard.instantiateViewController(withIdentifier: "add_address") as! AddAddressInfoViewController
+        switch reachability.connection {
+            
+        case .wifi , .cellular  :
+            
+            let storyboard = UIStoryboard(name: "Part2", bundle: nil)
+            
+            let addAddressScreen = storyboard.instantiateViewController(withIdentifier: "add_address") as! AddAddressInfoViewController
+            
+            present(addAddressScreen, animated: true)
+            
+        case .unavailable :
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
         
-        present(addAddressScreen, animated: true)
         
     }
     
@@ -168,12 +200,25 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
     
     @IBAction func proceedToChecoutAction(_ sender: Any) {
         
-        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        let reachability = try! Reachability()
         
-        let paymentOptionsScreen = part2Storyboard.instantiateViewController(withIdentifier: "payment_screen") as! PaymentOptionsViewController
-        
-        
-        present(paymentOptionsScreen, animated: true)
+        switch reachability.connection {
+            
+        case .wifi , .cellular  :
+            
+            let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+            
+            let paymentOptionsScreen = part2Storyboard.instantiateViewController(withIdentifier: "payment_screen") as! PaymentOptionsViewController
+            
+            
+            present(paymentOptionsScreen, animated: true)
+            
+        case .unavailable :
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            
+        }
     }
     
 }

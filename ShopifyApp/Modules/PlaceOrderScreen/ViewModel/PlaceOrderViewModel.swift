@@ -25,6 +25,8 @@ class PlaceOrderViewModel{
     
     private var totalPrice : Double?
     
+    var bindDiscaountCouponError : (()->Void) = {}
+    
     func loadData() {
         
         network.getData(endPoint: "admin/api/2024-04/draft_orders/978702565542.json", complitionHandler: { (result:Draft? , error) in
@@ -68,7 +70,7 @@ class PlaceOrderViewModel{
                 
             }
             else{
-                print(error)
+                self?.bindDiscaountCouponError()
             }
             
         }
@@ -79,11 +81,11 @@ class PlaceOrderViewModel{
         
         let afterDiscount = (totalPrice ?? 0.0) * ((discountRate ?? 0.0)/100)
         
-        let price = (totalPrice ?? 0.0) - (afterDiscount ?? 0.0)
+        let price = (totalPrice ?? 0.0) - (afterDiscount)
         
         let currency = currencyService.getCurrencyType()
 
-        let formatPrice = String(format: "%.3f" , price)
+        let formatPrice = String(format: "%.2f" , price)
 
         return "\(formatPrice) \(currency)"
         
@@ -97,12 +99,15 @@ class PlaceOrderViewModel{
         
         let currency = currencyService.getCurrencyType()
         
-        let formatAfterDiscount = String(format: "%.3f" , afterDiscount)
+        let formatAfterDiscount = String(format: "%.2f" , afterDiscount)
         return "\(formatAfterDiscount) \(currency)"
     }
     
     func getTotalMoney() -> Double {
-        return totalPrice ?? 0.0
+        
+        let formatPrice = String(format: "%.2f" , totalPrice ?? 0.0)
+        
+        return Double(formatPrice) ?? 0.0
     }
     
     func getCurrency()-> String {

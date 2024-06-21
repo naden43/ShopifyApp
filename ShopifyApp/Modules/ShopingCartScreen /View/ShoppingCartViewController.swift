@@ -7,9 +7,11 @@
 
 import UIKit
 import Kingfisher
+import Reachability
 
 class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    @IBOutlet weak var emptyShoppingCart: UIImageView!
+    
     @IBOutlet weak var proceedToCheckOutButton: UIButton!
     @IBOutlet weak var totalTxt: UILabel!
     @IBOutlet weak var shopingCartList: UITableView!
@@ -19,8 +21,12 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     var viewModel: ShopingCartViewModel?
     var currency: String?
     
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         shopingCartList.delegate = self
         shopingCartList.dataSource = self
@@ -31,10 +37,27 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         currency = viewModel?.getCurrencyType()
         
         viewModel?.bindData = { [weak self] in
-            let apiPrice = Double(self?.viewModel?.getTotalPrice() ?? "0.0") ?? 0.0
-            let price = self?.viewModel?.calcThePrice(price: apiPrice) ?? "0.0"
-            self?.totalTxt.text = "\(price) \(self?.currency ?? "")"
+            self?.activityIndicator.stopAnimating()
+
+            
+            
+            
+            if self?.viewModel?.getProductsCount() == 0 {
+                
+                self?.totalTxt.text = "0.0 \(self?.currency ?? "")"
+                
+                self?.emptyShoppingCart.image = UIImage(named: "emptyShoppingCart")
+            }
+            else {
+                let apiPrice = Double(self?.viewModel?.getTotalPrice() ?? "0.0") ?? 0.0
+                let price = self?.viewModel?.calcThePrice(price: apiPrice) ?? "0.0"
+                self?.totalTxt.text = "\(price) \(self?.currency ?? "")"
+                
+                self?.emptyShoppingCart.image = nil
+
+            }
             self?.shopingCartList.reloadData()
+            
         }
         
         let nibCell = UINib(nibName: "CustomShoppingCartCellTableViewCell", bundle: nil)
@@ -100,6 +123,11 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+                
+                self.activityIndicator.center = self.view.center
+                self.view.addSubview(self.activityIndicator)
+                self.activityIndicator.startAnimating()
+                
                 let variantId = self.viewModel?.getProductByIndex(index: indexPath.row).variantId
                 self.viewModel?.deleteTheProductAmount(varientId: Int(variantId ?? 0))
                 self.viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
@@ -134,13 +162,26 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @IBAction func navToCheckOut(_ sender: Any) {
-        if viewModel?.avaliableToCheckOut() == true {
-            let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
-            let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
-            present(userAddressScreen, animated: true)
-        } else {
-            let alert = UIAlertController(title: "Error", message: "The product may be sold out or you have exceeded the allowed amount. Swipe to remove or decrement your amount.", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            if viewModel?.avaliableToCheckOut() == true {
+                let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+                let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
+                present(userAddressScreen, animated: true)
+            } else {
+                let alert = UIAlertController(title: "Error", message: "The product may be sold out or you have exceeded the allowed amount. Swipe to remove or decrement your amount.", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                present(alert, animated: true)
+            }
+            
+            
+        case .unavailable:
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }
     }
