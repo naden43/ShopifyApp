@@ -127,11 +127,8 @@ class LoginViewController: UIViewController {
         
         let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
          let navigation = mainStoryBoard.instantiateViewController(withIdentifier: "naviagtion")
-        
-        DispatchQueue.main.async {
-            self.present(navigation, animated: true)
-        }
-        
+        self.present(navigation, animated: true)
+
         
         
        

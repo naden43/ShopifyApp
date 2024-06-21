@@ -1,4 +1,3 @@
-//
 //  ProductsViewController.swift
 //  ShopifyApp
 //
@@ -8,8 +7,6 @@
 import UIKit
 import Kingfisher
 
-
-
 class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var productCollection: UICollectionView!
@@ -17,19 +14,18 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var brandName: String?
     var viewModel: HomeViewModelProtocol?
     var productDetailsViewModel: ProductDetailsViewModel?
-    var url :String = ""
+    var url: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("The Brand id = \(self.brandId ?? 301445349542)")
-         url = "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
+        url = "/admin/api/2024-04/products.json?collection_id=\(self.brandId ?? 0)"
         viewModel = HomeViewModel()
         productCollection.dataSource = self
         productCollection.delegate = self
+        
         let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
         productCollection.register(nib, forCellWithReuseIdentifier: "productCell")
         
-        // Compositional layout
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             switch sectionIndex {
             case 0:
@@ -41,19 +37,18 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCollection.collectionViewLayout = layout
         
         viewModel?.bindToProductViewController = { [weak self] in
-            print("inside the bind closure of products")
             DispatchQueue.main.async {
                 self?.productCollection.reloadData()
-                print("the number of products in this brand is : \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
             }
         }
+        
         viewModel?.fetchProducts(url: url)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("inviewdidappear")
-        viewModel?.fetchProducts(url: url)
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel?.loadFavProducts()
     }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -72,7 +67,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
         let product = products[indexPath.row]
         productCell.productTitle.text = product.vendor
-        productCell.productPrice.text = "EGP \(product.variants?.first?.price ?? "0")"
+        productCell.productPrice.text = " \(product.variants?.first?.price ?? "0")"
         productCell.productSubTitle.text = product.handle
 
         if let imageUrl = product.image?.src {
@@ -82,6 +77,13 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
         let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(systemName: "heart")
         productCell.favButton.setImage(favImage, for: .normal)
+        
+        // Set the viewModel for the cell
+        let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: product)
+        let favProductsViewModel = viewModel?.getFavViewModel()
+        productDetailsViewModel.setFavViewModel(favouriteProductsViewModel: favProductsViewModel ?? FavouriteProductsViewModel())
+        
+        productCell.configure(with: productDetailsViewModel)
 
         return productCell
     }
@@ -112,7 +114,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
-        section.contentInsetsReference = .layoutMargins
         section.interGroupSpacing = 10
         
         return section
@@ -124,3 +125,4 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 }
+

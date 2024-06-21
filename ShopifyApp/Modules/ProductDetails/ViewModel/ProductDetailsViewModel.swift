@@ -5,7 +5,6 @@
 //  Created by Salma on 11/06/2024.
 //
 
-
 import Foundation
 
 class ProductDetailsViewModel {
@@ -13,25 +12,19 @@ class ProductDetailsViewModel {
     var destination: Bool?
     private var favouriteProductsViewModel : FavouriteProductsViewModel?
     var bindToProductViewController: (() -> Void)?
-
     
 
-    
     init(selectedProduct: Product){
-        print("in first init")
         self.selectedProduct = selectedProduct
           
-        
-
-        //self.favouriteProductsViewModel = FavouriteProductsViewModel()
-
     }
     func setFavViewModel(favouriteProductsViewModel: FavouriteProductsViewModel) {
         self.favouriteProductsViewModel = favouriteProductsViewModel
         print("favouriteProductsViewModel is set with \(favouriteProductsViewModel.getProductsCount()) products.")
     }
-
-
+    func getFavViewModel() -> FavouriteProductsViewModel?{
+        return favouriteProductsViewModel
+    }
     
     func getDraftOrder(completion: @escaping (Draft?, String?) -> Void) {
          DispatchQueue.global(qos: .background).async {
@@ -52,7 +45,6 @@ class ProductDetailsViewModel {
                      }
                      return
                  }
-                 print("yesss")
                  self.fetchDraftOrder(withId: draftOrderId, completion: completion)
              }
              
@@ -60,12 +52,11 @@ class ProductDetailsViewModel {
      }
 
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
-         let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
+         let endPoint = "admin/api/2024-04/draft_orders/\(id).json"
          DispatchQueue.global(qos: .background).async {
              NetworkHandler.instance.getData(endPoint: endPoint) { (response: Draft?, error) in
                  DispatchQueue.main.async {
                      if let response = response {
-                         print("Response email is \(response.draft_order?.email ?? "No email")")
                          completion(response, nil)
                      } else {
                          completion(nil, error)
@@ -88,7 +79,6 @@ class ProductDetailsViewModel {
             if let variantId = selectedProduct.variants?.first?.id,
                let imgSrc = selectedProduct.images?.first?.src {
                 print("imgsrccccccccccccccccccc\(imgSrc)")
-                
                 let properties: [[String: String]] = [["name": "image_url", "value": imgSrc]]
                 let newLineItem = LineItem(variantId: variantId, quantity: 1, properties: properties)
                 
@@ -104,20 +94,17 @@ class ProductDetailsViewModel {
                     completion(false, "Selected product has no variants or image source.")
                 }
             }
-            
         }
     }
   
     private func updateDraftOrder(draftOrderId: Int64, lineItems: [LineItem], completion: @escaping (Bool, String?) -> Void) {
-        let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
+        let endPoint = "admin/api/2024-04/draft_orders/\(draftOrderId).json"
         let updatedDraftOrder = Draft(draft_order: DraftOrder(lineItems:lineItems))
-       // print("updatedDraftOrder\(updatedDraftOrder)")
 
         DispatchQueue.global(qos: .userInitiated).async {
             NetworkHandler.instance.putData(updatedDraftOrder, to: endPoint, responseType: Draft.self) { success, message, response in
                 DispatchQueue.main.async {
                     if success {
-                        print("Draft order updated successfully.")
                         completion(true, "Draft order updated successfully.")
                     } else {
                         let errorMessage = message ?? "Unknown error"
@@ -136,8 +123,6 @@ class ProductDetailsViewModel {
             return false
         }
      
-        
-        print("dddddd \(favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false)")
         return favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false
 
     }
@@ -154,7 +139,9 @@ class ProductDetailsViewModel {
     }
 
 
-    func deleteProductFromDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
+    func deleteProductFromFavDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
+        print("in deleteee")
+        let favDraftOrder = UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId
         guard var favProducts = favouriteProductsViewModel?.getFavProductsList() else {
             completion(false)
             return
@@ -163,7 +150,7 @@ class ProductDetailsViewModel {
         if let index = favProducts.lineItems?.firstIndex(where: { $0.productId ?? 0 == productId }) {
             favProducts.lineItems?.remove(at: index)
             
-            let endPoint = "admin/api/2024-04/draft_orders/978702532774.json"
+            let endPoint = "admin/api/2024-04/draft_orders/\(favDraftOrder).json"
             NetworkHandler.instance.putData(Draft(draft_order: favProducts), to: endPoint, responseType: Draft.self) { success, error, response in
                 if success {
                     
@@ -178,13 +165,43 @@ class ProductDetailsViewModel {
             completion(false)
         }
     }
+    func loadFavorites(completion: @escaping () -> Void) {
+          favouriteProductsViewModel?.loadData(completion: completion)
+      }
+    
+    func checkIfProductExists(productId: Int, completion: @escaping (Bool) -> Void) {
+        getDraftOrder { draft, error in
+            guard let draft = draft else {
+                completion(false)
+                return
+            }
+            
+            let exists = draft.draft_order?.lineItems?.contains { $0.productId ?? 0 == productId } ?? false
+            print("draft.draft_order?.lineItems?\(draft.draft_order?.lineItems)")
+            completion(exists)
+        }
+    }
+    
+    
+    func increaseQuantityOfExistingProduct(productId: Int, completion: @escaping (Bool, String?) -> Void) {
+        getDraftOrder { draft, error in
+            guard let draft = draft, var lineItems = draft.draft_order?.lineItems else {
+                completion(false, "Draft order not found or no line items.")
+                return
+            }
+            
+            if let index = lineItems.firstIndex(where: { $0.productId ?? 0 == productId }) {
+                lineItems[index].quantity? += 1
+                
+                self.updateDraftOrder(draftOrderId: draft.draft_order?.id ?? 0, lineItems: lineItems) { success, message in
+                    completion(success, message)
+                }
+            } else {
+                completion(false, "Product not found in draft order.")
+            }
+        }
+    }
 
 
 
 }
-
-
-
-
-
- 

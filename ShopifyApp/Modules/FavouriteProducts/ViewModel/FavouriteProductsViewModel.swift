@@ -43,15 +43,11 @@ class FavouriteProductsViewModel {
     }
 
     func isProductInFavorites(productId: Int) -> Bool {
-        print("maiiaiai")
-        print("favProducts\(favProducts?.lineItems?.count)")
-        print("favProducts?.lineItems?.count \(favProducts?.lineItems?.count)")
+        print("favProducts\(productId)")
      
         guard let favProducts = favProducts?.lineItems else {
             return false
-        }
-        print("in isProductInFavorites \(favProducts.contains { $0.productId ?? 0 == productId })")
-        
+        }        
         return favProducts.contains { $0.productId ?? 0 == productId }
     }
     
