@@ -26,6 +26,8 @@ protocol HomeViewModelProtocol {
     func getPriceRules()
     func getPriceRulesCount() -> Int
     func fetchCurrencyDataAndStore(currencyType:String)
+    func isProductInFavorites(productId: Int) -> Bool
+    func getFavViewModel() -> FavouriteProductsViewModel
     
 }
     
@@ -39,6 +41,17 @@ class HomeViewModel : HomeViewModelProtocol{
         var bindToCategoriesViewController: (() -> Void)?
         private var productsOfBrands : [Product]?
         private var categories : [CustomCollection]?
+        var favouriteProductsViewModel = FavouriteProductsViewModel()
+    
+      init() {
+        favouriteProductsViewModel.loadData { [weak self] in
+            self?.bindToProductViewController?()
+        }
+      }
+    func getFavViewModel() -> FavouriteProductsViewModel{
+        return favouriteProductsViewModel
+    }
+
     
         private var coupons : [String] = []
         //  private var products :
@@ -133,12 +146,11 @@ class HomeViewModel : HomeViewModelProtocol{
     }
         
     func getProductsOfBrands() -> [Product] {
-            guard let products = productsOfBrands else {
-                return []
-            }
-            return products
+        guard let products = productsOfBrands else {
+            return []
+        }
+     return products
     }
-    
     
     func convertPriceByCurrency(price : Double) -> String {
         
@@ -166,10 +178,14 @@ class HomeViewModel : HomeViewModelProtocol{
         for category in categories! {
             if(category.handle.lowercased() == categoryName.lowercased()) {
                 categoryID = category.id
-                print("the category id for this category \(categoryName) = \(categoryID)")
+              //  print("the category id for this category \(categoryName) = \(categoryID)")
             }
         }
         return categoryID ?? 0
+    }
+    
+    func isProductInFavorites(productId: Int) -> Bool {
+        return favouriteProductsViewModel.isProductInFavorites(productId: productId)
     }
     
         

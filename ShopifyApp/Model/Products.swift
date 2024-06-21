@@ -12,6 +12,9 @@ import Foundation
 struct Products: Codable {
     let products: [Product]
 }
+struct ProductResponse:Codable{
+    let product : Product
+}
 
 struct Product: Codable {
     var id: Int?

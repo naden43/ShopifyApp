@@ -8,7 +8,7 @@
 import UIKit
 
 class ProducCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var favBtn: UIImageView!
+    @IBOutlet weak var favButton: UIButton!
     
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var productSubTitle: UILabel!
@@ -21,3 +21,4 @@ class ProducCollectionViewCell: UICollectionViewCell {
     }
 
 }
+

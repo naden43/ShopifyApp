@@ -13,14 +13,14 @@ class FavouriteProductsViewModel {
     func loadData(completion: @escaping () -> Void) {
         NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/draft_orders/978702532774.json") { (result: Draft?, error) in
             guard let result = result else {
-                // Handle error if needed
                 return
             }
+            print( "self.getProductsCount()\(self.getProductsCount())")
             self.favProducts = result.draft_order
             completion()
         }
     }
-    
+
     func deleteFavProductFromFavDraftOrder(index: Int, completion: @escaping (Bool) -> Void) {
         favProducts?.lineItems?.remove(at: index + 1)
         
@@ -33,13 +33,42 @@ class FavouriteProductsViewModel {
             }
         }
     }
-    
+
     func getImageByIndex(index: Int) -> String? {
         return favProducts?.lineItems?[index + 1].properties?.first?["value"]
     }
-    
+
     func getProductsCount() -> Int {
         return (favProducts?.lineItems?.count ?? 1) - 1
+    }
+
+    func isProductInFavorites(productId: Int) -> Bool {
+        print("maiiaiai")
+        print("favProducts\(favProducts?.lineItems?.count)")
+        print("favProducts?.lineItems?.count \(favProducts?.lineItems?.count)")
+     
+        guard let favProducts = favProducts?.lineItems else {
+            return false
+        }
+        print("in isProductInFavorites \(favProducts.contains { $0.productId ?? 0 == productId })")
+        
+        return favProducts.contains { $0.productId ?? 0 == productId }
+    }
+    
+    func getFavProductsList() -> DraftOrder? {
+        print("favproductlist\(self.favProducts)")
+        return self.favProducts
+    }
+
+    func getProductById(productId: Int, completion: @escaping (ProductResponse?) -> Void) {
+        let endpoint = "admin/api/2024-04/products/\(productId).json"
+        NetworkHandler.instance.getData(endPoint: endpoint) { (result: ProductResponse?, error) in
+            guard let result = result else {
+                completion(nil)
+                return
+            }
+            completion(result)
+        }
     }
 }
 

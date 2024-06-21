@@ -47,7 +47,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         startTimer()
         viewModel?.bindToHomeViewController = { [weak self] in
-            print("inside the bind closure")
+           // print("inside the bind closure")
             DispatchQueue.main.async {
                 self?.brandsCollection.reloadData()
             }
@@ -170,6 +170,9 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     //    print("All Brands Count: \(brands.count)")
         let uniqueBrands = brands.filter{!$0.handle.contains("-1")}
      //   print("Filtered Brands Count: \(uniqueBrands.count)")
+       // print("All Brands Count: \(brands.count)")
+        let uniqueBrands = brands.filter{!$0.handle.contains("-1")}
+        //print("Filtered Brands Count: \(uniqueBrands.count)")
         return uniqueBrands
     }
     

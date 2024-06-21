@@ -15,7 +15,6 @@ class FavProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         favProductsTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "favProductCell")
         
@@ -23,7 +22,6 @@ class FavProductsViewController: UIViewController {
         
         favProductsTableView.dataSource = self
         favProductsTableView.delegate = self
-        
 
         setupTableViewConstraints()
         
@@ -36,19 +34,13 @@ class FavProductsViewController: UIViewController {
     
     private func setupTableViewConstraints() {
         favProductsTableView.translatesAutoresizingMaskIntoConstraints = false
-        
-//        NSLayoutConstraint.activate([
-//            favProductsTableView.topAnchor.constraint(equalTo: view.topAnchor),
-//            favProductsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            favProductsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-//            favProductsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
-//        ])
     }
 }
 
 extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("table view size \(viewModel?.getProductsCount())")
         return viewModel?.getProductsCount() ?? 0
     }
     
@@ -77,23 +69,50 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            viewModel?.deleteFavProductFromFavDraftOrder(index: indexPath.row) { success in
-                if success {
-                    DispatchQueue.main.async {
-                        tableView.deleteRows(at: [indexPath], with: .automatic)
+            let alert = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to delete this product from your favorites?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+                self.viewModel?.deleteFavProductFromFavDraftOrder(index: indexPath.row) { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            tableView.deleteRows(at: [indexPath], with: .automatic)
+                        }
+                    } else {
                     }
-                } else {
-                  
+                }
+            }))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let lineItem = viewModel?.favProducts?.lineItems?[indexPath.row + 1],
+              let productId = lineItem.productId else {
+            return
+        }
+        
+        viewModel?.getProductById(productId: Int(productId)) { product in
+            guard let productResponse = product else {
+                return
+            }
+            
+            let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: productResponse.product)
+            
+            let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+            if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                productDetailsVC.viewModel = productDetailsViewModel
+                productDetailsVC.favViewModel = self.viewModel
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(productDetailsVC, animated: true)
                 }
             }
         }
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Handle row selection if needed
-    }
 }
+
 
 
