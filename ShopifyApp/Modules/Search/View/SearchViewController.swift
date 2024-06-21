@@ -11,6 +11,7 @@ class SearchViewController: UIViewController {
     
     @IBOutlet weak var productsSearchBar: UISearchBar!
     @IBOutlet weak var productsTableView: UITableView!
+    var homeViewModel: HomeViewModelProtocol?
     
     var viewModel: SearchViewModel?
     
@@ -18,6 +19,8 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         
         viewModel = SearchViewModel()
+        homeViewModel = HomeViewModel()
+        
         viewModel?.fetchProducts { success in
             if success {
                 print("Successfully fetched IDs and products:")
@@ -31,6 +34,8 @@ class SearchViewController: UIViewController {
         productsTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchedCell")
         
         productsSearchBar.delegate = self
+        homeViewModel?.loadFavProducts()
+
     }
 }
 
@@ -56,8 +61,25 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 350.0
+        return 100.0
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let products = viewModel?.filteredProducts {
+            let selectedProduct = products[indexPath.row]
+            let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
+             
+            let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+            if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                productDetailsVC.viewModel = productDetailsViewModel
+                productDetailsVC.favViewModel = homeViewModel?.getFavViewModel()
+                navigationController?.pushViewController(productDetailsVC, animated: true)
+            }
+        }
+        
+    }
+    
+
+     
 }
 
 extension SearchViewController: UISearchBarDelegate {
