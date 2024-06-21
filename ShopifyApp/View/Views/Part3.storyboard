@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Choose Mode View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="choose_screen" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="ChooseModeViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -33,6 +33,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Already a customer? Sign in">
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="navigateToLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qbw-Ra-Dbq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1T-PL-vyJ">
                                 <rect key="frame" x="43" y="405.33333333333331" width="307" height="38.333333333333314"/>
@@ -41,6 +44,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="New to Shopify? Create an account">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="navigateToRegister:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gsZ-lb-umc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07d-Cw-ZAB">
                                 <rect key="frame" x="43" y="458.66666666666669" width="307" height="38.333333333333314"/>
@@ -49,6 +55,9 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Skip sign in">
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="navigateToGuestMode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dTk-eV-YwA"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
@@ -241,7 +250,7 @@
         <!--Login View Controller-->
         <scene sceneID="WxR-QT-Jbh">
             <objects>
-                <viewController storyboardIdentifier="loginScreen" id="3vd-oi-2TP" customClass="LoginViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginScreen" modalPresentationStyle="fullScreen" id="3vd-oi-2TP" customClass="LoginViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="inn-ec-HgX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -298,7 +307,7 @@
                                                 </buttonConfiguration>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="EX3-Zh-skP">
-                                                <rect key="frame" x="97" y="102" width="191" height="173"/>
+                                                <rect key="frame" x="97" y="105" width="191" height="173"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="1Is-Ci-g4O">
@@ -313,6 +322,18 @@
                                                 <buttonConfiguration key="configuration" style="plain" title=" Sign in with google">
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dXl-zK-GTH">
+                                                <rect key="frame" x="25" y="67" width="35" height="35"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <accessibility key="accessibilityConfiguration">
+                                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                                </accessibility>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
+                                                <connections>
+                                                    <action selector="back:" destination="3vd-oi-2TP" eventType="touchUpInside" id="ZzO-UE-VGH"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" name="bg_color"/>
@@ -335,7 +356,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="oJK-jc-e7A">
             <objects>
-                <viewController id="KDK-lu-ezA" customClass="SignUpViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signUp_screen" modalPresentationStyle="fullScreen" id="KDK-lu-ezA" customClass="SignUpViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5mM-1v-uhi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -419,6 +440,18 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="signUpBtn:" destination="KDK-lu-ezA" eventType="touchUpInside" id="HM0-lp-W3D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNo-ud-qjW">
+                                <rect key="frame" x="18" y="59" width="35" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" button="YES" image="YES"/>
+                                </accessibility>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="left-arrow-2" title=" "/>
+                                <connections>
+                                    <action selector="back:" destination="KDK-lu-ezA" eventType="touchUpInside" id="W1I-cB-6ZE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -863,6 +896,7 @@
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="left-arrow-2" width="24" height="24"/>
         <image name="logo" width="400" height="400"/>
         <image name="product 1" width="564" height="698"/>
         <image name="reviewer.jpg" width="129.60000610351562" height="86.400001525878906"/>

@@ -12,6 +12,7 @@ class ProductDetailsViewModel {
     var destination: Bool?
     private var favouriteProductsViewModel : FavouriteProductsViewModel?
     var bindToProductViewController: (() -> Void)?
+    
 
     init(selectedProduct: Product){
         self.selectedProduct = selectedProduct
@@ -51,7 +52,7 @@ class ProductDetailsViewModel {
      }
 
      private func fetchDraftOrder(withId id: String, completion: @escaping (Draft?, String?) -> Void) {
-         let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
+         let endPoint = "admin/api/2024-04/draft_orders/\(id).json"
          DispatchQueue.global(qos: .background).async {
              NetworkHandler.instance.getData(endPoint: endPoint) { (response: Draft?, error) in
                  DispatchQueue.main.async {
@@ -97,7 +98,7 @@ class ProductDetailsViewModel {
     }
   
     private func updateDraftOrder(draftOrderId: Int64, lineItems: [LineItem], completion: @escaping (Bool, String?) -> Void) {
-        let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
+        let endPoint = "admin/api/2024-04/draft_orders/\(draftOrderId).json"
         let updatedDraftOrder = Draft(draft_order: DraftOrder(lineItems:lineItems))
 
         DispatchQueue.global(qos: .userInitiated).async {
@@ -140,6 +141,7 @@ class ProductDetailsViewModel {
 
     func deleteProductFromFavDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
         print("in deleteee")
+        let favDraftOrder = UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId
         guard var favProducts = favouriteProductsViewModel?.getFavProductsList() else {
             completion(false)
             return
@@ -148,7 +150,7 @@ class ProductDetailsViewModel {
         if let index = favProducts.lineItems?.firstIndex(where: { $0.productId ?? 0 == productId }) {
             favProducts.lineItems?.remove(at: index)
             
-            let endPoint = "admin/api/2024-04/draft_orders/978702565542.json"
+            let endPoint = "admin/api/2024-04/draft_orders/\(favDraftOrder).json"
             NetworkHandler.instance.putData(Draft(draft_order: favProducts), to: endPoint, responseType: Draft.self) { success, error, response in
                 if success {
                     

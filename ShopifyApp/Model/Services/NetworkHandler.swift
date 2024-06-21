@@ -183,11 +183,21 @@ class NetworkHandler {
                  return
              }
         
-            print(url)
+            print("the url is = \(url)")
              let headers: HTTPHeaders = [
                  "Authorization": authHeader,
                  "Content-Type": "application/json"
              ]
+        
+        do {
+            let jsonData = try JSONEncoder().encode(data)
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("Request JSON: \(jsonString)")
+            }
+        } catch {
+            completion(false, "Failed to encode JSON: \(error.localizedDescription)", nil)
+            return
+        }
         
              AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default, headers: headers)
                  .validate()
@@ -196,7 +206,7 @@ class NetworkHandler {
                      case .success(let value):
                          completion(true, "succeeded",value)
                      case .failure(let error):
-                         completion(false, "Request error: \(error.localizedDescription) \(response.response?.statusCode)" , nil)
+                         completion(false, "Request error i post fuction: \(error.localizedDescription) \(response.response?.statusCode)" , nil)
                      }
             }
     }

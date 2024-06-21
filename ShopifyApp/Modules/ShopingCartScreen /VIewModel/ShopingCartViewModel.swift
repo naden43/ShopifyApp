@@ -61,7 +61,7 @@ class ShopingCartViewModel {
                 
             }
             
-            self.totalPrice = result.draft_order?.totalPrice ?? "0"
+            self.totalPrice = result.draft_order?.subtotalPrice ?? "0"
            
             self.bindData()
         })
@@ -70,7 +70,7 @@ class ShopingCartViewModel {
 
     
     func getTotalPrice()->String{
-        if let totalPrice = listOfProducts?.totalPrice {
+        if let totalPrice = listOfProducts?.subtotalPrice {
             return String(totalPrice)
         } else {
             return "Total price not available"

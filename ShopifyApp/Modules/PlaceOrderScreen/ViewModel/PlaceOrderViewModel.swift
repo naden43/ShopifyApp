@@ -11,6 +11,8 @@ class PlaceOrderViewModel{
     
     private let network = NetworkHandler.instance
     
+    let userDefualtManager = UserDefaultsManager.shared
+    
     private let currencyService = CurrencyService.instance
     
     var bindData : (()->Void) = {}
@@ -22,6 +24,8 @@ class PlaceOrderViewModel{
     private var discountRate : Double?
     
     private var totalPrice : Double?
+    
+    var bindDiscaountCouponError : (()->Void) = {}
     
     func loadData() {
         
@@ -66,7 +70,7 @@ class PlaceOrderViewModel{
                 
             }
             else{
-                print(error)
+                self?.bindDiscaountCouponError()
             }
             
         }
@@ -77,11 +81,11 @@ class PlaceOrderViewModel{
         
         let afterDiscount = (totalPrice ?? 0.0) * ((discountRate ?? 0.0)/100)
         
-        let price = (totalPrice ?? 0.0) - (afterDiscount ?? 0.0)
+        let price = (totalPrice ?? 0.0) - (afterDiscount)
         
         let currency = currencyService.getCurrencyType()
 
-        let formatPrice = String(format: "%.3f" , price)
+        let formatPrice = String(format: "%.2f" , price)
 
         return "\(formatPrice) \(currency)"
         
@@ -95,12 +99,15 @@ class PlaceOrderViewModel{
         
         let currency = currencyService.getCurrencyType()
         
-        let formatAfterDiscount = String(format: "%.3f" , afterDiscount)
+        let formatAfterDiscount = String(format: "%.2f" , afterDiscount)
         return "\(formatAfterDiscount) \(currency)"
     }
     
     func getTotalMoney() -> Double {
-        return totalPrice ?? 0.0
+        
+        let formatPrice = String(format: "%.2f" , totalPrice ?? 0.0)
+        
+        return Double(formatPrice) ?? 0.0
     }
     
     func getCurrency()-> String {
@@ -108,4 +115,34 @@ class PlaceOrderViewModel{
         return currencyService.getCurrencyType() 
     }
     
+    
+    func getAllProductsFromDraftOrder () -> [LineItem] {
+        
+        guard let items = data?.lineItems else {
+            return []
+        }
+        return items
+    }
+    
+    
+    func placeOrder (lineItems: [LineItem], customerId: Int, financialStatus: String) {
+    
+        let customer  = Customer(id: customerId)
+        let order = Order( financialStatus: FinancialStatus.pending, customer: customer, lineItems: lineItems)
+        let orderRequest = OrderRequest(order: order)
+        
+        network.postData(orderRequest, to: Constants.EndPoint.Placeorders, responseType: Order.self){ success, message, response in
+            if success {
+                print("Order placed successfully: \(String(describing: response))")
+            } else {
+                print("Failed to place order: \(String(describing: message))")
+            }
+        }
+    }
+    
+    
+    func getCustomerID() -> Int? {
+        print("the custoemr id in user default = \(userDefualtManager.getCustomer().id ?? 0000)")
+        return userDefualtManager.getCustomer().id
+    }
 }

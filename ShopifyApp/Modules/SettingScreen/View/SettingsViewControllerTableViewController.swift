@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import Reachability
 
 class SettingsViewControllerTableViewController: UITableViewController {
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +35,64 @@ class SettingsViewControllerTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-            navigateToAddressesScreen()
+            let reachability = try! Reachability()
+            switch reachability.connection {
+            
+                case .unavailable:
+                    let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    present(alert, animated: true)
+                case .wifi , .cellular:
+                    print("enter wifi")
+                    navigateToAddressesScreen()
+
+            }
+            
         }
         else if indexPath.row == 1{
-            navigateToCurrencyScreen()
+            let reachability = try! Reachability()
+            switch reachability.connection {
+                
+            case .unavailable:
+                let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                
+                present(alert, animated: true)
+                
+            case .wifi , .cellular:
+                navigateToCurrencyScreen()
+            }
+        }
+        else if indexPath.row == 2 {
+            navigateToContactScreen()
+        }
+        else if indexPath.row == 3 {
+            navigateToAboutScreen()
         }
     }
+    
+    func navigateToContactScreen()
+    {
+        
+        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let contactScreen = part2Storyboard.instantiateViewController(withIdentifier: "contact_screen")
+                
+        present(contactScreen, animated: true)
+        
+    }
+    
+    
+    func navigateToAboutScreen() {
+        
+        let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+        
+        let aboutScreen = part2Storyboard.instantiateViewController(withIdentifier: "about_screen") as! AboutUsViewController
+                
+        present(aboutScreen, animated: true)
+        
+    }
+    
     
     func navigateToAddressesScreen(){
         

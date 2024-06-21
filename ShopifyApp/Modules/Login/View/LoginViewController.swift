@@ -92,6 +92,11 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func back(_ sender: Any) {
+        
+        dismiss(animated: true)
+        
+    }
     private func checkEmailVerificationAndProceed() {
         guard let user = Auth.auth().currentUser else {
             showError("User not found.")
@@ -120,15 +125,13 @@ class LoginViewController: UIViewController {
     private func navigateToHome() {
         print("Navigating to home...")
         
-        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
-        guard let homeVC = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeScViewController else {
-            print("Failed to instantiate HomeViewController from storyboard")
-            return
-        }
+        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+         let navigation = mainStoryBoard.instantiateViewController(withIdentifier: "naviagtion")
+        self.present(navigation, animated: true)
+
         
-        DispatchQueue.main.async {
-            self.navigationController?.pushViewController(homeVC, animated: true)
-        }
+        
+       
     }
     
     private func showError(_ message: String) {

@@ -28,7 +28,11 @@ protocol HomeViewModelProtocol {
     func fetchCurrencyDataAndStore(currencyType:String)
     func isProductInFavorites(productId: Int) -> Bool
     func getFavViewModel() -> FavouriteProductsViewModel
+
     func loadFavProducts()
+
+    func checkForCustomerOrGuest() -> Bool
+
     
 }
     
@@ -52,6 +56,27 @@ class HomeViewModel : HomeViewModelProtocol{
     func getFavViewModel() -> FavouriteProductsViewModel{
         return favouriteProductsViewModel
     }
+
+
+    func checkForCustomerOrGuest() -> Bool {
+        
+        let customer = UserDefaultsManager.shared.getCustomer()
+        if customer.id == nil {
+            
+            let guest = UserDefaultsManager.shared.checkIfItGuestMode()
+            
+            if guest == true {
+                return true
+            }
+            else {
+                return false
+            }
+        }
+        else {
+            return true
+        }
+    }
+
     
     
     private var coupons : [String] = []
