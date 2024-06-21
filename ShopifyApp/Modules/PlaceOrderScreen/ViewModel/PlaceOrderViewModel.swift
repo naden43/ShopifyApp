@@ -83,7 +83,7 @@ class PlaceOrderViewModel{
         
         let currency = currencyService.getCurrencyType()
 
-        let formatPrice = String(format: "%.3f" , price)
+        let formatPrice = String(format: "%.2f" , price)
 
         return "\(formatPrice) \(currency)"
         
@@ -97,12 +97,15 @@ class PlaceOrderViewModel{
         
         let currency = currencyService.getCurrencyType()
         
-        let formatAfterDiscount = String(format: "%.3f" , afterDiscount)
+        let formatAfterDiscount = String(format: "%.2f" , afterDiscount)
         return "\(formatAfterDiscount) \(currency)"
     }
     
     func getTotalMoney() -> Double {
-        return totalPrice ?? 0.0
+        
+        let formatPrice = String(format: "%.2f" , totalPrice ?? 0.0)
+        
+        return Double(formatPrice) ?? 0.0
     }
     
     func getCurrency()-> String {

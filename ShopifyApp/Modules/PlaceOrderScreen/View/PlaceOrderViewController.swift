@@ -97,31 +97,38 @@ class PlaceOrderViewController: UIViewController {
         }
         else {
             if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: [.amex, .masterCard, .visa]) {
-                
-                print("enter here ")
-                        // Create a payment request
-                        let paymentRequest = PKPaymentRequest()
-                        paymentRequest.merchantIdentifier = "merchant.itiTeam4" // Replace with your merchant identifier
-                        paymentRequest.supportedNetworks = [.amex, .masterCard, .visa] // Supported payment networks
-                        paymentRequest.merchantCapabilities = .capability3DS // Merchant capabilities
-                        paymentRequest.countryCode = "US" // Country code
+                // Create a payment request
+                let paymentRequest = PKPaymentRequest()
+                paymentRequest.merchantIdentifier = "merchant.itiTeam4" // Replace with your merchant identifier
+                paymentRequest.supportedNetworks = [.amex, .masterCard, .visa] // Supported payment networks
+                paymentRequest.merchantCapabilities = .capability3DS // Merchant capabilities
+                paymentRequest.countryCode = "US" // Country code
                 paymentRequest.currencyCode = viewModel?.getCurrency() ?? "USD" // Currency code
-                        paymentRequest.paymentSummaryItems = [
-                            PKPaymentSummaryItem(label: "Total payment price ", amount: NSDecimalNumber(decimal: Decimal(viewModel?.getTotalMoney() ?? 0.0)), type: .final)
-                        ]
-                        
-                        // Create a payment authorization view controller
-                        let paymentAuthorizationVC = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
-                        paymentAuthorizationVC?.delegate = self
-                        
-                        if let viewController = paymentAuthorizationVC {
-                            print("enter here 2 ")
-                            present(viewController, animated: true, completion: nil)
-                        }
-                    } else {
-                        // Apple Pay is not available
-                        print("Apple Pay is not available")
-                    }
+                
+                // Example of getting total money from viewModel
+                let totalMoney = viewModel?.getTotalMoney() ?? 0.0
+                
+                // Create a payment summary item with a properly formatted amount
+                let totalAmount = NSDecimalNumber(decimal: Decimal(totalMoney))
+                let paymentSummaryItem = PKPaymentSummaryItem(label: "Total payment price", amount: totalAmount, type: .final)
+                
+                paymentRequest.paymentSummaryItems = [paymentSummaryItem]
+                
+                // Create a payment authorization view controller
+                let paymentAuthorizationVC = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
+                paymentAuthorizationVC?.delegate = self
+                
+                if let viewController = paymentAuthorizationVC {
+                    present(viewController, animated: true, completion: nil)
+                } else {
+                    // Handle error presenting payment authorization view controller
+                    print("Failed to create payment authorization view controller")
+                }
+            } else {
+                // Apple Pay is not available
+                print("Apple Pay is not available")
+            }
+
             
         }
         
