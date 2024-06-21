@@ -1,3 +1,12 @@
+//
+//  SignUpViewModel.swift
+//  ShopifyApp
+//
+//  Created by Salma on 03/06/2024.
+//
+
+
+
 import Foundation
 import Firebase
 import FirebaseAuth
@@ -28,8 +37,14 @@ class SignUpViewModel {
         if !mobilePredicate.evaluate(with: mobile) {
             return (false, "Invalid mobile number format.")
         }
-        
+        if !isValidPassword(password) {
+              return (false, "Password must be at least 8 characters long, contain a number, an uppercase letter, a lowercase letter, and a special character.")
+          }
         return (true, nil)
+    }
+    private func isValidPassword(_ password: String) -> Bool {
+        let passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[#$^+=!*()@%&]).{8,}$"
+        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: password)
     }
 
     
@@ -64,8 +79,6 @@ class SignUpViewModel {
             }
         }
     }
-    
-    
     
     func createDraftOrder() {
         let firstLineItems = LineItem(title: "bag", quantity: 1, price: "100")
@@ -102,6 +115,5 @@ class SignUpViewModel {
             }
         }
     }
-    
     
 }

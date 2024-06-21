@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 
 class SignUpViewController: UIViewController {
@@ -22,7 +21,15 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureUI()
+    }
+
+    private func configureUI() {
         passwordTextField.isSecureTextEntry = true
+        conformPasswordTextField.isSecureTextEntry = true
+
+        passwordTextField.placeholder = "Password (min 8 characters, 1 number, 1 uppercase, 1 special character)"
+        conformPasswordTextField.placeholder = "Confirm Password"
     }
 
     @IBAction func signUpBtn(_ sender: Any) {
@@ -62,5 +69,12 @@ class SignUpViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
     }
+
+    func showPasswordValidationError() {
+        let alert = UIAlertController(title: "Password Validation Error", message: "Password must be at least 8 characters long, contain a number, an uppercase letter, a lowercase letter, and a special character.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
+    }
 }
+
 
