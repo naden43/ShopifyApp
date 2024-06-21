@@ -18,8 +18,27 @@ class UserDefaultsManager {
     private let shoppingCartDraftOrderIdKey = "shoppingCartDraftOrderId"
     private let currency = "currency"
     private let currencyValue = "currencyValue"
+    private let guestMode = "guestMode"
     
     private init() {}
+    
+    
+    func saveAsGuest() {
+        UserDefaults.standard.set(true, forKey: guestMode)
+    }
+    
+    func checkIfItGuestMode() -> Bool {
+        
+        let value = UserDefaults.standard.bool(forKey: guestMode)
+        if value == true {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    
 
     func saveCustomer(id: Int, note: String?) {
         UserDefaults.standard.set(id, forKey: customerIdKey)

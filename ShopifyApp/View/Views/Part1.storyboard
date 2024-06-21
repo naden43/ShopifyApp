@@ -86,7 +86,7 @@
         <!--Home-->
         <scene sceneID="yC2-Pj-RXd">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="uIi-u3-ELc" customClass="HomeScViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" modalPresentationStyle="fullScreen" id="uIi-u3-ELc" customClass="HomeScViewController" customModule="ShopifyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nzP-jx-rll">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -599,7 +599,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="tpw-4C-rvv">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1p4-pE-8PJ" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="1p4-pE-8PJ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tmd-a8-2KA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

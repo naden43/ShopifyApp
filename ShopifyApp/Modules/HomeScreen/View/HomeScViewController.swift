@@ -22,7 +22,9 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserDefaultsManager.shared.saveCustomer(id: 7877044240550, note: "979195199654,979195232422")
+        //UserDefaultsManager.shared.saveCustomer(id: 7877044240550, note: "979195199654,979195232422")
+        
+        
         
         print("update")
         
@@ -57,6 +59,11 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
             self?.brandsCollection.reloadData()
         }
         
+        if viewModel?.checkForCustomerOrGuest() == false {
+            navigateToChooseModeScreen()
+        }
+        
+        
         viewModel?.fetchBands(url: url)
         viewModel?.getPriceRules()
         viewModel?.fetchCurrencyDataAndStore(currencyType: viewModel?.getCurrencyType() ?? "EGP")
@@ -64,6 +71,16 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         handleNavigationBar()
+    }
+    
+    func navigateToChooseModeScreen() {
+        
+        let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        
+        let chooseModeScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+        
+        
+        present(chooseModeScreen, animated: false)
     }
     
     
