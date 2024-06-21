@@ -28,6 +28,9 @@ class ProductDetailsViewModel {
         self.favouriteProductsViewModel = favouriteProductsViewModel
         print("favouriteProductsViewModel is set with \(favouriteProductsViewModel.getProductsCount()) products.")
     }
+    func getFavViewModel() -> FavouriteProductsViewModel?{
+        return favouriteProductsViewModel
+    }
 
 
     
@@ -50,7 +53,6 @@ class ProductDetailsViewModel {
                      }
                      return
                  }
-                 print("yesss")
                  self.fetchDraftOrder(withId: draftOrderId, completion: completion)
              }
              
@@ -63,7 +65,7 @@ class ProductDetailsViewModel {
              NetworkHandler.instance.getData(endPoint: endPoint) { (response: Draft?, error) in
                  DispatchQueue.main.async {
                      if let response = response {
-                         print("Response email is \(response.draft_order?.email ?? "No email")")
+                        // print("Response email is \(response.draft_order?.email ?? "No email")")
                          completion(response, nil)
                      } else {
                          completion(nil, error)
@@ -115,7 +117,7 @@ class ProductDetailsViewModel {
             NetworkHandler.instance.putData(updatedDraftOrder, to: endPoint, responseType: Draft.self) { success, message, response in
                 DispatchQueue.main.async {
                     if success {
-                        print("Draft order updated successfully.")
+                       // print("Draft order updated successfully.")
                         completion(true, "Draft order updated successfully.")
                     } else {
                         let errorMessage = message ?? "Unknown error"
@@ -134,8 +136,6 @@ class ProductDetailsViewModel {
             return false
         }
      
-        
-        print("dddddd \(favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false)")
         return favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false
 
     }
@@ -153,6 +153,7 @@ class ProductDetailsViewModel {
 
 
     func deleteProductFromDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
+        print("in deleteee")
         guard var favProducts = favouriteProductsViewModel?.getFavProductsList() else {
             completion(false)
             return
@@ -176,6 +177,9 @@ class ProductDetailsViewModel {
             completion(false)
         }
     }
+    func loadFavorites(completion: @escaping () -> Void) {
+          favouriteProductsViewModel?.loadData(completion: completion)
+      }
 
 
 

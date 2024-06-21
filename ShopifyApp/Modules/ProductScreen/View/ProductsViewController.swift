@@ -1,10 +1,3 @@
-//
-//  ProductsViewController.swift
-//  ShopifyApp
-//
-//  Created by Aya Mostafa on 02/06/2024.
-//
-//
 //  ProductsViewController.swift
 //  ShopifyApp
 //
@@ -30,11 +23,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCollection.dataSource = self
         productCollection.delegate = self
         
-        // Register the custom cell
         let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
         productCollection.register(nib, forCellWithReuseIdentifier: "productCell")
         
-        // Set up the compositional layout
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             switch sectionIndex {
             case 0:
@@ -45,16 +36,12 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         productCollection.collectionViewLayout = layout
         
-        // Bind to the view model
         viewModel?.bindToProductViewController = { [weak self] in
-            print("inside the bind closure of products")
             DispatchQueue.main.async {
                 self?.productCollection.reloadData()
-                print("the number of products in this brand is: \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
             }
         }
         
-        // Fetch products
         viewModel?.fetchProducts(url: url)
     }
     
@@ -62,8 +49,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         viewModel?.loadFavProducts()
     }
 
-
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -92,6 +77,13 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
         let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(systemName: "heart")
         productCell.favButton.setImage(favImage, for: .normal)
+        
+        // Set the viewModel for the cell
+        let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: product)
+        let favProductsViewModel = viewModel?.getFavViewModel()
+        productDetailsViewModel.setFavViewModel(favouriteProductsViewModel: favProductsViewModel ?? FavouriteProductsViewModel())
+        
+        productCell.configure(with: productDetailsViewModel)
 
         return productCell
     }
@@ -133,3 +125,4 @@ extension Collection {
         return indices.contains(index) ? self[index] : nil
     }
 }
+

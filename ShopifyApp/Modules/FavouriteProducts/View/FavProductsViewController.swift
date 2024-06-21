@@ -40,7 +40,6 @@ class FavProductsViewController: UIViewController {
 extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("table view size \(viewModel?.getProductsCount())")
         return viewModel?.getProductsCount() ?? 0
     }
     
@@ -86,7 +85,7 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 100
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

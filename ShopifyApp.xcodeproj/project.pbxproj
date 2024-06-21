@@ -272,21 +272,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		00A87CB82C1BC9220026B0FF /* RetrieveOrder */ = {
-			isa = PBXGroup;
-			children = (
-				00A87CB92C1BC92E0026B0FF /* View */,
-			);
-			path = RetrieveOrder;
-			sourceTree = "<group>";
-		};
-		00A87CB92C1BC92E0026B0FF /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		00AC04962C19AFBF00C14148 /* CategoryScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,7 +306,6 @@
 				00C325832C084A5900422141 /* OrdersTableViewCell.swift */,
 				00C325842C084A5900422141 /* OrdersTableViewCell.xib */,
 				3802FB6B2C1C9771004EB3CD /* test.swift */,
-				00A87CB82C1BC9220026B0FF /* RetrieveOrder */,
 			);
 			path = OrdersScreen;
 			sourceTree = "<group>";

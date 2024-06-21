@@ -38,7 +38,6 @@ class ProductDetailsViewController: UIViewController {
         print(favViewModel?.favProducts?.lineItems)
         viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
 
-        
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
         
@@ -100,7 +99,6 @@ class ProductDetailsViewController: UIViewController {
         colorsCollectionView.reloadData()
         reviewsCollectionView.reloadData()
         
-        // Check if product is in favorites
         print("viewModel?.isProductInFavorites()\(viewModel?.isProductInFavorites())")
         if viewModel?.isProductInFavorites() == true {
             print("true")
@@ -169,9 +167,7 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         
-        
         let isInFavorites = viewModel.isProductInFavorites()
-        
         if isInFavorites {
             viewModel.deleteProductFromDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { success in
                 DispatchQueue.main.async {
@@ -195,7 +191,6 @@ class ProductDetailsViewController: UIViewController {
             viewModel.addSelectedProductToDraftOrder { success, message in
                 DispatchQueue.main.async {
                     if success {
-                        // Update UI: Change button image to filled heart
                         if let filledHeartImage = UIImage(named: "filledHeart") {
                             if let button = sender as? UIButton {
                                 button.setImage(filledHeartImage, for: .normal)
@@ -237,9 +232,6 @@ class ProductDetailsViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
-
-    
-
 
  extension ProductDetailsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
      
