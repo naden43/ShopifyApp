@@ -15,7 +15,6 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var reviewerRate: UIView!
     
     var cosmosView: CosmosView!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
 

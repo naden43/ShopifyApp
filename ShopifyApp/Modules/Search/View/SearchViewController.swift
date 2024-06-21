@@ -12,8 +12,9 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var productsSearchBar: UISearchBar!
     @IBOutlet weak var productsTableView: UITableView!
     var homeViewModel: HomeViewModelProtocol?
-    
     var viewModel: SearchViewModel?
+    var initialFilteredProducts: [Product] = []
+    var destination:Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,22 +22,30 @@ class SearchViewController: UIViewController {
         viewModel = SearchViewModel()
         homeViewModel = HomeViewModel()
         
-        viewModel?.fetchProducts { success in
-            if success {
-                print("Successfully fetched IDs and products:")
-                self.productsTableView.reloadData()
-            } else {
-                print("Failed to fetch IDs and products.")
+        if !initialFilteredProducts.isEmpty || destination == true {
+            viewModel?.products = initialFilteredProducts
+            viewModel?.filteredProducts = initialFilteredProducts
+        } else{
+            destination = false
+            viewModel?.fetchProducts { success in
+                if success {
+                    print("Successfully fetched IDs and products:")
+                    self.productsTableView.reloadData()
+                } else {
+                    print("Failed to fetch IDs and products.")
+                }
             }
+            
         }
+
         productsTableView.dataSource = self
         productsTableView.delegate = self
         productsTableView.register(UINib(nibName: "SearchTableViewCell", bundle: nil), forCellReuseIdentifier: "searchedCell")
         
         productsSearchBar.delegate = self
         homeViewModel?.loadFavProducts()
-
     }
+        
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
@@ -75,11 +84,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
                 navigationController?.pushViewController(productDetailsVC, animated: true)
             }
         }
-        
     }
-    
-
-     
 }
 
 extension SearchViewController: UISearchBarDelegate {

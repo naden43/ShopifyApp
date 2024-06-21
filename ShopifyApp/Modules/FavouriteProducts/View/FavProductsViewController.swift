@@ -62,7 +62,6 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
                 cell.favProductImageView.image = nil
             }
         }
-        
         return cell
     }
     
@@ -112,6 +111,3 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
         }
     }
 }
-
-
-

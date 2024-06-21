@@ -13,29 +13,23 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    
     @IBOutlet weak var productBrand: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.layer.cornerRadius = 30
-        contentView.layoutMargins.left = 200
-        contentView.layoutMargins.right = 30
-        
- 
+        contentView.layoutMargins.left = 20
+        contentView.layoutMargins.right = 20
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 
-    
     func configure(with product: Product) {
         productTitleLabel.text = product.title
         productPrice.text = "$\(product.variants?.first?.price ?? "0.00")"
         productBrand.text = product.vendor
-        
- 
         
         if let imageUrl = product.image?.src, let url = URL(string: imageUrl) {
             productImageView.kf.setImage(with: url, placeholder: UIImage(named: "placeholder"))

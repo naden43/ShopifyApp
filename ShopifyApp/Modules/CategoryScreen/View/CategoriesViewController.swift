@@ -35,9 +35,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         return menu
     }()
     
-    
-    
-    
     @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
     @IBOutlet weak var saleBtn: UIButton!
     @IBOutlet weak var kidBtn: UIButton!
@@ -98,8 +95,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         categoriesCollection.reloadData()
         handleNavigationBar()
     }
-    
-    
     
     func handleNavigationBar() {
         guard let view = self.navigationController?.visibleViewController else {
@@ -169,12 +164,16 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let storyboard = UIStoryboard(name: "Part3", bundle: nil)
         if let searchProductsVC = storyboard.instantiateViewController(withIdentifier: "searchProductsScreen") as? SearchViewController {
             print("Before navigation push")
+            // Pass the filtered products to the SearchViewController
+            searchProductsVC.initialFilteredProducts = self.filteredProducts
+            searchProductsVC.destination = true
             navigationController?.pushViewController(searchProductsVC, animated: true)
         } else {
             print("Failed to instantiate SearchViewController from storyboard")
         }
         print("After navigation logic")
     }
+
 
     
     
@@ -291,16 +290,12 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         self.categoryId = categoryId
         self.filterProductsOfCategories()
-        //print("the category id = \(categoryId)")
-        //https://76854ee270534b0f6fe7e7283f53b057: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@mad44-sv-team4.myshopify.com//admin/api/2024-04/collections/301908230310/products.json
         let productUrl = "/admin/api/2024-04/products.json?collection_id=\(categoryId)"
         viewModel?.bindToProductViewController = { [weak self] in
-           // print("inside the bind closure of products")
             DispatchQueue.main.async {
                 self?.filterProductsOfCategories()
                 self?.filterProductsByPrice()
                 self?.categoriesCollection.reloadData()
-              //  print("The number of products in this brand is: \(self?.viewModel?.getProductsOfBrands().count ?? 0)")
             }
         }
         categoriesCollection.reloadData()
@@ -382,16 +377,5 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
 
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

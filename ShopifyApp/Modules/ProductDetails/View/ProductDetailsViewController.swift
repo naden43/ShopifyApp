@@ -19,11 +19,9 @@ class ProductDetailsViewController: UIViewController {
     var cosmosView: CosmosView!
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     @IBOutlet weak var colorsCollectionView: UICollectionView!
-    
     @IBOutlet weak var reviewsCollectionView: UICollectionView!
     @IBOutlet weak var productDescription: UITextView!
     @IBOutlet weak var productspageControl: UIPageControl!
-    
     @IBOutlet weak var btnAddToFav: UIButton!
     
     private var showMoreReviews = false
@@ -33,11 +31,9 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
        // print("Userid \(UserDefaultsManager.shared.getCustomer())")
         print(favViewModel?.favProducts?.lineItems)
         viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
-
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
         
@@ -53,7 +49,6 @@ class ProductDetailsViewController: UIViewController {
         if let layout = productCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
-        
         productCollectionView.showsHorizontalScrollIndicator = false
         productCollectionView.showsVerticalScrollIndicator = false
         
@@ -108,8 +103,6 @@ class ProductDetailsViewController: UIViewController {
             btnAddToFav.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
-
-    
     private func createSizeCollectionViewLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -208,7 +201,6 @@ class ProductDetailsViewController: UIViewController {
             }
         }
     }
-
     
     private func getSelectedSize() -> String? {
         guard let selectedIndex = sizeCollectionView.indexPathsForSelectedItems?.first?.item,

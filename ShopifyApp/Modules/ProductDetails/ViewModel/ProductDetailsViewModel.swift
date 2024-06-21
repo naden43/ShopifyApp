@@ -5,7 +5,6 @@
 //  Created by Salma on 11/06/2024.
 //
 
-
 import Foundation
 
 class ProductDetailsViewModel {
@@ -19,8 +18,6 @@ class ProductDetailsViewModel {
         print("in first init")
         self.selectedProduct = selectedProduct
           
-        
-
         //self.favouriteProductsViewModel = FavouriteProductsViewModel()
 
     }
@@ -88,7 +85,6 @@ class ProductDetailsViewModel {
             if let variantId = selectedProduct.variants?.first?.id,
                let imgSrc = selectedProduct.images?.first?.src {
                 print("imgsrccccccccccccccccccc\(imgSrc)")
-                
                 let properties: [[String: String]] = [["name": "image_url", "value": imgSrc]]
                 let newLineItem = LineItem(variantId: variantId, quantity: 1, properties: properties)
                 
@@ -104,7 +100,6 @@ class ProductDetailsViewModel {
                     completion(false, "Selected product has no variants or image source.")
                 }
             }
-            
         }
     }
   
@@ -180,13 +175,4 @@ class ProductDetailsViewModel {
     func loadFavorites(completion: @escaping () -> Void) {
           favouriteProductsViewModel?.loadData(completion: completion)
       }
-
-
-
 }
-
-
-
-
-
- 
