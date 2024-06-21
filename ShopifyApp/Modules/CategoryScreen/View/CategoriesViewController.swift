@@ -203,8 +203,34 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let productIMG = product.image?.src
         let imageUrl = URL(string: productIMG ?? "" )
         productCell.productImage.kf.setImage(with: imageUrl)
+        
+        let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
+        let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(systemName: "heart")
+        productCell.favButton.setImage(favImage, for: .normal)
+        
+        // Set the viewModel for the cell
+        let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: product)
+        let favProductsViewModel = viewModel?.getFavViewModel()
+        productDetailsViewModel.setFavViewModel(favouriteProductsViewModel: favProductsViewModel ?? FavouriteProductsViewModel())
+        
+        productCell.configure(with: productDetailsViewModel)
+
         return productCell
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let products = viewModel?.getProductsOfBrands() {
+            let selectedProduct = products[indexPath.row]
+            let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
+             
+            let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+            if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                productDetailsVC.viewModel = productDetailsViewModel
+                productDetailsVC.favViewModel = viewModel?.getFavViewModel()
+                navigationController?.pushViewController(productDetailsVC, animated: true)
+            }
+        }
     }
     
     @IBAction func womenAction(_ sender: Any) {

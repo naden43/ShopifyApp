@@ -26,6 +26,7 @@ class ProducCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func favButton(_ sender: Any) {
+        print("presses")
         guard let viewModel = viewModel else {
             return
         }
