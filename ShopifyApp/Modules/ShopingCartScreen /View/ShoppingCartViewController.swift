@@ -63,6 +63,10 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let nibCell = UINib(nibName: "CustomShoppingCartCellTableViewCell", bundle: nil)
         shopingCartList.register(nibCell, forCellReuseIdentifier: "shopingCarCell")
         
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        
         viewModel?.loadData()
     }
     
@@ -82,30 +86,78 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let price = viewModel?.calcThePrice(price: apiPrice) ?? "0.0"
         cell.productPrice.text = "\(price) \(currency ?? "")"
         
+        print(viewModel?.produtsAmount)
+        
         cell.plusAction = {
-            if ((data?.quantity ?? 0) + 1) > self.viewModel?.allowedProductAmount(varientId: Int(data?.variantId ?? 0)) ?? 0 {
-                let alert = UIAlertController(title: "Exceed Amount", message: "You cannot increase the amount.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                self.present(alert, animated: true)
-            } else {
-                cell.itemCount.text = String((Int(cell.itemCount.text ?? "0") ?? 0) + 1)
-                self.viewModel?.increaseTheQuantityOfProduct(index: indexPath.row)
+            
+            let reachability = try! Reachability()
+            
+            switch reachability.connection {
+                
+                case .wifi , .cellular :
+                
+                    if ((data?.quantity ?? 0) + 1) > self.viewModel?.allowedProductAmount(varientId: Int(data?.variantId ?? 0)) ?? 0 {
+                        let alert = UIAlertController(title: "Exceed Amount", message: "You cannot increase the amount.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+                        self.present(alert, animated: true)
+                    } else {
+                        cell.itemCount.text = String((Int(cell.itemCount.text ?? "0") ?? 0) + 1)
+                    
+                        self.activityIndicator.center = self.view.center
+                        self.view.addSubview(self.activityIndicator)
+                        self.activityIndicator.startAnimating()
+
+                    
+                        self.viewModel?.increaseTheQuantityOfProduct(index: indexPath.row)
+                    }
+                
+                
+                case .unavailable :
+                    let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                
+            
             }
+            
         }
         
         cell.minusAction = {
-            if ((Int(cell.itemCount.text ?? "0") ?? 0) - 1) == 0 {
-                let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
-                    let variantId = self.viewModel?.getProductByIndex(index: indexPath.row).variantId
-                    self.viewModel?.deleteTheProductAmount(varientId: Int(variantId ?? 0))
-                    self.viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
-                }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            
+            let reachability = try! Reachability()
+            
+            switch reachability.connection {
+                
+            case .wifi , .cellular :
+                
+                if ((Int(cell.itemCount.text ?? "0") ?? 0) - 1) == 0 {
+                    let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+                        
+                        self.activityIndicator.center = self.view.center
+                        self.view.addSubview(self.activityIndicator)
+                        self.activityIndicator.startAnimating()
+                        
+                        let variantId = self.viewModel?.getProductByIndex(index: indexPath.row).variantId
+                        self.viewModel?.deleteTheProductAmount(varientId: Int(variantId ?? 0))
+                        self.viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                    self.present(alert, animated: true)
+                } else {
+                    cell.itemCount.text = String((Int(cell.itemCount.text ?? "0") ?? 0) - 1)
+                    
+                    self.activityIndicator.center = self.view.center
+                    self.view.addSubview(self.activityIndicator)
+                    self.activityIndicator.startAnimating()
+                    
+                    self.viewModel?.decrementTheQuantityOfProduct(index: indexPath.row)
+                }
+                
+            case .unavailable :
+                let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
                 self.present(alert, animated: true)
-            } else {
-                cell.itemCount.text = String((Int(cell.itemCount.text ?? "0") ?? 0) - 1)
-                self.viewModel?.decrementTheQuantityOfProduct(index: indexPath.row)
             }
         }
         
@@ -121,19 +173,33 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+            
+            let reachability = try! Reachability()
+            
+            switch reachability.connection {
                 
-                self.activityIndicator.center = self.view.center
-                self.view.addSubview(self.activityIndicator)
-                self.activityIndicator.startAnimating()
+            case .wifi , .cellular :
                 
-                let variantId = self.viewModel?.getProductByIndex(index: indexPath.row).variantId
-                self.viewModel?.deleteTheProductAmount(varientId: Int(variantId ?? 0))
-                self.viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
-            }))
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self.present(alert, animated: true)
+                let alert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this product?", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { action in
+                    
+                    self.activityIndicator.center = self.view.center
+                    self.view.addSubview(self.activityIndicator)
+                    self.activityIndicator.startAnimating()
+                    
+                    let variantId = self.viewModel?.getProductByIndex(index: indexPath.row).variantId
+                    self.viewModel?.deleteTheProductAmount(varientId: Int(variantId ?? 0))
+                    self.viewModel?.deleteTheProductFromShopingCart(index: indexPath.row)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                self.present(alert, animated: true)
+                
+            case .unavailable :
+                let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
+                
         }
     }
     
@@ -169,9 +235,19 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             
         case .wifi , .cellular :
             if viewModel?.avaliableToCheckOut() == true {
-                let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
-                let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
-                present(userAddressScreen, animated: true)
+                
+                if viewModel?.getProductsCount() == 0 {
+                    
+                    let alert = UIAlertController(title: nil, message: "Empty Shoppig cart", preferredStyle: .actionSheet)
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    present(alert, animated: true)
+                }
+                else {
+                    let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+                    let userAddressScreen = part2Storyboard.instantiateViewController(withIdentifier: "user_addresses") as! UserAddressesViewController
+                    present(userAddressScreen, animated: true)
+                }
             } else {
                 let alert = UIAlertController(title: "Error", message: "The product may be sold out or you have exceeded the allowed amount. Swipe to remove or decrement your amount.", preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel))

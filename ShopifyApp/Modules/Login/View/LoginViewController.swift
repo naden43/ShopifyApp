@@ -82,10 +82,11 @@ class LoginViewController: UIViewController {
             return
         }
         
-        viewModel.validateAndLogin(email: email, password: password) { [weak self] success, message in
+        viewModel.validateAndLogin(email: email, password: password) { [weak self] success, message,customer  in
             guard let self = self else { return }
+            guard let customer = customer else {return}
             if success {
-                self.checkEmailVerificationAndProceed()
+                self.checkEmailVerificationAndProceed(customer: customer)
             } else {
                 self.showError(message)
             }
@@ -97,12 +98,11 @@ class LoginViewController: UIViewController {
         dismiss(animated: true)
         
     }
-    private func checkEmailVerificationAndProceed() {
+    private func checkEmailVerificationAndProceed(customer:Customer) {
         guard let user = Auth.auth().currentUser else {
             showError("User not found.")
             return
         }
-        
         user.reload { [weak self] error in
             guard let self = self else { return }
             if let error = error {
@@ -111,8 +111,9 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            if user.isEmailVerified {
-                self.showSuccess("Login successful!")
+            if user.isEmailVerified{
+                //self.showSuccess("Login successful!")
+                self.viewModel.saveCustomerToUserDefaults(customer: customer)
                 self.viewModel.printSavedCustomerData()
                 self.navigateToHome()
             } else {
@@ -125,9 +126,11 @@ class LoginViewController: UIViewController {
     private func navigateToHome() {
         print("Navigating to home...")
         
-        let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-         let navigation = mainStoryBoard.instantiateViewController(withIdentifier: "naviagtion")
-        self.present(navigation, animated: true)
+        let part1Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let homeScreen = part1Storyboard.instantiateViewController(withIdentifier: "naviagtion")
+    
+        present(homeScreen, animated: true)
 
         
         

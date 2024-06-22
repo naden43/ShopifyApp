@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,26 +18,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="356" height="82"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdR-ib-Ppe">
-                        <rect key="frame" x="152.66666666666663" y="24" width="184.33333333333337" height="29"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdR-ib-Ppe">
+                        <rect key="frame" x="113" y="8" width="227" height="66"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="350.28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jO-IU-GCC">
-                        <rect key="frame" x="160" y="52" width="171" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="350.28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jO-IU-GCC">
+                        <rect key="frame" x="269.66666666666669" y="16" width="70.333333333333314" height="58"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-a0-zxg">
-                        <rect key="frame" x="0.0" y="0.0" width="127" height="82"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fyx-a0-zxg">
+                        <rect key="frame" x="8" y="8" width="89" height="66"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="1jO-IU-GCC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="0ty-EV-WpU"/>
+                    <constraint firstItem="AdR-ib-Ppe" firstAttribute="top" secondItem="fyx-a0-zxg" secondAttribute="top" id="2GK-ej-qSJ"/>
+                    <constraint firstItem="fyx-a0-zxg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="OlY-Gx-rml"/>
+                    <constraint firstAttribute="trailing" secondItem="1jO-IU-GCC" secondAttribute="trailing" constant="16" id="TWw-GC-MTf"/>
+                    <constraint firstItem="fyx-a0-zxg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="TyU-Gg-oS8"/>
+                    <constraint firstItem="AdR-ib-Ppe" firstAttribute="bottom" secondItem="fyx-a0-zxg" secondAttribute="bottom" id="cmu-O9-og1"/>
+                    <constraint firstItem="AdR-ib-Ppe" firstAttribute="leading" secondItem="fyx-a0-zxg" secondAttribute="trailing" constant="16" id="n3P-o1-Zgb"/>
+                    <constraint firstAttribute="trailing" secondItem="AdR-ib-Ppe" secondAttribute="trailing" constant="16" id="r0k-Sv-SnP"/>
+                    <constraint firstAttribute="bottom" secondItem="1jO-IU-GCC" secondAttribute="bottom" constant="8" id="svR-bp-QKy"/>
+                    <constraint firstItem="fyx-a0-zxg" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.25" id="t6X-u1-9Wy"/>
+                    <constraint firstAttribute="bottom" secondItem="fyx-a0-zxg" secondAttribute="bottom" constant="8" id="ujA-iQ-3UN"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" name="BackgroundColor"/>

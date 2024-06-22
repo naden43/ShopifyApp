@@ -193,6 +193,27 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         // let product = filteredProducts[indexPath.row]
        // let product = filterProductsByPrice()[indexPath.row]
         //filterProductsByPrice()
+        
+        productCell.performFavError = {
+            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                
+                let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                
+                let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+            
+                self.present(chooseScreen, animated: true)
+            
+            }))
+            self.present(alert, animated: true)
+        }
+        
+        productCell.presentAlertDeletion = {
+            alert in
+            self.present(alert, animated: true)
+        }
+    
         let product = filteredPriceProducts[indexPath.row]
         productCell.productTitle.text = product.vendor
         let price = Double(product.variants?[0].price ?? "") ?? 0.0
@@ -204,7 +225,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         productCell.productImage.kf.setImage(with: imageUrl)
         
         let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
-        let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(systemName: "heart")
+        let favImage = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         productCell.favButton.setImage(favImage, for: .normal)
         
         // Set the viewModel for the cell

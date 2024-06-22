@@ -123,6 +123,8 @@ class ProductDetailsViewModel {
             return false
         }
      
+        print(productId)
+
         return favouriteProductsViewModel?.isProductInFavorites(productId: productId) ?? false
 
     }
@@ -141,7 +143,8 @@ class ProductDetailsViewModel {
 
     func deleteProductFromFavDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
         print("in deleteee")
-        let favDraftOrder = UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId
+        let favDraftOrder = UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId!
+        
         guard var favProducts = favouriteProductsViewModel?.getFavProductsList() else {
             completion(false)
             return
@@ -157,7 +160,9 @@ class ProductDetailsViewModel {
                     self.favouriteProductsViewModel?.favProducts = response?.draft_order
                     print("trueeeeeeeeeeeeeeeeeeee")
                     completion(true)
-                } else {print("falseeeeeeeeeeeeeeeeeeee")
+                } else {
+                    print(error)
+                    print("falseeeeeeeeeeeeeeeeeeee")
                     completion(false)
                 }
             }
@@ -167,7 +172,7 @@ class ProductDetailsViewModel {
     }
     func loadFavorites(completion: @escaping () -> Void) {
           favouriteProductsViewModel?.loadData(completion: completion)
-      }
+    }
     
     func checkIfProductExists(productId: Int, completion: @escaping (Bool) -> Void) {
         getDraftOrder { draft, error in

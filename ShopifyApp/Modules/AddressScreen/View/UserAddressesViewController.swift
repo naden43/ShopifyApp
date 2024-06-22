@@ -18,6 +18,9 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
     
     var fromSettingsFlag = false
     
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+
+    
     var viewModel : UserAddressesViewModel?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,8 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
         
         viewModel?.bindAddresses = { [weak self] in
             
+            self?.activityIndicator.stopAnimating()
+            
             if self?.viewModel?.getAddresesCount() == 0 {
                 
                 self?.emptyAddressesImage.image = UIImage(named: "emptyAddresses")
@@ -50,11 +55,13 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
                 
         }
         
-        viewModel?.faildDeletion = {
+        viewModel?.faildDeletion = { [weak self] in
             
+            self?.activityIndicator.stopAnimating()
+
             let alert = UIAlertController(title: "Delete", message: "You Cannot Delete the defualt Address", preferredStyle: .actionSheet)
             
-            self.present(alert, animated: true, completion: nil)
+            self?.present(alert, animated: true, completion: nil)
                
             DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
                 DispatchQueue.main.async {
@@ -65,6 +72,8 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
         }
         
         viewModel?.bindError = { [weak self] in
+            self?.activityIndicator.stopAnimating()
+
             
             let alert = UIAlertController(title: nil ,  message: "Something went wrong return to page after seconds please ", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
@@ -73,11 +82,13 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
         }
 
         
-        viewModel?.setDefaultResult = { message in
+        viewModel?.setDefaultResult = { [weak self] message in
+            
+            self?.activityIndicator.stopAnimating()
             
             let alert = UIAlertController(title: "Set Default Address ", message: message, preferredStyle: .actionSheet)
             
-            self.present(alert, animated: true, completion: nil)
+            self?.present(alert, animated: true, completion: nil)
                
             DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
                 DispatchQueue.main.async {
@@ -86,6 +97,10 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
             }
             
         }
+        
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
     }
     
     
@@ -206,13 +221,21 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
             
         case .wifi , .cellular  :
             
-            let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
-            
-            let paymentOptionsScreen = part2Storyboard.instantiateViewController(withIdentifier: "payment_screen") as! PaymentOptionsViewController
-            
-            
-            present(paymentOptionsScreen, animated: true)
-            
+            if  viewModel?.getAddresesCount() == 0 {
+                
+                let alert = UIAlertController(title: nil, message: "Should have at least one default address ", preferredStyle: .actionSheet)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                present(alert, animated: true)
+            }
+            else {
+                let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
+                
+                let paymentOptionsScreen = part2Storyboard.instantiateViewController(withIdentifier: "payment_screen") as! PaymentOptionsViewController
+                
+                
+                present(paymentOptionsScreen, animated: true)
+            }
         case .unavailable :
             let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
             alert.addAction(UIAlertAction(title: "OK", style: .default))

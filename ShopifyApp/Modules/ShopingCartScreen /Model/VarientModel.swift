@@ -38,6 +38,35 @@ struct Variant: Codable {
     var requiresShipping: Bool?
     var adminGraphqlApiId: String?
     var imageId: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case productId = "product_id"
+        case title
+        case price
+        case sku
+        case position
+        case inventoryPolicy = "inventory_policy"
+        case compareAtPrice = "compare_at_price"
+        case fulfillmentService = "fulfillment_service"
+        case inventoryManagement = "inventory_management"
+        case option1
+        case option2
+        case option3
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case taxable
+        case barcode
+        case grams
+        case weight
+        case weightUnit = "weight_unit"
+        case inventoryItemId = "inventory_item_id"
+        case inventoryQuantity = "inventory_quantity"
+        case oldInventoryQuantity = "old_inventory_quantity"
+        case requiresShipping = "requires_shipping"
+        case adminGraphqlApiId = "admin_graphql_api_id"
+        case imageId = "image_id"
+    }
 }
 
 struct Option: Codable {
@@ -71,10 +100,14 @@ struct Image: Codable {
     }
 }
 
-
 struct PresentmentPrice: Codable {
     var price: Price?
-    var compare_at_price: String?
+    var compareAtPrice: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case price
+        case compareAtPrice = "compare_at_price"
+    }
 }
 
 struct Price: Codable {

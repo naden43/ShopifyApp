@@ -7,25 +7,25 @@
 
 class LoginViewModel {
     
-    func validateAndLogin(email: String, password: String, completion: @escaping (Bool, String) -> Void) {
+    func validateAndLogin(email: String, password: String, completion: @escaping (Bool, String , Customer?) -> Void) {
         
         guard !email.isEmpty, !password.isEmpty else {
-            completion(false, "Please enter both email and password.")
+            completion(false, "Please enter both email and password." , nil)
             return
         }
 
         getAllCustomers { customers, message in
             guard let customers = customers else {
-                completion(false, "Failed to retrieve customers: \(message ?? "Unknown error")")
+                completion(false, "Failed to retrieve customers: \(message ?? "Unknown error")" ,nil)
                 return
             }
 
             if let customer = customers.first(where: { $0.email == email && $0.tags == password }) {
-                self.saveCustomerToUserDefaults(customer: customer)
-                completion(true, "Login successful")
+                //self.saveCustomerToUserDefaults(customer: customer)
+                completion(true, "Login successful" , customer)
                 self.printSavedCustomerData()
             } else {
-                completion(false, "Invalid email or password.")
+                completion(false, "Invalid email or password." , nil)
             }
         }
     }
@@ -40,7 +40,7 @@ class LoginViewModel {
         }
     }
 
-    private func saveCustomerToUserDefaults(customer: Customer) {
+    func saveCustomerToUserDefaults(customer: Customer) {
         UserDefaultsManager.shared.saveCustomer(id: customer.id ?? 0, note: customer.note)
     }
 

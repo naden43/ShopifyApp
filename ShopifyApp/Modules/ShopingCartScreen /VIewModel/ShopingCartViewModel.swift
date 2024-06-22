@@ -38,8 +38,8 @@ class ShopingCartViewModel {
     func loadData(){
         
         
-        var draftOrderId = getShopingCartDraftOrderId()
-        network?.getData(endPoint: "admin/api/2024-04/draft_orders/978702565542.json", complitionHandler: { (result:Draft? , error) in
+        let draftOrderId = getShopingCartDraftOrderId()
+        network?.getData(endPoint: "admin/api/2024-04/draft_orders/\(draftOrderId).json", complitionHandler: { (result:Draft? , error) in
             print("enter")
             guard let result = result else {
                 return
@@ -54,7 +54,9 @@ class ShopingCartViewModel {
                     
                     self.produtsAmount[Int(result?.variant?.id ?? 0)] = result?.variant?.inventoryQuantity
                     
-                    print(self.produtsAmount)
+                    print("\(result) here error ")
+                    
+                    print("here \(self.produtsAmount)")
                     
                     self.bindData()
                 }
@@ -105,7 +107,7 @@ class ShopingCartViewModel {
         
         listOfProducts?.lineItems?.remove(at: index+1)
         var draftOrderId = getShopingCartDraftOrderId()
-        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/978702565542.json", responseType: Draft.self){ success, error, response in
+        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/\(draftOrderId).json", responseType: Draft.self){ success, error, response in
             
             if  success == true {
                 self.listOfProducts = response?.draft_order
@@ -169,7 +171,7 @@ class ShopingCartViewModel {
         let quantity = listOfProducts?.lineItems?[index+1].quantity ?? 0
         listOfProducts?.lineItems?[index+1].quantity = quantity + 1
         var draftOrderId = getShopingCartDraftOrderId()
-        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/978702565542.json", responseType: Draft.self){ success, error, response in
+        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/\(draftOrderId).json", responseType: Draft.self){ success, error, response in
             
             if success == true {
                 self.listOfProducts = response?.draft_order
@@ -188,7 +190,7 @@ class ShopingCartViewModel {
         let quantity = listOfProducts?.lineItems?[index+1].quantity ?? 0
         listOfProducts?.lineItems?[index+1].quantity = quantity - 1 //(listOfProducts?.lineItems?[index].quantity ?? 0) - 1
         var draftOrderId = getShopingCartDraftOrderId()
-        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/978702565542.json", responseType: Draft.self){ success, error, response in
+        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/\(draftOrderId).json", responseType: Draft.self){ success, error, response in
             
             if success == true {
                 self.listOfProducts = response?.draft_order
@@ -227,6 +229,7 @@ class ShopingCartViewModel {
                 completion(nil)
                 return
             }
+            
             completion(result)
         }
     }

@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     //let monitor = NWPathMonitor()
     //let queue = DispatchQueue(label: "network monitoring")
+    @IBOutlet weak var customerNameTxt: UILabel!
     
     @IBOutlet weak var moreOrders: UIButton!
     @IBOutlet weak var userModeView: UIView!
@@ -27,6 +28,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     let reachability = try! Reachability()
 
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,12 +37,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         wishList.delegate = self
         ordersList.dataSource = self
         wishList.dataSource = self
-       // ordersList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+        
         viewModel = ProfileViewModel()
-        noInternetMode.isHidden = true
-        userModeView.isHidden = false
-        guestModeView.isHidden = true
-
+        
+        viewModel?.bindCustomerName = { [weak self] name in
+            
+            self?.customerNameTxt.text = name
+        }
+        
+        wishList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "favProductCell")
+        
+       // ordersList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+        
         
         /*monitor.pathUpdateHandler = { [weak self] path in
         
@@ -67,13 +76,36 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self?.guestModeView.isHidden = true
                 }
             }
+        }*/
+        
+        
+        //wishList.rowHeight = UITableView.automaticDimension
+        //wishList.estimatedRowHeight = 150
+        
+        viewModel?.bindFavourites = {
+            self.wishList.reloadData()
         }
         
-        monitor.start(queue: queue)*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        print(UserDefaultsManager.shared.getCustomer())
+        if self.viewModel?.checkIfUserAvaliable() == true {
+            
+            viewModel?.fetchCustomer()
+            viewModel?.fetchFavourites()
+            self.noInternetMode.isHidden = true
+            self.userModeView.isHidden = false
+            self.guestModeView.isHidden = true
+        } else {
+            self.noInternetMode.isHidden = true
+            self.userModeView.isHidden = true
+            self.guestModeView.isHidden = false
+        }
+
+        
         
         let view = self.navigationController?.visibleViewController
             
@@ -83,17 +115,70 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             for item in view?.navigationItem.rightBarButtonItems ?? [] {
                 item.tintColor = UIColor(.black)
             }
+        view?.navigationItem.leftBarButtonItems = []
            view?.title = "profile"
     }
     
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView == ordersList ? 0 : 0 // Adjust as per your actual logic
-        //return viewModel?.getOrders().count ?? 0
+        
+        if tableView == wishList {
+            
+            return viewModel?.getFavCount() ?? 0
+            
+        }
+        else {
+            return  0
+        }
     }
     
+    /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == wishList {
+            return 150
+        }
+        else {
+            return 150
+        }
+    }*/
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        
+        if tableView == wishList {
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "favProductCell", for: indexPath) as? FavouriteProductsTableViewCell else {
+                        return UITableViewCell()
+                    }
+                    
+                    let product = viewModel?.getFavProductByIndex(index: indexPath.row)
+                    
+                    cell.productTitle.text = product?.title
+                    // cell.productBrand.text = product?.vendor // Uncomment if needed
+                    cell.productPrice.text = product?.price
+                    
+                    if let imageUrlString = viewModel?.getImageByIndex(index: indexPath.row),
+                       let imageUrl = URL(string: imageUrlString) {
+                        print("here")
+                        cell.favProductImageView.kf.setImage(with: imageUrl)
+                    } else {
+                        cell.favProductImageView.image = nil
+                    }
+                    
+                    // Add border to the cell
+                    cell.layer.borderWidth = 1.0
+                    cell.layer.borderColor = UIColor.lightGray.cgColor
+            return cell
+            
+        }
+        else {
+            
+            return UITableViewCell()
+        }
+        
+        
+        
         // Configure and return cells
 //        let orderCell = ordersList.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
 //        if let orders = viewModel?.getOrders() {
@@ -115,24 +200,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //                    }
 //                }
 //        return orderCell
-          return UITableViewCell()
+          
     }
     
     // MARK: - Actions
     
     @IBAction func moreWishProducts(_ sender: Any) {
-        print("perform")
-        // Handle action
+        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        if let favScreen = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
+             navigationController?.pushViewController(favScreen, animated: true)
+         }
     }
     
     @IBAction func moreOrders(_ sender: Any) {
         print("perform")
         // Handle action
 
-//        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
-//        if let ordersVC = storyboard.instantiateViewController(withIdentifier: "ordersScreen") as? OrdersViewController {
-//            navigationController?.pushViewController(ordersVC, animated: true)
-//        }
+       let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+       if let ordersVC = storyboard.instantiateViewController(withIdentifier: "ordersScreen") as? OrdersViewController {
+            navigationController?.pushViewController(ordersVC, animated: true)
+        }
         
         print("pressss orderrrrr moreeeee")
     }
@@ -202,11 +289,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func navigateToLogin(_ sender: Any) {
+        let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        
+        let loginScreen = part3Storyboard.instantiateViewController(withIdentifier: "loginScreen")
+    
+        present(loginScreen, animated: true)
+        
         
     }
     
     @IBAction func navigateToRegister(_ sender: Any) {
         
+        let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        
+        let signUpScreen = part3Storyboard.instantiateViewController(withIdentifier: "signUp_screen")
+    
+        present(signUpScreen, animated: true)
     }
     
     deinit {

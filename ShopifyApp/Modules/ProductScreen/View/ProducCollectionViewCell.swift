@@ -19,7 +19,11 @@ class ProducCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var currencyTxt: UILabel!
 
+    var performFavError : (()->Void) = {}
     var viewModel: ProductDetailsViewModel?
+    var reloadCollection : (()->Void) = {}
+    
+    var presentAlertDeletion : ((UIAlertController)->Void) = {_ in }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,29 +35,48 @@ class ProducCollectionViewCell: UICollectionViewCell {
             return
         }
 
-        let isInFavorites = viewModel.isProductInFavorites()
-        if isInFavorites {
-            viewModel.deleteProductFromFavDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { [weak self] success in
-                DispatchQueue.main.async {
-                    if success {
-                        self?.updateFavoriteButtonState(isFavorite: false)
-                        self?.reloadFavorites()
-                    } else {
-                        // Handle error if needed
+        if UserDefaultsManager.shared.getCustomer().id != nil {
+            
+            let isInFavorites = viewModel.isProductInFavorites()
+            if isInFavorites {
+                
+                let alert = UIAlertController(title: "Delete", message: "Are you sure you want to remove product from favourites ", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+                
+                alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action  in
+                    
+                    viewModel.deleteProductFromFavDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { [weak self] success in
+                        DispatchQueue.main.async {
+                            if success {
+                                self?.updateFavoriteButtonState(isFavorite: false)
+                                self?.reloadFavorites()
+                            } else {
+                                // Handle error if needed
+                            }
+                        }
+                    }
+                     
+                }))
+                
+                presentAlertDeletion(alert)
+                
+            } else {
+                viewModel.addSelectedProductToDraftOrder { [weak self] success, message in
+                    DispatchQueue.main.async {
+                        if success {
+                            self?.updateFavoriteButtonState(isFavorite: true)
+                            self?.reloadFavorites()
+                        } else {
+                            // Handle error if needed
+                        }
                     }
                 }
             }
-        } else {
-            viewModel.addSelectedProductToDraftOrder { [weak self] success, message in
-                DispatchQueue.main.async {
-                    if success {
-                        self?.updateFavoriteButtonState(isFavorite: true)
-                        self?.reloadFavorites()
-                    } else {
-                        // Handle error if needed
-                    }
-                }
-            }
+        }
+        else
+        {
+            performFavError()
         }
     }
 
@@ -78,7 +101,7 @@ class ProducCollectionViewCell: UICollectionViewCell {
     }
 
     private func updateFavoriteButtonState(isFavorite: Bool) {
-        let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(systemName: "heart")
+        let favImage = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         favButton.setImage(favImage, for: .normal)
     }
 }

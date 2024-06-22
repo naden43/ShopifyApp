@@ -60,6 +60,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
         if viewModel?.checkForCustomerOrGuest() == false {
+            print("here")
             navigateToChooseModeScreen()
         }
         
@@ -78,7 +79,6 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
         
         let chooseModeScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
-        
         
         present(chooseModeScreen, animated: false)
     }
@@ -99,6 +99,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         view.navigationItem.leftBarButtonItem = searchButton
         view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
+        view.title = ""
     }
     
     func startTimer () {
@@ -135,6 +136,15 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
                 case .unavailable:
                     let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    /*alert.addAction(UIAlertAction(title: "Login\\Register", style: .cancel, handler: { action in
+                        
+                        let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                        
+                        let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                    
+                        self.present(chooseScreen, animated: true)
+                    
+                    }))*/
                 
                     present(alert, animated: true)
                 
@@ -144,12 +154,21 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
                 
             }
             
+            
         }
         else {
             
-            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel ))
+            alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                
+                let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                
+                let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
             
+                self.present(chooseScreen, animated: true)
+            
+            }))
             present(alert, animated: true)
         }
         
@@ -157,12 +176,50 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     @objc func heartBtn(){
-        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
-        if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
-            navigationController?.pushViewController(favProductsVC, animated: true)
-        }
         
-        print("perform")
+        if viewModel?.checkIfUserAvaliable() == true {
+            
+            switch reachability.connection {
+                
+                case .unavailable:
+                
+                    let alert = UIAlertController(title: "network", message: "You are not   connected to the network check you internet  ", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    alert.addAction(UIAlertAction(title: "Login\\Register", style: .cancel, handler: { action in
+                    
+                    let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                    
+                    let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                    
+                    self.present(chooseScreen, animated: true)
+                    
+                }))
+                
+                present(alert, animated: true)
+                
+            case .wifi , .cellular :
+                let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
+                    navigationController?.pushViewController(favProductsVC, animated: true)
+                }
+                
+                print("perform")
+            }
+        }
+        else {
+            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                
+                let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                
+                let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+            
+                self.present(chooseScreen, animated: true)
+            
+            }))
+            present(alert, animated: true)
+        }
     }
     
     @objc func searchButton() {

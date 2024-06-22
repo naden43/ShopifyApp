@@ -305,6 +305,7 @@ extension ProductDetailsViewController: UICollectionViewDataSource, UICollection
 
 import UIKit
 import Cosmos
+import Reachability
 
 class ProductDetailsViewController: UIViewController {
     
@@ -393,7 +394,7 @@ class ProductDetailsViewController: UIViewController {
        // print("viewModel?.isProductInFavorites()\(viewModel?.isProductInFavorites())")
         if viewModel?.isProductInFavorites() == true {
             print("true")
-            btnAddToFav.setImage(UIImage(named: "filledHeart"), for: .normal)
+            btnAddToFav.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             print("false")
             btnAddToFav.setImage(UIImage(systemName: "heart"), for: .normal)
@@ -428,47 +429,86 @@ class ProductDetailsViewController: UIViewController {
     }
     
     @IBAction func btnAddToCart(_ sender: Any) {
-        viewModel?.destination = true
-        guard let selectedSize = getSelectedSize(),
-              let selectedColor = getSelectedColor(),
-              let productId = viewModel?.selectedProduct?.id else {
-            showAlert(message: "Please select both size and color before adding to cart.")
-            return
-        }
-        viewModel?.checkIfProductExists(productId: Int(productId)) { exists in
-            print("exist \(exists)")
-            if exists {
-
-                self.viewModel?.increaseQuantityOfExistingProduct(productId: Int(productId)) { success, message in
-                    DispatchQueue.main.async {
-                        if success {
-                            let alert = UIAlertController(title: "Success", message: "Product quantity increased successfully.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true)
-                        } else {
-                            let alert = UIAlertController(title: "Error", message: message ?? "Failed to update product quantity.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true)
-                        }
-                    }
+        
+        
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            
+            
+            if UserDefaultsManager.shared.getCustomer().id != nil {
+                
+                viewModel?.destination = true
+                guard let selectedSize = getSelectedSize(),
+                      let selectedColor = getSelectedColor(),
+                      let productId = viewModel?.selectedProduct?.id else {
+                    showAlert(message: "Please select both size and color before adding to cart.")
+                    return
                 }
-            } else {
-                self.viewModel?.addSelectedProductToDraftOrder { success, message in
-                    DispatchQueue.main.async {
-                        if success {
-                            let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true)
-                        } else {
-                            let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default))
-                            self.present(alert, animated: true)
+                viewModel?.checkIfProductExists(productId: Int(productId)) { exists in
+                    print("exist \(exists)")
+                    if exists {
+                        
+                        self.viewModel?.increaseQuantityOfExistingProduct(productId: Int(productId)) { success, message in
+                            DispatchQueue.main.async {
+                                if success {
+                                    let alert = UIAlertController(title: "Success", message: "Product quantity increased successfully.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                    self.present(alert, animated: true)
+                                } else {
+                                    let alert = UIAlertController(title: "Error", message: message ?? "Failed to update product quantity.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                    self.present(alert, animated: true)
+                                }
+                            }
+                        }
+                    } else {
+                        self.viewModel?.addSelectedProductToDraftOrder { success, message in
+                            DispatchQueue.main.async {
+                                if success {
+                                    let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                    self.present(alert, animated: true)
+                                } else {
+                                    let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to cart.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                    self.present(alert, animated: true)
+                                }
+                            }
                         }
                     }
                 }
             }
-            self.viewModel?.destination = false
+            else {
+                
+                let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                    
+                    let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                    
+                    let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                    
+                    self.present(chooseScreen, animated: true)
+                    
+                }))
+                present(alert, animated: true)
+                
+                
+            }
+            
+        case .unavailable :
+            
+            let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            
+            present(alert, animated: true)
+            
+            
         }
+        
     }
 
     @IBAction func btnAddToFav(_ sender: Any) {
@@ -476,46 +516,88 @@ class ProductDetailsViewController: UIViewController {
             return
         }
         
-        let isInFavorites = viewModel.isProductInFavorites()
-        if isInFavorites {
-            viewModel.deleteProductFromFavDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { success in
-                DispatchQueue.main.async {
-                    if success {
-                        if let emptyHeartImage = UIImage(systemName: "heart") {
-                            if let button = sender as? UIButton {
-                                button.setImage(emptyHeartImage, for: .normal)
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            
+            
+                if UserDefaultsManager.shared.getCustomer().id != nil {
+                    self.viewModel?.destination = false
+                    let isInFavorites = viewModel.isProductInFavorites()
+                    if isInFavorites {
+                    
+                        viewModel.deleteProductFromFavDraftOrder(productId: viewModel.selectedProduct?.id ?? 0) { success in
+                            DispatchQueue.main.async {
+                                if success {
+                                    if let emptyHeartImage = UIImage(systemName: "heart") {
+                                        if let button = sender as? UIButton {
+                                        button.setImage(emptyHeartImage, for: .normal)
+                                        }
+                                    }
+                                    /*let alert = UIAlertController(title: "Success", message: "Product removed from Favorites.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                    self.present(alert, animated: true)*/
+                                } else {
+                                    let alert = UIAlertController(title: "Error", message: "Failed to remove product from Favorites.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style:.default))
+                                        self.present(alert, animated: true)
+                                }
+                        }
+                    }
+                } else {
+                    viewModel.addSelectedProductToDraftOrder { success, message in
+                        DispatchQueue.main.async {
+                            if success {
+                                if let filledHeartImage = UIImage(systemName: "heart.fill") {
+                                    if let button = sender as? UIButton {
+                                        button.setImage(filledHeartImage, for: .normal)
+                                    }
+                                }
+                                
+                                self.viewModel?.loadFavorites(completion: {
+                                    
+                                    print("here")
+                                })
+                                
+                                /*let alert = UIAlertController(title: "Success", message: "Product added to Favorites.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                self.present(alert, animated: true)*/
+                            } else {
+                                let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to Favorites.", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                                self.present(alert, animated: true)
                             }
                         }
-                        let alert = UIAlertController(title: "Success", message: "Product removed from Favorites.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true)
-                    } else {
-                        let alert = UIAlertController(title: "Error", message: "Failed to remove product from Favorites.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true)
                     }
                 }
             }
-        } else {
-            viewModel.addSelectedProductToDraftOrder { success, message in
-                DispatchQueue.main.async {
-                    if success {
-                        if let filledHeartImage = UIImage(named: "filledHeart") {
-                            if let button = sender as? UIButton {
-                                button.setImage(filledHeartImage, for: .normal)
-                            }
-                        }
-                        let alert = UIAlertController(title: "Success", message: "Product added to Favorites.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true)
-                    } else {
-                        let alert = UIAlertController(title: "Error", message: message ?? "Failed to add product to Favorites.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alert, animated: true)
-                    }
-                }
+            else {
+                let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                    
+                    let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                    
+                    let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                
+                    self.present(chooseScreen, animated: true)
+                
+                }))
+                present(alert, animated: true)
             }
+            
+            
+            case .unavailable :
+            
+                let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        
+                present(alert, animated: true)
+            
         }
+        
     }
     
     private func getSelectedSize() -> String? {

@@ -10,8 +10,16 @@ import Foundation
 class FavouriteProductsViewModel {
     var favProducts: DraftOrder?
     
+    func getFavouriteDraftOrderId() -> String {
+        
+        return UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId ?? ""
+    }
+    
+    
     func loadData(completion: @escaping () -> Void) {
-        NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/draft_orders/978702532774.json") { (result: Draft?, error) in
+        
+        let favDraftOrder = getFavouriteDraftOrderId()
+        NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/draft_orders/\(favDraftOrder).json") { (result: Draft?, error) in
             guard let result = result else {
                 return
             }
@@ -23,8 +31,8 @@ class FavouriteProductsViewModel {
 
     func deleteFavProductFromFavDraftOrder(index: Int, completion: @escaping (Bool) -> Void) {
         favProducts?.lineItems?.remove(at: index + 1)
-        
-        NetworkHandler.instance.putData(Draft(draft_order: favProducts), to: "admin/api/2024-04/draft_orders/978702532774.json", responseType: Draft.self) { success, error, response in
+        let favDraftOrder = getFavouriteDraftOrderId()
+        NetworkHandler.instance.putData(Draft(draft_order: favProducts), to: "admin/api/2024-04/draft_orders/\(favDraftOrder).json", responseType: Draft.self) { success, error, response in
             if success {
                 self.favProducts = response?.draft_order
                 completion(true)

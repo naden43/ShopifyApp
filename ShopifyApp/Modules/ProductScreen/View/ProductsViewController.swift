@@ -59,23 +59,47 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let productCell = productCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProducCollectionViewCell
+        
+        
         productCell.productImage.layer.cornerRadius = 20
 
+        
         guard let products = viewModel?.getProductsOfBrands() else {
             return productCell
         }
 
+        productCell.performFavError = {
+            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+            alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                
+                let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                
+                let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+            
+                self.present(chooseScreen, animated: true)
+            
+            }))
+            self.present(alert, animated: true)
+        }
+        
         let product = products[indexPath.row]
         productCell.productTitle.text = product.vendor
         productCell.productPrice.text = " \(product.variants?.first?.price ?? "0")"
         productCell.productSubTitle.text = product.handle
 
+        
+        productCell.presentAlertDeletion = {
+            alert in
+            self.present(alert, animated: true)
+        }
+        
         if let imageUrl = product.image?.src {
             productCell.productImage.kf.setImage(with: URL(string: imageUrl))
         }
 
         let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
-        let favImage = isFavorite ? UIImage(named: "filledHeart") : UIImage(systemName: "heart")
+        let favImage = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         productCell.favButton.setImage(favImage, for: .normal)
         
         // Set the viewModel for the cell

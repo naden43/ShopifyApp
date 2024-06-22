@@ -52,12 +52,22 @@ class SignUpViewController: UIViewController {
         signUpViewModel.createUser(firstName: firstName!, secondName: secondName!, email: email!, mobile: mobile!, password: password!) { success, message in
             DispatchQueue.main.async {
                 if success {
-                    self.showSuccess(message ?? "Sign up successful! Please check your email for verification.")
+                    //self.showSuccess(message ?? "Sign up successful! Please check your email for verification.")
+                    self.naviagteToLoginScreen()
+                    
                 } else {
                     self.showError(message ?? "Sign up failed")
                 }
             }
         }
+    }
+    
+    func naviagteToLoginScreen() {
+        let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        
+        let loginScreen = part3Storyboard.instantiateViewController(withIdentifier: "loginScreen")
+    
+        present(loginScreen, animated: true)
     }
     
     func showError(_ message: String) {
