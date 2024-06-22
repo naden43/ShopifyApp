@@ -148,7 +148,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if tableView == wishList {
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "favProductCell", for: indexPath) as? FavouriteProductsTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "favProductCell", for: indexPath) as? ProductTableViewCell else {
                         return UITableViewCell()
                     }
                     
