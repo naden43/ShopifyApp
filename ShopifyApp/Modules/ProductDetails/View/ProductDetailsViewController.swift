@@ -390,8 +390,7 @@ class ProductDetailsViewController: UIViewController {
         sizeCollectionView.reloadData()
         colorsCollectionView.reloadData()
         reviewsCollectionView.reloadData()
-        
-       // print("viewModel?.isProductInFavorites()\(viewModel?.isProductInFavorites())")
+  
         if viewModel?.isProductInFavorites() == true {
             print("true")
             btnAddToFav.setImage(UIImage(systemName: "heart.fill"), for: .normal)
@@ -418,12 +417,13 @@ class ProductDetailsViewController: UIViewController {
     private func setupDummyReviews() {
         let dummyImage = UIImage(named: "reviewer")
         reviews = [
-            Review(personImage: dummyImage!, comment: "Great product!", rate: 4.5),
-            Review(personImage: dummyImage!, comment: "Good value for money.", rate: 4.0),
-            Review(personImage: dummyImage!, comment: "Satisfied with the purchase.", rate: 3.8),
+            Review(personImage: dummyImage!, comment: "Great product!", rate: 4.5, reviewerName: "Salma Maher"),
+            Review(personImage: dummyImage!, comment: "Good value for money.", rate: 4.0, reviewerName: "Nadeen Mohammed"),
+            Review(personImage: dummyImage!, comment: "Satisfied with the purchase.", rate: 3.8, reviewerName: "Aya Mustafa")
+            /*,
             Review(personImage: dummyImage!, comment: "Excellent quality.", rate: 5.0),
             Review(personImage: dummyImage!, comment: "Not bad.", rate: 3.0),
-            Review(personImage: dummyImage!, comment: "Could be better.", rate: 2.5)
+            Review(personImage: dummyImage!, comment: "Could be better.", rate: 2.5)*/
         ]
         reviewsCollectionView.reloadData()
     }
@@ -495,7 +495,6 @@ class ProductDetailsViewController: UIViewController {
                     
                 }))
                 present(alert, animated: true)
-                
                 
             }
             
@@ -633,7 +632,7 @@ class ProductDetailsViewController: UIViewController {
          } else if collectionView == colorsCollectionView {
              return viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?.count ?? 0
          } else if collectionView == reviewsCollectionView {
-             return showMoreReviews ? reviews.count : min(reviews.count, 2)
+             return showMoreReviews ? reviews.count : reviews.count
          }
          return 0
      }
