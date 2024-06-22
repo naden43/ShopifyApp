@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -806,6 +806,21 @@
             </objects>
             <point key="canvasLocation" x="1775" y="831"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="PIX-wQ-oHF">
+            <objects>
+                <viewController id="gAN-mH-scl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nA2-qI-veE">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="wtN-1r-ggJ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O6C-yu-gGc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1387" y="1651"/>
+        </scene>
         <!--Fav Products View Controller-->
         <scene sceneID="vuO-59-PXH">
             <objects>
@@ -882,13 +897,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart" catalog="system" width="32" height="32"/>
         <image name="left-arrow-2" width="24" height="24"/>
         <image name="logo" width="400" height="400"/>
         <image name="product 1" width="564" height="698"/>
         <image name="reviewer.jpg" width="129.60000610351562" height="86.400001525878906"/>
         <image name="shoes.jpg" width="635" height="560"/>
-        <image name="star" catalog="system" width="128" height="116"/>
+        <image name="star" catalog="system" width="32" height="32"/>
         <namedColor name="BackgroundColor">
             <color red="0.98199999332427979" green="0.98199999332427979" blue="0.98199999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
