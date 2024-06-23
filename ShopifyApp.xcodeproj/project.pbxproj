@@ -34,12 +34,12 @@
 		38280B562C1D35B200260C20 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B552C1D35B200260C20 /* SearchViewModel.swift */; };
 		3846821A2C1B056A001533E7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384682192C1B056A001533E7 /* Review.swift */; };
 		38A805F82C0DE7EA00DCF52D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */; };
-		38B920702C28466700D58079 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 38B9206F2C28466700D58079 /* Reachability */; };
-		38B920732C28467600D58079 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920722C28467600D58079 /* Cosmos */; };
-		38B920762C28468600D58079 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920752C28468600D58079 /* Alamofire */; };
-		38B9207E2C2846D500D58079 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 38B9207D2C2846D500D58079 /* Kingfisher */; };
-		38B920822C28489100D58079 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920812C28489100D58079 /* FirebaseAnalyticsSwift */; };
-		38B920842C28489100D58079 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920832C28489100D58079 /* FirebaseAuth */; };
+		38B920A82C284F2800D58079 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920A72C284F2800D58079 /* FirebaseAnalyticsSwift */; };
+		38B920AA2C284F2800D58079 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920A92C284F2800D58079 /* FirebaseAuth */; };
+		38B920AD2C284F3E00D58079 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920AC2C284F3E00D58079 /* Kingfisher */; };
+		38B920B02C284F5300D58079 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920AF2C284F5300D58079 /* Alamofire */; };
+		38B920B32C284F6D00D58079 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920B22C284F6D00D58079 /* Cosmos */; };
+		38B920B62C284F8900D58079 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920B52C284F8900D58079 /* Reachability */; };
 		38C53D8B2C1D7DFB00F2773A /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C53D8A2C1D7DFB00F2773A /* SearchTableViewCell.xib */; };
 		38C53D8C2C1D7DFB00F2773A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C53D892C1D7DFB00F2773A /* SearchTableViewCell.swift */; };
 		38D895A32C2799C300DD59D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
@@ -243,12 +243,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38B9207E2C2846D500D58079 /* Kingfisher in Frameworks */,
-				38B920842C28489100D58079 /* FirebaseAuth in Frameworks */,
-				38B920762C28468600D58079 /* Alamofire in Frameworks */,
-				38B920732C28467600D58079 /* Cosmos in Frameworks */,
-				38B920702C28466700D58079 /* Reachability in Frameworks */,
-				38B920822C28489100D58079 /* FirebaseAnalyticsSwift in Frameworks */,
+				38B920B32C284F6D00D58079 /* Cosmos in Frameworks */,
+				38B920B62C284F8900D58079 /* Reachability in Frameworks */,
+				38B920AD2C284F3E00D58079 /* Kingfisher in Frameworks */,
+				38B920B02C284F5300D58079 /* Alamofire in Frameworks */,
+				38B920A82C284F2800D58079 /* FirebaseAnalyticsSwift in Frameworks */,
+				38B920AA2C284F2800D58079 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -918,12 +918,12 @@
 			);
 			name = ShopifyApp;
 			packageProductDependencies = (
-				38B9206F2C28466700D58079 /* Reachability */,
-				38B920722C28467600D58079 /* Cosmos */,
-				38B920752C28468600D58079 /* Alamofire */,
-				38B9207D2C2846D500D58079 /* Kingfisher */,
-				38B920812C28489100D58079 /* FirebaseAnalyticsSwift */,
-				38B920832C28489100D58079 /* FirebaseAuth */,
+				38B920A72C284F2800D58079 /* FirebaseAnalyticsSwift */,
+				38B920A92C284F2800D58079 /* FirebaseAuth */,
+				38B920AC2C284F3E00D58079 /* Kingfisher */,
+				38B920AF2C284F5300D58079 /* Alamofire */,
+				38B920B22C284F6D00D58079 /* Cosmos */,
+				38B920B52C284F8900D58079 /* Reachability */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -976,11 +976,11 @@
 			);
 			mainGroup = D30AB6852C032CA300C61F99;
 			packageReferences = (
-				38B9206E2C28466700D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
-				38B920712C28467600D58079 /* XCRemoteSwiftPackageReference "Cosmos" */,
-				38B920742C28468600D58079 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				38B9207C2C2846D500D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				38B920A62C284F2800D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				38B920AB2C284F3E00D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				38B920AE2C284F5300D58079 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				38B920B12C284F6D00D58079 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				38B920B42C284F8900D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
@@ -1417,39 +1417,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		38B9206E2C28466700D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		38B920712C28467600D58079 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 25.0.1;
-			};
-		};
-		38B920742C28468600D58079 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
-		38B9207C2C2846D500D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.12.0;
-			};
-		};
-		38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		38B920A62C284F2800D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -1457,38 +1425,70 @@
 				minimumVersion = 10.28.0;
 			};
 		};
+		38B920AB2C284F3E00D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+		38B920AE2C284F5300D58079 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		38B920B12C284F6D00D58079 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 25.0.1;
+			};
+		};
+		38B920B42C284F8900D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		38B9206F2C28466700D58079 /* Reachability */ = {
+		38B920A72C284F2800D58079 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38B9206E2C28466700D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
-			productName = Reachability;
-		};
-		38B920722C28467600D58079 /* Cosmos */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38B920712C28467600D58079 /* XCRemoteSwiftPackageReference "Cosmos" */;
-			productName = Cosmos;
-		};
-		38B920752C28468600D58079 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38B920742C28468600D58079 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		38B9207D2C2846D500D58079 /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38B9207C2C2846D500D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-		38B920812C28489100D58079 /* FirebaseAnalyticsSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 38B920A62C284F2800D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
 		};
-		38B920832C28489100D58079 /* FirebaseAuth */ = {
+		38B920A92C284F2800D58079 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 38B920A62C284F2800D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		38B920AC2C284F3E00D58079 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B920AB2C284F3E00D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		38B920AF2C284F5300D58079 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B920AE2C284F5300D58079 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		38B920B22C284F6D00D58079 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B920B12C284F6D00D58079 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
+		38B920B52C284F8900D58079 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B920B42C284F8900D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			productName = Reachability;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
