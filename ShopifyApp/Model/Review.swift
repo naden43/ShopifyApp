@@ -12,5 +12,6 @@ struct Review {
     let personImage: UIImage
     let comment: String
     let rate: Double
+    let reviewerName : String?
 }
 

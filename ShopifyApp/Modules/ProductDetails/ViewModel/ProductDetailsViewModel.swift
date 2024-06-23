@@ -78,7 +78,6 @@ class ProductDetailsViewModel {
             
             if let variantId = selectedProduct.variants?.first?.id,
                let imgSrc = selectedProduct.images?.first?.src {
-                print("imgsrccccccccccccccccccc\(imgSrc)")
                 let properties: [[String: String]] = [["name": "image_url", "value": imgSrc]]
                 let newLineItem = LineItem(variantId: variantId, quantity: 1, properties: properties)
                 
@@ -117,7 +116,6 @@ class ProductDetailsViewModel {
     }
     
     func isProductInFavorites() -> Bool {
-        print("herrerer")
    
         guard let productId = selectedProduct?.id else {
             return false
@@ -142,7 +140,6 @@ class ProductDetailsViewModel {
 
 
     func deleteProductFromFavDraftOrder(productId: Int, completion: @escaping (Bool) -> Void) {
-        print("in deleteee")
         let favDraftOrder = UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId!
         
         guard var favProducts = favouriteProductsViewModel?.getFavProductsList() else {
@@ -158,11 +155,9 @@ class ProductDetailsViewModel {
                 if success {
                     
                     self.favouriteProductsViewModel?.favProducts = response?.draft_order
-                    print("trueeeeeeeeeeeeeeeeeeee")
                     completion(true)
                 } else {
-                    print(error)
-                    print("falseeeeeeeeeeeeeeeeeeee")
+                 
                     completion(false)
                 }
             }
@@ -182,7 +177,7 @@ class ProductDetailsViewModel {
             }
             
             let exists = draft.draft_order?.lineItems?.contains { $0.productId ?? 0 == productId } ?? false
-            print("draft.draft_order?.lineItems?\(draft.draft_order?.lineItems)")
+         
             completion(exists)
         }
     }

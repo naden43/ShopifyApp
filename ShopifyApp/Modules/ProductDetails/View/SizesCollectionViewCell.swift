@@ -32,8 +32,8 @@ class SizesCollectionViewCell: UICollectionViewCell {
     }
     private func updateSelectionUI() {
         if isSelected {
-            productSize.layer.borderWidth = 2.0
-            productSize.layer.borderColor = UIColor.black.cgColor
+            productSize.layer.borderWidth = 5.0
+            productSize.layer.borderColor = UIColor.orange.cgColor
             productSize.font = UIFont.boldSystemFont(ofSize: 16.0)
         } else {
             productSize.layer.borderWidth = 0.2

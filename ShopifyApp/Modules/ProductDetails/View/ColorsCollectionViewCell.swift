@@ -62,8 +62,8 @@ class ColorsCollectionViewCell: UICollectionViewCell {
     
     private func updateSelectionUI() {
         if isSelected {
-            colorLabel.layer.borderWidth = 2.0
-            colorLabel.layer.borderColor = UIColor.black.cgColor
+            colorLabel.layer.borderWidth = 5.0
+            colorLabel.layer.borderColor = UIColor.orange.cgColor
             colorLabel.font = UIFont.boldSystemFont(ofSize: 16)
         } else {
             colorLabel.layer.borderWidth = 0.7

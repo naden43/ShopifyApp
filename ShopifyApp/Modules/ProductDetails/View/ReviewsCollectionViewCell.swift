@@ -14,6 +14,7 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var reviewerRate: UIView!
     
+    @IBOutlet weak var reviewerName: UILabel!
     var cosmosView: CosmosView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,6 +45,7 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
         personImageView.image = review.personImage
         commentLabel.text = review.comment
         cosmosView.rating = review.rate
+        reviewerName.text = review.reviewerName
     }
     
     override func layoutSubviews() {

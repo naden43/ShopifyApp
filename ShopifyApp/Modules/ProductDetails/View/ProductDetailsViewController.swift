@@ -329,8 +329,7 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // print("Userid \(UserDefaultsManager.shared.getCustomer())")
-       // print(favViewModel?.favProducts?.lineItems)
+       
         viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
@@ -380,6 +379,7 @@ class ProductDetailsViewController: UIViewController {
     
     private func updateUI() {
         guard let product = viewModel?.selectedProduct else { return }
+        print("dd\(viewModel?.selectedProduct?.id ?? 0)")
         productTitle.text = product.title
         productBrand.text = "Brand: \(product.vendor ?? "Unknown")"
         let price = Double(product.variants?.first?.price ?? "") ?? 0.0
@@ -390,13 +390,14 @@ class ProductDetailsViewController: UIViewController {
         sizeCollectionView.reloadData()
         colorsCollectionView.reloadData()
         reviewsCollectionView.reloadData()
-        
-       // print("viewModel?.isProductInFavorites()\(viewModel?.isProductInFavorites())")
+       
+
+  
         if viewModel?.isProductInFavorites() == true {
-            print("true")
+            //print("true")
             btnAddToFav.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            print("false")
+           // print("false")
             btnAddToFav.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
@@ -418,12 +419,13 @@ class ProductDetailsViewController: UIViewController {
     private func setupDummyReviews() {
         let dummyImage = UIImage(named: "reviewer")
         reviews = [
-            Review(personImage: dummyImage!, comment: "Great product!", rate: 4.5),
-            Review(personImage: dummyImage!, comment: "Good value for money.", rate: 4.0),
-            Review(personImage: dummyImage!, comment: "Satisfied with the purchase.", rate: 3.8),
+            Review(personImage: dummyImage!, comment: "Great product!", rate: 4.5, reviewerName: "Salma Maher"),
+            Review(personImage: dummyImage!, comment: "Good value for money.", rate: 4.0, reviewerName: "Nadeen Mohammed"),
+            Review(personImage: dummyImage!, comment: "Satisfied with the purchase.", rate: 3.8, reviewerName: "Aya Mustafa")
+            /*,
             Review(personImage: dummyImage!, comment: "Excellent quality.", rate: 5.0),
             Review(personImage: dummyImage!, comment: "Not bad.", rate: 3.0),
-            Review(personImage: dummyImage!, comment: "Could be better.", rate: 2.5)
+            Review(personImage: dummyImage!, comment: "Could be better.", rate: 2.5)*/
         ]
         reviewsCollectionView.reloadData()
     }
@@ -448,7 +450,6 @@ class ProductDetailsViewController: UIViewController {
                     return
                 }
                 viewModel?.checkIfProductExists(productId: Int(productId)) { exists in
-                    print("exist \(exists)")
                     if exists {
                         
                         self.viewModel?.increaseQuantityOfExistingProduct(productId: Int(productId)) { success, message in
@@ -495,7 +496,6 @@ class ProductDetailsViewController: UIViewController {
                     
                 }))
                 present(alert, animated: true)
-                
                 
             }
             
@@ -633,7 +633,7 @@ class ProductDetailsViewController: UIViewController {
          } else if collectionView == colorsCollectionView {
              return viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?.count ?? 0
          } else if collectionView == reviewsCollectionView {
-             return showMoreReviews ? reviews.count : min(reviews.count, 2)
+             return showMoreReviews ? reviews.count : reviews.count
          }
          return 0
      }

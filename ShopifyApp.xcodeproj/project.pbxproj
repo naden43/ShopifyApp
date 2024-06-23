@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		006DBF6B2C26CCB400FD791C /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 006DBF6A2C26CCB400FD791C /* DropDown */; };
 		0093C1552C22B004009E4866 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093C1532C22B004009E4866 /* OrderTableViewCell.swift */; };
 		0093C1562C22B004009E4866 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0093C1542C22B004009E4866 /* OrderTableViewCell.xib */; };
 		009766EA2C26D91F00A4D4F5 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009766E92C26D91F00A4D4F5 /* OrderDetailsViewController.swift */; };
@@ -30,13 +29,20 @@
 		3802FB6A2C1C9488004EB3CD /* FavProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802FB692C1C9488004EB3CD /* FavProductsViewController.swift */; };
 		3802FB6E2C1C97DA004EB3CD /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3802FB6D2C1C97DA004EB3CD /* ProductTableViewCell.swift */; };
 		3805635C2C15F3F300985A90 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3805635B2C15F3F300985A90 /* UserDefaultManager.swift */; };
+		380770152C274A9E0038CC3A /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380770142C274A9E0038CC3A /* test.swift */; };
 		38280B542C1D358800260C20 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B532C1D358800260C20 /* SearchViewController.swift */; };
 		38280B562C1D35B200260C20 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B552C1D35B200260C20 /* SearchViewModel.swift */; };
 		3846821A2C1B056A001533E7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384682192C1B056A001533E7 /* Review.swift */; };
-		3846821E2C1B5C15001533E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		38A805F82C0DE7EA00DCF52D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */; };
+		38B920702C28466700D58079 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 38B9206F2C28466700D58079 /* Reachability */; };
+		38B920732C28467600D58079 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920722C28467600D58079 /* Cosmos */; };
+		38B920762C28468600D58079 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920752C28468600D58079 /* Alamofire */; };
+		38B9207E2C2846D500D58079 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 38B9207D2C2846D500D58079 /* Kingfisher */; };
+		38B920822C28489100D58079 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920812C28489100D58079 /* FirebaseAnalyticsSwift */; };
+		38B920842C28489100D58079 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 38B920832C28489100D58079 /* FirebaseAuth */; };
 		38C53D8B2C1D7DFB00F2773A /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C53D8A2C1D7DFB00F2773A /* SearchTableViewCell.xib */; };
 		38C53D8C2C1D7DFB00F2773A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C53D892C1D7DFB00F2773A /* SearchTableViewCell.swift */; };
+		38D895A32C2799C300DD59D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		38DF08342C1A8260000582A9 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF08332C1A8260000582A9 /* ProductDetailsViewModel.swift */; };
 		38DF08362C1A82BA000582A9 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF08352C1A82BA000582A9 /* ProductDetailsViewController.swift */; };
 		38DF08382C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF08372C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift */; };
@@ -53,6 +59,7 @@
 		38F312BD2C15B06A00A0112B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312BC2C15B06A00A0112B /* LoginViewController.swift */; };
 		38F312BF2C15B1E300A0112B /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312BE2C15B1E300A0112B /* LoginViewModel.swift */; };
 		38F312C32C15BF5C00A0112B /* AllCustomerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312C22C15BF5C00A0112B /* AllCustomerResponse.swift */; };
+		38FDE4822C2751A600872D06 /* lastLogo-removebg-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 38FDE4812C2751A600872D06 /* lastLogo-removebg-preview.png */; };
 		D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6912C032CA300C61F99 /* AppDelegate.swift */; };
 		D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6932C032CA300C61F99 /* SceneDelegate.swift */; };
 		D30AB6962C032CA300C61F99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30AB6952C032CA300C61F99 /* ViewController.swift */; };
@@ -71,19 +78,12 @@
 		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
 		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
 		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
-		D3A79C952C1A49DA00311A50 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		D3A79C992C1A559E00311A50 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C982C1A559E00311A50 /* CountryModel.swift */; };
 		D3A79C9E2C1A85CA00311A50 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C9D2C1A85CA00311A50 /* CurrencyService.swift */; };
 		D3A79CA02C1A869700311A50 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C9F2C1A869700311A50 /* Currency.swift */; };
 		D3A79CA72C1A8B6F00311A50 /* ChooseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79CA62C1A8B6F00311A50 /* ChooseCurrencyViewController.swift */; };
 		D3A79CA92C1A8C5D00311A50 /* ChooseCurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79CA82C1A8C5D00311A50 /* ChooseCurrencyViewModel.swift */; };
 		D3A998E52C23698F00BFDB44 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A998E42C23698F00BFDB44 /* AboutUsViewController.swift */; };
-		D3AA90452C22D76D00333D52 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D3AA90442C22D76D00333D52 /* Alamofire */; };
-		D3AA90482C22D78900333D52 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = D3AA90472C22D78900333D52 /* Reachability */; };
-		D3AA904B2C22D79400333D52 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = D3AA904A2C22D79400333D52 /* Kingfisher */; };
-		D3AA904E2C22D7F800333D52 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D3AA904D2C22D7F800333D52 /* FirebaseAnalyticsSwift */; };
-		D3AA90502C22D7F800333D52 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D3AA904F2C22D7F800333D52 /* FirebaseAuth */; };
-		D3AA90532C22D82A00333D52 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = D3AA90522C22D82A00333D52 /* Cosmos */; };
 		D3AA905B2C22DC3700333D52 /* ShopifyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AA905A2C22DC3700333D52 /* ShopifyAppTests.swift */; };
 		D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7002C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift */; };
 		D3AAA7092C0DD646006006B7 /* AddAddressInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3AAA7082C0DD646006006B7 /* AddAddressInfoViewController.swift */; };
@@ -104,6 +104,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		38B9208B2C28490B00D58079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38B920852C28490B00D58079 /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A76440F1B676C2300BF1A2D;
+			remoteInfo = Demo;
+		};
+		38B9208D2C28490B00D58079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38B920852C28490B00D58079 /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A7644241B676C2300BF1A2D;
+			remoteInfo = DropDownTests;
+		};
+		38B9208F2C28490B00D58079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38B920852C28490B00D58079 /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AB5D8711D0EEECD002D3A17;
+			remoteInfo = DropDown;
+		};
+		38B920912C28491E00D58079 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38B920852C28490B00D58079 /* DropDown.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0AB5D8701D0EEECD002D3A17;
+			remoteInfo = DropDown;
+		};
 		D3AA905C2C22DC3700333D52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D30AB6862C032CA300C61F99 /* Project object */;
@@ -136,10 +164,12 @@
 		3802FB692C1C9488004EB3CD /* FavProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavProductsViewController.swift; sourceTree = "<group>"; };
 		3802FB6D2C1C97DA004EB3CD /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		3805635B2C15F3F300985A90 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		380770142C274A9E0038CC3A /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		38280B532C1D358800260C20 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		38280B552C1D35B200260C20 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		384682192C1B056A001533E7 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		38B920852C28490B00D58079 /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = "../DropDown-master-2/DropDown.xcodeproj"; sourceTree = "<group>"; };
 		38C53D892C1D7DFB00F2773A /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		38C53D8A2C1D7DFB00F2773A /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		38C53D8E2C1D814B00F2773A /* rate.jpg.webp */ = {isa = PBXFileReference; lastKnownFileType = file; path = rate.jpg.webp; sourceTree = "<group>"; };
@@ -159,6 +189,7 @@
 		38F312BC2C15B06A00A0112B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		38F312BE2C15B1E300A0112B /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		38F312C22C15BF5C00A0112B /* AllCustomerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCustomerResponse.swift; sourceTree = "<group>"; };
+		38FDE4812C2751A600872D06 /* lastLogo-removebg-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lastLogo-removebg-preview.png"; path = "../../../lastLogo-removebg-preview.png"; sourceTree = "<group>"; };
 		D30AB68E2C032CA300C61F99 /* ShopifyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShopifyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30AB6912C032CA300C61F99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D30AB6932C032CA300C61F99 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -212,13 +243,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3AA90532C22D82A00333D52 /* Cosmos in Frameworks */,
-				D3AA904E2C22D7F800333D52 /* FirebaseAnalyticsSwift in Frameworks */,
-				D3AA90502C22D7F800333D52 /* FirebaseAuth in Frameworks */,
-				D3AA904B2C22D79400333D52 /* Kingfisher in Frameworks */,
-				006DBF6B2C26CCB400FD791C /* DropDown in Frameworks */,
-				D3AA90452C22D76D00333D52 /* Alamofire in Frameworks */,
-				D3AA90482C22D78900333D52 /* Reachability in Frameworks */,
+				38B9207E2C2846D500D58079 /* Kingfisher in Frameworks */,
+				38B920842C28489100D58079 /* FirebaseAuth in Frameworks */,
+				38B920762C28468600D58079 /* Alamofire in Frameworks */,
+				38B920732C28467600D58079 /* Cosmos in Frameworks */,
+				38B920702C28466700D58079 /* Reachability in Frameworks */,
+				38B920822C28489100D58079 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				D30AB69A2C032CA500C61F99 /* Assets.xcassets */,
+				38FDE4812C2751A600872D06 /* lastLogo-removebg-preview.png */,
 				D30AB6AD2C035FF800C61F99 /* Main.storyboard */,
 				D30AB6AC2C032D0700C61F99 /* Views */,
 			);
@@ -445,11 +476,22 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		38B920862C28490B00D58079 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38B9208C2C28490B00D58079 /* Demo.app */,
+				38B9208E2C28490B00D58079 /* DropDownTests.xctest */,
+				38B920902C28490B00D58079 /* DropDown.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		38DF08302C1A8208000582A9 /* ProductDetails */ = {
 			isa = PBXGroup;
 			children = (
 				38DF08322C1A8239000582A9 /* ViewModel */,
 				38DF08312C1A8231000582A9 /* View */,
+				380770142C274A9E0038CC3A /* test.swift */,
 			);
 			path = ProductDetails;
 			sourceTree = "<group>";
@@ -521,6 +563,7 @@
 		D30AB6852C032CA300C61F99 = {
 			isa = PBXGroup;
 			children = (
+				38B920852C28490B00D58079 /* DropDown.xcodeproj */,
 				D30AB6902C032CA300C61F99 /* ShopifyApp */,
 				D3AA90592C22DC3700333D52 /* ShopifyAppTests */,
 				D30AB68F2C032CA300C61F99 /* Products */,
@@ -871,17 +914,16 @@
 			buildRules = (
 			);
 			dependencies = (
-				006DBF6D2C26CD0600FD791C /* PBXTargetDependency */,
+				38B920922C28491E00D58079 /* PBXTargetDependency */,
 			);
 			name = ShopifyApp;
 			packageProductDependencies = (
-				D3AA90442C22D76D00333D52 /* Alamofire */,
-				D3AA90472C22D78900333D52 /* Reachability */,
-				D3AA904A2C22D79400333D52 /* Kingfisher */,
-				D3AA904D2C22D7F800333D52 /* FirebaseAnalyticsSwift */,
-				D3AA904F2C22D7F800333D52 /* FirebaseAuth */,
-				D3AA90522C22D82A00333D52 /* Cosmos */,
-				006DBF6A2C26CCB400FD791C /* DropDown */,
+				38B9206F2C28466700D58079 /* Reachability */,
+				38B920722C28467600D58079 /* Cosmos */,
+				38B920752C28468600D58079 /* Alamofire */,
+				38B9207D2C2846D500D58079 /* Kingfisher */,
+				38B920812C28489100D58079 /* FirebaseAnalyticsSwift */,
+				38B920832C28489100D58079 /* FirebaseAuth */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -934,15 +976,20 @@
 			);
 			mainGroup = D30AB6852C032CA300C61F99;
 			packageReferences = (
-				D3AA90432C22D76D00333D52 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				D3AA90462C22D78900333D52 /* XCRemoteSwiftPackageReference "Reachability" */,
-				D3AA90492C22D79400333D52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				D3AA904C2C22D7F800333D52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				D3AA90512C22D82A00333D52 /* XCRemoteSwiftPackageReference "Cosmos" */,
-				006DBF692C26CCB400FD791C /* XCRemoteSwiftPackageReference "DropDown" */,
+				38B9206E2C28466700D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				38B920712C28467600D58079 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				38B920742C28468600D58079 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				38B9207C2C2846D500D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 38B920862C28490B00D58079 /* Products */;
+					ProjectRef = 38B920852C28490B00D58079 /* DropDown.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D30AB68D2C032CA300C61F99 /* ShopifyApp */,
@@ -950,6 +997,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		38B9208C2C28490B00D58079 /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = 38B9208B2C28490B00D58079 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38B9208E2C28490B00D58079 /* DropDownTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DropDownTests.xctest;
+			remoteRef = 38B9208D2C28490B00D58079 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38B920902C28490B00D58079 /* DropDown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DropDown.framework;
+			remoteRef = 38B9208F2C28490B00D58079 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D30AB68C2C032CA300C61F99 /* Resources */ = {
@@ -964,6 +1035,8 @@
 				38E6E1B52C2060130092A78F /* countries.json in Resources */,
 				0093C1562C22B004009E4866 /* OrderTableViewCell.xib in Resources */,
 				D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */,
+				38FDE4822C2751A600872D06 /* lastLogo-removebg-preview.png in Resources */,
+				00C325862C084A5900422141 /* ProductTableViewCell.xib in Resources */,
 				00C325862C084A5900422141 /* ProductTableViewCell.xib in Resources */,
 				38C53D8B2C1D7DFB00F2773A /* SearchTableViewCell.xib in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
@@ -1003,6 +1076,7 @@
 				00DF67182C186AB800734F38 /* Categories.swift in Sources */,
 				D3A79CA02C1A869700311A50 /* Currency.swift in Sources */,
 				D30AB6922C032CA300C61F99 /* AppDelegate.swift in Sources */,
+				380770152C274A9E0038CC3A /* test.swift in Sources */,
 				38F312B22C15A63300A0112B /* PostedCustomerResponse.swift in Sources */,
 				D3B9E8252C250126006B78CA /* ChooseModeViewController.swift in Sources */,
 				3802FB6E2C1C97DA004EB3CD /* ProductTableViewCell.swift in Sources */,
@@ -1020,6 +1094,7 @@
 				3846821A2C1B056A001533E7 /* Review.swift in Sources */,
 				009D4A742C1868120039E7B0 /* ProductsViewController.swift in Sources */,
 				0093C1552C22B004009E4866 /* OrderTableViewCell.swift in Sources */,
+				38D895A32C2799C300DD59D4 /* ProfileViewController.swift in Sources */,
 				38F312B62C15A68900A0112B /* SignupViewController.swift in Sources */,
 				D3A998E52C23698F00BFDB44 /* AboutUsViewController.swift in Sources */,
 				38DF08382C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift in Sources */,
@@ -1043,7 +1118,6 @@
 				D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */,
 				D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */,
 				38C53D8C2C1D7DFB00F2773A /* SearchTableViewCell.swift in Sources */,
-				3846821E2C1B5C15001533E7 /* ProfileViewController.swift in Sources */,
 				D3AAA70B2C0DDDD6006006B7 /* AddAddressViewModel.swift in Sources */,
 				D3AAA7142C0DDFB2006006B7 /* CustomAddreesCell.swift in Sources */,
 				38E75E7C2C1CA82600D1C9F5 /* FavouriteProductsViewModel.swift in Sources */,
@@ -1055,7 +1129,6 @@
 				D3695E492C1DA3A1008C7A22 /* PlaceOrderViewModel.swift in Sources */,
 				D3AAA7122C0DDF5A006006B7 /* UserAddressesViewModel.swift in Sources */,
 				D3A79CA92C1A8C5D00311A50 /* ChooseCurrencyViewModel.swift in Sources */,
-				D3A79C952C1A49DA00311A50 /* ProfileViewController.swift in Sources */,
 				0098089A2C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
 				D3AAA7102C0DDE8D006006B7 /* NetworkHandler.swift in Sources */,
@@ -1074,9 +1147,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		006DBF6D2C26CD0600FD791C /* PBXTargetDependency */ = {
+		38B920922C28491E00D58079 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 006DBF6C2C26CD0600FD791C /* DropDown */;
+			name = DropDown;
+			targetProxy = 38B920912C28491E00D58079 /* PBXContainerItemProxy */;
 		};
 		D3AA905D2C22DC3700333D52 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1343,47 +1417,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		006DBF692C26CCB400FD791C /* XCRemoteSwiftPackageReference "DropDown" */ = {
+		38B9206E2C28466700D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
 			requirement = {
 				branch = master;
 				kind = branch;
 			};
 		};
-		D3AA90432C22D76D00333D52 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.9.1;
-			};
-		};
-		D3AA90462C22D78900333D52 /* XCRemoteSwiftPackageReference "Reachability" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ashleymills/Reachability.swift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		D3AA90492C22D79400333D52 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.12.0;
-			};
-		};
-		D3AA904C2C22D7F800333D52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.28.0;
-			};
-		};
-		D3AA90512C22D82A00333D52 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+		38B920712C28467600D58079 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
 			requirement = {
@@ -1391,48 +1433,62 @@
 				minimumVersion = 25.0.1;
 			};
 		};
+		38B920742C28468600D58079 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
+		38B9207C2C2846D500D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
+		38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		006DBF6A2C26CCB400FD791C /* DropDown */ = {
+		38B9206F2C28466700D58079 /* Reachability */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 006DBF692C26CCB400FD791C /* XCRemoteSwiftPackageReference "DropDown" */;
-			productName = DropDown;
-		};
-		006DBF6C2C26CD0600FD791C /* DropDown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 006DBF692C26CCB400FD791C /* XCRemoteSwiftPackageReference "DropDown" */;
-			productName = DropDown;
-		};
-		D3AA90442C22D76D00333D52 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3AA90432C22D76D00333D52 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		D3AA90472C22D78900333D52 /* Reachability */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3AA90462C22D78900333D52 /* XCRemoteSwiftPackageReference "Reachability" */;
+			package = 38B9206E2C28466700D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
 		};
-		D3AA904A2C22D79400333D52 /* Kingfisher */ = {
+		38B920722C28467600D58079 /* Cosmos */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3AA90492C22D79400333D52 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 38B920712C28467600D58079 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
+		38B920752C28468600D58079 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B920742C28468600D58079 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		38B9207D2C2846D500D58079 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38B9207C2C2846D500D58079 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		D3AA904D2C22D7F800333D52 /* FirebaseAnalyticsSwift */ = {
+		38B920812C28489100D58079 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3AA904C2C22D7F800333D52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
 		};
-		D3AA904F2C22D7F800333D52 /* FirebaseAuth */ = {
+		38B920832C28489100D58079 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D3AA904C2C22D7F800333D52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 38B920802C28489100D58079 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		D3AA90522C22D82A00333D52 /* Cosmos */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3AA90512C22D82A00333D52 /* XCRemoteSwiftPackageReference "Cosmos" */;
-			productName = Cosmos;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

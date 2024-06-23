@@ -1,4 +1,5 @@
 {
+  "originHash" : "1830f2e0820ffb19b14999ddf23328a9241e8164747128651a951e89361a9399",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -34,15 +35,6 @@
       "state" : {
         "revision" : "40ba10aaf175bf50abefd0e518bd3b40862af3b1",
         "version" : "25.0.1"
-      }
-    },
-    {
-      "identity" : "dropdown",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/AssistoLab/DropDown.git",
-      "state" : {
-        "branch" : "master",
-        "revision" : "2ab6f6ce19f0117d1a76ea043ef8f57722c65d16"
       }
     },
     {
@@ -163,5 +155,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

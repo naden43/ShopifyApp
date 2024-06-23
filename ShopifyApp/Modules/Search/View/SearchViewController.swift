@@ -85,6 +85,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
+
 }
 
 extension SearchViewController: UISearchBarDelegate {

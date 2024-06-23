@@ -17,9 +17,7 @@ class SearchTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.layer.cornerRadius = 30
-        contentView.layoutMargins.left = 20
-        contentView.layoutMargins.right = 20
+       
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,4 +36,6 @@ class SearchTableViewCell: UITableViewCell {
         }
     }
 }
+ 
+
 
