@@ -16,7 +16,7 @@ class FavProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        favProductsTableView.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "favProductCell")
+        favProductsTableView.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
         
         viewModel = FavouriteProductsViewModel()
         
@@ -44,7 +44,7 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "favProductCell", for: indexPath) as? FavouriteProductsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductTableViewCell else {
             return UITableViewCell()
         }
         

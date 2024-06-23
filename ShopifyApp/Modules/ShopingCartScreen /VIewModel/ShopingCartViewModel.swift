@@ -25,10 +25,18 @@ class ShopingCartViewModel {
     
     var produtsAmount : [Int : Int] = [:]
     
+//    private var cartItems: [LineItem] = []
+    
     init(network: NetworkHandler) {
         self.network = network
         
     }
+    
+//    func loadCartItems() {
+//        self.cartItems = self.listOfProducts?.lineItems ?? []
+//        print("Fetched items: \(self.cartItems)")
+//        self.bindData()
+//    }
     
     private func getShopingCartDraftOrderId() -> String {
         

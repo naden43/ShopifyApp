@@ -232,6 +232,8 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
                 let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
                 
                 let paymentOptionsScreen = part2Storyboard.instantiateViewController(withIdentifier: "payment_screen") as! PaymentOptionsViewController
+                print("the selected address inside UserAddressesViewController = \(String(describing: viewModel?.getAddress()))")
+                paymentOptionsScreen.selectedAddress = viewModel?.getAddress()
                 
                 
                 present(paymentOptionsScreen, animated: true)
