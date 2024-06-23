@@ -173,12 +173,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         print("After navigation logic")
     }
-
-
-    
-    
-    
-    
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -240,8 +234,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let products = viewModel?.getProductsOfBrands() {
-            let selectedProduct = products[indexPath.row]
+        //if let products = filteredPriceProducts {
+            let selectedProduct = filteredPriceProducts[indexPath.row]
             let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
              
             let storyboard = UIStoryboard(name: "Part3", bundle: nil)
@@ -250,7 +244,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 productDetailsVC.favViewModel = viewModel?.getFavViewModel()
                 navigationController?.pushViewController(productDetailsVC, animated: true)
             }
-        }
+        //}
     }
     
     @IBAction func womenAction(_ sender: Any) {
