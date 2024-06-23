@@ -18,15 +18,18 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var numberOfItems: UILabel!
     @IBOutlet weak var orderDate: UILabel!
     @IBOutlet weak var orderNumber: UILabel!
+
     var selectedOrder : Order?
     override func viewDidLoad() {
         super.viewDidLoad()
         itemsList.delegate = self
         itemsList.dataSource = self
-        
+
         guard let order = selectedOrder else {
             return
         }
+        var discountRate = order.totalDiscounts
+        var discountPromoCode = order.discountApplications?.description
         itemsList.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
         print("the address in ordersss  = \((order.customer?.defaultAddress?.address1)!) ")
                    self.orderNumber.text = order.confirmationNumber
@@ -45,6 +48,8 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
                               self.orderDate.text = "N/A"
                           }
                    self.numberOfItems.text = "\(order.lineItems?.count ?? 0)"
+                   self.orderAddress.text = ("\((order.customer?.defaultAddress?.address1)!),\((order.customer?.defaultAddress?.city)!), \( (order.customer?.defaultAddress?.country)!)")
+        self.discount.text = "\(discountRate ?? "-")%, \(discountPromoCode ?? "No promo code applied")"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +65,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedOrder?.lineItems?.count ?? 0
+        return (selectedOrder?.lineItems?.count ?? 1) - 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,6 +95,10 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
             itemCell.productTitle.text = extractedTitle
             itemCell.brand.text = item.vendor
             itemCell.productPrice.text = item.price
+            let imageUrl = selectedOrder?.lineItems?[indexPath.row+1].properties?[0]["value"]
+            let url = URL(string: imageUrl ?? "")
+            itemCell.favProductImageView.kf.setImage(with: url)
+            
                }
         return itemCell
     }
@@ -119,5 +128,6 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }

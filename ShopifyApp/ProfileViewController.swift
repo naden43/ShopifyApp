@@ -9,7 +9,7 @@ import UIKit
 import Network
 import Reachability
 
-class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, OrderTableViewCellDelegate {
     
     //let monitor = NWPathMonitor()
     //let queue = DispatchQueue(label: "network monitoring")
@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var ordersList: UITableView!
     
     var viewModel: ProfileViewModel?
-    
+    let url = Constants.EndPoint.orders
     let reachability = try! Reachability()
 
     
@@ -45,9 +45,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self?.customerNameTxt.text = name
         }
         
-        wishList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "favProductCell")
+        wishList.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductCell")
         
-       // ordersList.register(UINib(nibName: "OrdersTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
+       ordersList.register(UINib(nibName: "OrderTableViewCell", bundle: nil), forCellReuseIdentifier: "orderCell")
         
         
         /*monitor.pathUpdateHandler = { [weak self] path in
@@ -86,6 +86,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.wishList.reloadData()
         }
         
+        viewModel?.bindToOdersViewController = { [weak self] in
+            print("inside the bind closure")
+            DispatchQueue.main.async {
+                self?.ordersList.reloadData()
+                print("the number of orders = \(self?.viewModel?.getOrders().count ?? 0)")
+            }
+        }
+        viewModel?.fetchOrders(url: url)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,20 +135,21 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             return viewModel?.getFavCount() ?? 0
             
-        }
-        else {
-            return  0
+        }else if tableView == ordersList {
+            return viewModel?.getOrders().count ?? 0
+        }else{
+            return 0
         }
     }
     
-    /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == wishList {
-            return 150
+            return 114
         }
         else {
-            return 150
+            return 114
         }
-    }*/
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -148,7 +157,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         if tableView == wishList {
             
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "favProductCell", for: indexPath) as? ProductTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as? ProductTableViewCell else {
                         return UITableViewCell()
                     }
                     
@@ -167,40 +176,39 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     
                     // Add border to the cell
-                    cell.layer.borderWidth = 1.0
-                    cell.layer.borderColor = UIColor.lightGray.cgColor
+                  
             return cell
             
+        }else if tableView == ordersList {
+            let orderCell = ordersList.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
+            if let orders = viewModel?.getOrders() {
+                       let order = orders[indexPath.row]
+
+                       orderCell.orderNumber.text = order.confirmationNumber
+                       orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
+                orderCell.totalAmount.text = order.totalLineItemsPrice
+                      if let createdAtString = order.createdAt {
+                          let dateFormatter = DateFormatter()
+                          dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                           if let date = dateFormatter.date(from: createdAtString) {
+                               let displayFormatter = DateFormatter()
+                               displayFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                               orderCell.orderDate.text = displayFormatter.string(from: date)
+                           } else {
+                               orderCell.orderDate.text = "N/A"
+                           }
+                       } else {
+                           orderCell.orderDate.text = "N/A"
+                       }
+               orderCell.delegate = self
+                   }
+            return orderCell
         }
         else {
             
             return UITableViewCell()
         }
         
-        
-        
-        // Configure and return cells
-//        let orderCell = ordersList.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrdersTableViewCell
-//        if let orders = viewModel?.getOrders() {
-//                    let order = orders[indexPath.row]
-//                    print("The number of orders = \(orders.count)")
-//
-//
-//                    orderCell.orderNumber.text = order.confirmationNumber
-//
-//
-//                    orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
-//
-//                    if let date = order.createdAt {
-//                        let dateFormatter = DateFormatter()
-//                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//                        orderCell.orderDate.text = dateFormatter.string(from: date)
-//                    } else {
-//                        orderCell.orderDate.text = "N/A"
-//                    }
-//                }
-//        return orderCell
-          
     }
     
     // MARK: - Actions
@@ -286,6 +294,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             present(alert, animated: true)
         }
         
+    }
+    
+    func didTapDetailsButton(on cell: OrderTableViewCell) {
+        print("the details button clicked !!!!")
+        guard let indexPath = ordersList.indexPath(for: cell) else { return }
+        let order = viewModel?.getOrders()[indexPath.row]
+        
+        let backItem = UIBarButtonItem()
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationItem.title = "Order Details"
+        self.navigationItem.backBarButtonItem?.tintColor = .black
+                
+        let storyboard = UIStoryboard(name: "Part1", bundle: nil)
+        if let orderDetailsVC = storyboard.instantiateViewController(withIdentifier: "orderdetails") as? OrderDetailsViewController {
+            orderDetailsVC.selectedOrder = order
+            navigationController?.pushViewController(orderDetailsVC, animated: true)
+        }
     }
     
     @IBAction func navigateToLogin(_ sender: Any) {

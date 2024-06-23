@@ -14,9 +14,9 @@ class PaymentOptionsViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var cashButton: UIButton!
     @IBOutlet weak var applePayButton: UIButton!
-    
     var cashFlag = false
     var appleFlag = false
+    var selectedAddress : Address?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,6 +80,7 @@ class PaymentOptionsViewController: UIViewController {
             let part2Storyboard = UIStoryboard(name: "Part2", bundle: nil)
             
             let placeOrderScreen = part2Storyboard.instantiateViewController(withIdentifier: "place_order") as! PlaceOrderViewController
+            placeOrderScreen.selectedAdd = selectedAddress
             
             if cashFlag == true{
                 placeOrderScreen.paymentMethod = "cash"

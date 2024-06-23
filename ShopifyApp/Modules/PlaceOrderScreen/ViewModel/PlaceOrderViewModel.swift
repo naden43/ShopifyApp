@@ -29,7 +29,8 @@ class PlaceOrderViewModel{
     
     func loadData() {
         
-        network.getData(endPoint: "admin/api/2024-04/draft_orders/978702565542.json", complitionHandler: { (result:Draft? , error) in
+        let draftOrderID = userDefualtManager.getCustomer().shoppingCartDraftOrderId ?? ""
+        network.getData(endPoint: "admin/api/2024-04/draft_orders/\(draftOrderID).json", complitionHandler: { (result:Draft? , error) in
           
             if let result = result {
                 
@@ -125,12 +126,12 @@ class PlaceOrderViewModel{
     }
     
     
-    func placeOrder (lineItems: [LineItem], customerId: Int, financialStatus: String) {
+    func placeOrder (lineItems: [LineItem], customerId: Int, financialStatus: String, discount_codes : [DiscountCode]) {
     
         let customer  = Customer(id: customerId)
-        let order = Order( financialStatus: FinancialStatus.pending, customer: customer, lineItems: lineItems)
+        let order = Order( discountCodes: discount_codes, financialStatus: FinancialStatus.pending, customer: customer, lineItems: lineItems)
         let orderRequest = OrderRequest(order: order)
-        
+        print("========================== order req =============== \(orderRequest)")
         network.postData(orderRequest, to: Constants.EndPoint.Placeorders, responseType: Order.self){ success, message, response in
             if success {
                 print("Order placed successfully: \(String(describing: response))")
@@ -140,9 +141,18 @@ class PlaceOrderViewModel{
         }
     }
     
-    
     func getCustomerID() -> Int? {
         print("the custoemr id in user default = \(userDefualtManager.getCustomer().id ?? 0000)")
         return userDefualtManager.getCustomer().id
     }
+    
+    func getDiscountRate() -> Double? {
+        guard let rate = discountRate else {
+            return 0.0
+        }
+        
+        print("inside PlaceOrderViewModel the discount rate is = \(rate)")
+        return rate
+    }
+    
 }

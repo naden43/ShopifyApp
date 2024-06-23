@@ -97,7 +97,7 @@ class ProfileViewModel {
         NetworkHandler.instance.getData(endPoint: "admin/api/2024-04/customers/\(customerId).json") { [weak self]  ( customer : PostedCustomerResponse?, error) in
             
             if let customer = customer {
-                self?.bindCustomerName(customer.customer?.firstName ?? "User")
+                self?.bindCustomerName(customer.customer.firstName ?? "User")
             }
             else {
                 print(error)
