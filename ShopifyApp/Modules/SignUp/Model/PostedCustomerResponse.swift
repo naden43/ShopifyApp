@@ -9,7 +9,7 @@
 import Foundation
 
 struct PostedCustomerResponse: Codable {
-    var customer: Customer?
+    var customer: Customer
 }
 
 struct Customer: Codable {

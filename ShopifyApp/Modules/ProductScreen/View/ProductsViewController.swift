@@ -84,9 +84,9 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         let product = products[indexPath.row]
-        productCell.productTitle.text = product.vendor
+        productCell.productTitle.text = product.title
         productCell.productPrice.text = " \(product.variants?.first?.price ?? "0")"
-        productCell.productSubTitle.text = product.handle
+        productCell.productSubTitle.text = product.vendor
 
         
         productCell.presentAlertDeletion = {

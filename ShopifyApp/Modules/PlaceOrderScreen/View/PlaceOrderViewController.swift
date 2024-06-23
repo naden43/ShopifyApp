@@ -15,21 +15,23 @@ class PlaceOrderViewController: UIViewController {
     @IBOutlet weak var discountMoney: UILabel!
     @IBOutlet weak var coupon: UITextField!
     @IBOutlet weak var totalMoney: UILabel!
-    
+    var selectedAdd : Address?
+    var allDiscounts : [DiscountCode]?
     var viewModel:PlaceOrderViewModel?
+    var cartViewModel:ShopingCartViewModel?
+    var addrressViewModel : UserAddressesViewModel?
     var paymentMethod = "cash"
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel = PlaceOrderViewModel()
-        
+
+        addrressViewModel = UserAddressesViewModel(network: NetworkHandler.instance)
         viewModel?.bindData = {[weak self] in
             
             self?.totalMoney.text =  self?.viewModel?.getTotalPrice()
             self?.finalTotalMoney.text =  self?.viewModel?.getTotalPrice()
-            
 
-            
         }
         
         viewModel?.bindDiscount = { [weak self] in
@@ -49,6 +51,7 @@ class PlaceOrderViewController: UIViewController {
             
         }
         viewModel?.loadData()
+        
     }
     
     @IBAction func backToPaymentMethod(_ sender: Any) {
@@ -88,9 +91,28 @@ class PlaceOrderViewController: UIViewController {
 
 
     @IBAction func placeOrderAction(_ sender: Any) {
+        guard let discountRate = viewModel?.getDiscountRate() else {
+            print("No discount rate available")
+            return
+        }
+        
+        let discountCode = DiscountCode(code: coupon.text ?? "-", amount: "\(discountRate)", type: "Percentage")
+        allDiscounts?.append(discountCode)
+        print("inside view controller the discount ==== \(discountRate)")
+        
+//        guard let lineItems = cartViewModel?.getAllLineItems(), !lineItems.isEmpty else {
+//            print("No line items available in the cart")
+//            return
+//        }
+        
+//
+        var items = viewModel?.getAllProductsFromDraftOrder()
+        print("all products in cart are : \(items?.count)")
+        let customerId = viewModel?.getCustomerID() ?? 0
+        let financialStatus = paymentMethod == "cash" ? "pending" : "paid"
         
         if paymentMethod == "cash" {
-            viewModel?.placeOrder(lineItems: viewModel?.getAllProductsFromDraftOrder() ?? [], customerId: viewModel?.getCustomerID() ?? 7876947378342, financialStatus: "pending")
+            viewModel?.placeOrder(lineItems:items ?? [], customerId: customerId, financialStatus: financialStatus, discount_codes: allDiscounts ?? [])
         }
         else {
             if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: [.amex, .masterCard, .visa]) {
@@ -136,8 +158,8 @@ extension PlaceOrderViewController : PKPaymentAuthorizationViewControllerDelegat
     
     func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
         controller.dismiss(animated: true, completion: nil)
-        viewModel?.placeOrder(lineItems: viewModel?.getAllProductsFromDraftOrder() ?? [], customerId: viewModel?.getCustomerID() ?? 7876947378342, financialStatus: "paid")
-
+        var items = viewModel?.getAllProductsFromDraftOrder()
+        viewModel?.placeOrder(lineItems: items ?? [], customerId: viewModel?.getCustomerID() ?? 7876947378342, financialStatus: "paid", discount_codes: allDiscounts ?? [])
     }
     
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
@@ -145,5 +167,7 @@ extension PlaceOrderViewController : PKPaymentAuthorizationViewControllerDelegat
         let paymentResult = PKPaymentAuthorizationResult(status: .success, errors: nil)
         completion(paymentResult)
     }
+    
+
 }
 

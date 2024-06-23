@@ -3,13 +3,17 @@
 //  ShopifyApp
 //
 //  Created by Salma on 14/06/2024.
-
+//
 
 
 import UIKit
 
-class FavouriteProductsTableViewCell: UITableViewCell {
+class ProductTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var priceCurrency: UILabel!
+    @IBOutlet weak var productSize: UILabel!
+    @IBOutlet weak var productColor: UILabel!
+    @IBOutlet weak var brand: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var favProductImageView: UIImageView!
     @IBOutlet weak var productTitle: UILabel!
@@ -26,18 +30,18 @@ class FavouriteProductsTableViewCell: UITableViewCell {
     
     private func setupCellUI() {
         // Add corner radius
-        contentView.layer.cornerRadius = 40.0
+        contentView.layer.cornerRadius = 20.0
         contentView.layer.masksToBounds = true
         
         // Add border
-        contentView.layer.borderColor = UIColor.white.cgColor
-        contentView.layer.borderWidth = 20.0
+//        contentView.layer.borderColor = UIColor.white.cgColor
+//        contentView.layer.borderWidth = 20.0
         
         // Add shadow
-        layer.shadowColor = UIColor.darkGray.cgColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowOpacity = 0.9
-        layer.shadowRadius = 4.0
+        layer.shadowRadius = 4
+        layer.shadowOpacity = 0.2
         layer.masksToBounds = false
     }
 

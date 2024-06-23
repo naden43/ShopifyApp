@@ -95,9 +95,9 @@ class SignUpViewModel {
                         print("Second draft order created successfully!")
                         
                         let draftOrdersIds = "\(firstDraftOrderResponse.draftOrder.id ?? 0),\(secondDraftOrderResponse.draftOrder.id ?? 0)"
-                        self.currentCustomer?.customer?.note = draftOrdersIds
+                        self.currentCustomer?.customer.note = draftOrdersIds
                         
-                        NetworkHandler.instance.putData(self.currentCustomer, to: "admin/api/2024-04/customers/\(self.currentCustomer?.customer?.id ?? 0).json", responseType: PostedCustomerResponse.self) { success, message, responseData in
+                        NetworkHandler.instance.putData(self.currentCustomer, to: "admin/api/2024-04/customers/\(self.currentCustomer?.customer.id ?? 0).json", responseType: PostedCustomerResponse.self) { success, message, responseData in
                             if success, let customerResponse = responseData {
                                 print("Customer updated successfully!")
                             } else {

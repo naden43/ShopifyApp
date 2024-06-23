@@ -42,7 +42,7 @@ struct Order: Codable {
        var currentTotalTax: String?
        //var currentTotalTaxSet: Set?
        var customerLocale, deviceID: JSONNull?
-       var discountCodes: [JSONAny]?
+       var discountCodes: [DiscountCode]?
        var email: String?
        var estimatedTaxes: Bool?
        var financialStatus: FinancialStatus?
@@ -189,6 +189,11 @@ struct Order: Codable {
 //            case presentmentMoney = "presentment_money"
 //        }
 //    }
+}
+
+
+struct DiscountCode: Codable {
+    let code, amount, type: String
 }
 
 enum FinancialStatus: String, Codable {

@@ -40,8 +40,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
             self?.activityIndicator.stopAnimating()
 
             
-            
-            
             if self?.viewModel?.getProductsCount() == 0 {
                 
                 self?.totalTxt.text = "0.0 \(self?.currency ?? "")"
@@ -57,7 +55,9 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
             }
             self?.shopingCartList.reloadData()
-            
+//            if let lineItems = self?.viewModel?.getAllLineItems() {
+//                print("the lineeeees = \(lineItems)") // Print all line items to the console
+//            }
         }
         
         let nibCell = UINib(nibName: "CustomShoppingCartCellTableViewCell", bundle: nil)
