@@ -333,8 +333,8 @@
                                 </segments>
                                 <color key="selectedSegmentTintColor" name="BackgroundColor"/>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wq-5e-p0z">
-                                <rect key="frame" x="20.000000000000007" y="78" width="115.66666666666669" height="42.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wishlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wq-5e-p0z">
+                                <rect key="frame" x="20" y="78" width="168.66666666666666" height="42.666666666666657"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -371,7 +371,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP7-ao-NOT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="962.59541984732823" y="830.98591549295782"/>
+            <point key="canvasLocation" x="985" y="831"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="uGu-dq-wkj">
@@ -545,7 +545,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gId-lW-dt4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-526" y="1597"/>
+            <point key="canvasLocation" x="-543" y="1596"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="rzK-VH-FEA">
@@ -562,7 +562,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="765"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mu2-Uw-bBn">
-                                                <rect key="frame" x="17" y="307" width="359" height="44"/>
+                                                <rect key="frame" x="17" y="417" width="359" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="ZoG-T2-DNH"/>
@@ -571,16 +571,16 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login in to SAWAQNY" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt3-KI-SaX">
-                                                <rect key="frame" x="24" y="223" width="300" height="67"/>
+                                                <rect key="frame" x="24" y="340" width="300" height="60"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="67" id="JE8-kJ-8W3"/>
+                                                    <constraint firstAttribute="height" constant="60" id="JE8-kJ-8W3"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Palatino-Bold" family="Palatino" pointSize="25"/>
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lastLogo-removebg-preview.png" translatesAutoresizingMaskIntoConstraints="NO" id="1In-Dz-aQv">
-                                                <rect key="frame" x="73" y="33" width="247" height="182"/>
+                                                <rect key="frame" x="73" y="150" width="247" height="182"/>
                                                 <color key="backgroundColor" name="bg_color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="182" id="3ce-qf-FxE"/>
@@ -599,7 +599,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ptr-47-aic">
-                                                <rect key="frame" x="17" y="368" width="359" height="44"/>
+                                                <rect key="frame" x="17" y="478" width="359" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="pAr-Cg-50Z"/>
@@ -624,7 +624,7 @@
                                             <constraint firstItem="qt3-KI-SaX" firstAttribute="leading" secondItem="GDm-6m-9PX" secondAttribute="leading" constant="24" id="lFq-xr-xsc"/>
                                             <constraint firstItem="Ptr-47-aic" firstAttribute="top" secondItem="Mu2-Uw-bBn" secondAttribute="bottom" constant="17" id="ogz-Qd-H1e"/>
                                             <constraint firstAttribute="trailing" secondItem="1In-Dz-aQv" secondAttribute="trailing" constant="73" id="pWa-N9-Xd0"/>
-                                            <constraint firstItem="1In-Dz-aQv" firstAttribute="top" secondItem="GDm-6m-9PX" secondAttribute="top" constant="33" id="puN-ra-NIF"/>
+                                            <constraint firstItem="1In-Dz-aQv" firstAttribute="top" secondItem="GDm-6m-9PX" secondAttribute="top" constant="150" id="puN-ra-NIF"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -667,7 +667,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOY-Tt-OWS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385.49618320610688" y="1608.4507042253522"/>
+            <point key="canvasLocation" x="280" y="1596"/>
         </scene>
         <!--Product Details View Controller-->
         <scene sceneID="8g5-l3-ReS">
@@ -974,7 +974,7 @@
         <image name="product 1" width="564" height="698"/>
         <image name="reviewer.jpg" width="129.60000610351562" height="86.400001525878906"/>
         <image name="shoes.jpg" width="635" height="560"/>
-        <image name="star" catalog="system" width="32" height="32"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="BackgroundColor">
             <color red="0.98199999332427979" green="0.98199999332427979" blue="0.98199999332427979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -997,10 +997,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
