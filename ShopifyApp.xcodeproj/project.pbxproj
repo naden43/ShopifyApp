@@ -32,10 +32,11 @@
 		38280B542C1D358800260C20 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B532C1D358800260C20 /* SearchViewController.swift */; };
 		38280B562C1D35B200260C20 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38280B552C1D35B200260C20 /* SearchViewModel.swift */; };
 		3846821A2C1B056A001533E7 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384682192C1B056A001533E7 /* Review.swift */; };
-		3846821E2C1B5C15001533E7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		38A805F82C0DE7EA00DCF52D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38A805F72C0DE7EA00DCF52D /* GoogleService-Info.plist */; };
 		38C53D8B2C1D7DFB00F2773A /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38C53D8A2C1D7DFB00F2773A /* SearchTableViewCell.xib */; };
 		38C53D8C2C1D7DFB00F2773A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C53D892C1D7DFB00F2773A /* SearchTableViewCell.swift */; };
+		38D895A32C2799C300DD59D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
+		38D895A62C27AE6B00DD59D4 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 38D895A52C27AE6B00DD59D4 /* Lottie */; };
 		38DF08342C1A8260000582A9 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF08332C1A8260000582A9 /* ProductDetailsViewModel.swift */; };
 		38DF08362C1A82BA000582A9 /* ProductDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF08352C1A82BA000582A9 /* ProductDetailsViewController.swift */; };
 		38DF08382C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF08372C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift */; };
@@ -71,7 +72,6 @@
 		D3A4FF202C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF1F2C08775A002D3381 /* CustomShoppingCartCellTableViewCell.xib */; };
 		D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3A4FF212C087768002D3381 /* CustomAddreesCell.xib */; };
 		D3A4FF242C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A4FF232C087773002D3381 /* CustomShoppingCartCellTableViewCell.swift */; };
-		D3A79C952C1A49DA00311A50 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B7ACC12C0A08BD00F76A7D /* ProfileViewController.swift */; };
 		D3A79C992C1A559E00311A50 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C982C1A559E00311A50 /* CountryModel.swift */; };
 		D3A79C9E2C1A85CA00311A50 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C9D2C1A85CA00311A50 /* CurrencyService.swift */; };
 		D3A79CA02C1A869700311A50 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A79C9F2C1A869700311A50 /* Currency.swift */; };
@@ -214,6 +214,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3AA90532C22D82A00333D52 /* Cosmos in Frameworks */,
+				38D895A62C27AE6B00DD59D4 /* Lottie in Frameworks */,
 				D3AA904E2C22D7F800333D52 /* FirebaseAnalyticsSwift in Frameworks */,
 				D3AA90502C22D7F800333D52 /* FirebaseAuth in Frameworks */,
 				D3AA904B2C22D79400333D52 /* Kingfisher in Frameworks */,
@@ -865,6 +866,7 @@
 				D3AA904D2C22D7F800333D52 /* FirebaseAnalyticsSwift */,
 				D3AA904F2C22D7F800333D52 /* FirebaseAuth */,
 				D3AA90522C22D82A00333D52 /* Cosmos */,
+				38D895A52C27AE6B00DD59D4 /* Lottie */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -922,6 +924,7 @@
 				D3AA90492C22D79400333D52 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D3AA904C2C22D7F800333D52 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				D3AA90512C22D82A00333D52 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				38D895A42C27AE6B00DD59D4 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
@@ -1003,6 +1006,7 @@
 				3846821A2C1B056A001533E7 /* Review.swift in Sources */,
 				009D4A742C1868120039E7B0 /* ProductsViewController.swift in Sources */,
 				0093C1552C22B004009E4866 /* OrderTableViewCell.swift in Sources */,
+				38D895A32C2799C300DD59D4 /* ProfileViewController.swift in Sources */,
 				38F312B62C15A68900A0112B /* SignupViewController.swift in Sources */,
 				D3A998E52C23698F00BFDB44 /* AboutUsViewController.swift in Sources */,
 				38DF08382C1A82F0000582A9 /* ProductImagesCollectionViewCell.swift in Sources */,
@@ -1026,7 +1030,6 @@
 				D3BDBBBC2C0FE6520064F9D2 /* SettingsViewModel.swift in Sources */,
 				D3AAA7012C0DD5A0006006B7 /* SettingsViewControllerTableViewController.swift in Sources */,
 				38C53D8C2C1D7DFB00F2773A /* SearchTableViewCell.swift in Sources */,
-				3846821E2C1B5C15001533E7 /* ProfileViewController.swift in Sources */,
 				D3AAA70B2C0DDDD6006006B7 /* AddAddressViewModel.swift in Sources */,
 				D3AAA7142C0DDFB2006006B7 /* CustomAddreesCell.swift in Sources */,
 				38E75E7C2C1CA82600D1C9F5 /* FavouriteProductsViewModel.swift in Sources */,
@@ -1038,7 +1041,6 @@
 				D3695E492C1DA3A1008C7A22 /* PlaceOrderViewModel.swift in Sources */,
 				D3AAA7122C0DDF5A006006B7 /* UserAddressesViewModel.swift in Sources */,
 				D3A79CA92C1A8C5D00311A50 /* ChooseCurrencyViewModel.swift in Sources */,
-				D3A79C952C1A49DA00311A50 /* ProfileViewController.swift in Sources */,
 				0098089A2C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift in Sources */,
 				D30AB6942C032CA300C61F99 /* SceneDelegate.swift in Sources */,
 				D3AAA7102C0DDE8D006006B7 /* NetworkHandler.swift in Sources */,
@@ -1322,6 +1324,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		38D895A42C27AE6B00DD59D4 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 		D3AA90432C22D76D00333D52 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1365,6 +1375,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		38D895A52C27AE6B00DD59D4 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38D895A42C27AE6B00DD59D4 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		D3AA90442C22D76D00333D52 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D3AA90432C22D76D00333D52 /* XCRemoteSwiftPackageReference "Alamofire" */;

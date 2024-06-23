@@ -102,7 +102,6 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         let favImage = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
         productCell.favButton.setImage(favImage, for: .normal)
         
-        // Set the viewModel for the cell
         let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: product)
         let favProductsViewModel = viewModel?.getFavViewModel()
         productDetailsViewModel.setFavViewModel(favouriteProductsViewModel: favProductsViewModel ?? FavouriteProductsViewModel())

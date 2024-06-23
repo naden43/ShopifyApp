@@ -329,8 +329,7 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // print("Userid \(UserDefaultsManager.shared.getCustomer())")
-       // print(favViewModel?.favProducts?.lineItems)
+       
         viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
@@ -380,6 +379,7 @@ class ProductDetailsViewController: UIViewController {
     
     private func updateUI() {
         guard let product = viewModel?.selectedProduct else { return }
+        print("dd\(viewModel?.selectedProduct?.id ?? 0)")
         productTitle.text = product.title
         productBrand.text = "Brand: \(product.vendor ?? "Unknown")"
         let price = Double(product.variants?.first?.price ?? "") ?? 0.0
@@ -390,12 +390,14 @@ class ProductDetailsViewController: UIViewController {
         sizeCollectionView.reloadData()
         colorsCollectionView.reloadData()
         reviewsCollectionView.reloadData()
+       
+
   
         if viewModel?.isProductInFavorites() == true {
-            print("true")
+            //print("true")
             btnAddToFav.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
-            print("false")
+           // print("false")
             btnAddToFav.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
@@ -448,7 +450,6 @@ class ProductDetailsViewController: UIViewController {
                     return
                 }
                 viewModel?.checkIfProductExists(productId: Int(productId)) { exists in
-                    print("exist \(exists)")
                     if exists {
                         
                         self.viewModel?.increaseQuantityOfExistingProduct(productId: Int(productId)) { success, message in

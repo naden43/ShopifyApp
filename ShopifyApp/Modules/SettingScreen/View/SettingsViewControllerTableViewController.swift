@@ -116,5 +116,17 @@ class SettingsViewControllerTableViewController: UITableViewController {
         
         
     }
+    
 
+    @IBAction func btnLogout(_ sender: Any) {
+        UserDefaultsManager.shared.clearCustomer()
+
+        
+        let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+        
+        let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                
+        present(chooseScreen, animated: true)
+
+    }
 }

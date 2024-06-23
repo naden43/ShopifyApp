@@ -78,13 +78,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         viewModel?.bindToCategoriesViewController = { [weak self] in
-            //print("inside the bind closure")
+        
             DispatchQueue.main.async {
                 self?.subCategoriesSeg.selectedSegmentIndex = 0
                 self?.loadCategoryProducts(categoryName: "women")
-                //self?.filterProductsOfCategories()
-               // print("the count of categories is \(self?.viewModel?.getCaegroies().count ?? 0)")
-               // print("the name of categories is \(self!.saleBtn.titleLabel?.text ?? "")")
+         
             }
         }
         viewModel?.fetchCategories(url: url)
@@ -164,7 +162,6 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         let storyboard = UIStoryboard(name: "Part3", bundle: nil)
         if let searchProductsVC = storyboard.instantiateViewController(withIdentifier: "searchProductsScreen") as? SearchViewController {
             print("Before navigation push")
-            // Pass the filtered products to the SearchViewController
             searchProductsVC.initialFilteredProducts = self.filteredProducts
             searchProductsVC.destination = true
             navigationController?.pushViewController(searchProductsVC, animated: true)
@@ -242,6 +239,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let products = viewModel?.getProductsOfBrands() {
             let selectedProduct = products[indexPath.row]
+            print("ccccccc\(selectedProduct.id)")
             let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
              
             let storyboard = UIStoryboard(name: "Part3", bundle: nil)

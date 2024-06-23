@@ -180,6 +180,50 @@ class MockNetworkHandler {
     
     }
     
+    
+    func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
+             guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
+                 completion(false, "Invalid URL",nil)
+                 return
+             }
+        
+            print("the url is = \(url)")
+             let headers: HTTPHeaders = [
+                 "Authorization": authHeader,
+                 "Content-Type": "application/json"
+             ]
+        
+        do {
+            let jsonData = try JSONEncoder().encode(data)
+            if let jsonString = String(data: jsonData, encoding: .utf8) {
+                print("Request JSON: \(jsonString)")
+            }
+        } catch {
+            completion(false, "Failed to encode JSON: \(error.localizedDescription)", nil)
+            return
+        }
+        
+             AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default, headers: headers)
+                 .validate()
+                 .responseDecodable(of: U.self) { response in
+                     switch response.result {
+                     case .success(let value):
+                         completion(true, "succeeded",value)
+                     case .failure(let error):
+                         completion(false, "Request error i post fuction: \(error.localizedDescription) \(response.response?.statusCode)" , nil)
+                     }
+            }
+        
+        if shouldReturnError {
+            
+            completion(false , "error message" , nil)
+        }
+        else {
+            print("here")
+            completion(true , nil , result as? U)
+        }
+    }
+    
     enum responseError : Error {
         
         case error
