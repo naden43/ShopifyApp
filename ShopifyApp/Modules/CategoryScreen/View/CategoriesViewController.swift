@@ -11,6 +11,8 @@ import Reachability
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
+    @IBOutlet weak var emptylabel: UILabel!
+    @IBOutlet weak var emptyCategory: UIImageView!
     let reachability = try! Reachability()
     @IBOutlet weak var filterPrice: UIButton!
     var viewModel : HomeViewModelProtocol?
@@ -20,6 +22,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var filterView: UIView!
     var filteredProducts: [Product] = []
     var filteredPriceProducts: [Product] = []
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     let menuPrice: DropDown = {
         let menu = DropDown()
         menu.cornerRadius = 5
@@ -62,7 +65,10 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         menuPrice.selectedTextColor = .orange
         self.filterProductsOfCategories()
         categoriesCollection.reloadData()
+        checkIfCollectionIsEmpty()
         let url = Constants.EndPoint.categories
+        emptylabel.isHidden = true
+        emptyCategory.isHidden = true
         womenBtn.tintColor = .orange
         categoriesCollection.dataSource = self
         categoriesCollection.delegate = self
@@ -83,6 +89,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //access the price menu
         
+       // menuPrice.selectionAction = { [weak self] index, title in
+
       menuPrice.selectionAction = { [weak self] index, title in
             print("the index = \(index) and title = \(title)")
             self?.priceRange = index
@@ -92,17 +100,23 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         viewModel?.bindToCategoriesViewController = { [weak self] in
             
             DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
                 self?.subCategoriesSeg.selectedSegmentIndex = 0
                 self?.loadCategoryProducts(categoryName: "women")
                 
             }
         }
         viewModel?.fetchCategories(url: url)
+        
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         categoriesCollection.reloadData()
+        checkIfCollectionIsEmpty()
         handleNavigationBar()
     }
     
@@ -121,7 +135,9 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         view.navigationItem.leftBarButtonItem = searchButton
         view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
+        view.title = " "
     }
+
     
     
     @objc func addTapped(){
@@ -218,11 +234,25 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         let product = filteredPriceProducts[indexPath.row]
-        productCell.productTitle.text = product.vendor
+                let Title = product.title
+                var extractedTitle = Title
+                        if let firstRange = Title?.range(of: "|") {
+                            extractedTitle = String((Title?[firstRange.upperBound...])!).trimmingCharacters(in: .whitespacesAndNewlines)
+                            
+                            // If there's a second | character, remove everything after it
+                            if let secondRange = extractedTitle?.range(of: "|") {
+                                extractedTitle = String((extractedTitle?[..<secondRange.lowerBound])!).trimmingCharacters(in: .whitespacesAndNewlines)
+                            }
+                        }
+                print("tittttttlllllllllllllllleeeeeeeeeeeee = \(extractedTitle)")
+        if let title = extractedTitle, title.count > 9 {
+            extractedTitle = String(title.prefix(9))
+        }
+        productCell.productTitle.text = extractedTitle
         let price = Double(product.variants?[0].price ?? "") ?? 0.0
         productCell.productPrice.text = CurrencyService.instance.calcThePrice(price: price)
         productCell.currencyTxt.text = CurrencyService.instance.getCurrencyType()
-        productCell.productSubTitle.text = product.handle
+        productCell.productSubTitle.text = product.vendor
         let productIMG = product.image?.src
         let imageUrl = URL(string: productIMG ?? "" )
         productCell.productImage.kf.setImage(with: imageUrl)
@@ -306,7 +336,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         @IBAction func filterBtn(_ sender: Any) {
             categoriesCollection.reloadData()
             self.isFiltered = true
-          //  menuPrice.show()
+            menuPrice.show()
             categoriesCollection.reloadData()
         }
         
@@ -327,6 +357,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 }
             }
             categoriesCollection.reloadData()
+            checkIfCollectionIsEmpty()
             viewModel?.fetchProducts(url: productUrl)
         }
         
@@ -346,7 +377,13 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 filteredProducts = products
             }
             categoriesCollection.reloadData()
+            checkIfCollectionIsEmpty()
         }
+    func checkIfCollectionIsEmpty() {
+        let isEmpty = filteredPriceProducts.isEmpty
+        emptylabel.isHidden = !isEmpty
+        emptyCategory.isHidden = !isEmpty
+    }
         
         func filterProductsByPrice ()   {
             switch priceRange {
@@ -396,6 +433,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 
             }
             categoriesCollection.reloadData()
+            checkIfCollectionIsEmpty()
         }
         
         
