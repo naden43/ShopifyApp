@@ -176,36 +176,7 @@ class MockNetworkHandler {
     
 
     
-    func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void){
-        
-        
-        var result = Draft()
-        
-        do {
-            
-            let data  = try JSONSerialization.data(withJSONObject: fackDraftOrderJson)
-            
-            result = try JSONDecoder().decode(Draft.self, from: data)
-            
-        }catch let error {
-            
-            print(error.localizedDescription)
-        }
-        
-        
-       
-        
-        if shouldReturnError {
-            
-            completion(false , "error message" , nil)
-        }
-        else {
-            print("here")
-            completion(true , nil , result as? U)
-        }
-    
-    }
-    
+   0
     
     func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
              guard let url = URL(string: "\(baseUrl)\(endpoint)") else {

@@ -12,8 +12,6 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
 
     @IBOutlet weak var priceCurrency: UILabel!
     @IBOutlet weak var totalAmount: UILabel!
-    @IBOutlet weak var discount: UILabel!
-    @IBOutlet weak var orderAddress: UILabel!
     @IBOutlet weak var itemsList: UITableView!
     @IBOutlet weak var numberOfItems: UILabel!
     @IBOutlet weak var orderDate: UILabel!
@@ -48,8 +46,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
                               self.orderDate.text = "N/A"
                           }
                    self.numberOfItems.text = "\((order.lineItems?.count ?? 0) - 1)"
-                   self.orderAddress.text = ("\((order.customer?.defaultAddress?.address1)!),\((order.customer?.defaultAddress?.city)!), \( (order.customer?.defaultAddress?.country) ?? "")")
-        self.discount.text = "\(discountRate ?? "-")%, \(discountPromoCode ?? "No promo code applied")"
+        //self.discount.text = "\(discountRate ?? "-")%, \(discountPromoCode ?? "No promo code applied")"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -118,7 +115,6 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
            cell.layer.shadowOpacity = 0.2
            cell.layer.masksToBounds = false
     }
-
     /*
     // MARK: - Navigation
 
