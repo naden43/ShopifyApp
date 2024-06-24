@@ -25,12 +25,24 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         menu.cornerRadius = 5
         menu.animationEntranceOptions
         menu.scalesLargeContentImage = (UIImage(named: "priceicon.svg") != nil)
-        menu.dataSource = [
-            "All Prices",
-            "Under EGP 100",
-            "EGP 100 - EGP 200",
-            "EGP 200 - EGP 300",
-        ]
+        
+        if CurrencyService.instance.getCurrencyType() == "USD" {
+            menu.dataSource = [
+                "All Prices",
+                "Under USD 5",
+                "USD 5 - USD 20",
+                "USD 20 - USD 30",
+            ]
+            
+        }
+        else {
+            menu.dataSource = [
+                "All Prices",
+                "Under EGP 100",
+                "EGP 100 - EGP 200",
+                "EGP 200 - EGP 300",
+            ]
+        }
         
         return menu
     }()
@@ -71,11 +83,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //access the price menu
         
-    /*    menuPrice.selectionAction = { [weak self] index, title in
+      menuPrice.selectionAction = { [weak self] index, title in
             print("the index = \(index) and title = \(title)")
             self?.priceRange = index
             self?.filterProductsByPrice()
-        }*/
+        }
         
         viewModel?.bindToCategoriesViewController = { [weak self] in
             
@@ -342,22 +354,40 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
                 filteredPriceProducts = filteredProducts
             case 1:
                 filteredPriceProducts = filteredProducts.filter {
-                    if let priceString = $0.variants?[0].price, let price = Double(priceString) {
-                        return price < 100
+                    if let priceString = $0.variants?[0].price, let price = Double(CurrencyService.instance.calcThePrice(price: Double(priceString) ?? 0.0 )) {
+                        if CurrencyService.instance.getCurrencyType() == "USD" {
+                            return price < 5
+                        }
+                        else {
+                            return price < 100
+                        }
                     }
                     return false
                 }
             case 2:
                 filteredPriceProducts = filteredProducts.filter {
-                    if let priceString = $0.variants?[0].price, let price = Double(priceString) {
-                        return price >= 100 && price < 200
+                    if let priceString = $0.variants?[0].price, let price = Double(CurrencyService.instance.calcThePrice(price: Double(priceString) ?? 0.0 )){
+                        
+                        if CurrencyService.instance.getCurrencyType() == "USD" {
+                            return price >= 5 && price < 20
+                        }
+                        else {
+                            return price >= 100 && price < 200
+                        }
+                        
                     }
                     return false
                 }
             case 3:
                 filteredPriceProducts = filteredProducts.filter {
-                    if let priceString = $0.variants?[0].price, let price = Double(priceString) {
-                        return price >= 200 && price < 300
+                    if let priceString = $0.variants?[0].price, let price = Double(CurrencyService.instance.calcThePrice(price: Double(priceString) ?? 0.0 )) {
+                        if CurrencyService.instance.getCurrencyType() == "USD" {
+                            return price >= 20 && price < 30
+                        }
+                        else {
+                            return price >= 200 && price < 300
+                        }
+                        
                     }
                     return false
                 }

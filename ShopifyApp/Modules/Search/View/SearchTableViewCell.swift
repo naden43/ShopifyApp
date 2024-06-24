@@ -26,7 +26,11 @@ class SearchTableViewCell: UITableViewCell {
 
     func configure(with product: Product) {
         productTitleLabel.text = product.title
-        productPrice.text = "$\(product.variants?.first?.price ?? "0.00")"
+        
+        let price = CurrencyService.instance.calcThePrice(price: Double(product.variants?.first?.price ?? "0") ?? 0.0)
+        
+        productPrice.text = "\(price) \(CurrencyService.instance.getCurrencyType())"
+    
         productBrand.text = product.vendor
         
         if let imageUrl = product.image?.src, let url = URL(string: imageUrl) {
