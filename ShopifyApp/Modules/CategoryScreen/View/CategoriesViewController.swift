@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DropDown
+//import DropDown
 import Reachability
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
@@ -22,6 +22,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var filterView: UIView!
     var filteredProducts: [Product] = []
     var filteredPriceProducts: [Product] = []
+    let menuPrice: DropDown = {
+        let menu = DropDown()
     let activityIndicator = UIActivityIndicatorView(style: .large)
     let menuPrice: DropDown = {
         let menu = DropDown()
@@ -48,7 +50,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         }
         
         return menu
-    }()
+    }() 
     
     @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
     @IBOutlet weak var saleBtn: UIButton!
@@ -61,8 +63,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel()
-        menuPrice.anchorView = filterView
-        menuPrice.selectedTextColor = .orange
+      //  menuPrice.anchorView = filterView
+       // menuPrice.selectedTextColor = .orange
         self.filterProductsOfCategories()
         categoriesCollection.reloadData()
         checkIfCollectionIsEmpty()
