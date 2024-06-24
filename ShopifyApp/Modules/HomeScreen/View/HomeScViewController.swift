@@ -304,21 +304,39 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if indexPath.section == 0 {
             
-            let textToCopy = viewModel?.getPriceRuleByIndex(index: indexPath.row)
-
-                  let alertController = UIAlertController(title: nil, message: "get your coupon", preferredStyle: .actionSheet)
-
-                  let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
-                      UIPasteboard.general.string = textToCopy
-                  }
-
-                  let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-                  alertController.addAction(copyAction)
-                  alertController.addAction(cancelAction)
-                  present(alertController, animated: true, completion: nil)
-            
-            
+            if UserDefaultsManager.shared.getCustomer().id != nil {
+                
+                let textToCopy = viewModel?.getPriceRuleByIndex(index: indexPath.row)
+                
+                let alertController = UIAlertController(title: nil, message: "get your coupon", preferredStyle: .actionSheet)
+                
+                let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
+                    UIPasteboard.general.string = textToCopy
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                alertController.addAction(copyAction)
+                alertController.addAction(cancelAction)
+                present(alertController, animated: true, completion: nil)
+                
+            }
+            else {
+                
+                let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                    
+                    let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                    
+                    let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                
+                    self.present(chooseScreen, animated: true)
+                
+                }))
+                present(alert, animated: true)
+                
+            }
         }
         else {
             let brands = getUniqueBrands()

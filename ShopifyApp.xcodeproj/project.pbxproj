@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0093C1552C22B004009E4866 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0093C1532C22B004009E4866 /* OrderTableViewCell.swift */; };
 		0093C1562C22B004009E4866 /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0093C1542C22B004009E4866 /* OrderTableViewCell.xib */; };
-		009453A12C296624004D71CC /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 009453A02C296624004D71CC /* DropDown */; };
 		009766EA2C26D91F00A4D4F5 /* OrderDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009766E92C26D91F00A4D4F5 /* OrderDetailsViewController.swift */; };
 		0098089A2C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009808992C1AD7A000E0CFD7 /* AdsCollectionViewCell.swift */; };
 		009D4A722C1867940039E7B0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009D4A712C1867940039E7B0 /* HomeViewModel.swift */; };
@@ -105,6 +104,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D337CAC22C29CCA100ACE5DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D337CABC2C29CCA100ACE5DE /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A76440F1B676C2300BF1A2D;
+			remoteInfo = Demo;
+		};
+		D337CAC42C29CCA100ACE5DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D337CABC2C29CCA100ACE5DE /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A7644241B676C2300BF1A2D;
+			remoteInfo = DropDownTests;
+		};
+		D337CAC62C29CCA100ACE5DE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D337CABC2C29CCA100ACE5DE /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AB5D8711D0EEECD002D3A17;
+			remoteInfo = DropDown;
+		};
 		D3AA905C2C22DC3700333D52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D30AB6862C032CA300C61F99 /* Project object */;
@@ -171,6 +191,7 @@
 		D30AB6AD2C035FF800C61F99 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D33121E22C178E74005C6E27 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
 		D33121E42C178EA6005C6E27 /* HomeScViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScViewController.swift; sourceTree = "<group>"; };
+		D337CABC2C29CCA100ACE5DE /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = ../../Downloads/DropDown/DropDown.xcodeproj; sourceTree = "<group>"; };
 		D3422F702C207CEA004D2558 /* Part2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Part2.storyboard; sourceTree = "<group>"; };
 		D3422F722C207CF8004D2558 /* Part3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Part3.storyboard; sourceTree = "<group>"; };
 		D34E6FB82C24B362009CA098 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -219,7 +240,6 @@
 				D38C72E42C295EDF0087BE2F /* Cosmos in Frameworks */,
 				D38C72D32C295D510087BE2F /* Lottie in Frameworks */,
 				D38C72DE2C295E7A0087BE2F /* Reachability in Frameworks */,
-				009453A12C296624004D71CC /* DropDown in Frameworks */,
 				D38C72D62C295D810087BE2F /* Alamofire in Frameworks */,
 				D38C72DB2C295E480087BE2F /* FirebaseAuth in Frameworks */,
 			);
@@ -526,6 +546,7 @@
 		D30AB6852C032CA300C61F99 = {
 			isa = PBXGroup;
 			children = (
+				D337CABC2C29CCA100ACE5DE /* DropDown.xcodeproj */,
 				D30AB6902C032CA300C61F99 /* ShopifyApp */,
 				D3AA90592C22DC3700333D52 /* ShopifyAppTests */,
 				D30AB68F2C032CA300C61F99 /* Products */,
@@ -600,6 +621,16 @@
 				00DF67212C186DEF00734F38 /* ProducCollectionViewCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D337CABD2C29CCA100ACE5DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D337CAC32C29CCA100ACE5DE /* Demo.app */,
+				D337CAC52C29CCA100ACE5DE /* DropDownTests.xctest */,
+				D337CAC72C29CCA100ACE5DE /* DropDown.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		D34E6FB62C24B330009CA098 /* ContactScreen */ = {
@@ -886,7 +917,6 @@
 				D38C72DD2C295E7A0087BE2F /* Reachability */,
 				D38C72E02C295ECC0087BE2F /* Kingfisher */,
 				D38C72E32C295EDF0087BE2F /* Cosmos */,
-				009453A02C296624004D71CC /* DropDown */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -945,10 +975,15 @@
 				D38C72DC2C295E7A0087BE2F /* XCRemoteSwiftPackageReference "Reachability" */,
 				D38C72DF2C295ECC0087BE2F /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				D38C72E22C295EDF0087BE2F /* XCRemoteSwiftPackageReference "Cosmos" */,
-				0094539F2C296624004D71CC /* XCRemoteSwiftPackageReference "DropDown" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D337CABD2C29CCA100ACE5DE /* Products */;
+					ProjectRef = D337CABC2C29CCA100ACE5DE /* DropDown.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D30AB68D2C032CA300C61F99 /* ShopifyApp */,
@@ -956,6 +991,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D337CAC32C29CCA100ACE5DE /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = D337CAC22C29CCA100ACE5DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D337CAC52C29CCA100ACE5DE /* DropDownTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DropDownTests.xctest;
+			remoteRef = D337CAC42C29CCA100ACE5DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D337CAC72C29CCA100ACE5DE /* DropDown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DropDown.framework;
+			remoteRef = D337CAC62C29CCA100ACE5DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D30AB68C2C032CA300C61F99 /* Resources */ = {
@@ -1350,14 +1409,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0094539F2C296624004D71CC /* XCRemoteSwiftPackageReference "DropDown" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		00D1C5462C28CFB9009D4CCF /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1417,11 +1468,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		009453A02C296624004D71CC /* DropDown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0094539F2C296624004D71CC /* XCRemoteSwiftPackageReference "DropDown" */;
-			productName = DropDown;
-		};
 		00D1C5492C28D482009D4CCF /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 00D1C5462C28CFB9009D4CCF /* XCRemoteSwiftPackageReference "lottie-ios" */;

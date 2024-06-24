@@ -84,7 +84,9 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
                    orderCell.orderNumber.text = order.confirmationNumber
                    orderCell.productsNumber.text = "\((order.lineItems?.count ?? 0) - 1)"
-            orderCell.totalAmount.text = order.totalLineItemsPrice
+            let price = viewModel?.convertPriceByCurrency(price: Double(order.totalLineItemsPrice ?? "0.0") ?? 0.0)
+            orderCell.totalAmount.text = price
+            orderCell.currencyTxt.text = viewModel?.getCurrencyType()
                   if let createdAtString = order.createdAt {
                       let dateFormatter = DateFormatter()
                       dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

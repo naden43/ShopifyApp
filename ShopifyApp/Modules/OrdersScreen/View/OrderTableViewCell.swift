@@ -20,6 +20,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var productsNumber: UILabel!
     @IBOutlet weak var orderNumber: UILabel!
     //@IBOutlet weak var orderImage: UIImageView!
+    @IBOutlet weak var currencyTxt: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.contentView.layer.cornerRadius = 30

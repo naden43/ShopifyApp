@@ -92,24 +92,37 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 print("the number of orders = \(self?.viewModel?.getOrders().count ?? 0)")
             }
         }
-        viewModel?.fetchOrders(url: url)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print(UserDefaultsManager.shared.getCustomer())
-        if self.viewModel?.checkIfUserAvaliable() == true {
+        
+        
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
             
-            viewModel?.fetchCustomer()
-            viewModel?.fetchFavourites()
-            self.noInternetMode.isHidden = true
-            self.userModeView.isHidden = false
-            self.guestModeView.isHidden = true
-        } else {
-            self.noInternetMode.isHidden = true
+        case .wifi, .cellular :
+            if self.viewModel?.checkIfUserAvaliable() == true {
+                
+                viewModel?.fetchCustomer()
+                viewModel?.fetchFavourites()
+                viewModel?.fetchOrders(url: url)
+                
+                self.noInternetMode.isHidden = true
+                self.userModeView.isHidden = false
+                self.guestModeView.isHidden = true
+            } else {
+                self.noInternetMode.isHidden = true
+                self.userModeView.isHidden = true
+                self.guestModeView.isHidden = false
+            }
+        case .unavailable :
+            self.noInternetMode.isHidden = false
             self.userModeView.isHidden = true
-            self.guestModeView.isHidden = false
+            self.guestModeView.isHidden = true
         }
 
         
@@ -189,7 +202,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                        orderCell.orderNumber.text = order.confirmationNumber
                        orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
                        orderCell.totalAmount.text = price
-                       
+                       orderCell.currencyTxt.text = viewModel?.getCurrencyType()
                        
 
                        // Configure date formatting
