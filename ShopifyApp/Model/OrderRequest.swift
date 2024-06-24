@@ -87,9 +87,11 @@ struct Order: Codable {
        var refunds: [JSONAny]?
        var shippingAddress: Address?
        var shippingLines: [JSONAny]?
-
+       var inventory_behaviour : String?
+    
        enum CodingKeys: String, CodingKey {
            case id
+           case inventory_behaviour
            case adminGraphqlAPIID = "admin_graphql_api_id"
            case appID = "app_id"
            case browserIP = "browser_ip"

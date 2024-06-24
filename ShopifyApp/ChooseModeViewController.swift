@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class ChooseModeViewController: UIViewController {
 
@@ -16,34 +17,72 @@ class ChooseModeViewController: UIViewController {
     
     @IBAction func navigateToGuestMode(_ sender: Any) {
         
-        UserDefaultsManager.shared.saveAsGuest()
         
-        let part1Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let reachability = try! Reachability()
         
-        let homeScreen = part1Storyboard.instantiateViewController(withIdentifier: "naviagtion")
-    
-        present(homeScreen, animated: true)
-        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            
+            UserDefaultsManager.shared.saveAsGuest()
+            
+            let part1Storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let homeScreen = part1Storyboard.instantiateViewController(withIdentifier: "naviagtion")
+            
+            present(homeScreen, animated: true)
+            
+        case .unavailable :
+            let alert = UIAlertController(title: "network" ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+        }
     }
     
     @IBAction func navigateToRegister(_ sender: Any) {
+        
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            
         
         let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
         
         let signUpScreen = part3Storyboard.instantiateViewController(withIdentifier: "signUp_screen")
     
         present(signUpScreen, animated: true)
+            
+        case .unavailable :
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
         
         
         
     }
     @IBAction func navigateToLogin(_ sender: Any) {
         
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+        
         let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
         
         let loginScreen = part3Storyboard.instantiateViewController(withIdentifier: "loginScreen")
     
         present(loginScreen, animated: true)
+            
+        case .unavailable :
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+        }
+        
         
         
     }

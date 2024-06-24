@@ -25,6 +25,8 @@ class PlaceOrderViewModel{
     
     private var totalPrice : Double?
     
+    var bindEditCartAlert : (()-> Void) = {}
+    
     var bindDiscaountCouponError : (()->Void) = {}
     
     func loadData() {
@@ -125,17 +127,49 @@ class PlaceOrderViewModel{
         return items
     }
     
+    func clearAllProducts() {
+        guard var listOfProducts = data, var lineItems = data?.lineItems, !lineItems.isEmpty else {
+            return
+        }
+        let firstItem = lineItems[0]
+        listOfProducts.lineItems = [firstItem]
+        
+        let draftOrderId = userDefualtManager.getCustomer().shoppingCartDraftOrderId ?? ""
+
+        print("Updating draft order with only the first item: \(listOfProducts)")
+
+        network.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/\(draftOrderId).json", responseType: Draft.self) { success, error, response in
+            
+            if success {
+                self.data = response?.draft_order
+                //self.bindData()
+                print("Draft order successfully updated with only the first item retained")
+            } else {
+                print("Error updating draft order: \(String(describing: error))")
+            }
+        }
+    }
+    
     
     func placeOrder (lineItems: [LineItem], customerId: Int, financialStatus: String, discount_codes : [DiscountCode]) {
     
         let customer  = Customer(id: customerId)
-        let order = Order( discountCodes: discount_codes, financialStatus: FinancialStatus.pending, customer: customer, lineItems: lineItems)
+        let order = Order( discountCodes: discount_codes, financialStatus: FinancialStatus.pending, customer: customer, lineItems: lineItems ,  inventory_behaviour: "decrement_obeying_policy")
         let orderRequest = OrderRequest(order: order)
         print("========================== order req =============== \(orderRequest)")
         network.postData(orderRequest, to: Constants.EndPoint.Placeorders, responseType: Order.self){ success, message, response in
             if success {
                 print("Order placed successfully: \(String(describing: response))")
+                self.clearAllProducts()
             } else {
+                
+                if (message  ?? "") == "422" {
+                    self.bindEditCartAlert()
+                }
+                else
+                {
+                    
+                }
                 print("Failed to place order: \(String(describing: message))")
             }
         }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a5D-KF-FtM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a5D-KF-FtM">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psi-Cb-w46">
-                                <rect key="frame" x="43" y="419" width="307" height="38.333333333333314"/>
+                                <rect key="frame" x="16" y="419" width="361" height="34.666666666666686"/>
                                 <color key="backgroundColor" name="btnColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Already a customer? Sign in" cornerStyle="dynamic">
@@ -30,20 +30,8 @@
                                     <action selector="navigateToLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="qbw-Ra-Dbq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1T-PL-vyJ">
-                                <rect key="frame" x="43" y="475.33333333333331" width="307" height="38.999999999999943"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="New to SAWAQNY? Create an account" titleAlignment="center">
-                                    <color key="baseForegroundColor" name="textColor"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="navigateToRegister:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gsZ-lb-umc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="07d-Cw-ZAB">
-                                <rect key="frame" x="43" y="529.33333333333337" width="307" height="38.333333333333371"/>
-                                <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                <rect key="frame" x="16" y="521" width="361" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Skip sign in">
                                     <color key="baseForegroundColor" name="textColor"/>
@@ -52,13 +40,23 @@
                                     <action selector="navigateToGuestMode:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dTk-eV-YwA"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lastLogo-removebg-preview.png" translatesAutoresizingMaskIntoConstraints="NO" id="Djn-JC-W4t">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" translatesAutoresizingMaskIntoConstraints="NO" id="Djn-JC-W4t">
                                 <rect key="frame" x="43" y="99" width="307" height="270"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="270" id="0Fn-al-0l9"/>
                                     <constraint firstAttribute="width" constant="307" id="Vh7-72-uOj"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1T-PL-vyJ">
+                                <rect key="frame" x="16" y="468" width="361" height="34.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="New to SAWAQNY? Create an account" titleAlignment="center">
+                                    <color key="baseForegroundColor" name="textColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="navigateToRegister:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="gsZ-lb-umc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="bg_color"/>
@@ -66,8 +64,8 @@
                             <constraint firstItem="07d-Cw-ZAB" firstAttribute="trailing" secondItem="Psi-Cb-w46" secondAttribute="trailing" id="C9o-84-38y"/>
                             <constraint firstItem="07d-Cw-ZAB" firstAttribute="leading" secondItem="Psi-Cb-w46" secondAttribute="leading" id="Ce0-U0-aD1"/>
                             <constraint firstItem="07d-Cw-ZAB" firstAttribute="top" secondItem="j1T-PL-vyJ" secondAttribute="bottom" constant="15" id="JwU-CL-9vi"/>
-                            <constraint firstItem="Psi-Cb-w46" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="43" id="OHY-4b-wLz"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Psi-Cb-w46" secondAttribute="trailing" constant="43" id="PWT-ny-SFZ"/>
+                            <constraint firstItem="Psi-Cb-w46" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="OHY-4b-wLz"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Psi-Cb-w46" secondAttribute="trailing" constant="16" id="PWT-ny-SFZ"/>
                             <constraint firstItem="Psi-Cb-w46" firstAttribute="top" secondItem="Djn-JC-W4t" secondAttribute="bottom" constant="50" id="RQp-9g-Tlb"/>
                             <constraint firstItem="j1T-PL-vyJ" firstAttribute="trailing" secondItem="Psi-Cb-w46" secondAttribute="trailing" id="YK0-Np-COP"/>
                             <constraint firstItem="Djn-JC-W4t" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="43" id="bQm-BG-JHc"/>
@@ -156,7 +154,7 @@
                                 <color key="highlightedColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="799.00 EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R88-C7-ibQ">
-                                <rect key="frame" x="267" y="492" width="102" height="22"/>
+                                <rect key="frame" x="267.33333333333331" y="492" width="101.66666666666669" height="22"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -176,7 +174,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6o-pI-30M">
-                                <rect key="frame" x="119" y="740.66666666666663" width="155" height="38.333333333333371"/>
+                                <rect key="frame" x="119" y="744.66666666666663" width="155" height="34.333333333333371"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="ADD TO CART">
@@ -184,7 +182,7 @@
                                 </buttonConfiguration>
                             </button>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uTA-pi-lLE">
-                                <rect key="frame" x="49" y="501" width="65" height="13"/>
+                                <rect key="frame" x="48.999999999999993" y="501" width="65.333333333333314" height="13"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="TOq-gS-wk9">
                                         <rect key="frame" x="0.0" y="2.6666666666666572" width="16" height="7"/>
@@ -260,10 +258,10 @@
                                 <color key="backgroundColor" name="bg_color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedCell" id="bx6-zf-89H" customClass="SearchTableViewCell" customModule="ShopifyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="376" height="47.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="50" width="376" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bx6-zf-89H" id="Df9-36-dV2">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="47.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="bg_color"/>
@@ -334,13 +332,13 @@
                                 <color key="selectedSegmentTintColor" name="BackgroundColor"/>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wishlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wq-5e-p0z">
-                                <rect key="frame" x="20" y="78" width="168.66666666666666" height="42.666666666666657"/>
+                                <rect key="frame" x="20" y="78" width="169" height="41"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2np-AD-ygU">
-                                <rect key="frame" x="16" y="130.66666666666669" width="361" height="687.33333333333326"/>
+                                <rect key="frame" x="16" y="129" width="361" height="689"/>
                                 <color key="backgroundColor" name="bg_color"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favProductsCell" rowHeight="55" id="m7f-A1-hc5" customClass="FavouriteProductsTableViewCell" customModule="ShopifyApp" customModuleProvider="target">
@@ -455,7 +453,7 @@
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2k-CKN">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2k-CKN">
                                                 <rect key="frame" x="73" y="33" width="247" height="182"/>
                                                 <color key="backgroundColor" name="bg_color"/>
                                                 <constraints>
@@ -464,7 +462,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S32-Sx-j8A">
-                                                <rect key="frame" x="17" y="691.66666666666663" width="359" height="38.333333333333371"/>
+                                                <rect key="frame" x="17" y="695.66666666666663" width="359" height="34.333333333333371"/>
                                                 <color key="backgroundColor" name="btnColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up">
@@ -584,7 +582,7 @@
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lastLogo-removebg-preview.png" translatesAutoresizingMaskIntoConstraints="NO" id="1In-Dz-aQv">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" translatesAutoresizingMaskIntoConstraints="NO" id="1In-Dz-aQv">
                                                 <rect key="frame" x="73" y="150" width="247" height="182"/>
                                                 <color key="backgroundColor" name="bg_color"/>
                                                 <constraints>
@@ -593,7 +591,7 @@
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbn-Zt-JxB">
-                                                <rect key="frame" x="17" y="691" width="359" height="39"/>
+                                                <rect key="frame" x="17" y="695.66666666666663" width="359" height="34.333333333333371"/>
                                                 <color key="backgroundColor" name="btnColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Login">
@@ -929,12 +927,13 @@
                                     <constraint firstItem="8dB-K4-t3J" firstAttribute="top" secondItem="NYv-ew-oEN" secondAttribute="top" id="skI-F8-Kqf"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9q4-cX-jyz">
-                                <rect key="frame" x="91" y="771" width="211" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="labelColor"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9q4-cX-jyz">
+                                <rect key="frame" x="16" y="760" width="361" height="34.333333333333371"/>
+                                <color key="backgroundColor" name="btnColor"/>
+                                <color key="tintColor" name="btnColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="ADD TO CART">
+                                <buttonConfiguration key="configuration" style="plain" title="ADD TO CART" cornerStyle="capsule">
+                                    <backgroundConfiguration key="background"/>
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -947,10 +946,13 @@
                         <constraints>
                             <constraint firstItem="NYv-ew-oEN" firstAttribute="leading" secondItem="jpj-YF-oI3" secondAttribute="leading" id="4Wo-eX-kJi"/>
                             <constraint firstItem="NYv-ew-oEN" firstAttribute="top" secondItem="Rbx-8P-YrK" secondAttribute="top" id="553-kf-l3e"/>
+                            <constraint firstItem="jpj-YF-oI3" firstAttribute="trailing" secondItem="9q4-cX-jyz" secondAttribute="trailing" constant="16" id="7at-ve-CWM"/>
                             <constraint firstItem="8dB-K4-t3J" firstAttribute="width" secondItem="Rbx-8P-YrK" secondAttribute="width" id="84g-2z-e2w"/>
                             <constraint firstItem="8dB-K4-t3J" firstAttribute="height" secondItem="Rbx-8P-YrK" secondAttribute="height" multiplier="1.2723" id="Azc-3g-Wxk"/>
                             <constraint firstItem="NYv-ew-oEN" firstAttribute="trailing" secondItem="jpj-YF-oI3" secondAttribute="trailing" id="BYP-hj-Ljn"/>
                             <constraint firstAttribute="bottom" secondItem="NYv-ew-oEN" secondAttribute="bottom" constant="100" id="QC6-xo-nDW"/>
+                            <constraint firstItem="9q4-cX-jyz" firstAttribute="leading" secondItem="jpj-YF-oI3" secondAttribute="leading" constant="16" id="uxz-eq-djr"/>
+                            <constraint firstItem="9q4-cX-jyz" firstAttribute="top" secondItem="NYv-ew-oEN" secondAttribute="bottom" constant="8" id="y0p-j7-67q"/>
                         </constraints>
                     </view>
                     <connections>
@@ -974,8 +976,8 @@
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="107"/>
-        <image name="lastLogo-removebg-preview.png" width="402" height="325"/>
         <image name="left-arrow-2" width="24" height="24"/>
+        <image name="logo2" width="402" height="325"/>
         <image name="noWifi" width="341" height="265"/>
         <image name="product 1" width="564" height="698"/>
         <image name="reviewer.jpg" width="129.60000610351562" height="86.400001525878906"/>
@@ -997,13 +999,10 @@
             <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

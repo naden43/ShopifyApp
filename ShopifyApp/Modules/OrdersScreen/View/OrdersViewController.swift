@@ -15,6 +15,7 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var ordersTable: UITableView!
     var viewModel:ProfileViewModel?
     let url = Constants.EndPoint.orders
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
         ordersTable.delegate = self
@@ -27,6 +28,7 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
         viewModel?.bindToOdersViewController = { [weak self] in
             print("inside the bind closure")
             DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
                 self?.ordersTable.reloadData()
                 self?.updateEmptyOrderView()
                 print("the number of orders = \(self?.viewModel?.getOrders().count ?? 0)")
@@ -34,6 +36,9 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         viewModel?.fetchOrders(url: url)
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
         // Do any additional setup after loading the view.
     }
     

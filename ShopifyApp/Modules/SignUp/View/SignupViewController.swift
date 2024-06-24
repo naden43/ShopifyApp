@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-
+import Reachability
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var firstNameTextField: UITextField!
@@ -20,7 +20,8 @@ class SignUpViewController: UIViewController {
     let signUpViewModel = SignUpViewModel()
     
     
-    
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -35,6 +36,13 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpBtn(_ sender: Any) {
+        
+        let reachability = try! Reachability()
+        
+        switch reachability.connection {
+            
+        case .wifi , .cellular :
+            
         let firstName = firstNameTextField.text
         let secondName = secondNameTextField.text
         let email = emailTextField.text
@@ -49,16 +57,31 @@ class SignUpViewController: UIViewController {
             return
         }
         
+        
+            self.activityIndicator.center = self.view.center
+            self.view.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
+            
         signUpViewModel.createUser(firstName: firstName!, secondName: secondName!, email: email!, mobile: mobile!, password: password!) { success, message in
             DispatchQueue.main.async {
                 if success {
+                    self.activityIndicator.stopAnimating()
+
                     //self.showSuccess(message ?? "Sign up successful! Please check your email for verification.")
                     self.naviagteToLoginScreen()
                     
                 } else {
+                    self.activityIndicator.stopAnimating()
+
                     self.showError(message ?? "Sign up failed")
                 }
             }
+        }
+        case .unavailable :
+            let alert = UIAlertController(title: nil ,  message: "Check your network first !", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
+            
         }
     }
     
@@ -95,6 +118,3 @@ class SignUpViewController: UIViewController {
             
         }
     }
-
-
-

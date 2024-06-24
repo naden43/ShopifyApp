@@ -19,6 +19,31 @@ class MockNetworkHandler {
     }
     
     
+    let fakeAddressJson : [String: Any] = [
+        "addresses": [
+            [
+                "id": 8862206623910,
+                "customer_id": 7903151259814,
+                "first_name": "aya",
+                "last_name": "mostafa",
+                "company": null,
+                "address1": "abdelazizaburahmastret",
+                "address2": null,
+                "city": "Port Said",
+                "province": null,
+                "country": "Egypt",
+                "zip": null,
+                "phone": "01128273410",
+                "name": "aya mostafa",
+                "province_code": null,
+                "country_code": "EG",
+                "country_name": "Egypt",
+                "default": true
+            ]
+        ]
+    ]
+    
+    
     let fackDraftOrderJson: [String: Any] = [
         "draft_order": [
             "id": 979195232422,
@@ -148,6 +173,7 @@ class MockNetworkHandler {
         ]
     ]
 
+    
 
     
     func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void){
@@ -223,6 +249,40 @@ class MockNetworkHandler {
             completion(true , nil , result as? U)
         }
     }
+    
+    
+    func getData<U: Decodable>(from endpoint: String, responseType: U.Type, completion: @escaping (Bool, String?, U?) -> Void) {
+            var result = Draft()
+            
+            do {
+                let data = try JSONSerialization.data(withJSONObject: fackDraftOrderJson)
+                result = try JSONDecoder().decode(Draft.self, from: data)
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
+            if shouldReturnError {
+                completion(false, "error message", nil)
+            } else {
+                completion(true, nil, result as? U)
+            }
+        }
+    
+    func deleteData(from endpoint: String, completion: @escaping (Bool, String?) -> Void) {
+          if shouldReturnError {
+              completion(false, "error message")
+          } else {
+              let addresses = fakeAddressJson["addresses"] as! [[String: Any]]
+              let filteredAddresses = addresses.filter { $0["id"] as! Int != 8862206623910 }
+              
+              if addresses.count == filteredAddresses.count {
+                  completion(false, "Address not found")
+              } else {
+                  completion(true, nil)
+              }
+          }
+      }
+        
     
     enum responseError : Error {
         

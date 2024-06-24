@@ -135,7 +135,6 @@ class NetworkHandler {
             completion(false)
             return
         }
-        
         let headers: HTTPHeaders = ["Authorization": authHeader]
         AF.request(url, method: .delete, headers: headers)
             .validate(statusCode: 200..<300)
@@ -200,13 +199,13 @@ class NetworkHandler {
         }
         
              AF.request(url, method: .post, parameters: data, encoder: JSONParameterEncoder.default, headers: headers)
-                 .validate()
+            .validate()
                  .responseDecodable(of: U.self) { response in
                      switch response.result {
                      case .success(let value):
                          completion(true, "succeeded",value)
                      case .failure(let error):
-                         completion(false, "Request error i post fuction: \(error.localizedDescription) \(response.response?.statusCode)" , nil)
+                         completion(false, "\(response.response?.statusCode ?? 0)" , nil)
                      }
             }
     }

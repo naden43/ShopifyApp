@@ -365,9 +365,93 @@ final class ShopifyAppTests: XCTestCase {
         }
     }
 
-    
-    
+    func testGetData() {
+        let myExpectation = expectation(description: "wait api result")
+        
+        networkHandler?.getData(endPoint: "admin/api/2024-04/draft_orders/979195232422.json", complitionHandler: { (response: Draft?, error) in
+            if error == "Success" {
+                XCTAssertNotNil(response)
+                myExpectation.fulfill()
+            } else {
+                XCTFail("Request failed with error: \(error ?? "unknown error")")
+                myExpectation.fulfill()
+            }
+        })
+        waitForExpectations(timeout: 10)
+    }
 
+
+    func testGetDataToFail() {
+        let myExpectation = expectation(description: "wait api result")
+        networkHandler?.getData(endPoint: "admin/api/2024-04/invalid_endpoint.json", complitionHandler: { (response: DraftOrdersResponse?, error) in
+            if let error = error {
+                XCTAssertNotNil(error, "Expected an error but got none")
+                myExpectation.fulfill()
+            } else {
+                XCTFail("Expected failure but got success")
+                myExpectation.fulfill()
+            }
+        })
+        
+        waitForExpectations(timeout: 10)
+    }
+    
+    func testDeleteAddress () {
+        let myExpectation = expectation(description: "wait api result")
+            let addressId = 8862206623910
+            let endpoint = "admin/api/2024-04/customers/7903151259814/addresses/\(addressId).json"
+            
+            networkHandler?.deleteAddress(endPoint: endpoint, completion: { success in
+                if success {
+                    myExpectation.fulfill()
+                } else {
+                    XCTFail("Delete address failed")
+                    myExpectation.fulfill()
+                }
+            })
+            waitForExpectations(timeout: 10)
+    }
+    
+    
+    func testDeleteAddressToFail() {
+        let myExpectation = expectation(description: "wait api result")
+        let invalidAddressId = 9999999999999
+        let endpoint = "admin/api/2024-04/customers/7903151259814/addresses/\(invalidAddressId).json"
+        
+        networkHandler?.deleteAddress(endPoint: endpoint, completion: { success in
+            if success {
+                XCTFail("Expected failure but got success")
+                myExpectation.fulfill()
+            } else {
+                myExpectation.fulfill()
+            }
+        })
+        waitForExpectations(timeout: 10)
+    }
+    
+    func testMockGetData() {
+            mockNetworkHandler?.getData(from: "", responseType: Draft.self) { success, errorMessage, result in
+                if let errorMessage = errorMessage {
+                    XCTAssertNil(result)
+                    XCTFail("Error: \(errorMessage)")
+                }
+                
+                if let result = result {
+                    XCTAssertEqual(result.draft_order?.id, 979195232422)
+                }
+            }
+        }
+    
+    func testMockDeleteData() {
+            mockNetworkHandler?.deleteData(from: "") { success, errorMessage in
+                if let errorMessage = errorMessage {
+                    XCTAssertFalse(success)
+                    XCTFail("Error: \(errorMessage)")
+                } else {
+                    XCTAssertTrue(success)
+                }
+            }
+        }
 
 }
 

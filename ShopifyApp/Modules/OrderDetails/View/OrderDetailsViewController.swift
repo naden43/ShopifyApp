@@ -18,7 +18,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var numberOfItems: UILabel!
     @IBOutlet weak var orderDate: UILabel!
     @IBOutlet weak var orderNumber: UILabel!
-
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     var selectedOrder : Order?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
                               self.orderDate.text = "N/A"
                           }
                    self.numberOfItems.text = "\((order.lineItems?.count ?? 0) - 1)"
-                   self.orderAddress.text = ("\((order.customer?.defaultAddress?.address1)!),\((order.customer?.defaultAddress?.city)!), \( (order.customer?.defaultAddress?.country)!)")
+                   self.orderAddress.text = ("\((order.customer?.defaultAddress?.address1)!),\((order.customer?.defaultAddress?.city)!), \( (order.customer?.defaultAddress?.country) ?? "")")
         self.discount.text = "\(discountRate ?? "-")%, \(discountPromoCode ?? "No promo code applied")"
     }
     

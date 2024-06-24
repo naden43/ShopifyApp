@@ -19,6 +19,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     var arrAdsPhotos = [UIImage(named: "menss")!,UIImage(named: "mensdisc")!,UIImage(named: "women")!]
     var timer : Timer?
     var currentCellIndex = 0
+    let activityIndicator = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +52,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         viewModel?.bindToHomeViewController = { [weak self] in
            // print("inside the bind closure")
             DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
                 self?.brandsCollection.reloadData()
             }
         }
@@ -68,6 +70,10 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         viewModel?.fetchBands(url: url)
         viewModel?.getPriceRules()
         viewModel?.fetchCurrencyDataAndStore(currencyType: viewModel?.getCurrencyType() ?? "EGP")
+        
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -281,12 +287,13 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
             brandCell.layer.cornerRadius = 20
             brandCell.brandName.text = brands[indexPath.row].title
             brandCell.viewContainer.layer.cornerRadius = 15
-            brandCell.brandImg.layer.cornerRadius = 50
+            brandCell.brandImg.layer.cornerRadius = 20
             var brandIMG = brands[indexPath.row].image.src
             let imageUrl = URL(string: brandIMG)
             brandCell.brandImg.kf.setImage(with: imageUrl)
             self.brandName = brands[indexPath.row].title
-            
+            brandCell.layer.shadowColor = UIColor.black.cgColor
+            brandCell.layer.shadowOffset = CGSize(width: 0, height: 2)
             return brandCell
         }
     }
@@ -408,5 +415,4 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         // Pass the selected object to the new view controller.
     }
     */
-
 }

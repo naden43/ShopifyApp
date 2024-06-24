@@ -36,6 +36,15 @@ class PlaceOrderViewController: UIViewController {
 
         }
         
+        viewModel?.bindEditCartAlert = {
+            
+            let alert = UIAlertController(title: "shopping cart ", message: "some of products in shopping cart are soldout handle your shopping cart and come back again ", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
+        }
+        
         viewModel?.bindDiscount = { [weak self] in
             
             self?.discountMoney.text = self?.viewModel?.getSavedMoney()
@@ -86,32 +95,39 @@ class PlaceOrderViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
         }
-        
-        
-        
     }
-    func navigateToHome() {
-        // Access root navigation controller from Main.storyboard
-        guard let navigationController = navigationController else {
-            print("Navigation controller is nil")
-            return
-        }
+    
+    private func navigateToHome() {
+        print("Navigating to home...")
         
-        // Print all view controllers in the navigation stack for debugging
-        print("Navigation stack view controllers:")
-        for viewController in navigationController.viewControllers {
-            print("- \(viewController)")
-        }
+        let part1Storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        // Attempt to find and navigate to HomeViewController
-        for viewController in navigationController.viewControllers {
-            if let homeVC = viewController as? HomeScViewController {
-                navigationController.popToViewController(homeVC, animated: true)
-                return
-            }
-        }
-        print("HomeViewController not found in the navigation stack")
+        let homeScreen = part1Storyboard.instantiateViewController(withIdentifier: "naviagtion")
+    
+        present(homeScreen, animated: true)
     }
+//    func navigateToHome() {
+//        // Access root navigation controller from Main.storyboard
+//        guard let navigationController = navigationController else {
+//            print("Navigation controller is nil")
+//            return
+//        }
+//
+//        // Print all view controllers in the navigation stack for debugging
+//        print("Navigation stack view controllers:")
+//        for viewController in navigationController.viewControllers {
+//            print("- \(viewController)")
+//        }
+//
+//        // Attempt to find and navigate to HomeViewController
+//        for viewController in navigationController.viewControllers {
+//            if let homeVC = viewController as? HomeScViewController {
+//                navigationController.popToViewController(homeVC, animated: true)
+//                return
+//            }
+//        }
+//        print("HomeViewController not found in the navigation stack")
+//    }
     
     func playLottieAnimation() {
         animationView.animation = LottieAnimation.named("Animation")
@@ -141,7 +157,6 @@ class PlaceOrderViewController: UIViewController {
         
         if paymentMethod == "cash" {
             viewModel?.placeOrder(lineItems: items ?? [], customerId: customerId, financialStatus: financialStatus, discount_codes: allDiscounts ?? [])
-            self.cartViewModel?.clearAllProducts()
                             self.playLottieAnimation()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                 self.navigateToHome()
@@ -193,8 +208,7 @@ extension PlaceOrderViewController : PKPaymentAuthorizationViewControllerDelegat
         controller.dismiss(animated: true, completion: nil)
         var items = viewModel?.getAllProductsFromDraftOrder()
         viewModel?.placeOrder(lineItems: items ?? [], customerId: viewModel?.getCustomerID() ?? 7876947378342, financialStatus: "paid", discount_codes: allDiscounts ?? [])
-        cartViewModel?.clearAllProducts()
-        //navigateToHome()
+        navigateToHome()
     }
     
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
