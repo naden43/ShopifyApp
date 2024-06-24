@@ -29,6 +29,17 @@ class SearchViewModel {
         }
     }
     
+    func convertPriceByCurrency(price : Double) -> String {
+        
+        
+        return CurrencyService.instance.calcThePrice(price: price)
+    }
+    
+    func getCurrencyType() -> String {
+        
+        return CurrencyService.instance.getCurrencyType()
+    }
+    
     func filterProducts(with query: String) {
         if query.isEmpty {
             filteredProducts = products

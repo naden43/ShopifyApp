@@ -106,28 +106,6 @@ class PlaceOrderViewController: UIViewController {
     
         present(homeScreen, animated: true)
     }
-//    func navigateToHome() {
-//        // Access root navigation controller from Main.storyboard
-//        guard let navigationController = navigationController else {
-//            print("Navigation controller is nil")
-//            return
-//        }
-//
-//        // Print all view controllers in the navigation stack for debugging
-//        print("Navigation stack view controllers:")
-//        for viewController in navigationController.viewControllers {
-//            print("- \(viewController)")
-//        }
-//
-//        // Attempt to find and navigate to HomeViewController
-//        for viewController in navigationController.viewControllers {
-//            if let homeVC = viewController as? HomeScViewController {
-//                navigationController.popToViewController(homeVC, animated: true)
-//                return
-//            }
-//        }
-//        print("HomeViewController not found in the navigation stack")
-//    }
     
     func playLottieAnimation() {
         animationView.animation = LottieAnimation.named("Animation")
@@ -159,7 +137,8 @@ class PlaceOrderViewController: UIViewController {
             viewModel?.placeOrder(lineItems: items ?? [], customerId: customerId, financialStatus: financialStatus, discount_codes: allDiscounts ?? [])
                             self.playLottieAnimation()
                             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                                self.navigateToHome()
+                                self.showOrderSuccessAlert()
+                                //self.navigateToHome()
                             }
         }
         else {
@@ -199,6 +178,14 @@ class PlaceOrderViewController: UIViewController {
             
         }
         
+    }
+    
+    private func showOrderSuccessAlert() {
+        let alert = UIAlertController(title: "Order Placed", message: "Your order has been placed successfully!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.navigateToHome()
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }
 

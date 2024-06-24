@@ -46,7 +46,7 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
             
             if self?.viewModel?.getAddresesCount() == 0 {
                 
-                self?.emptyAddressesImage.image = UIImage(named: "emptyAddresses")
+                self?.emptyAddressesImage.image = UIImage(named: "empty-address")
             }
             else{
                 self?.emptyAddressesImage.image = nil
@@ -98,13 +98,14 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
             
         }
         
-        self.activityIndicator.center = self.view.center
-        self.view.addSubview(self.activityIndicator)
-        self.activityIndicator.startAnimating()
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
         viewModel?.loadData()
         userAddressesList.reloadData()
 

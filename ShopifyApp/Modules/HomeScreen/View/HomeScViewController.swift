@@ -16,7 +16,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     @IBOutlet weak var brandsCollection: UICollectionView!
     var brandName : String?
     var viewModel : HomeViewModelProtocol?
-    var arrAdsPhotos = [UIImage(named: "menss")!,UIImage(named: "mensdisc")!,UIImage(named: "women")!]
+    var arrAdsPhotos = [UIImage(named: "ad1")!,UIImage(named: "ad2")!,UIImage(named: "ad3")!]
     var timer : Timer?
     var currentCellIndex = 0
     let activityIndicator = UIActivityIndicatorView(style: .large)
@@ -292,8 +292,12 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
             let imageUrl = URL(string: brandIMG)
             brandCell.brandImg.kf.setImage(with: imageUrl)
             self.brandName = brands[indexPath.row].title
-            brandCell.layer.shadowColor = UIColor.black.cgColor
+            // Add shadow
+            brandCell.layer.shadowColor = UIColor.orange.cgColor
             brandCell.layer.shadowOffset = CGSize(width: 0, height: 2)
+            brandCell.layer.shadowRadius = 4
+            brandCell.layer.shadowOpacity = 0.2
+            brandCell.layer.masksToBounds = false
             return brandCell
         }
     }
@@ -304,21 +308,39 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         if indexPath.section == 0 {
             
-            let textToCopy = viewModel?.getPriceRuleByIndex(index: indexPath.row)
-
-                  let alertController = UIAlertController(title: nil, message: "get your coupon", preferredStyle: .actionSheet)
-
-                  let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
-                      UIPasteboard.general.string = textToCopy
-                  }
-
-                  let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-                  alertController.addAction(copyAction)
-                  alertController.addAction(cancelAction)
-                  present(alertController, animated: true, completion: nil)
-            
-            
+            if UserDefaultsManager.shared.getCustomer().id != nil {
+                
+                let textToCopy = viewModel?.getPriceRuleByIndex(index: indexPath.row)
+                
+                let alertController = UIAlertController(title: nil, message: "get your coupon", preferredStyle: .actionSheet)
+                
+                let copyAction = UIAlertAction(title: "Copy", style: .default) { (_) in
+                    UIPasteboard.general.string = textToCopy
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                
+                alertController.addAction(copyAction)
+                alertController.addAction(cancelAction)
+                present(alertController, animated: true, completion: nil)
+                
+            }
+            else {
+                
+                let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                    
+                    let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                    
+                    let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                
+                    self.present(chooseScreen, animated: true)
+                
+                }))
+                present(alert, animated: true)
+                
+            }
         }
         else {
             let brands = getUniqueBrands()
@@ -371,7 +393,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     func brandsSectionLayout() -> NSCollectionLayoutSection {
         // Define the size of each item (movie cell)
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), // Each item takes up half of the width
-                                              heightDimension: .absolute(260)) // Keep the height as 250 points
+                                              heightDimension: .absolute(240)) // Keep the height as 250 points
 
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25) // Add spacing between items
@@ -396,15 +418,15 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         stopTimer()
     }
     
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//        startTimer()
-//    }
-    
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        if !decelerate {
-//         startTimer()
-//        }
-//    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            startTimer()
+        }
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        startTimer()
+    }
 
     /*
     // MARK: - Navigation
