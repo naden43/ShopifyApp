@@ -6,8 +6,8 @@
 //
 
 import UIKit
-import DropDown
-class PriceDropDownCell: DropDownCell {
+//import DropDown
+/*class PriceDropDownCell: DropDownCell {
     
     @IBOutlet var priceImageView: UIImageView!
 
@@ -24,3 +24,4 @@ class PriceDropDownCell: DropDownCell {
     }
     
 }
+*/

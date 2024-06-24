@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     var homeViewModel: HomeViewModelProtocol?
     var viewModel: SearchViewModel?
     var initialFilteredProducts: [Product] = []
-    var destination:Bool?
+    var destination: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
         if !initialFilteredProducts.isEmpty || destination == true {
             viewModel?.products = initialFilteredProducts
             viewModel?.filteredProducts = initialFilteredProducts
-        } else{
+        } else {
             destination = false
             viewModel?.fetchProducts { success in
                 if success {
@@ -35,7 +35,6 @@ class SearchViewController: UIViewController {
                     print("Failed to fetch IDs and products.")
                 }
             }
-            
         }
 
         productsTableView.dataSource = self
@@ -44,8 +43,36 @@ class SearchViewController: UIViewController {
         
         productsSearchBar.delegate = self
         homeViewModel?.loadFavProducts()
-    }
         
+       
+        setupNavigationBar()
+        
+        customizeSearchBar()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .black
+    }
+    
+    private func customizeSearchBar() {
+        productsSearchBar.tintColor = UIColor(named: "tentColor")
+        
+        if let textField = productsSearchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = UIColor.white
+            textField.textColor = UIColor.black
+            
+            if let placeholderLabel = textField.value(forKey: "placeholderLabel") as? UILabel {
+                placeholderLabel.textColor = UIColor.lightGray
+            }
+            
+            if let customColor = UIColor(named: "tentColor") {
+                textField.backgroundColor = customColor
+            }
+            
+            textField.layer.cornerRadius = 10
+            textField.clipsToBounds = true
+        }
+    }
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
@@ -72,6 +99,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100.0
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let products = viewModel?.filteredProducts {
             let selectedProduct = products[indexPath.row]
@@ -85,7 +113,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
-
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -98,4 +125,3 @@ extension SearchViewController: UISearchBarDelegate {
         searchBar.resignFirstResponder()
     }
 }
-

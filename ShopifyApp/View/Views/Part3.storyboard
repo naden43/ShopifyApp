@@ -255,8 +255,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-3V-mpx">
+                                <rect key="frame" x="9" y="131" width="376" height="704"/>
+                                <color key="backgroundColor" name="bg_color"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedCell" id="bx6-zf-89H" customClass="SearchTableViewCell" customModule="ShopifyApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="376" height="47.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bx6-zf-89H" id="Df9-36-dV2">
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="47.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="bg_color"/>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                             <searchBar contentMode="redraw" placeholder="Search Product" translatesAutoresizingMaskIntoConstraints="NO" id="wqt-xs-Dq4">
-                                <rect key="frame" x="0.0" y="69" width="393" height="56"/>
+                                <rect key="frame" x="33" y="63" width="326" height="56"/>
                                 <color key="backgroundColor" name="bg_color"/>
                                 <color key="barTintColor" name="bg_color"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -264,32 +279,17 @@
                                     <outlet property="delegate" destination="9Bq-VA-jB0" id="s7n-gs-o4R"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xOz-3V-mpx">
-                                <rect key="frame" x="16" y="125" width="361" height="693"/>
-                                <color key="backgroundColor" name="bg_color"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchedCell" id="bx6-zf-89H" customClass="SearchTableViewCell" customModule="ShopifyApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="361" height="47.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bx6-zf-89H" id="Df9-36-dV2">
-                                            <rect key="frame" x="0.0" y="0.0" width="361" height="47.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" name="bg_color"/>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GpB-eD-gfF"/>
                         <color key="backgroundColor" name="bg_color"/>
                         <constraints>
-                            <constraint firstItem="xOz-3V-mpx" firstAttribute="centerX" secondItem="wqt-xs-Dq4" secondAttribute="centerX" id="1tO-Ir-Nzj"/>
-                            <constraint firstItem="xOz-3V-mpx" firstAttribute="top" secondItem="wqt-xs-Dq4" secondAttribute="bottom" id="6N3-6z-9ws"/>
-                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="top" secondItem="GpB-eD-gfF" secondAttribute="top" constant="10" id="Fh2-ay-1p7"/>
-                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="trailing" secondItem="GpB-eD-gfF" secondAttribute="trailing" id="bBP-iW-MDJ"/>
-                            <constraint firstItem="xOz-3V-mpx" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" constant="16" id="oQR-5F-Dke"/>
-                            <constraint firstItem="xOz-3V-mpx" firstAttribute="bottom" secondItem="GpB-eD-gfF" secondAttribute="bottom" id="s4T-qU-cYF"/>
-                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" id="uFM-Vc-6Ip"/>
+                            <constraint firstItem="GpB-eD-gfF" firstAttribute="trailing" secondItem="wqt-xs-Dq4" secondAttribute="trailing" constant="34" id="Bl4-FG-VID"/>
+                            <constraint firstItem="xOz-3V-mpx" firstAttribute="top" secondItem="wqt-xs-Dq4" secondAttribute="bottom" constant="12" id="Ile-Lp-7Cm"/>
+                            <constraint firstAttribute="bottom" secondItem="xOz-3V-mpx" secondAttribute="bottom" constant="17" id="WTh-hZ-KvZ"/>
+                            <constraint firstItem="xOz-3V-mpx" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" constant="9" id="ZK7-IU-KtM"/>
+                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="leading" secondItem="GpB-eD-gfF" secondAttribute="leading" constant="33" id="gmI-cL-D4T"/>
+                            <constraint firstItem="wqt-xs-Dq4" firstAttribute="top" secondItem="GpB-eD-gfF" secondAttribute="top" constant="4" id="tOT-h7-bGv"/>
+                            <constraint firstItem="GpB-eD-gfF" firstAttribute="trailing" secondItem="xOz-3V-mpx" secondAttribute="trailing" constant="8" id="ukd-85-5tu"/>
                         </constraints>
                     </view>
                     <connections>
@@ -450,7 +450,7 @@
                                                 <color key="textColor" name="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lastLogo-removebg-preview.png" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2k-CKN">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FgJ-2k-CKN">
                                                 <rect key="frame" x="73" y="33" width="247" height="182"/>
                                                 <color key="backgroundColor" name="bg_color"/>
                                                 <constraints>

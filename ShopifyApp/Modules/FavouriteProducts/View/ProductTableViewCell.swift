@@ -29,15 +29,8 @@ class ProductTableViewCell: UITableViewCell {
     }
     
     private func setupCellUI() {
-        // Add corner radius
         contentView.layer.cornerRadius = 20.0
         contentView.layer.masksToBounds = true
-        
-        // Add border
-//        contentView.layer.borderColor = UIColor.white.cgColor
-//        contentView.layer.borderWidth = 20.0
-        
-        // Add shadow
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 4

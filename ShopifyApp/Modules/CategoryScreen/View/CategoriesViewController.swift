@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DropDown
+//import DropDown
 import Reachability
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
@@ -20,8 +20,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var filterView: UIView!
     var filteredProducts: [Product] = []
     var filteredPriceProducts: [Product] = []
-    let menuPrice: DropDown = {
-        let menu = DropDown()
+   // let menuPrice: DropDown = {
+      /*  let menu = DropDown()
         menu.cornerRadius = 5
         //menu.animationEntranceOptions
         menu.scalesLargeContentImage = (UIImage(named: "priceicon.svg") != nil)
@@ -33,7 +33,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         ]
         
         return menu
-    }()
+    }()*/
     
     @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
     @IBOutlet weak var saleBtn: UIButton!
@@ -46,8 +46,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel()
-        menuPrice.anchorView = filterView
-        menuPrice.selectedTextColor = .orange
+      //  menuPrice.anchorView = filterView
+        //menuPrice.selectedTextColor = .orange
         self.filterProductsOfCategories()
         categoriesCollection.reloadData()
         let url = Constants.EndPoint.categories
@@ -71,11 +71,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         //access the price menu
         
-        menuPrice.selectionAction = { [weak self] index, title in
+    /*    menuPrice.selectionAction = { [weak self] index, title in
             print("the index = \(index) and title = \(title)")
             self?.priceRange = index
             self?.filterProductsByPrice()
-        }
+        }*/
         
         viewModel?.bindToCategoriesViewController = { [weak self] in
             
@@ -294,7 +294,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         @IBAction func filterBtn(_ sender: Any) {
             categoriesCollection.reloadData()
             self.isFiltered = true
-            menuPrice.show()
+          //  menuPrice.show()
             categoriesCollection.reloadData()
         }
         

@@ -19,9 +19,6 @@
 		00AC9DCB2C1A3D6F00A62435 /* DropDownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AC9DC92C1A3D6F00A62435 /* DropDownCell.swift */; };
 		00AC9DCC2C1A3D6F00A62435 /* DropDownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00AC9DCA2C1A3D6F00A62435 /* DropDownCell.xib */; };
 		00C325862C084A5900422141 /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00C325842C084A5900422141 /* ProductTableViewCell.xib */; };
-		00D1C5402C28ADA4009D4CCF /* DropDown in Frameworks */ = {isa = PBXBuildFile; productRef = 00D1C53F2C28ADA4009D4CCF /* DropDown */; };
-		00D1C5422C28CB6B009D4CCF /* Animation - 1719133599735.json in Resources */ = {isa = PBXBuildFile; fileRef = 00D1C5412C28CB6B009D4CCF /* Animation - 1719133599735.json */; };
-		00D1C5482C28CFB9009D4CCF /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 00D1C5472C28CFB9009D4CCF /* Lottie */; };
 		00DF67142C186AA000734F38 /* Brands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67132C186AA000734F38 /* Brands.swift */; };
 		00DF67162C186AAA00734F38 /* Products.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67152C186AAA00734F38 /* Products.swift */; };
 		00DF67182C186AB800734F38 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DF67172C186AB800734F38 /* Categories.swift */; };
@@ -54,6 +51,9 @@
 		38DF083E2C1A834C000582A9 /* ReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF083D2C1A834C000582A9 /* ReviewsCollectionViewCell.swift */; };
 		38E6E1B52C2060130092A78F /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 38E6E1B42C2060120092A78F /* countries.json */; };
 		38E75E7C2C1CA82600D1C9F5 /* FavouriteProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E75E7B2C1CA82600D1C9F5 /* FavouriteProductsViewModel.swift */; };
+		38EE9BF12C28F40B00C0F1E1 /* Animation - 1719133599735.json in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9BF02C28F40B00C0F1E1 /* Animation - 1719133599735.json */; };
+		38EE9C012C28F63300C0F1E1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE9C002C28F63300C0F1E1 /* Lottie */; };
+		38EE9C032C28F9B200C0F1E1 /* lastLogo-removebg-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9C022C28F9B100C0F1E1 /* lastLogo-removebg-preview.png */; };
 		38F312AD2C15A58800A0112B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312AC2C15A58800A0112B /* SignupViewModel.swift */; };
 		38F312B02C15A60300A0112B /* CustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312AF2C15A60300A0112B /* CustomerData.swift */; };
 		38F312B22C15A63300A0112B /* PostedCustomerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312B12C15A63300A0112B /* PostedCustomerResponse.swift */; };
@@ -106,6 +106,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		38EE9C0A2C29091E00C0F1E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A76440F1B676C2300BF1A2D;
+			remoteInfo = Demo;
+		};
+		38EE9C0C2C29091E00C0F1E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0A7644241B676C2300BF1A2D;
+			remoteInfo = DropDownTests;
+		};
+		38EE9C0E2C29091E00C0F1E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AB5D8711D0EEECD002D3A17;
+			remoteInfo = DropDown;
+		};
 		D3AA905C2C22DC3700333D52 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D30AB6862C032CA300C61F99 /* Project object */;
@@ -128,7 +149,6 @@
 		00AC9DC92C1A3D6F00A62435 /* DropDownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCell.swift; sourceTree = "<group>"; };
 		00AC9DCA2C1A3D6F00A62435 /* DropDownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownCell.xib; sourceTree = "<group>"; };
 		00C325842C084A5900422141 /* ProductTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductTableViewCell.xib; sourceTree = "<group>"; };
-		00D1C5412C28CB6B009D4CCF /* Animation - 1719133599735.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Animation - 1719133599735.json"; path = "../../../../Downloads/Animation - 1719133599735.json"; sourceTree = "<group>"; };
 		00DF67132C186AA000734F38 /* Brands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brands.swift; sourceTree = "<group>"; };
 		00DF67152C186AAA00734F38 /* Products.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Products.swift; sourceTree = "<group>"; };
 		00DF67172C186AB800734F38 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
@@ -155,6 +175,9 @@
 		38DF083D2C1A834C000582A9 /* ReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
 		38E6E1B42C2060120092A78F /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		38E75E7B2C1CA82600D1C9F5 /* FavouriteProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteProductsViewModel.swift; sourceTree = "<group>"; };
+		38EE9BF02C28F40B00C0F1E1 /* Animation - 1719133599735.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Animation - 1719133599735.json"; path = "../../../Animation - 1719133599735.json"; sourceTree = "<group>"; };
+		38EE9C022C28F9B100C0F1E1 /* lastLogo-removebg-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lastLogo-removebg-preview.png"; path = "../../../lastLogo-removebg-preview.png"; sourceTree = "<group>"; };
+		38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = "../DropDown-master 2/DropDown.xcodeproj"; sourceTree = "<group>"; };
 		38F312AC2C15A58800A0112B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		38F312AF2C15A60300A0112B /* CustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerData.swift; sourceTree = "<group>"; };
 		38F312B12C15A63300A0112B /* PostedCustomerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedCustomerResponse.swift; sourceTree = "<group>"; };
@@ -217,13 +240,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				38B920B32C284F6D00D58079 /* Cosmos in Frameworks */,
+				38EE9C012C28F63300C0F1E1 /* Lottie in Frameworks */,
 				38B920B62C284F8900D58079 /* Reachability in Frameworks */,
 				38B920AD2C284F3E00D58079 /* Kingfisher in Frameworks */,
 				38B920B02C284F5300D58079 /* Alamofire in Frameworks */,
-				00D1C5402C28ADA4009D4CCF /* DropDown in Frameworks */,
 				38B920A82C284F2800D58079 /* FirebaseAnalyticsSwift in Frameworks */,
 				38B920AA2C284F2800D58079 /* FirebaseAuth in Frameworks */,
-				00D1C5482C28CFB9009D4CCF /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +352,8 @@
 		00AC9DB42C1A2F7600A62435 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				00D1C5412C28CB6B009D4CCF /* Animation - 1719133599735.json */,
+				38EE9BF02C28F40B00C0F1E1 /* Animation - 1719133599735.json */,
+				38EE9C022C28F9B100C0F1E1 /* lastLogo-removebg-preview.png */,
 				D30AB69A2C032CA500C61F99 /* Assets.xcassets */,
 				D30AB6AD2C035FF800C61F99 /* Main.storyboard */,
 				D30AB6AC2C032D0700C61F99 /* Views */,
@@ -481,6 +504,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		38EE9C052C29091D00C0F1E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38EE9C0B2C29091E00C0F1E1 /* Demo.app */,
+				38EE9C0D2C29091E00C0F1E1 /* DropDownTests.xctest */,
+				38EE9C0F2C29091E00C0F1E1 /* DropDown.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		38F312AE2C15A5CE00A0112B /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +561,7 @@
 		D30AB6852C032CA300C61F99 = {
 			isa = PBXGroup;
 			children = (
+				38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */,
 				D30AB6902C032CA300C61F99 /* ShopifyApp */,
 				D3AA90592C22DC3700333D52 /* ShopifyAppTests */,
 				D30AB68F2C032CA300C61F99 /* Products */,
@@ -888,8 +922,7 @@
 				38B920AF2C284F5300D58079 /* Alamofire */,
 				38B920B22C284F6D00D58079 /* Cosmos */,
 				38B920B52C284F8900D58079 /* Reachability */,
-				00D1C53F2C28ADA4009D4CCF /* DropDown */,
-				00D1C5472C28CFB9009D4CCF /* Lottie */,
+				38EE9C002C28F63300C0F1E1 /* Lottie */,
 			);
 			productName = ShopifyApp;
 			productReference = D30AB68E2C032CA300C61F99 /* ShopifyApp.app */;
@@ -947,11 +980,16 @@
 				38B920AE2C284F5300D58079 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				38B920B12C284F6D00D58079 /* XCRemoteSwiftPackageReference "Cosmos" */,
 				38B920B42C284F8900D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
-				00D1C53E2C28ADA4009D4CCF /* XCRemoteSwiftPackageReference "DropDown" */,
-				00D1C5462C28CFB9009D4CCF /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				38EE9BFF2C28F63300C0F1E1 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = D30AB68F2C032CA300C61F99 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 38EE9C052C29091D00C0F1E1 /* Products */;
+					ProjectRef = 38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				D30AB68D2C032CA300C61F99 /* ShopifyApp */,
@@ -960,12 +998,36 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		38EE9C0B2C29091E00C0F1E1 /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = 38EE9C0A2C29091E00C0F1E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38EE9C0D2C29091E00C0F1E1 /* DropDownTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = DropDownTests.xctest;
+			remoteRef = 38EE9C0C2C29091E00C0F1E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38EE9C0F2C29091E00C0F1E1 /* DropDown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DropDown.framework;
+			remoteRef = 38EE9C0E2C29091E00C0F1E1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		D30AB68C2C032CA300C61F99 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00D1C5422C28CB6B009D4CCF /* Animation - 1719133599735.json in Resources */,
+				38EE9BF12C28F40B00C0F1E1 /* Animation - 1719133599735.json in Resources */,
 				D3422F712C207CEA004D2558 /* Part2.storyboard in Resources */,
 				D30AB6AE2C035FF800C61F99 /* Main.storyboard in Resources */,
 				D3A4FF222C087768002D3381 /* CustomAddreesCell.xib in Resources */,
@@ -979,6 +1041,7 @@
 				38C53D8B2C1D7DFB00F2773A /* SearchTableViewCell.xib in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
 				00DF67232C186DEF00734F38 /* ProducCollectionViewCell.xib in Resources */,
+				38EE9C032C28F9B200C0F1E1 /* lastLogo-removebg-preview.png in Resources */,
 				38A805F82C0DE7EA00DCF52D /* GoogleService-Info.plist in Resources */,
 				00DF671D2C186B4B00734F38 /* Part1.storyboard in Resources */,
 				00AC9DCC2C1A3D6F00A62435 /* DropDownCell.xib in Resources */,
@@ -1354,14 +1417,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		00D1C53E2C28ADA4009D4CCF /* XCRemoteSwiftPackageReference "DropDown" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AssistoLab/DropDown.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		00D1C5462C28CFB9009D4CCF /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -1410,19 +1465,17 @@
 				kind = branch;
 			};
 		};
+		38EE9BFF2C28F63300C0F1E1 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		00D1C53F2C28ADA4009D4CCF /* DropDown */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00D1C53E2C28ADA4009D4CCF /* XCRemoteSwiftPackageReference "DropDown" */;
-			productName = DropDown;
-		};
-		00D1C5472C28CFB9009D4CCF /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00D1C5462C28CFB9009D4CCF /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
 		00D1C5492C28D482009D4CCF /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 00D1C5462C28CFB9009D4CCF /* XCRemoteSwiftPackageReference "lottie-ios" */;
@@ -1457,6 +1510,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 38B920B42C284F8900D58079 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
 			productName = Reachability;
+		};
+		38EE9C002C28F63300C0F1E1 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38EE9BFF2C28F63300C0F1E1 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
