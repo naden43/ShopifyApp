@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DropDown
+//import DropDown
 import Reachability
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
@@ -20,8 +20,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var filterView: UIView!
     var filteredProducts: [Product] = []
     var filteredPriceProducts: [Product] = []
-    let menuPrice: DropDown = {
-        let menu = DropDown()
+    //let menuPrice: DropDown = {
+       /* let menu = DropDown()
         menu.cornerRadius = 5
         menu.animationEntranceOptions
         menu.scalesLargeContentImage = (UIImage(named: "priceicon.svg") != nil)
@@ -33,7 +33,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         ]
         
         return menu
-    }()
+    }() */
     
     @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
     @IBOutlet weak var saleBtn: UIButton!
@@ -46,8 +46,8 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel = HomeViewModel()
-        menuPrice.anchorView = filterView
-        menuPrice.selectedTextColor = .orange
+      //  menuPrice.anchorView = filterView
+       // menuPrice.selectedTextColor = .orange
         self.filterProductsOfCategories()
         categoriesCollection.reloadData()
         let url = Constants.EndPoint.categories
