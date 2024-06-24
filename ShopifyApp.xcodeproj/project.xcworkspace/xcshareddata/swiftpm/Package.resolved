@@ -1,5 +1,5 @@
 {
-  "originHash" : "0b312d9a1e5d328d21ee3c8007d5f884e877ccb4aa81d3ea93e6d9ba6648e218",
+  "originHash" : "7b32dbce73aab906236377d143664d856832b0ab522c149b6b38b2453ed3eea0",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/app-check.git",
       "state" : {
-        "revision" : "3b62f154d00019ae29a71e9738800bb6f18b236d",
-        "version" : "10.19.2"
+        "revision" : "076b241a625e25eac22f8849be256dfb960fcdfe",
+        "version" : "10.19.1"
       }
     },
     {
@@ -148,7 +148,7 @@
     {
       "identity" : "reachability.swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ashleymills/Reachability.swift.git",
+      "location" : "https://github.com/ashleymills/Reachability.swift",
       "state" : {
         "branch" : "master",
         "revision" : "7cbd73f46a7dfaeca079e18df7324c6de6d1834a"

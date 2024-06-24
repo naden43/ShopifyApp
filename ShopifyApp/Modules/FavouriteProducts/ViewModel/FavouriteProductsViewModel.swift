@@ -74,4 +74,15 @@ class FavouriteProductsViewModel {
             completion(result)
         }
     }
+    
+    func convertPriceByCurrency(price : Double) -> String {
+        
+        
+        return CurrencyService.instance.calcThePrice(price: price)
+    }
+    
+    func getCurrencyType() -> String {
+        
+        return CurrencyService.instance.getCurrencyType()
+    }
 }

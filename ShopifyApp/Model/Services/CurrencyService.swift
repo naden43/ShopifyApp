@@ -13,7 +13,7 @@ class CurrencyService {
     static let instance = CurrencyService()
     var userDefualtManager = UserDefaultsManager.shared
 
-    let completeUrl = "https://api.currencyapi.com/v3/latest?apikey=cur_live_3CT1Z4mcgwuAttoz2AcCPsmuE7Sp99FttZFv5J1S&base_currency=EGP&currencies[]=USD"
+    let completeUrl = "https://api.currencyapi.com/v3/latest?apikey=cur_live_4hxPlUfXuMuRaavM5TrjLfbcFUg3qkTyrcrtqLUq&base_currency=EGP&currencies[]=USD"
     private init(){}
     
     

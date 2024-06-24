@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      
         passwordTextField.isSecureTextEntry = true
     }
     
@@ -51,6 +50,31 @@ class LoginViewController: UIViewController {
         
     }
     private func checkEmailVerificationAndProceed(customer:Customer) {
+        
+        /*Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+          if let error = error as? NSError {
+            switch AuthErrorCode(rawValue: error.code) {
+            case .operationNotAllowed:
+              // Error: Indicates that email and password accounts are not enabled. Enable them in the Auth section of the Firebase console.
+            case .userDisabled:
+              // Error: The user account has been disabled by an administrator.
+            case .wrongPassword:
+              // Error: The password is invalid or the user does not have a password.
+            case .invalidEmail:
+              // Error: Indicates the email address is malformed.
+            default:
+                print("Error: \(error.localizedDescription)")
+            }
+          } else {
+            print("User signs in successfully")
+            let userInfo = Auth.auth().currentUser
+            let email = userInfo?.email
+          }*/
+
+        
+        
+        
+        
         guard let user = Auth.auth().currentUser else {
             showError("User not found.")
             return

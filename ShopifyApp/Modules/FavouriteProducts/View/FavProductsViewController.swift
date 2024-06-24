@@ -241,7 +241,8 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
             
             cell.productTitle.text = product?.title
 //            cell.productBrand.text = product?.vendor
-            cell.productSize.text = product?.price
+            cell.productSize.text = viewModel.convertPriceByCurrency(price: Double(product?.price ?? "0.0") ?? 0.0)
+            cell.priceCurrency.text = viewModel.getCurrencyType()
             cell.productColor.isHidden = true
             cell.colorText.text = ""
             cell.sizeText.text = "Price:"

@@ -163,7 +163,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                     
                     cell.productTitle.text = product?.title
                     // cell.productBrand.text = product?.vendor // Uncomment if needed
-                    cell.productPrice.text = product?.price
+            let price = viewModel?.convertPriceByCurrency(price: Double(product?.price ?? "0.0") ?? 0.0)
+                    cell.productPrice.text = price
+            cell.priceCurrency.text = viewModel?.getCurrencyType()
                     
                     if let imageUrlString = viewModel?.getImageByIndex(index: indexPath.row),
                        let imageUrl = URL(string: imageUrlString) {
@@ -182,9 +184,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                    if let orders = viewModel?.getOrders() {
                        let order = orders[indexPath.row]
 
+                       let price = viewModel?.convertPriceByCurrency(price: Double(order.totalLineItemsPrice ?? "0.0") ?? 0.0)
+
                        orderCell.orderNumber.text = order.confirmationNumber
                        orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
-                       orderCell.totalAmount.text = order.totalLineItemsPrice
+                       orderCell.totalAmount.text = price
+                       
+                       
 
                        // Configure date formatting
                        if let createdAtString = order.createdAt {

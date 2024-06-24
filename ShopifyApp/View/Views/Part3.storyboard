@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -371,6 +371,7 @@
                     </view>
                     <connections>
                         <outlet property="favProductsTableView" destination="2np-AD-ygU" id="84G-T0-3di"/>
+                        <outlet property="replacedImage" destination="hB0-Tn-ESG" id="6Ae-pw-9CL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP7-ao-NOT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
