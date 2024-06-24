@@ -49,7 +49,7 @@ class PlaceOrderViewModel{
     
     func getTotalPrice() -> String {
         
-        let totalPrice = Double(data?.totalPrice ?? "0.0") ?? 0.0
+        let totalPrice = Double(data?.subtotalPrice ?? "0.0") ?? 0.0
         
         let afterConvert = currencyService.calcThePrice(price: totalPrice)
         

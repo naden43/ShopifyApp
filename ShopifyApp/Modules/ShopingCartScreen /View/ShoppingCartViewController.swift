@@ -44,7 +44,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
                 
                 self?.totalTxt.text = "0.0 \(self?.currency ?? "")"
                 
-                self?.emptyShoppingCart.image = UIImage(named: "emptyShoppingCart")
+                self?.emptyShoppingCart.image = UIImage(named: "empty-cart")
             }
             else {
                 let apiPrice = Double(self?.viewModel?.getTotalPrice() ?? "0.0") ?? 0.0
@@ -60,11 +60,16 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let nibCell = UINib(nibName: "CustomShoppingCartCellTableViewCell", bundle: nil)
         shopingCartList.register(nibCell, forCellReuseIdentifier: "shopingCarCell")
         
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         self.activityIndicator.center = self.view.center
         self.view.addSubview(self.activityIndicator)
         self.activityIndicator.startAnimating()
-        
         viewModel?.loadData()
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
