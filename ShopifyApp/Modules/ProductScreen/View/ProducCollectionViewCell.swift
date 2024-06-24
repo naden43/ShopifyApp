@@ -1,3 +1,5 @@
+
+
 //
 //  ProducCollectionViewCell.swift
 //  ShopifyApp
@@ -5,8 +7,6 @@
 //  Created by Aya Mostafa on 11/06/2024.
 //
 
-
-// ProducCollectionViewCell.swift
 
 
 import UIKit
@@ -62,7 +62,7 @@ class ProducCollectionViewCell: UICollectionViewCell {
                 presentAlertDeletion(alert)
                 
             } else {
-                viewModel.addSelectedProductToDraftOrder { [weak self] success, message in
+                viewModel.addSelectedProductToDraftOrder (varientID: viewModel.selectedProduct?.variants?.first?.id ?? 0 ){ [weak self] success, message in
                     DispatchQueue.main.async {
                         if success {
                             self?.updateFavoriteButtonState(isFavorite: true)

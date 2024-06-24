@@ -67,9 +67,9 @@ class ProductDetailsViewModel {
              }
          }
      }
-    func addSelectedProductToDraftOrder( completion: @escaping (Bool, String?) -> Void) {
+    func addSelectedProductToDraftOrder(varientID : Int64 ,completion: @escaping (Bool, String?) -> Void) {
         getDraftOrder { response, error in
-            guard let response = response, let selectedProduct = self.selectedProduct else {
+            guard let response = response else  {
                 DispatchQueue.main.async {
                     completion(false, error ?? "Failed to fetch draft order or selected product is nil.")
                 }
@@ -78,10 +78,9 @@ class ProductDetailsViewModel {
             
             var newLineItems = response.draft_order?.lineItems ?? []
             
-            if let variantId = selectedProduct.variants?.first?.id,
-               let imgSrc = selectedProduct.images?.first?.src {
+            if let imgSrc = self.selectedProduct?.images?.first?.src {
                 let properties: [[String: String]] = [["name": "image_url", "value": imgSrc]]
-                let newLineItem = LineItem(variantId: variantId, quantity: 1, properties: properties)
+                let newLineItem = LineItem(variantId: varientID, quantity: 1, properties: properties)
                 
                 newLineItems.append(newLineItem)
                 
@@ -178,7 +177,7 @@ class ProductDetailsViewModel {
                 return
             }
             
-            let exists = draft.draft_order?.lineItems?.contains { $0.productId ?? 0 == productId } ?? false
+            let exists = draft.draft_order?.lineItems?.contains { $0.variantId ?? 0 == productId } ?? false
          
             completion(exists)
         }
@@ -192,7 +191,7 @@ class ProductDetailsViewModel {
                 return
             }
             
-            if let index = lineItems.firstIndex(where: { $0.productId ?? 0 == productId }) {
+            if let index = lineItems.firstIndex(where: { $0.variantId ?? 0 == productId }) {
                 lineItems[index].quantity? += 1
                 
                 self.updateDraftOrder(draftOrderId: draft.draft_order?.id ?? 0, lineItems: lineItems) { success, message in

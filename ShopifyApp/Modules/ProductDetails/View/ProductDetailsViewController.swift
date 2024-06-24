@@ -1,4 +1,7 @@
 
+    
+    
+
 //
 //  ProductDetailsViewController.swift
 //  ShopifyApp
@@ -26,7 +29,6 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var productspageControl: UIPageControl!
     @IBOutlet weak var btnAddToFav: UIButton!
     
-    @IBOutlet weak var productQuantity: UILabel!
     private var showMoreReviews = false
     private var reviews: [Review] = []
     var viewModel: ProductDetailsViewModel?
@@ -34,7 +36,7 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
@@ -56,51 +58,11 @@ class ProductDetailsViewController: UIViewController {
         
         sizeCollectionView.collectionViewLayout = createSizeCollectionViewLayout()
         colorsCollectionView.collectionViewLayout = createSizeCollectionViewLayout()
-   
-        selectDefaultOptions()
         updateUI()
         setupDummyReviews()
         setupCosmosView()
         setupNavigationBar()
     }
-    
-    
-    private func selectDefaultOptions() {
-        if let sizeIndex = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Size" })?.values?.startIndex {
-            let sizeIndexPath = IndexPath(item: sizeIndex, section: 0)
-            if let cell = sizeCollectionView.cellForItem(at: sizeIndexPath) as? SizesCollectionViewCell {
-                cell.contentView.layer.borderColor = UIColor.orange.cgColor
-                cell.contentView.layer.borderWidth = 2
-            } else {
-                sizeCollectionView.reloadData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    if let cell = self.sizeCollectionView.cellForItem(at: sizeIndexPath) as? SizesCollectionViewCell {
-                        cell.contentView.layer.borderColor = UIColor.orange.cgColor
-                        cell.contentView.layer.borderWidth = 2
-                    }
-                }
-            }
-        }
-        
-        if let colorIndex = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?.startIndex {
-            let colorIndexPath = IndexPath(item: colorIndex, section: 0)
-            if let cell = colorsCollectionView.cellForItem(at: colorIndexPath) as? ColorsCollectionViewCell {
-                cell.contentView.layer.borderColor = UIColor.orange.cgColor
-                cell.contentView.layer.borderWidth = 2
-            } else {
-                colorsCollectionView.reloadData()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    if let cell = self.colorsCollectionView.cellForItem(at: colorIndexPath) as? ColorsCollectionViewCell {
-                        cell.contentView.layer.borderColor = UIColor.orange.cgColor
-                        cell.contentView.layer.borderWidth = 2
-                    }
-                }
-            }
-        }
-    }
-
-   
-
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.tintColor = .black
@@ -132,7 +94,6 @@ class ProductDetailsViewController: UIViewController {
         guard let product = viewModel?.selectedProduct else { return }
         print("dd\(viewModel?.selectedProduct?.id ?? 0)")
         productTitle.text = product.title
-       // productQuantity.text = product.
         productBrand.text = "Brand: \(product.vendor ?? "Unknown")"
         let price = Double(product.variants?.first?.price ?? "") ?? 0.0
         productPrice.text = "\(viewModel?.convertPriceByCurrency(price: price) ?? "") \(viewModel?.getCurrencyType() ?? "")"
@@ -146,8 +107,10 @@ class ProductDetailsViewController: UIViewController {
 
   
         if viewModel?.isProductInFavorites() == true {
+            //print("true")
             btnAddToFav.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
+           // print("false")
             btnAddToFav.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
@@ -172,6 +135,10 @@ class ProductDetailsViewController: UIViewController {
             Review(personImage: dummyImage!, comment: "Great product!", rate: 4.5, reviewerName: "Salma Maher"),
             Review(personImage: dummyImage!, comment: "Good value for money.", rate: 4.0, reviewerName: "Nadeen Mohammed"),
             Review(personImage: dummyImage!, comment: "Satisfied with the purchase.", rate: 3.8, reviewerName: "Aya Mustafa")
+            /*,
+            Review(personImage: dummyImage!, comment: "Excellent quality.", rate: 5.0),
+            Review(personImage: dummyImage!, comment: "Not bad.", rate: 3.0),
+            Review(personImage: dummyImage!, comment: "Could be better.", rate: 2.5)*/
         ]
         reviewsCollectionView.reloadData()
     }
@@ -191,14 +158,25 @@ class ProductDetailsViewController: UIViewController {
                 viewModel?.destination = true
                 guard let selectedSize = getSelectedSize(),
                       let selectedColor = getSelectedColor(),
-                      let productId = viewModel?.selectedProduct?.id else {
+                      let varients = viewModel?.selectedProduct?.variants  else {
                     showAlert(message: "Please select both size and color before adding to cart.")
                     return
                 }
-                viewModel?.checkIfProductExists(productId: Int(productId)) { exists in
+                
+                var varientID : Int64 = 0
+                for item in varients {
+                    
+                    if item.option1 == selectedSize && item.option2 == selectedColor {
+                        varientID = item.id ?? 0
+                        
+                    }
+                }
+                
+                
+                viewModel?.checkIfProductExists(productId: Int(varientID)) { exists in
                     if exists {
                         
-                        self.viewModel?.increaseQuantityOfExistingProduct(productId: Int(productId)) { success, message in
+                        self.viewModel?.increaseQuantityOfExistingProduct(productId: Int(varientID)) { success, message in
                             DispatchQueue.main.async {
                                 if success {
                                     let alert = UIAlertController(title: "Success", message: "Product quantity increased successfully.", preferredStyle: .alert)
@@ -212,7 +190,7 @@ class ProductDetailsViewController: UIViewController {
                             }
                         }
                     } else {
-                        self.viewModel?.addSelectedProductToDraftOrder { success, message in
+                        self.viewModel?.addSelectedProductToDraftOrder(varientID: varientID){ success, message in
                             DispatchQueue.main.async {
                                 if success {
                                     let alert = UIAlertController(title: "Success", message: "Product added to cart successfully.", preferredStyle: .alert)
@@ -282,9 +260,9 @@ class ProductDetailsViewController: UIViewController {
                                         button.setImage(emptyHeartImage, for: .normal)
                                         }
                                     }
-                                    /*let alert = UIAlertController(title: "Success", message: "Product removed from Favorites.", preferredStyle: .alert)
+                                    let alert = UIAlertController(title: "Success", message: "Product removed from Favorites.", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "OK", style: .default))
-                                    self.present(alert, animated: true)*/
+                                    self.present(alert, animated: true)
                                 } else {
                                     let alert = UIAlertController(title: "Error", message: "Failed to remove product from Favorites.", preferredStyle: .alert)
                                     alert.addAction(UIAlertAction(title: "OK", style:.default))
@@ -293,13 +271,14 @@ class ProductDetailsViewController: UIViewController {
                         }
                     }
                 } else {
-                    viewModel.addSelectedProductToDraftOrder { success, message in
+                    viewModel.addSelectedProductToDraftOrder(varientID: Int64(viewModel.selectedProduct?.variants?.first?.id ?? 0) ) { success, message in
                         DispatchQueue.main.async {
                             if success {
                                 if let filledHeartImage = UIImage(systemName: "heart.fill") {
                                     if let button = sender as? UIButton {
                                         button.setImage(filledHeartImage, for: .normal)
                                     }
+                                    
                                 }
                                 
                                 self.viewModel?.loadFavorites(completion: {
@@ -431,6 +410,4 @@ class ProductDetailsViewController: UIViewController {
                  productspageControl.currentPage = currentPage
              }
          }
-     
  }
- 

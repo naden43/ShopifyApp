@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20000EGP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3l-Qs-2Ep">
-                        <rect key="frame" x="286" y="82" width="83.333333333333314" height="20.333333333333329"/>
+                        <rect key="frame" x="286" y="73" width="83.333333333333314" height="20.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                     <constraint firstItem="jbu-Ex-i3x" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rYs-CH-3A0"/>
                     <constraint firstItem="0Gd-MM-ZXR" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.634328" id="sMg-oX-b5a"/>
                     <constraint firstAttribute="bottom" secondItem="jbu-Ex-i3x" secondAttribute="bottom" constant="5" id="tZA-yH-KLe"/>
-                    <constraint firstItem="d3l-Qs-2Ep" firstAttribute="top" secondItem="QOk-1B-1NT" secondAttribute="bottom" constant="14" id="v9d-MU-qFS"/>
+                    <constraint firstItem="d3l-Qs-2Ep" firstAttribute="top" secondItem="QOk-1B-1NT" secondAttribute="bottom" constant="5" id="v9d-MU-qFS"/>
                     <constraint firstItem="QOk-1B-1NT" firstAttribute="leading" secondItem="jbu-Ex-i3x" secondAttribute="trailing" constant="21" id="y8H-5i-iqL"/>
                 </constraints>
             </tableViewCellContentView>

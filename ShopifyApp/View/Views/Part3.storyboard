@@ -792,7 +792,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6Vg-6Y-ZHk">
-                                                <rect key="frame" x="37" y="866" width="320" height="168"/>
+                                                <rect key="frame" x="37" y="866" width="320" height="175"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4vP-v5-d6H">
                                                     <size key="itemSize" width="316" height="106"/>
@@ -944,7 +944,7 @@
                                             <constraint firstItem="Mva-sO-HSr" firstAttribute="top" secondItem="yKe-Sh-Rnb" secondAttribute="bottom" constant="10" id="Pe3-W5-3Gw"/>
                                             <constraint firstItem="1VV-u0-hhy" firstAttribute="top" secondItem="NDY-nG-PaD" secondAttribute="bottom" constant="17" id="QBo-P6-Djl"/>
                                             <constraint firstItem="aGD-V5-qGl" firstAttribute="top" secondItem="7Q4-Zv-McI" secondAttribute="bottom" constant="17" id="QpT-gQ-YUq"/>
-                                            <constraint firstAttribute="bottom" secondItem="6Vg-6Y-ZHk" secondAttribute="bottom" constant="10" id="Scv-XT-LZZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="6Vg-6Y-ZHk" secondAttribute="bottom" constant="5" id="Scv-XT-LZZ"/>
                                             <constraint firstItem="FZn-wk-Uf5" firstAttribute="top" secondItem="1VV-u0-hhy" secondAttribute="bottom" constant="8" symbolic="YES" id="W1f-TJ-GmO"/>
                                             <constraint firstItem="gcd-mY-Gc6" firstAttribute="leading" secondItem="8dB-K4-t3J" secondAttribute="leading" constant="20" id="Ws3-mN-Pf9"/>
                                             <constraint firstItem="FZn-wk-Uf5" firstAttribute="leading" secondItem="8dB-K4-t3J" secondAttribute="leading" constant="29" id="YSs-Ys-KEr"/>

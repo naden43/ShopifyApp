@@ -25,6 +25,8 @@ class ShopingCartViewModel {
     
     var produtsAmount : [Int : Int] = [:]
     
+    var productSizeAndColor : [Int : [String]] = [ 1 :  []]
+    
 //    private var cartItems: [LineItem] = []
     
     init(network: NetworkHandler) {
@@ -57,6 +59,8 @@ class ShopingCartViewModel {
                 { (result:VarientData?, error) in
                     
                     self.produtsAmount[Int(result?.variant?.id ?? 0)] = result?.variant?.inventoryQuantity
+                    
+                    self.productSizeAndColor[Int(result?.variant?.id ?? 0)] = [result?.variant?.option1 ?? "" , result?.variant?.option2 ?? ""]
                     
                     print("\(result) here error ")
                     
@@ -147,13 +151,13 @@ class ShopingCartViewModel {
 //        }
 //        let firstItem = lineItems[0]
 //        listOfProducts.lineItems = [firstItem]
-//        
+//
 //        let draftOrderId = getShopingCartDraftOrderId()
 //
 //        print("Updating draft order with only the first item: \(listOfProducts)")
 //
 //        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/\(draftOrderId).json", responseType: Draft.self) { success, error, response in
-//            
+//
 //            if success {
 //                self.listOfProducts = response?.draft_order
 //                self.bindData()

@@ -81,7 +81,7 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
         let data = viewModel?.getProductByIndex(index: indexPath.row)
         
         cell.productName.text = data?.title
-        cell.productDescription.text = data?.vendor
+        cell.productDescription.text = " \(viewModel?.productSizeAndColor[Int(data?.variantId ?? 0)]?.first ?? "") / \(viewModel?.productSizeAndColor[Int(data?.variantId ?? 0)]?[1] ?? "" )"
         cell.itemCount.text = String(data?.quantity ?? 0)
         
         let apiPrice = Double(data?.price ?? "0.0") ?? 0.0

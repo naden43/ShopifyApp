@@ -26,16 +26,16 @@ class MockNetworkHandler {
                 "customer_id": 7903151259814,
                 "first_name": "aya",
                 "last_name": "mostafa",
-                "company": null,
+                "company": nil,
                 "address1": "abdelazizaburahmastret",
-                "address2": null,
+                "address2": nil,
                 "city": "Port Said",
-                "province": null,
+                "province": nil,
                 "country": "Egypt",
-                "zip": null,
+                "zip": nil,
                 "phone": "01128273410",
                 "name": "aya mostafa",
-                "province_code": null,
+                "province_code": nil,
                 "country_code": "EG",
                 "country_name": "Egypt",
                 "default": true
@@ -176,9 +176,38 @@ class MockNetworkHandler {
     
 
     
-   0
+    func putData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void){
+        
+        
+        var result = Draft()
+        
+        do {
+            
+            let data  = try JSONSerialization.data(withJSONObject: fackDraftOrderJson)
+            
+            result = try JSONDecoder().decode(Draft.self, from: data)
+            
+        }catch let error {
+            
+            print(error.localizedDescription)
+        }
+        
+        
+       
+        
+        if shouldReturnError {
+            
+            completion(false , "error message" , nil)
+        }
+        else {
+            print("here")
+            completion(true , nil , result as? U)
+        }
     
-    func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
+    }
+    
+    
+    /*func postData<T: Encodable, U: Decodable>(_ data: T, to endpoint: String, responseType: U.Type, completion: @escaping (Bool, String? , U?) -> Void) {
              guard let url = URL(string: "\(baseUrl)\(endpoint)") else {
                  completion(false, "Invalid URL",nil)
                  return
@@ -220,7 +249,7 @@ class MockNetworkHandler {
             completion(true , nil , result as? U)
         }
     }
-    
+    */
     
     func getData<U: Decodable>(from endpoint: String, responseType: U.Type, completion: @escaping (Bool, String?, U?) -> Void) {
             var result = Draft()
@@ -260,4 +289,3 @@ class MockNetworkHandler {
         case error
     }
 }
-
