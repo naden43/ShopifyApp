@@ -8,8 +8,8 @@ import UIKit
 import Kingfisher
 
 class ProductsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
     @IBOutlet weak var productCollection: UICollectionView!
+    @IBOutlet weak var bName: UILabel!
     var brandId: Int?
     var brandName: String?
     var viewModel: HomeViewModelProtocol?
@@ -39,6 +39,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         viewModel?.bindToProductViewController = { [weak self] in
             DispatchQueue.main.async {
                 self?.productCollection.reloadData()
+                self?.bName.text = self?.brandName
             }
         }
         

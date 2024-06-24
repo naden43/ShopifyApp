@@ -47,7 +47,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
                           } else {
                               self.orderDate.text = "N/A"
                           }
-                   self.numberOfItems.text = "\(order.lineItems?.count ?? 0)"
+                   self.numberOfItems.text = "\((order.lineItems?.count ?? 0) - 1)"
                    self.orderAddress.text = ("\((order.customer?.defaultAddress?.address1)!),\((order.customer?.defaultAddress?.city)!), \( (order.customer?.defaultAddress?.country)!)")
         self.discount.text = "\(discountRate ?? "-")%, \(discountPromoCode ?? "No promo code applied")"
     }
@@ -71,7 +71,7 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let itemCell = itemsList.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath) as! ProductTableViewCell
         if let items = selectedOrder?.lineItems {
-            let item = items[indexPath.row]
+            let item = items[indexPath.row + 1]
 //            print("the full Title === \(item.title)")
             let fullTitle = item.title
             var extractedTitle = fullTitle

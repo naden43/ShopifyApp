@@ -8,6 +8,7 @@
 import UIKit
 import PassKit
 import Reachability
+import Lottie
 
 class PlaceOrderViewController: UIViewController {
 
@@ -21,11 +22,12 @@ class PlaceOrderViewController: UIViewController {
     var cartViewModel:ShopingCartViewModel?
     var addrressViewModel : UserAddressesViewModel?
     var paymentMethod = "cash"
+    let animationView = LottieAnimationView()
     override func viewDidLoad() {
         super.viewDidLoad()
         
         viewModel = PlaceOrderViewModel()
-
+        cartViewModel = ShopingCartViewModel(network: NetworkHandler.instance)
         addrressViewModel = UserAddressesViewModel(network: NetworkHandler.instance)
         viewModel?.bindData = {[weak self] in
             
@@ -51,7 +53,7 @@ class PlaceOrderViewController: UIViewController {
             
         }
         viewModel?.loadData()
-        
+        cartViewModel?.loadData()
     }
     
     @IBAction func backToPaymentMethod(_ sender: Any) {
@@ -88,6 +90,38 @@ class PlaceOrderViewController: UIViewController {
         
         
     }
+    func navigateToHome() {
+        // Access root navigation controller from Main.storyboard
+        guard let navigationController = navigationController else {
+            print("Navigation controller is nil")
+            return
+        }
+        
+        // Print all view controllers in the navigation stack for debugging
+        print("Navigation stack view controllers:")
+        for viewController in navigationController.viewControllers {
+            print("- \(viewController)")
+        }
+        
+        // Attempt to find and navigate to HomeViewController
+        for viewController in navigationController.viewControllers {
+            if let homeVC = viewController as? HomeScViewController {
+                navigationController.popToViewController(homeVC, animated: true)
+                return
+            }
+        }
+        print("HomeViewController not found in the navigation stack")
+    }
+    
+    func playLottieAnimation() {
+        animationView.animation = LottieAnimation.named("Animation")
+        
+        animationView.contentMode = .scaleToFill
+        animationView.animationSpeed = 1.0
+        
+        animationView.play()
+        view.addSubview(animationView)
+        }
 
 
     @IBAction func placeOrderAction(_ sender: Any) {
@@ -99,20 +133,19 @@ class PlaceOrderViewController: UIViewController {
         let discountCode = DiscountCode(code: coupon.text ?? "-", amount: "\(discountRate)", type: "Percentage")
         allDiscounts?.append(discountCode)
         print("inside view controller the discount ==== \(discountRate)")
-        
-//        guard let lineItems = cartViewModel?.getAllLineItems(), !lineItems.isEmpty else {
-//            print("No line items available in the cart")
-//            return
-//        }
-        
-//
+    
         var items = viewModel?.getAllProductsFromDraftOrder()
         print("all products in cart are : \(items?.count)")
         let customerId = viewModel?.getCustomerID() ?? 0
         let financialStatus = paymentMethod == "cash" ? "pending" : "paid"
         
         if paymentMethod == "cash" {
-            viewModel?.placeOrder(lineItems:items ?? [], customerId: customerId, financialStatus: financialStatus, discount_codes: allDiscounts ?? [])
+            viewModel?.placeOrder(lineItems: items ?? [], customerId: customerId, financialStatus: financialStatus, discount_codes: allDiscounts ?? [])
+            self.cartViewModel?.clearAllProducts()
+                            self.playLottieAnimation()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                self.navigateToHome()
+                            }
         }
         else {
             if PKPaymentAuthorizationViewController.canMakePayments(usingNetworks: [.amex, .masterCard, .visa]) {
@@ -160,6 +193,8 @@ extension PlaceOrderViewController : PKPaymentAuthorizationViewControllerDelegat
         controller.dismiss(animated: true, completion: nil)
         var items = viewModel?.getAllProductsFromDraftOrder()
         viewModel?.placeOrder(lineItems: items ?? [], customerId: viewModel?.getCustomerID() ?? 7876947378342, financialStatus: "paid", discount_codes: allDiscounts ?? [])
+        cartViewModel?.clearAllProducts()
+        //navigateToHome()
     }
     
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {

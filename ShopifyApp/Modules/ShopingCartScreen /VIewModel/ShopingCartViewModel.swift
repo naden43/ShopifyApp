@@ -32,11 +32,7 @@ class ShopingCartViewModel {
         
     }
     
-//    func loadCartItems() {
-//        self.cartItems = self.listOfProducts?.lineItems ?? []
-//        print("Fetched items: \(self.cartItems)")
-//        self.bindData()
-//    }
+
     
     private func getShopingCartDraftOrderId() -> String {
         
@@ -137,6 +133,32 @@ class ShopingCartViewModel {
         
         return ((listOfProducts?.lineItems?.count ?? 1) - 1)
         
+    }
+    
+    func clearAllProducts() {
+        guard var listOfProducts = listOfProducts, var lineItems = listOfProducts.lineItems, !lineItems.isEmpty else {
+            print("No products to clear or cart is empty")
+            print("listOfProducts: \(String(describing: listOfProducts))")
+            print("listOfProducts.lineItems: \(String(describing: listOfProducts?.lineItems))")
+            return
+        }
+        let firstItem = lineItems[0]
+        listOfProducts.lineItems = [firstItem]
+        
+        let draftOrderId = getShopingCartDraftOrderId()
+
+        print("Updating draft order with only the first item: \(listOfProducts)")
+
+        network?.putData(Draft(draft_order: listOfProducts), to: "admin/api/2024-04/draft_orders/\(draftOrderId).json", responseType: Draft.self) { success, error, response in
+            
+            if success {
+                self.listOfProducts = response?.draft_order
+                self.bindData()
+                print("Draft order successfully updated with only the first item retained")
+            } else {
+                print("Error updating draft order: \(String(describing: error))")
+            }
+        }
     }
     
     func getCurrencyType()->String {

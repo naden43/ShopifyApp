@@ -131,14 +131,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView == wishList {
-            
-            return viewModel?.getFavCount() ?? 0
-            
-        }else if tableView == ordersList {
-            return viewModel?.getOrders().count ?? 0
-        }else{
-            return 0
-        }
+                return viewModel?.getFavCount() ?? 0
+            } else if tableView == ordersList {
+                let totalOrders = viewModel?.getOrders().count ?? 0
+                return min(totalOrders, 4) // Return up to 4 items, or all items if less than 4
+            } else {
+                return 0
+            }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -180,15 +179,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         }else if tableView == ordersList {
             let orderCell = ordersList.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
-            if let orders = viewModel?.getOrders() {
+                   if let orders = viewModel?.getOrders() {
                        let order = orders[indexPath.row]
 
                        orderCell.orderNumber.text = order.confirmationNumber
                        orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
-                orderCell.totalAmount.text = order.totalLineItemsPrice
-                      if let createdAtString = order.createdAt {
-                          let dateFormatter = DateFormatter()
-                          dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                       orderCell.totalAmount.text = order.totalLineItemsPrice
+
+                       // Configure date formatting
+                       if let createdAtString = order.createdAt {
+                           let dateFormatter = DateFormatter()
+                           dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
                            if let date = dateFormatter.date(from: createdAtString) {
                                let displayFormatter = DateFormatter()
                                displayFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -199,9 +200,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                        } else {
                            orderCell.orderDate.text = "N/A"
                        }
-               orderCell.delegate = self
+
+                       orderCell.delegate = self
                    }
-            return orderCell
+                   return orderCell
         }
         else {
             

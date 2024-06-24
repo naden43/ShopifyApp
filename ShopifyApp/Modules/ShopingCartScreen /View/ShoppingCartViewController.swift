@@ -55,9 +55,6 @@ class ShoppingCartViewController: UIViewController, UITableViewDelegate, UITable
 
             }
             self?.shopingCartList.reloadData()
-//            if let lineItems = self?.viewModel?.getAllLineItems() {
-//                print("the lineeeees = \(lineItems)") // Print all line items to the console
-//            }
         }
         
         let nibCell = UINib(nibName: "CustomShoppingCartCellTableViewCell", bundle: nil)

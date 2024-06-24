@@ -75,10 +75,10 @@ class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let orderCell = ordersTable.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath) as! OrderTableViewCell
         if let orders = viewModel?.getOrders() {
-                   let order = orders[indexPath.row]
+            let order = orders[indexPath.row]
 
                    orderCell.orderNumber.text = order.confirmationNumber
-                   orderCell.productsNumber.text = "\(order.lineItems?.count ?? 0)"
+                   orderCell.productsNumber.text = "\((order.lineItems?.count ?? 0) - 1)"
             orderCell.totalAmount.text = order.totalLineItemsPrice
                   if let createdAtString = order.createdAt {
                       let dateFormatter = DateFormatter()
