@@ -16,7 +16,6 @@ class FavouriteProductsViewModel {
         return UserDefaultsManager.shared.getCustomer().favProductsDraftOrderId ?? ""
     }
     
-    
     func loadData(completion: @escaping () -> Void) {
         
         let favDraftOrder = getFavouriteDraftOrderId()

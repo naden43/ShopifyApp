@@ -353,6 +353,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="noWifi" translatesAutoresizingMaskIntoConstraints="NO" id="hB0-Tn-ESG">
+                                <rect key="frame" x="20" y="181" width="357" height="637"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="RLH-qC-dul"/>
                         <color key="backgroundColor" name="bg_color"/>
@@ -371,7 +375,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HP7-ao-NOT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="985" y="831"/>
+            <point key="canvasLocation" x="983.96946564885491" y="830.98591549295782"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="uGu-dq-wkj">
@@ -678,10 +682,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYv-ew-oEN">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="752"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-K4-t3J">
-                                        <rect key="frame" x="0.0" y="0.0" width="401" height="1084"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1084"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ppk-kl-ViJ" customClass="Pro">
                                                 <rect key="frame" x="8" y="8" width="377" height="274"/>
@@ -846,18 +850,6 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZXx-Su-1VF">
-                                                <rect key="frame" x="83" y="765" width="211" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="labelColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="ADD TO CART">
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="btnAddToCart:" destination="NUi-nh-dVU" eventType="touchUpInside" id="c0M-WO-EVW"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Oversize Women's shirt Tunic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKe-Sh-Rnb">
                                                 <rect key="frame" x="29" y="324" width="241" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -936,16 +928,28 @@
                                     <constraint firstItem="8dB-K4-t3J" firstAttribute="top" secondItem="NYv-ew-oEN" secondAttribute="top" id="skI-F8-Kqf"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9q4-cX-jyz">
+                                <rect key="frame" x="91" y="771" width="211" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="ADD TO CART">
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnAddToCart:" destination="NUi-nh-dVU" eventType="touchUpInside" id="DZH-js-5lJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jpj-YF-oI3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NYv-ew-oEN" firstAttribute="leading" secondItem="jpj-YF-oI3" secondAttribute="leading" id="4Wo-eX-kJi"/>
                             <constraint firstItem="NYv-ew-oEN" firstAttribute="top" secondItem="Rbx-8P-YrK" secondAttribute="top" id="553-kf-l3e"/>
-                            <constraint firstItem="8dB-K4-t3J" firstAttribute="width" secondItem="Rbx-8P-YrK" secondAttribute="width" multiplier="1.02036" id="84g-2z-e2w"/>
+                            <constraint firstItem="8dB-K4-t3J" firstAttribute="width" secondItem="Rbx-8P-YrK" secondAttribute="width" id="84g-2z-e2w"/>
                             <constraint firstItem="8dB-K4-t3J" firstAttribute="height" secondItem="Rbx-8P-YrK" secondAttribute="height" multiplier="1.2723" id="Azc-3g-Wxk"/>
                             <constraint firstItem="NYv-ew-oEN" firstAttribute="trailing" secondItem="jpj-YF-oI3" secondAttribute="trailing" id="BYP-hj-Ljn"/>
-                            <constraint firstAttribute="bottom" secondItem="NYv-ew-oEN" secondAttribute="bottom" id="QC6-xo-nDW"/>
+                            <constraint firstAttribute="bottom" secondItem="NYv-ew-oEN" secondAttribute="bottom" constant="100" id="QC6-xo-nDW"/>
                         </constraints>
                     </view>
                     <connections>
@@ -971,6 +975,7 @@
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="lastLogo-removebg-preview.png" width="402" height="325"/>
         <image name="left-arrow-2" width="24" height="24"/>
+        <image name="noWifi" width="341" height="265"/>
         <image name="product 1" width="564" height="698"/>
         <image name="reviewer.jpg" width="129.60000610351562" height="86.400001525878906"/>
         <image name="shoes.jpg" width="635" height="560"/>

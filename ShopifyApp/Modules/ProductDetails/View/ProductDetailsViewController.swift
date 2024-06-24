@@ -354,6 +354,12 @@ class ProductDetailsViewController: UIViewController {
         updateUI()
         setupDummyReviews()
         setupCosmosView()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationItem.title = ""
     }
     
     func setupCosmosView() {

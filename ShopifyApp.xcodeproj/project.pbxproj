@@ -54,6 +54,8 @@
 		38EE9BF12C28F40B00C0F1E1 /* Animation - 1719133599735.json in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9BF02C28F40B00C0F1E1 /* Animation - 1719133599735.json */; };
 		38EE9C012C28F63300C0F1E1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 38EE9C002C28F63300C0F1E1 /* Lottie */; };
 		38EE9C032C28F9B200C0F1E1 /* lastLogo-removebg-preview.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9C022C28F9B100C0F1E1 /* lastLogo-removebg-preview.png */; };
+		38EE9C132C2911AA00C0F1E1 /* noFavourite.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9C122C2911AA00C0F1E1 /* noFavourite.png */; };
+		38EE9C152C29128D00C0F1E1 /* noWifi.png in Resources */ = {isa = PBXBuildFile; fileRef = 38EE9C142C29128D00C0F1E1 /* noWifi.png */; };
 		38F312AD2C15A58800A0112B /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312AC2C15A58800A0112B /* SignupViewModel.swift */; };
 		38F312B02C15A60300A0112B /* CustomerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312AF2C15A60300A0112B /* CustomerData.swift */; };
 		38F312B22C15A63300A0112B /* PostedCustomerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F312B12C15A63300A0112B /* PostedCustomerResponse.swift */; };
@@ -178,6 +180,8 @@
 		38EE9BF02C28F40B00C0F1E1 /* Animation - 1719133599735.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "Animation - 1719133599735.json"; path = "../../../Animation - 1719133599735.json"; sourceTree = "<group>"; };
 		38EE9C022C28F9B100C0F1E1 /* lastLogo-removebg-preview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lastLogo-removebg-preview.png"; path = "../../../lastLogo-removebg-preview.png"; sourceTree = "<group>"; };
 		38EE9C042C29091D00C0F1E1 /* DropDown.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DropDown.xcodeproj; path = "../DropDown-master 2/DropDown.xcodeproj"; sourceTree = "<group>"; };
+		38EE9C122C2911AA00C0F1E1 /* noFavourite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noFavourite.png; path = ../../../noFavourite.png; sourceTree = "<group>"; };
+		38EE9C142C29128D00C0F1E1 /* noWifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noWifi.png; path = ../../../../Desktop/noWifi.png; sourceTree = "<group>"; };
 		38F312AC2C15A58800A0112B /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		38F312AF2C15A60300A0112B /* CustomerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerData.swift; sourceTree = "<group>"; };
 		38F312B12C15A63300A0112B /* PostedCustomerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostedCustomerResponse.swift; sourceTree = "<group>"; };
@@ -353,6 +357,8 @@
 			isa = PBXGroup;
 			children = (
 				38EE9BF02C28F40B00C0F1E1 /* Animation - 1719133599735.json */,
+				38EE9C122C2911AA00C0F1E1 /* noFavourite.png */,
+				38EE9C142C29128D00C0F1E1 /* noWifi.png */,
 				38EE9C022C28F9B100C0F1E1 /* lastLogo-removebg-preview.png */,
 				D30AB69A2C032CA500C61F99 /* Assets.xcassets */,
 				D30AB6AD2C035FF800C61F99 /* Main.storyboard */,
@@ -1038,7 +1044,9 @@
 				D30AB69B2C032CA500C61F99 /* Assets.xcassets in Resources */,
 				00C325862C084A5900422141 /* ProductTableViewCell.xib in Resources */,
 				00C325862C084A5900422141 /* ProductTableViewCell.xib in Resources */,
+				38EE9C132C2911AA00C0F1E1 /* noFavourite.png in Resources */,
 				38C53D8B2C1D7DFB00F2773A /* SearchTableViewCell.xib in Resources */,
+				38EE9C152C29128D00C0F1E1 /* noWifi.png in Resources */,
 				D30AB69E2C032CA500C61F99 /* Base in Resources */,
 				00DF67232C186DEF00734F38 /* ProducCollectionViewCell.xib in Resources */,
 				38EE9C032C28F9B200C0F1E1 /* lastLogo-removebg-preview.png in Resources */,

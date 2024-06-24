@@ -10,6 +10,8 @@ import Foundation
 class ProductDetailsViewModel {
     var selectedProduct: Product?
     var destination: Bool?
+    var selectedSize : String?
+    var selectedColor : String?
     private var favouriteProductsViewModel : FavouriteProductsViewModel?
     var bindToProductViewController: (() -> Void)?
     
@@ -202,6 +204,11 @@ class ProductDetailsViewModel {
         }
     }
 
+  /*  func setUserSelection(){
+        
+        self.selectedSize = self.selectedProduct?.variants?.first?.option1[0]
+    }
+   */
 
 
 }
