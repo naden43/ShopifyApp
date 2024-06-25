@@ -23,14 +23,14 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyTxt: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.contentView.layer.cornerRadius = 30
+        //self.contentView.layer.cornerRadius = 30
         // Add corner radius
-        contentView.layer.cornerRadius = 30
-        contentView.layer.masksToBounds = true
-        detailsBtn.layer.borderWidth = 1.0
-        detailsBtn.layer.borderColor = UIColor.black.cgColor
-        detailsBtn.layer.cornerRadius = 15
-        detailsBtn.clipsToBounds = true
+        //contentView.layer.cornerRadius = 30
+        //contentView.layer.masksToBounds = true
+        //detailsBtn.layer.borderWidth = 1.0
+        //detailsBtn.layer.borderColor = UIColor.black.cgColor
+        //detailsBtn.layer.cornerRadius = 15
+        //detailsBtn.clipsToBounds = true
         // Add shadow
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)

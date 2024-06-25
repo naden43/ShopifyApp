@@ -241,7 +241,7 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
             
             cell.productTitle.text = product?.title
 //            cell.productBrand.text = product?.vendor
-            cell.productSize.text = viewModel.convertPriceByCurrency(price: Double(product?.price ?? "0.0") ?? 0.0)
+            /*cell.productSize.text = viewModel.convertPriceByCurrency(price: Double(product?.price ?? "0.0") ?? 0.0)
             cell.priceCurrency.text = viewModel.getCurrencyType()
             cell.productColor.isHidden = true
             cell.colorText.text = ""
@@ -252,7 +252,28 @@ extension FavProductsViewController: UITableViewDataSource, UITableViewDelegate 
                 cell.favProductImageView.kf.setImage(with: imageUrl)
             } else {
                 cell.favProductImageView.image = nil
-            }
+            }*/
+            
+            
+            let price = viewModel.convertPriceByCurrency(price: Double(product?.price ?? "0.0") ?? 0.0)
+                    cell.productPrice.text = price
+            cell.priceCurrency.text = viewModel.getCurrencyType()
+                    
+                    if let imageUrlString = viewModel.getImageByIndex(index: indexPath.row),
+                       let imageUrl = URL(string: imageUrlString) {
+                        print("here")
+                        cell.favProductImageView.kf.setImage(with: imageUrl)
+                    } else {
+                        cell.favProductImageView.image = nil
+                    }
+                    
+            cell.productColor.isHidden = true
+            cell.colorText.isHidden = true
+            cell.productSize.isHidden = true
+            cell.sizeText.isHidden = true
+            
+            
+            
         }
         return cell
     }

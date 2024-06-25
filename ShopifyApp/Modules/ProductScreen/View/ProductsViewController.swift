@@ -15,6 +15,7 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
     var viewModel: HomeViewModelProtocol?
     var productDetailsViewModel: ProductDetailsViewModel?
     var url: String = ""
+    let activityIndicator = UIActivityIndicatorView(style: .large)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,16 +38,23 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         productCollection.collectionViewLayout = layout
         
         viewModel?.bindToProductViewController = { [weak self] in
+            self?.activityIndicator.stopAnimating()
+
             DispatchQueue.main.async {
                 self?.productCollection.reloadData()
                 self?.bName.text = self?.brandName
             }
         }
         
-        viewModel?.fetchProducts(url: url)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.activityIndicator.center = self.view.center
+        self.view.addSubview(self.activityIndicator)
+        self.activityIndicator.startAnimating()
+        viewModel?.fetchProducts(url: url)
         viewModel?.loadFavProducts()
     }
 
@@ -85,17 +93,44 @@ class ProductsViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         
         let product = products[indexPath.row]
-        productCell.productTitle.text = product.title
+       //productCell.productTitle.text = product.title
         
         let price = viewModel?.convertPriceByCurrency(price: Double(product.variants?.first?.price ?? "0") ?? 0.0)
         productCell.productPrice.text =  price
-        productCell.productSubTitle.text = product.vendor
+        //productCell.productSubTitle.text = product.vendor
         productCell.currencyTxt.text = viewModel?.getCurrencyType()
         
         productCell.presentAlertDeletion = {
             alert in
             self.present(alert, animated: true)
         }
+                let Title = product.title
+                var extractedTitle = Title
+
+                if let firstRange = Title?.range(of: "|") {
+                    extractedTitle = String((Title?[firstRange.upperBound...])!).trimmingCharacters(in: .whitespacesAndNewlines)
+                    
+                   
+                    if let secondRange = extractedTitle?.range(of: "|") {
+                        extractedTitle = String((extractedTitle?[..<secondRange.lowerBound])!).trimmingCharacters(in: .whitespacesAndNewlines)
+                    }
+                }
+                let subTitle = product.handle
+                var extractedsubTitle: String?
+
+                if let firstRange = subTitle?.range(of: "-") {
+                    extractedsubTitle = String(subTitle?[firstRange.upperBound...] ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+
+                if let title = extractedsubTitle, title.count > 18 {
+                    extractedsubTitle = String(title.prefix(18))
+                }
+
+                productCell.productTitle.text = extractedTitle
+
+                productCell.productTitle.text = extractedTitle
+        productCell.productSubTitle.text = product.vendor
+              //  productCell.currencyTxt.text = viewModel?.getCurrencyType()
         
         if let imageUrl = product.image?.src {
             productCell.productImage.kf.setImage(with: URL(string: imageUrl))

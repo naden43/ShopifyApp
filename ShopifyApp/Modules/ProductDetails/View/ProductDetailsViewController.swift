@@ -25,10 +25,10 @@ class ProductDetailsViewController: UIViewController {
     @IBOutlet weak var sizeCollectionView: UICollectionView!
     @IBOutlet weak var colorsCollectionView: UICollectionView!
     @IBOutlet weak var reviewsCollectionView: UICollectionView!
-    @IBOutlet weak var productDescription: UITextView!
     @IBOutlet weak var productspageControl: UIPageControl!
     @IBOutlet weak var btnAddToFav: UIButton!
     
+    @IBOutlet weak var productDescription: UILabel!
     private var showMoreReviews = false
     private var reviews: [Review] = []
     var viewModel: ProductDetailsViewModel?
@@ -48,7 +48,9 @@ class ProductDetailsViewController: UIViewController {
         colorsCollectionView.delegate = self
         reviewsCollectionView.dataSource = self
         reviewsCollectionView.delegate = self
-        productDescription.isScrollEnabled = false
+        //productDescription.isScrollEnabled = false
+        
+        
         
         if let layout = productCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal

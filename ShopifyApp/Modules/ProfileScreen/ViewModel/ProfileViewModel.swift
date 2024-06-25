@@ -56,11 +56,11 @@ class ProfileViewModel {
     func getFavCount() -> Int {
         
         let counter = favProducts?.lineItems?.count ?? 0
-        if  counter >= 3 {
-            return 2
+        if  counter >= 4 {
+            return 3
         }
-        else if counter == 2{
-            return 1
+        else if counter == 3 || counter == 2 {
+            return counter - 1 
         }
         else {
             return 0

@@ -161,7 +161,7 @@ class UserAddressesViewController: UIViewController  , UITableViewDelegate , UIT
             cell.contentViewOfCell.layer.borderColor = UIColor.gray.cgColor
         }
         
-        cell.cityTxt.text = (address?.city) ?? ""
+        cell.cityTxt.text = "\((address?.city ?? "")) , \(address?.address1 ?? "")"
         cell.countryTxt.text = (address?.country) ?? ""
         return cell
     }

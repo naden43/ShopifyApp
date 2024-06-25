@@ -195,7 +195,7 @@ extension PlaceOrderViewController : PKPaymentAuthorizationViewControllerDelegat
         controller.dismiss(animated: true, completion: nil)
         var items = viewModel?.getAllProductsFromDraftOrder()
         viewModel?.placeOrder(lineItems: items ?? [], customerId: viewModel?.getCustomerID() ?? 7876947378342, financialStatus: "paid", discount_codes: allDiscounts ?? [])
-        navigateToHome()
+        showOrderSuccessAlert()
     }
     
     func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {

@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,7 +16,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="8FZ-JI-04z">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection headerTitle="" footerTitle="" id="EHZ-fW-f4I">
                                 <cells>
@@ -181,6 +181,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="Ett-5u-Bgb" secondAttribute="trailing" constant="16" id="suc-xD-Q3o"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -248,7 +249,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SoS-ut-zwl"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XNg-6n-cV6" firstAttribute="leading" secondItem="c9e-MG-qxd" secondAttribute="trailing" constant="16" id="4ur-BI-pAm"/>
                             <constraint firstItem="c9e-MG-qxd" firstAttribute="leading" secondItem="SoS-ut-zwl" secondAttribute="leading" constant="16" id="6NN-mG-XJw"/>
@@ -365,7 +366,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="F81-bS-Gqc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pV9-eT-0ze" firstAttribute="leading" secondItem="WrP-PS-JLm" secondAttribute="leading" id="2Au-jw-C5c"/>
                             <constraint firstItem="PsY-pf-XV7" firstAttribute="top" secondItem="ioY-Yg-vSJ" secondAttribute="bottom" constant="16" id="9J4-w9-H14"/>
@@ -479,7 +480,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Uu-3f-XXy">
                                 <rect key="frame" x="16" y="763.66666666666663" width="361" height="38.333333333333371"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Place Your Order ">
+                                <buttonConfiguration key="configuration" style="filled" title="Place Your Order " cornerStyle="capsule">
                                     <color key="baseBackgroundColor" name="btnColor"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -488,7 +489,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tkd-ZJ-ztY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AWh-40-ran" firstAttribute="top" secondItem="obf-xf-22m" secondAttribute="top" id="0nH-fN-v9V"/>
                             <constraint firstItem="Wnz-y7-iAK" firstAttribute="top" secondItem="Uxi-ao-km8" secondAttribute="bottom" constant="32" id="3rf-Y8-XvO"/>
@@ -561,7 +562,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="son-cb-01e">
                                 <rect key="frame" x="16" y="771.66666666666663" width="361" height="38.333333333333371"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Proceed to checkout">
+                                <buttonConfiguration key="configuration" style="filled" title="Proceed to checkout" cornerStyle="capsule">
                                     <color key="baseBackgroundColor" name="btnColor"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -576,7 +577,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Q75-qC-PEP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="son-cb-01e" firstAttribute="top" secondItem="Zi9-Bg-H98" secondAttribute="bottom" constant="8" id="5fD-1P-FtE"/>
                             <constraint firstItem="Q75-qC-PEP" firstAttribute="trailing" secondItem="son-cb-01e" secondAttribute="trailing" constant="16" id="Ov5-ZL-Az6"/>
@@ -666,7 +667,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ajR-j9-KBH"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="8xc-sn-Sjv" firstAttribute="leading" secondItem="ajR-j9-KBH" secondAttribute="leading" constant="16" id="1UT-aj-cSO"/>
                             <constraint firstItem="ajR-j9-KBH" firstAttribute="trailing" secondItem="8xc-sn-Sjv" secondAttribute="trailing" constant="16" id="7Td-ys-ufB"/>
@@ -765,7 +766,7 @@
                             </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f6a-qR-adQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="x1x-xb-V26" firstAttribute="top" secondItem="qHD-dS-1cb" secondAttribute="bottom" constant="32" id="1JP-My-h0A"/>
                             <constraint firstItem="NJ6-KT-nqb" firstAttribute="leading" secondItem="f6a-qR-adQ" secondAttribute="leading" constant="16" id="1zM-fj-cQ0"/>
@@ -874,7 +875,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sH3-TG-3fi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="okt-sd-nqS" firstAttribute="width" secondItem="sH3-TG-3fi" secondAttribute="width" multiplier="0.1" id="09I-8l-XgD"/>
                             <constraint firstItem="iWW-ms-rJu" firstAttribute="top" secondItem="okt-sd-nqS" secondAttribute="bottom" constant="32" id="1hi-tt-78K"/>
@@ -992,7 +993,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ju6-nJ-kux">
                                 <rect key="frame" x="16" y="763.66666666666663" width="361" height="38.333333333333371"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Add Address">
+                                <buttonConfiguration key="configuration" style="filled" title="Add Address" cornerStyle="capsule">
                                     <color key="baseBackgroundColor" name="btnColor"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -1001,7 +1002,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Osj-J3-dBp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Osj-J3-dBp" firstAttribute="trailing" secondItem="ZZf-SM-Qqa" secondAttribute="trailing" constant="16" id="1rM-9r-26T"/>
                             <constraint firstItem="NJW-mb-L9T" firstAttribute="leading" secondItem="Osj-J3-dBp" secondAttribute="leading" constant="16" id="26W-NE-d1n"/>
@@ -1090,7 +1091,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="g9w-Sn-NPc"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xGv-Vq-k2A" firstAttribute="top" secondItem="66s-WX-kym" secondAttribute="bottom" constant="16" id="1SC-sI-2zH"/>
                             <constraint firstItem="tYc-dn-vpd" firstAttribute="leading" secondItem="66s-WX-kym" secondAttribute="trailing" constant="16" id="2R9-4I-0Rn"/>

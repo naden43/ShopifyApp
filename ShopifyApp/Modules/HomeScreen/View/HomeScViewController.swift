@@ -29,7 +29,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         print("update")
         
-        let url = Constants.EndPoint.brands
+        
         viewModel = HomeViewModel()
         brandsCollection.delegate = self
         brandsCollection.dataSource = self
@@ -67,8 +67,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         }
         
         
-        viewModel?.fetchBands(url: url)
-        viewModel?.getPriceRules()
+        
         viewModel?.fetchCurrencyDataAndStore(currencyType: viewModel?.getCurrencyType() ?? "EGP")
         
         self.activityIndicator.center = self.view.center
@@ -77,6 +76,9 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let url = Constants.EndPoint.brands
+        viewModel?.fetchBands(url: url)
+        viewModel?.getPriceRules()
         handleNavigationBar()
     }
     
@@ -285,8 +287,8 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
             return adsCell
         }else {
             brandCell.layer.cornerRadius = 20
-            brandCell.brandName.text = brands[indexPath.row].title
-            brandCell.viewContainer.layer.cornerRadius = 15
+            //brandCell.brandName.text = brands[indexPath.row].title
+            //brandCell.viewContainer.layer.cornerRadius = 15
             brandCell.brandImg.layer.cornerRadius = 20
             var brandIMG = brands[indexPath.row].image.src
             let imageUrl = URL(string: brandIMG)
@@ -345,17 +347,17 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
         else {
             let brands = getUniqueBrands()
             let selectedBrandId = brands[indexPath.row].id
-            let selectedBrandName = brands[indexPath.row].title
+            //let selectedBrandName = brands[indexPath.row].title
             let storyboard = UIStoryboard(name: "Part1", bundle: nil)
             
             let backItem = UIBarButtonItem()
-            backItem.title = selectedBrandName
+            backItem.title = brands[indexPath.row].title
             self.navigationItem.backBarButtonItem = backItem
             
             
             if let productVC = storyboard.instantiateViewController(withIdentifier: "productBrandScreen") as? ProductsViewController {
                 productVC.brandId = selectedBrandId
-                productVC.brandName = selectedBrandName
+                productVC.brandName = brands[indexPath.row].title
                 navigationController?.pushViewController(productVC, animated: true)
             }
         }
@@ -366,16 +368,16 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
 
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.95)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1)
         , heightDimension: .absolute(222))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize
         , subitems: [item])
-            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
-            , bottom: 0, trailing: 15)
+            group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8
+            , bottom: 0, trailing: 8)
 
         let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15
-            , bottom: 10, trailing: 0)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
+            , bottom: 0, trailing: 0)
             section.orthogonalScrollingBehavior = .continuous
         // Animation
         section.visibleItemsInvalidationHandler = { (items, offset, environment) in
@@ -393,20 +395,22 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     func brandsSectionLayout() -> NSCollectionLayoutSection {
         // Define the size of each item (movie cell)
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), // Each item takes up half of the width
-                                              heightDimension: .absolute(240)) // Keep the height as 250 points
+                                              heightDimension: .fractionalHeight(1)) // Keep the height as 250 points
 
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 25) // Add spacing between items
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16) // Add spacing between items
 
         // Create a group that contains two items horizontally
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), // The group takes up the full width of the section
-                                               heightDimension: .absolute(250)) // Each group takes up the full height of the section
+                                               heightDimension: .fractionalHeight(0.3)) // Each group takes up the full height of the section
+        
 
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
-
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item ])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0
+        , bottom: 0, trailing: 0)
         // Center the group within the section
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 15)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 10, trailing: 16)
         section.contentInsetsReference = .layoutMargins
         section.interGroupSpacing = 10 // Add spacing between rows
 

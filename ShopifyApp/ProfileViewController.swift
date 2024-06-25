@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var viewModel: ProfileViewModel?
     let url = Constants.EndPoint.orders
     let reachability = try! Reachability()
+    let activityIndicator = UIActivityIndicatorView(style: .large)
 
     
     
@@ -40,7 +41,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         viewModel = ProfileViewModel()
         
         viewModel?.bindCustomerName = { [weak self] name in
-            
+            self?.activityIndicator.stopAnimating()
+
             self?.customerNameTxt.text = name
         }
         
@@ -81,11 +83,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         //wishList.rowHeight = UITableView.automaticDimension
         //wishList.estimatedRowHeight = 150
         
-        viewModel?.bindFavourites = {
-            self.wishList.reloadData()
+        viewModel?.bindFavourites = { [weak self] in
+            self?.activityIndicator.stopAnimating()
+
+            self?.wishList.reloadData()
         }
         
         viewModel?.bindToOdersViewController = { [weak self] in
+            self?.activityIndicator.stopAnimating()
+
             print("inside the bind closure")
             DispatchQueue.main.async {
                 self?.ordersList.reloadData()
@@ -106,6 +112,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
         case .wifi, .cellular :
             if self.viewModel?.checkIfUserAvaliable() == true {
+                
+                self.activityIndicator.center = self.view.center
+                self.view.addSubview(self.activityIndicator)
+                self.activityIndicator.startAnimating()
                 
                 viewModel?.fetchCustomer()
                 viewModel?.fetchFavourites()
@@ -136,7 +146,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 item.tintColor = UIColor(.black)
             }
         view?.navigationItem.leftBarButtonItems = []
-           view?.title = "profile"
+           view?.title = "Profile"
     }
     
     // MARK: - UITableViewDataSource
@@ -147,7 +157,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return viewModel?.getFavCount() ?? 0
             } else if tableView == ordersList {
                 let totalOrders = viewModel?.getOrders().count ?? 0
-                return min(totalOrders, 4) // Return up to 4 items, or all items if less than 4
+                return min(totalOrders, 2) // Return up to 4 items, or all items if less than 4
             } else {
                 return 0
             }
@@ -155,11 +165,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView == wishList {
-            return 114
+            return 126
         }
         else {
             return 114
         }
+        
+       // tableView.au
+        UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -188,6 +201,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                         cell.favProductImageView.image = nil
                     }
                     
+            cell.productColor.isHidden = true
+            cell.colorText.isHidden = true
+            cell.productSize.isHidden = true
+            cell.sizeText.isHidden = true
                     // Add border to the cell
                   
             return cell

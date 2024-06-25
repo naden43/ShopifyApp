@@ -36,9 +36,9 @@ class ReviewsCollectionViewCell: UICollectionViewCell {
         cosmosView.bottomAnchor.constraint(equalTo: reviewerRate.bottomAnchor).isActive = true
         personImageView.layer.cornerRadius = personImageView.frame.width / 2
         personImageView.clipsToBounds = true
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor.lightGray.cgColor
-        layer.cornerRadius = 8.0
+//        layer.borderWidth = 1.0
+//        layer.borderColor = UIColor.lightGray.cgColor
+//        layer.cornerRadius = 8.0
     }
     
     func configure(with review: Review) {

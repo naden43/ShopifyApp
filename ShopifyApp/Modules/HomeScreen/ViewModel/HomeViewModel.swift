@@ -199,9 +199,11 @@ class HomeViewModel : HomeViewModelProtocol{
     }
     
     func getCategoryID (categoryName: String) -> Int{
-        
         var categoryID : Int?
-        for category in categories! {
+        guard let categories = categories else {
+                    return 0
+                }
+        for category in categories {
             if(category.handle.lowercased() == categoryName.lowercased()) {
                 categoryID = category.id
                 //  print("the category id for this category \(categoryName) = \(categoryID)")

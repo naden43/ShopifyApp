@@ -27,6 +27,8 @@ class ColorsCollectionViewCell: UICollectionViewCell {
         colorLabel.clipsToBounds = true
         colorLabel.textAlignment = .center
         colorLabel.font = UIFont.systemFont(ofSize: 16)
+        colorLabel.layer.borderWidth = 0.5
+        colorLabel.layer.borderColor = UIColor.gray.cgColor
     }
     
     func setColorForValue(_ value: String?) {

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import DropDown
+import DropDown
 import Reachability
 
 class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
@@ -19,278 +19,293 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
     var categoryId : Int?
     var priceRange : Int = 0
     var isFiltered : Bool?
+    var menuPrice: DropDown?
     @IBOutlet weak var filterView: UIView!
     var filteredProducts: [Product] = []
     var filteredPriceProducts: [Product] = []
-    let menuPrice: DropDown = {
         let menu = DropDown()
-    let activityIndicator = UIActivityIndicatorView(style: .large)
-    let menuPrice: DropDown = {
-        let menu = DropDown()
-        menu.cornerRadius = 5
-        menu.animationEntranceOptions
-        menu.scalesLargeContentImage = (UIImage(named: "priceicon.svg") != nil)
-        
-        if CurrencyService.instance.getCurrencyType() == "USD" {
-            menu.dataSource = [
-                "All Prices",
-                "Under USD 5",
-                "USD 5 - USD 20",
-                "USD 20 - USD 30",
-            ]
-            
-        }
-        else {
-            menu.dataSource = [
-                "All Prices",
-                "Under EGP 100",
-                "EGP 100 - EGP 200",
-                "EGP 200 - EGP 300",
-            ]
-        }
-        
-        return menu
-    }() 
-    
-    @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
-    @IBOutlet weak var saleBtn: UIButton!
-    @IBOutlet weak var kidBtn: UIButton!
-    @IBOutlet weak var menBtn: UIButton!
-    @IBOutlet weak var womenBtn: UIButton!
-    @IBOutlet weak var categoriesCollection: UICollectionView!
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        viewModel = HomeViewModel()
-      //  menuPrice.anchorView = filterView
-       // menuPrice.selectedTextColor = .orange
-        self.filterProductsOfCategories()
-        categoriesCollection.reloadData()
-        checkIfCollectionIsEmpty()
-        let url = Constants.EndPoint.categories
-        emptylabel.isHidden = true
-        emptyCategory.isHidden = true
-        womenBtn.tintColor = .orange
-        categoriesCollection.dataSource = self
-        categoriesCollection.delegate = self
-        let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
-        categoriesCollection.register(nib, forCellWithReuseIdentifier: "productCell")
+        let activityIndicator = UIActivityIndicatorView(style: .large)
         
         
-        //Compositional layout
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            switch sectionIndex {
-            case 0:
-                return self.productsSectionLayout()
-            default:
-                return nil
-            }
-        }
-        categoriesCollection.collectionViewLayout = layout
-        
-        //access the price menu
-        
-       // menuPrice.selectionAction = { [weak self] index, title in
+        @IBOutlet weak var subCategoriesSeg: UISegmentedControl!
+        @IBOutlet weak var saleBtn: UIButton!
+        @IBOutlet weak var kidBtn: UIButton!
+        @IBOutlet weak var menBtn: UIButton!
+        @IBOutlet weak var womenBtn: UIButton!
+        @IBOutlet weak var categoriesCollection: UICollectionView!
 
-      menuPrice.selectionAction = { [weak self] index, title in
-            print("the index = \(index) and title = \(title)")
-            self?.priceRange = index
-            self?.filterProductsByPrice()
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            viewModel = HomeViewModel()
+             
+            self.filterProductsOfCategories()
+            categoriesCollection.reloadData()
+            checkIfCollectionIsEmpty()
+            let url = Constants.EndPoint.categories
+            emptylabel.isHidden = true
+            emptyCategory.isHidden = true
+            womenBtn.tintColor = .orange
+            categoriesCollection.dataSource = self
+            categoriesCollection.delegate = self
+            let nib = UINib(nibName: "ProducCollectionViewCell", bundle: nil)
+            categoriesCollection.register(nib, forCellWithReuseIdentifier: "productCell")
+            
+            
+            //Compositional layout
+            let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
+                switch sectionIndex {
+                case 0:
+                    return self.productsSectionLayout()
+                default:
+                    return nil
+                }
+            }
+            categoriesCollection.collectionViewLayout = layout
+            
+            //access the price menu
+            
+            // menuPrice.selectionAction = { [weak self] index, title in
+            
+            
+            
+            viewModel?.bindToCategoriesViewController = { [weak self] in
+                
+                DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
+                    self?.subCategoriesSeg.selectedSegmentIndex = 0
+                    self?.loadCategoryProducts(categoryName: "women")
+                    
+                }
+            }
+            viewModel?.fetchCategories(url: url)
+            
+            self.activityIndicator.center = self.view.center
+            self.view.addSubview(self.activityIndicator)
+            self.activityIndicator.startAnimating()
         }
         
-        viewModel?.bindToCategoriesViewController = { [weak self] in
+        override func viewWillAppear(_ animated: Bool) {
             
-            DispatchQueue.main.async {
-                self?.activityIndicator.stopAnimating()
-                self?.subCategoriesSeg.selectedSegmentIndex = 0
-                self?.loadCategoryProducts(categoryName: "women")
+            
+            
+            menuPrice = {
+                let menu = DropDown()
+                menu.cornerRadius = 5
+                menu.animationEntranceOptions
+                menu.scalesLargeContentImage = (UIImage(named: "priceicon.svg") != nil)
+                
+                if CurrencyService.instance.getCurrencyType() == "USD" {
+                    menu.dataSource = [
+                        "All Prices",
+                        "Under USD 5",
+                        "USD 5 - USD 20",
+                        "USD 20 - USD 30",
+                    ]
+                    
+                }
+                else {
+                    menu.dataSource = [
+                        "All Prices",
+                        "Under EGP 100",
+                        "EGP 100 - EGP 200",
+                        "EGP 200 - EGP 300",
+                    ]
+                }
+                
+                return menu
+            }()
+
+            menuPrice?.selectionAction = { [weak self] index, title in
+                print("the index = \(index) and title = \(title)")
+                self?.priceRange = index
+                self?.filterProductsByPrice()
+            }
+            
+            menuPrice?.anchorView = filterView
+           menuPrice?.selectedTextColor = .orange
+            
+            
+            
+            
+            
+            super.viewWillAppear(animated)
+            categoriesCollection.reloadData()
+            checkIfCollectionIsEmpty()
+            handleNavigationBar()
+        }
+        
+        func handleNavigationBar() {
+            guard let view = self.navigationController?.visibleViewController else {
+                return
+            }
+            
+            let searchButton = UIBarButtonItem(image: UIImage(named: "searcc.svg"), style: .plain, target: self, action: #selector(searchButton))
+            let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartBtn))
+            let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartBtn))
+            
+            searchButton.tintColor = UIColor(ciColor: .black)
+            cartButton.tintColor = UIColor(ciColor: .black)
+            heartButton.tintColor = UIColor(ciColor: .black)
+            
+            view.navigationItem.leftBarButtonItem = searchButton
+            view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
+            view.title = " "
+        }
+        
+        
+        
+        @objc func addTapped(){
+            
+            print("perform")
+        }
+        
+        @objc func cartBtn(){
+            
+            if viewModel?.checkIfUserAvaliable() == true {
+                
+                switch reachability.connection {
+                    
+                case .unavailable:
+                    let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                    
+                    present(alert, animated: true)
+                    
+                case .wifi , .cellular:
+                    let shopingScreen = UIStoryboard(name: "Part2", bundle: nil).instantiateViewController(withIdentifier: "shoping-cart") as! ShoppingCartViewController
+                    navigationController?.pushViewController(shopingScreen, animated: true)
+                    
+                }
                 
             }
-        }
-        viewModel?.fetchCategories(url: url)
-        
-        self.activityIndicator.center = self.view.center
-        self.view.addSubview(self.activityIndicator)
-        self.activityIndicator.startAnimating()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        categoriesCollection.reloadData()
-        checkIfCollectionIsEmpty()
-        handleNavigationBar()
-    }
-    
-    func handleNavigationBar() {
-        guard let view = self.navigationController?.visibleViewController else {
-            return
-        }
-        
-        let searchButton = UIBarButtonItem(image: UIImage(named: "searcc.svg"), style: .plain, target: self, action: #selector(searchButton))
-        let cartButton = UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(cartBtn))
-        let heartButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(heartBtn))
-        
-        searchButton.tintColor = UIColor(ciColor: .black)
-        cartButton.tintColor = UIColor(ciColor: .black)
-        heartButton.tintColor = UIColor(ciColor: .black)
-        
-        view.navigationItem.leftBarButtonItem = searchButton
-        view.navigationItem.rightBarButtonItems = [heartButton, cartButton]
-        view.title = " "
-    }
-
-    
-    
-    @objc func addTapped(){
-        
-        print("perform")
-    }
-    
-    @objc func cartBtn(){
-        
-        if viewModel?.checkIfUserAvaliable() == true {
-            
-            switch reachability.connection {
+            else {
                 
-            case .unavailable:
-                let alert = UIAlertController(title: "network", message: "You are not connected to the network check you internet  ", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel))
                 
                 present(alert, animated: true)
-                
-            case .wifi , .cellular:
-                let shopingScreen = UIStoryboard(name: "Part2", bundle: nil).instantiateViewController(withIdentifier: "shoping-cart") as! ShoppingCartViewController
-                navigationController?.pushViewController(shopingScreen, animated: true)
-                
             }
             
-        }
-        else {
             
-            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-            
-            present(alert, animated: true)
         }
         
-        
-    }
-    
-    @objc func heartBtn(){
-        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
-        if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
-            navigationController?.pushViewController(favProductsVC, animated: true)
-        }
-        
-        print("perform")
-    }
-    
-    @objc func searchButton() {
-        print("Search button tapped")
-        print("Navigation controller: \(navigationController)")
-        let storyboard = UIStoryboard(name: "Part3", bundle: nil)
-        if let searchProductsVC = storyboard.instantiateViewController(withIdentifier: "searchProductsScreen") as? SearchViewController {
-            print("Before navigation push")
-            searchProductsVC.initialFilteredProducts = self.filteredProducts
-            searchProductsVC.destination = true
-            navigationController?.pushViewController(searchProductsVC, animated: true)
-        } else {
-            print("Failed to instantiate SearchViewController from storyboard")
-        }
-        print("After navigation logic")
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return filteredPriceProducts.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let productCell = categoriesCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProducCollectionViewCell
-        productCell.productImage.layer.cornerRadius = 20
-        // let product = filteredProducts[indexPath.row]
-        // let product = filterProductsByPrice()[indexPath.row]
-        //filterProductsByPrice()
-        
-        productCell.performFavError = {
-            let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel))
-            alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
-                
-                let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
-                
-                let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
-                
-                self.present(chooseScreen, animated: true)
-                
-            }))
-            self.present(alert, animated: true)
-        }
-        
-        productCell.presentAlertDeletion = {
-            alert in
-            self.present(alert, animated: true)
-        }
-        
-        let product = filteredPriceProducts[indexPath.row]
-                let Title = product.title
-                var extractedTitle = Title
-                        if let firstRange = Title?.range(of: "|") {
-                            extractedTitle = String((Title?[firstRange.upperBound...])!).trimmingCharacters(in: .whitespacesAndNewlines)
-                            
-                            // If there's a second | character, remove everything after it
-                            if let secondRange = extractedTitle?.range(of: "|") {
-                                extractedTitle = String((extractedTitle?[..<secondRange.lowerBound])!).trimmingCharacters(in: .whitespacesAndNewlines)
-                            }
-                        }
-                print("tittttttlllllllllllllllleeeeeeeeeeeee = \(extractedTitle)")
-        if let title = extractedTitle, title.count > 9 {
-            extractedTitle = String(title.prefix(9))
-        }
-        productCell.productTitle.text = extractedTitle
-        let price = Double(product.variants?[0].price ?? "") ?? 0.0
-        productCell.productPrice.text = CurrencyService.instance.calcThePrice(price: price)
-        productCell.currencyTxt.text = CurrencyService.instance.getCurrencyType()
-        productCell.productSubTitle.text = product.vendor
-        let productIMG = product.image?.src
-        let imageUrl = URL(string: productIMG ?? "" )
-        productCell.productImage.kf.setImage(with: imageUrl)
-        
-        let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
-        let favImage = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
-        productCell.favButton.setImage(favImage, for: .normal)
-        
-        // Set the viewModel for the cell
-        let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: product)
-        let favProductsViewModel = viewModel?.getFavViewModel()
-        productDetailsViewModel.setFavViewModel(favouriteProductsViewModel: favProductsViewModel ?? FavouriteProductsViewModel())
-        
-        productCell.configure(with: productDetailsViewModel)
-        
-        return productCell
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let products = viewModel?.getProductsOfBrands() {
-            //let selectedProduct = products[indexPath.row]
-            //print("ccccccc\(selectedProduct.id)")
-            //if let products = filteredPriceProducts {
-            let selectedProduct = filteredPriceProducts[indexPath.row]
-            let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
-            
+        @objc func heartBtn(){
             let storyboard = UIStoryboard(name: "Part3", bundle: nil)
-            if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
-                productDetailsVC.viewModel = productDetailsViewModel
-                productDetailsVC.favViewModel = viewModel?.getFavViewModel()
-                navigationController?.pushViewController(productDetailsVC, animated: true)
+            if let favProductsVC = storyboard.instantiateViewController(withIdentifier: "favProductsScreen") as? FavProductsViewController {
+                navigationController?.pushViewController(favProductsVC, animated: true)
             }
-            //}
+            
+            print("perform")
         }
-    }
+        
+        @objc func searchButton() {
+            print("Search button tapped")
+            print("Navigation controller: \(navigationController)")
+            let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+            if let searchProductsVC = storyboard.instantiateViewController(withIdentifier: "searchProductsScreen") as? SearchViewController {
+                print("Before navigation push")
+                searchProductsVC.initialFilteredProducts = self.filteredProducts
+                searchProductsVC.destination = true
+                navigationController?.pushViewController(searchProductsVC, animated: true)
+            } else {
+                print("Failed to instantiate SearchViewController from storyboard")
+            }
+            print("After navigation logic")
+        }
+        
+        func numberOfSections(in collectionView: UICollectionView) -> Int {
+            return 1
+        }
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return filteredPriceProducts.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let productCell = categoriesCollection.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProducCollectionViewCell
+            productCell.productImage.layer.cornerRadius = 20
+            // let product = filteredProducts[indexPath.row]
+            // let product = filterProductsByPrice()[indexPath.row]
+            //filterProductsByPrice()
+            
+            productCell.performFavError = {
+                let alert = UIAlertController(title: "Guest", message: "You are not a user please login or reguster first ", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+                alert.addAction(UIAlertAction(title: "Login \\ Register", style: .default, handler: { action in
+                    
+                    let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                    
+                    let chooseScreen = part3Storyboard.instantiateViewController(withIdentifier: "choose_screen")
+                    
+                    self.present(chooseScreen, animated: true)
+                    
+                }))
+                self.present(alert, animated: true)
+            }
+            
+            productCell.presentAlertDeletion = {
+                alert in
+                self.present(alert, animated: true)
+            }
+            
+            let product = filteredPriceProducts[indexPath.row]
+            let Title = product.title
+            var extractedTitle = Title
+            if let firstRange = Title?.range(of: "|") {
+                extractedTitle = String((Title?[firstRange.upperBound...])!).trimmingCharacters(in: .whitespacesAndNewlines)
+                if let secondRange = extractedTitle?.range(of: "|") {
+                    extractedTitle = String((extractedTitle?[..<secondRange.lowerBound])!).trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+            }
+            if let title = extractedTitle, title.count > 9 {
+                extractedTitle = String(title.prefix(9))
+            }
+            productCell.productTitle.text = extractedTitle
+            let price = Double(product.variants?[0].price ?? "") ?? 0.0
+            productCell.productPrice.text = CurrencyService.instance.calcThePrice(price: price)
+            productCell.currencyTxt.text = CurrencyService.instance.getCurrencyType()
+            productCell.productSubTitle.text = product.vendor
+            let productIMG = product.image?.src
+            let imageUrl = URL(string: productIMG ?? "" )
+            productCell.productImage.kf.setImage(with: imageUrl)
+            
+            let isFavorite = viewModel?.isProductInFavorites(productId: product.id ?? 0) ?? false
+            let favImage = isFavorite ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart")
+            productCell.favButton.setImage(favImage, for: .normal)
+            
+            // Set the viewModel for the cell
+            let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: product)
+            let favProductsViewModel = viewModel?.getFavViewModel()
+            productDetailsViewModel.setFavViewModel(favouriteProductsViewModel: favProductsViewModel ?? FavouriteProductsViewModel())
+            
+            productCell.configure(with: productDetailsViewModel)
+            productCell.layer.shadowColor = UIColor.orange.cgColor
+            productCell.layer.shadowOffset = CGSize(width: 0, height: 2)
+            productCell.layer.shadowRadius = 4
+            productCell.layer.shadowOpacity = 0.2
+            productCell.layer.masksToBounds = false
+            
+            return productCell
+            
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            if let products = viewModel?.getProductsOfBrands() {
+                //let selectedProduct = products[indexPath.row]
+                //print("ccccccc\(selectedProduct.id)")
+                //if let products = filteredPriceProducts {
+                let selectedProduct = filteredPriceProducts[indexPath.row]
+                let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: selectedProduct)
+                
+                let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                    productDetailsVC.viewModel = productDetailsViewModel
+                    productDetailsVC.favViewModel = viewModel?.getFavViewModel()
+                    navigationController?.pushViewController(productDetailsVC, animated: true)
+                }
+                //}
+            }
+        }
         
         @IBAction func womenAction(_ sender: Any) {
             loadCategoryProducts(categoryName: "women")
@@ -338,7 +353,7 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         @IBAction func filterBtn(_ sender: Any) {
             categoriesCollection.reloadData()
             self.isFiltered = true
-            menuPrice.show()
+            menuPrice?.show()
             categoriesCollection.reloadData()
         }
         
@@ -381,11 +396,11 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
             categoriesCollection.reloadData()
             checkIfCollectionIsEmpty()
         }
-    func checkIfCollectionIsEmpty() {
-        let isEmpty = filteredPriceProducts.isEmpty
-        emptylabel.isHidden = !isEmpty
-        emptyCategory.isHidden = !isEmpty
-    }
+        func checkIfCollectionIsEmpty() {
+            let isEmpty = filteredPriceProducts.isEmpty
+            emptylabel.isHidden = !isEmpty
+            emptyCategory.isHidden = !isEmpty
+        }
         
         func filterProductsByPrice ()   {
             switch priceRange {
@@ -464,4 +479,5 @@ class CategoriesViewController: UIViewController, UICollectionViewDelegate, UICo
         
         
         
-    }
+    
+}
