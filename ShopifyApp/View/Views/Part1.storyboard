@@ -192,7 +192,7 @@
                             <constraint firstItem="fy8-1n-0lA" firstAttribute="top" secondItem="qmW-AV-0fc" secondAttribute="bottom" constant="141" id="tBi-Ie-6PM"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="tshirt.fill" catalog="system" selectedImage="tshirt" id="n30-TX-1Ds">
+                    <tabBarItem key="tabBarItem" title="Home" image="tshirt" catalog="system" selectedImage="tshirt.fill" id="n30-TX-1Ds">
                         <color key="badgeColor" name="btnColor"/>
                     </tabBarItem>
                     <connections>
@@ -373,7 +373,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="Yux-QE-9bw">
-                        <color key="badgeColor" name="btnColor"/>
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="customerNameTxt" destination="hXn-Zx-XTR" id="9gI-U7-ikA"/>
@@ -436,7 +436,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="btnColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="uIi-u3-ELc" kind="relationship" relationship="viewControllers" id="zf2-6T-zHL"/>
@@ -857,9 +857,7 @@
                             <constraint firstItem="3FD-ka-LcT" firstAttribute="leading" secondItem="UNa-aP-Poh" secondAttribute="leading" constant="97" id="xBl-o3-DHL"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Category" image="book" catalog="system" selectedImage="book.fill" id="UzR-bW-cMN">
-                        <color key="badgeColor" name="btnColor"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Category" image="book" catalog="system" selectedImage="book.fill" id="UzR-bW-cMN"/>
                     <connections>
                         <outlet property="categoriesCollection" destination="R4y-DV-hce" id="Rno-fi-esN"/>
                         <outlet property="emptyCategory" destination="Mfg-ij-LMT" id="4sA-Ma-8oO"/>

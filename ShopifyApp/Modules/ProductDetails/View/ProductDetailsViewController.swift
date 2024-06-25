@@ -30,12 +30,26 @@ class ProductDetailsViewController: UIViewController {
     
     @IBOutlet weak var productDescription: UILabel!
     private var showMoreReviews = false
+    
+    @IBOutlet weak var productQuantity: UILabel!
     private var reviews: [Review] = []
     var viewModel: ProductDetailsViewModel?
     var favViewModel : FavouriteProductsViewModel?
     
+    @IBOutlet weak var btnAddToCart: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAvailableQuantities()
+        favViewModel?.loadData  { [weak self] in
+            
+            if self?.viewModel?.isProductInFavorites() == true {
+                self?.btnAddToFav.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+            } else {
+                self?.btnAddToFav.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+            
+        }
        
         viewModel?.setFavViewModel(favouriteProductsViewModel: favViewModel ?? FavouriteProductsViewModel())
         productCollectionView.dataSource = self
@@ -48,8 +62,8 @@ class ProductDetailsViewController: UIViewController {
         colorsCollectionView.delegate = self
         reviewsCollectionView.dataSource = self
         reviewsCollectionView.delegate = self
-        //productDescription.isScrollEnabled = false
         
+      
         
         
         if let layout = productCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -90,6 +104,11 @@ class ProductDetailsViewController: UIViewController {
             cosmosView.topAnchor.constraint(equalTo: productRate.topAnchor),
             cosmosView.bottomAnchor.constraint(equalTo: productRate.bottomAnchor)
         ])
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        //colorsCollectionView.fir
+        
     }
     
     private func updateUI() {
@@ -171,8 +190,20 @@ class ProductDetailsViewController: UIViewController {
                     if item.option1 == selectedSize && item.option2 == selectedColor {
                         varientID = item.id ?? 0
                         
+                        
+                    /*    if item.inventoryQuantity == 0 || item.inventoryQuantity ?? 0 < 0 {
+                            showBottomSheet()
+                            btnAddToCart.isEnabled = false
+                            showBottomSheet()
+                        } else {
+                            print(" item.inventoryQuantity\( item.inventoryQuantity)")
+                            btnAddToCart.isEnabled = true
+                        }*/
+
+                
                     }
                 }
+                
                 
                 
                 viewModel?.checkIfProductExists(productId: Int(varientID)) { exists in
@@ -378,17 +409,30 @@ class ProductDetailsViewController: UIViewController {
              if let sizeValue = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Size" })?.values?[indexPath.item] {
                  cell.productSize.text = sizeValue
              }
+             if indexPath.row == 0{
+                 cell.isSelected = true
+
+             }
+    
+             
+             
              return cell
          } else if collectionView == colorsCollectionView {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ColorsCollectionViewCell", for: indexPath) as! ColorsCollectionViewCell
              if let value = viewModel?.selectedProduct?.options?.first(where: { $0.name == "Color" })?.values?[indexPath.item] {
                       cell.setColorForValue(value)
                   } else {
-                      cell.setColorForValue(nil)                   }
+                      cell.setColorForValue(nil)   
+                  }
+             if indexPath.row == 0{
+                 cell.isSelected = true
+
+             }
              return cell
          } else if collectionView == reviewsCollectionView {
              let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReviewsCollectionViewCell", for: indexPath) as! ReviewsCollectionViewCell
              cell.configure(with: reviews[indexPath.item])
+             
              return cell
          }
          return UICollectionViewCell()
@@ -412,4 +456,39 @@ class ProductDetailsViewController: UIViewController {
                  productspageControl.currentPage = currentPage
              }
          }
+     
+     func getAvailableQuantities() {
+         guard let selectedSize = getSelectedSize(),
+               let selectedColor = getSelectedColor(),
+               let varients = viewModel?.selectedProduct?.variants else {
+             return
+         }
+         
+         var varientID: Int64 = 0
+         for item in varients {
+             if item.option1 == selectedSize && item.option2 == selectedColor {
+                 varientID = item.id ?? 0
+                 let quantity = item.inventoryQuantity
+                 productQuantity.text = "Available Quantities: \(quantity)"
+                 
+                 if quantity == 0 {
+                     showBottomSheet()
+                     btnAddToCart.isEnabled = false
+                     showBottomSheet()
+                 } else {
+                     btnAddToCart.isEnabled = true
+                 }
+             }
+         }
+     }
+
+     func showBottomSheet() {
+         
+         let alert = UIAlertController(title: "No Available Quantities", message: "The selected product is out of stock.", preferredStyle: .actionSheet)
+         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+         if let viewController = UIApplication.shared.keyWindow?.rootViewController {
+             viewController.present(alert, animated: true, completion: nil)
+         }
+     }
+
  }

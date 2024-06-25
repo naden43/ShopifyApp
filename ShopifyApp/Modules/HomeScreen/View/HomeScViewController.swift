@@ -22,6 +22,7 @@ class HomeScViewController: UIViewController, UICollectionViewDelegate, UICollec
     let activityIndicator = UIActivityIndicatorView(style: .large)
     override func viewDidLoad() {
         super.viewDidLoad()
+        brandsCollection.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         
 //        UserDefaultsManager.shared.saveCustomer(id: 7877044240550, note: "979195199654,979195232422")
         

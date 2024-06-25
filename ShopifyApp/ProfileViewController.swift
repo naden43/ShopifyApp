@@ -22,6 +22,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var wishList: UITableView!
     @IBOutlet weak var ordersList: UITableView!
+    var favViewModel: FavouriteProductsViewModel?
     
     var viewModel: ProfileViewModel?
     let url = Constants.EndPoint.orders
@@ -39,6 +40,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         wishList.dataSource = self
         
         viewModel = ProfileViewModel()
+        favViewModel = FavouriteProductsViewModel()
         
         viewModel?.bindCustomerName = { [weak self] name in
             self?.activityIndicator.stopAnimating()
@@ -248,6 +250,33 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == wishList {
+            guard let lineItem = viewModel?.favProducts?.lineItems?[indexPath.row + 1],
+                  let productId = lineItem.productId else {
+                return
+            }
+            
+            viewModel?.getProductById(productId: Int(productId)) { product in
+                guard let productResponse = product else {
+                    return
+                }
+                
+                let productDetailsViewModel = ProductDetailsViewModel(selectedProduct: productResponse.product)
+                
+                let storyboard = UIStoryboard(name: "Part3", bundle: nil)
+                if let productDetailsVC = storyboard.instantiateViewController(withIdentifier: "productDetailsScreen") as? ProductDetailsViewController {
+                    productDetailsVC.viewModel = productDetailsViewModel
+                    productDetailsVC.favViewModel = self.favViewModel
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(productDetailsVC, animated: true)
+                    }
+                }
+            }
+        }
+       
+    }
+    
     // MARK: - Actions
     
     @IBAction func moreWishProducts(_ sender: Any) {
@@ -349,6 +378,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             navigationController?.pushViewController(orderDetailsVC, animated: true)
         }
     }
+    
     
     @IBAction func navigateToLogin(_ sender: Any) {
         let part3Storyboard = UIStoryboard(name: "Part3", bundle: nil)

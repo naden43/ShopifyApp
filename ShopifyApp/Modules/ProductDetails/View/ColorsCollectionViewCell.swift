@@ -17,7 +17,9 @@ class ColorsCollectionViewCell: UICollectionViewCell {
     }
     
     override var isSelected: Bool {
+        
         didSet {
+            print("salmaaaaaaaaaaaaa")
             updateSelectionUI()
         }
     }
@@ -64,6 +66,7 @@ class ColorsCollectionViewCell: UICollectionViewCell {
     
     private func updateSelectionUI() {
         if isSelected {
+            print("yes is seected")
             colorLabel.layer.borderWidth = 5.0
             colorLabel.layer.borderColor = UIColor.orange.cgColor
             colorLabel.font = UIFont.boldSystemFont(ofSize: 16)

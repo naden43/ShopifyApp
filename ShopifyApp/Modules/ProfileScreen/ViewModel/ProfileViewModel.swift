@@ -117,6 +117,17 @@ class ProfileViewModel {
         
         return CurrencyService.instance.getCurrencyType()
     }
+    
+    func getProductById(productId: Int, completion: @escaping (ProductResponse?) -> Void) {
+        let endpoint = "admin/api/2024-04/products/\(productId).json"
+        NetworkHandler.instance.getData(endPoint: endpoint) { (result: ProductResponse?, error) in
+            guard let result = result else {
+                completion(nil)
+                return
+            }
+            completion(result)
+        }
+    }
 
     
 }
