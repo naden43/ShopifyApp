@@ -40,7 +40,8 @@ class ProductDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAvailableQuantities()
+       
+        productQuantity.isHidden = true
         favViewModel?.loadData  { [weak self] in
             
             if self?.viewModel?.isProductInFavorites() == true {
@@ -191,14 +192,15 @@ class ProductDetailsViewController: UIViewController {
                         varientID = item.id ?? 0
                         
                         
-                    /*    if item.inventoryQuantity == 0 || item.inventoryQuantity ?? 0 < 0 {
+                       if item.inventoryQuantity == 0 || item.inventoryQuantity ?? 0 < 0 {
                             showBottomSheet()
                             btnAddToCart.isEnabled = false
                             showBottomSheet()
+                           return
                         } else {
                             print(" item.inventoryQuantity\( item.inventoryQuantity)")
                             btnAddToCart.isEnabled = true
-                        }*/
+                        }
 
                 
                     }
@@ -457,30 +459,7 @@ class ProductDetailsViewController: UIViewController {
              }
          }
      
-     func getAvailableQuantities() {
-         guard let selectedSize = getSelectedSize(),
-               let selectedColor = getSelectedColor(),
-               let varients = viewModel?.selectedProduct?.variants else {
-             return
-         }
-         
-         var varientID: Int64 = 0
-         for item in varients {
-             if item.option1 == selectedSize && item.option2 == selectedColor {
-                 varientID = item.id ?? 0
-                 let quantity = item.inventoryQuantity
-                 productQuantity.text = "Available Quantities: \(quantity)"
-                 
-                 if quantity == 0 {
-                     showBottomSheet()
-                     btnAddToCart.isEnabled = false
-                     showBottomSheet()
-                 } else {
-                     btnAddToCart.isEnabled = true
-                 }
-             }
-         }
-     }
+  
 
      func showBottomSheet() {
          
